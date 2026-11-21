@@ -315,7 +315,7 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
           <a class="btn sm" href="./src/reconcile.html" target="_blank" rel="noopener">全屏体验 ↗</a>
         </div>
         <div class="stage-split">
-          <div class="phone"><div class="phone-notch"><span></span></div><iframe src="./src/reconcile.html" title="取餐核对台"></iframe></div>
+          <div class="phone"><div class="phone-notch"><span></span></div><iframe src="./src/reconcile.html?v=5" title="取餐核对台"></iframe></div>
           <ul class="hl-list">
             <li class="hl"><i>1</i><div><b>实时余量看板</b>5 大品牌大数字余量 + 实际到餐多/少核对</div></li>
             <li class="hl"><i>2</i><div><b>异常秒级筛选</b>点「未取完 / 需补餐券 / 超量」定位异常部门</div></li>
@@ -351,7 +351,7 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
         <div id="p2-client" class="stage-split">
           <div class="desktop-frame">
             <div class="desktop-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>易班自动化工作台 v3.2</span></div>
-            <iframe src="./src/yiban-client.html" title="易班桌面客户端"></iframe>
+            <iframe src="./src/yiban-client.html?v=5" title="易班桌面客户端"></iframe>
           </div>
           <ul class="hl-list">
             <li class="hl"><i>1</i><div><b>自动抓取权限版块</b>内置 5 范围 / 36 版块联动 + 防屏蔽提示</div></li>
@@ -392,7 +392,7 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
           <a class="btn sm" href="./src/zhxy-order.html" target="_blank" rel="noopener">全屏体验 ↗</a>
         </div>
         <div class="stage-split">
-          <div class="phone"><div class="phone-notch"><span></span></div><iframe src="./src/zhxy-order.html" title="前端自助下单网页"></iframe></div>
+          <div class="phone"><div class="phone-notch"><span></span></div><iframe src="./src/zhxy-order.html?v=5" title="前端自助下单网页"></iframe></div>
           <ul class="hl-list">
             <li class="hl"><i>1</i><div><b>自动同步 + 多维筛选</b>搜索 / 线上线下 / 未浏览过滤</div></li>
             <li class="hl"><i>2</i><div><b>批量勾选自助下单</b>支持首单短信验号，杜绝错密无效单</div></li>
@@ -413,7 +413,7 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
         <div id="p3b-console">
           <div class="desktop-frame">
             <div class="desktop-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>智慧校园 3.0 助手 · 点击「订单管理后台 / 运营 / 综测 / 设置」均可交互</span></div>
-            <iframe src="./src/zhxy-console.html" title="桌面主控制台"></iframe>
+            <iframe src="./src/zhxy-console.html?v=5" title="桌面主控制台"></iframe>
           </div>
           <div class="hl-row">
             <div class="hl"><i>1</i><div><b>HTTP 直连 + 名额置换</b>双模式切换，副号占位毫秒级置换给客户</div></div>
@@ -567,17 +567,32 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
   lb.addEventListener('click',()=>{ lb.classList.remove('on'); lbImg.src=''; });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') lb.classList.remove('on'); });
 
-  // Scroll spy for sticky index pills
+  // Scroll spy + reliable anchor navigation (never hijacks window scroll)
+  const navBar = document.getElementById('navLinks');
   const navLinks = [...document.querySelectorAll('#navLinks a')];
   const targets = navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
   function setActive(id){
     navLinks.forEach(a=>{
       const on = a.getAttribute('href') === '#' + id;
       a.classList.toggle('active', on);
-      if(on && a.scrollIntoView) a.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+      if(on && navBar && navBar.scrollWidth > navBar.clientWidth){
+        const left = a.offsetLeft - (navBar.clientWidth - a.offsetWidth) / 2;
+        navBar.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+      }
     });
   }
-  navLinks.forEach(a=>a.addEventListener('click',()=>setActive(a.getAttribute('href').slice(1))));
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(!el) return;
+      e.preventDefault();
+      const barH = (document.querySelector('.topbar')?.offsetHeight || 60) + 10;
+      const top = id === 'top' ? 0 : Math.max(0, el.getBoundingClientRect().top + window.scrollY - barH);
+      window.scrollTo({ top, behavior: 'smooth' });
+      if(id !== 'top') setActive(id);
+    });
+  });
   if('IntersectionObserver' in window){
     const io = new IntersectionObserver(entries=>{
       entries.forEach(en=>{ if(en.isIntersecting) setActive(en.target.id); });
