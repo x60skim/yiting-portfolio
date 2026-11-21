@@ -27,22 +27,49 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 img{display:block;max-width:100%}
 .num{font-variant-numeric:tabular-nums}
 .wrap{max-width:1040px;margin:0 auto;padding:0 12px}
-section,article.case{scroll-margin-top:60px}
+section,article.case{scroll-margin-top:104px}
 
-/* Topbar */
+/* Topbar + Prominent Index */
 .topbar{
-  position:sticky;top:0;z-index:40;background:rgba(245,245,247,0.88);
+  position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.94);
   backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--line-strong);box-shadow:0 2px 10px rgba(15,23,42,0.04);
 }
-.topbar-in{max-width:1040px;margin:0 auto;padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;color:var(--ink);white-space:nowrap}
+.topbar-in{max-width:1040px;margin:0 auto;padding:8px 12px 0;display:flex;flex-direction:column;gap:8px}
+.topbar-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;color:var(--ink);white-space:nowrap}
 .brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-cta{display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;white-space:nowrap}
+.nav-links{
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 0 9px;
+  -webkit-overflow-scrolling:touch;
+}
 .nav-links::-webkit-scrollbar{display:none}
-.nav-links a{padding:5px 9px;border-radius:8px;font-size:13px;color:var(--ink-2);white-space:nowrap}
-.nav-links a:hover{background:rgba(15,23,42,0.05);color:var(--ink)}
-.nav-cta{display:none;align-items:center;padding:6px 13px;border-radius:999px;background:var(--accent);color:#fff;font-size:12.5px;font-weight:600;white-space:nowrap}
+.nav-links a{
+  flex:none;padding:6px 11px;border-radius:999px;font-size:12.5px;font-weight:600;
+  color:var(--ink-2);background:var(--bg);border:1px solid var(--line);white-space:nowrap;
+  transition:all .16s var(--ease);
+}
+.nav-links a:hover{color:var(--accent);border-color:rgba(27,54,93,0.3)}
+.nav-links a.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(27,54,93,0.2)}
+
+/* Quick Index Grid in Hero */
+.quick-idx{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.quick-idx-lbl{font-size:11.5px;font-weight:700;color:var(--ink-3);margin-bottom:8px;letter-spacing:.04em}
+.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.qitem{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  padding:9px 10px;border-radius:11px;background:var(--surface-2);
+  border:1px solid var(--line-strong);color:var(--ink);font-size:12.5px;font-weight:700;
+  transition:all .16s var(--ease);
+}
+.qitem:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.qitem span{display:flex;align-items:center;gap:6px;min-width:0}
+.qitem b{
+  width:20px;height:20px;border-radius:6px;background:var(--accent);color:#fff;
+  font-size:11px;display:inline-flex;align-items:center;justify-content:center;flex:none;
+}
+.qitem em{font-style:normal;color:var(--ink-3);font-size:13px;flex:none}
 
 /* Hero */
 .hero{padding:16px 0 10px}
@@ -168,7 +195,12 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
 
 @media(min-width:768px){
   .wrap,.topbar-in{padding:0 24px}
-  .nav-cta{display:inline-flex}
+  section,article.case{scroll-margin-top:68px}
+  .topbar-in{flex-direction:row;align-items:center;justify-content:space-between;height:58px;padding:0 24px}
+  .topbar-row{display:contents}
+  .nav-links{padding:0;order:0}
+  .nav-cta{order:1;padding:6px 14px;font-size:12.5px}
+  .quick-grid{grid-template-columns:repeat(4,1fr)}
   .hero{padding:22px 0 14px}
   .hero-card{padding:28px 32px;border-radius:22px}
   .hero h1{font-size:34px}
@@ -198,18 +230,20 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
 </head>
 <body>
 
-<nav class="topbar">
+<nav class="topbar" aria-label="页面索引">
   <div class="topbar-in">
-    <a class="brand" href="#top"><span class="brand-dot"></span>赖怡婷 · 作品集</a>
-    <div class="nav-links">
-      <a href="#p1">核对系统</a>
-      <a href="#p2">易班客户端</a>
-      <a href="#p3">活动代预约</a>
-      <a href="#p4">电商/跨境</a>
-      <a href="#fit">定岗自评</a>
-      <a href="#edu">教育</a>
+    <div class="topbar-row">
+      <a class="brand" href="#top"><span class="brand-dot"></span>赖怡婷 · 作品集</a>
+      <a class="nav-cta" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历</a>
     </div>
-    <a class="nav-cta" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#p1" class="active">01 核对系统</a>
+      <a href="#p2">02 易班客户端</a>
+      <a href="#p3">03 活动代预约</a>
+      <a href="#p4">04 电商/跨境</a>
+      <a href="#fit">定岗自评</a>
+      <a href="#edu">教育背景</a>
+    </div>
   </div>
 </nav>
 
@@ -238,6 +272,16 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
         <div class="kpi"><div class="val">0.35%</div><div class="lbl">综合纠纷率（AI 工具 0 纠纷）</div></div>
         <div class="kpi"><div class="val">¥2,000+</div><div class="lbl">AI 工具商业纯利</div></div>
         <div class="kpi"><div class="val">零错漏</div><div class="lbl">广交会“优秀实习生”</div></div>
+      </div>
+
+      <div class="quick-idx">
+        <div class="quick-idx-lbl">作品快速直达（点击跳转体验）</div>
+        <div class="quick-grid">
+          <a class="qitem" href="#p1"><span><b>01</b>广交会核对台</span><em>↓</em></a>
+          <a class="qitem" href="#p2"><span><b>02</b>易班客户端</span><em>↓</em></a>
+          <a class="qitem" href="#p3"><span><b>03</b>活动代预约</span><em>↓</em></a>
+          <a class="qitem" href="#p4"><span><b>04</b>电商与跨境</span><em>↓</em></a>
+        </div>
       </div>
     </div>
   </section>
@@ -520,6 +564,24 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
   document.querySelectorAll('[data-zoom]').forEach(el=>el.addEventListener('click',()=>{ lbImg.src=el.getAttribute('data-zoom'); lb.classList.add('on'); }));
   lb.addEventListener('click',()=>{ lb.classList.remove('on'); lbImg.src=''; });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') lb.classList.remove('on'); });
+
+  // Scroll spy for sticky index pills
+  const navLinks = [...document.querySelectorAll('#navLinks a')];
+  const targets = navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function setActive(id){
+    navLinks.forEach(a=>{
+      const on = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('active', on);
+      if(on && a.scrollIntoView) a.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+    });
+  }
+  navLinks.forEach(a=>a.addEventListener('click',()=>setActive(a.getAttribute('href').slice(1))));
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{ if(en.isIntersecting) setActive(en.target.id); });
+    }, { rootMargin:'-25% 0px -60% 0px', threshold:0 });
+    targets.forEach(t=>io.observe(t));
+  }
 })();
 </script>
 </body>
