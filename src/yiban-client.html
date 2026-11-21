@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>易班自动化工作台</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:"Microsoft YaHei",-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+  background:#F4F6F9;color:#333;padding:10px;font-size:13px;line-height:1.5;
+}
+.win{
+  max-width:560px;margin:0 auto;background:#fff;border-radius:15px;
+  box-shadow:0 4px 20px rgba(15,23,42,0.08);overflow:hidden;border:1px solid #E5E9F0;
+}
+.titlebar{
+  background:#fff;border-bottom:1px solid #EEF1F5;padding:9px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
+}
+.tb-left{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#1F2937}
+.tb-icon{width:18px;height:18px;border-radius:5px;background:#00A1E9;color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+.tb-right{display:flex;align-items:center;gap:6px}
+.auth-badge{
+  font-size:11px;font-weight:600;color:#059669;background:#ECFDF5;
+  border:1px solid #A7F3D0;padding:2px 8px;border-radius:999px;cursor:pointer;
+}
+.mini-btn{
+  font-size:11px;font-weight:600;color:#1D4ED8;background:#EFF6FF;
+  border:1px solid #BFDBFE;padding:2px 8px;border-radius:999px;cursor:pointer;
+}
+.body{padding:14px 16px 16px}
+h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12px}
+.box{background:#F8FAFC;border-radius:10px;padding:11px 13px;margin-bottom:10px;border:1px solid #EDF2F7}
+.box h2{text-align:center;font-size:13.5px;font-weight:700;color:#333;margin-bottom:3px}
+.box .sub{text-align:center;font-size:11.5px;color:#666;margin-bottom:9px}
+.row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.row label{width:64px;flex:none;font-size:12.5px;color:#333}
+.row select,.row input{
+  flex:1;height:31px;border:1px solid #CBD5E1;border-radius:7px;padding:0 9px;
+  background:#fff;color:#1E293B;font-size:12.5px;outline:none;font-family:inherit;
+}
+.row select:focus,.row input:focus{border-color:#00A1E9}
+.btn-row{display:flex;gap:8px;justify-content:space-between;margin-top:10px}
+.btn{
+  border:0;border-radius:8px;color:#fff;font-size:12.5px;font-weight:600;
+  padding:7px 12px;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .12s;
+}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn-amber{background:#F59E0B;flex:1.25}
+.btn-amber:hover{background:#D97706}
+.btn-green{background:#10B981;flex:.85}
+.btn-green:hover{background:#059669}
+.tips{
+  background:#FFF3E0;border:1px solid #FFB74D;border-radius:8px;
+  padding:8px 11px;margin-bottom:10px;
+}
+.tips b{display:block;font-size:12px;color:#E65100;margin-bottom:2px}
+.tips p{font-size:11.5px;color:#4E342E;line-height:1.5}
+.limit-box{
+  background:#F0F4FF;border:1px solid #C7D2FE;border-radius:10px;
+  padding:10px 13px;margin-bottom:12px;
+}
+.limit-box h2{text-align:center;font-size:13.5px;font-weight:700;color:#333;margin-bottom:7px}
+.limit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:9px}
+.l-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;color:#333}
+.l-item div{display:flex;align-items:center;gap:4px}
+.l-item input{
+  width:54px;height:28px;text-align:center;border:1px solid #CBD5E1;border-radius:6px;
+  background:#fff;font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums;
+}
+.limit-actions{display:flex;gap:8px;justify-content:center}
+.btn-indigo{background:#6366F1;padding:6px 14px}
+.btn-indigo:hover{background:#4F46E5}
+.btn-slate{background:#475569;padding:6px 14px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn-yiban{background:#00A1E9;height:40px;border-radius:8px;font-size:13px;font-weight:700;width:100%}
+.btn-yiban:hover{background:#008ECC}
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px;
+  background:#F8FAFC;border:1px solid #E2E8F0;border-radius:9px;padding:7px 8px;text-align:center;
+}
+.stats b{display:block;font-size:15px;color:#00A1E9;font-variant-numeric:tabular-nums}
+.stats span{font-size:11px;color:#64748B}
+.console{
+  margin-top:10px;background:#0F172A;color:#CBD5E1;border-radius:10px;
+  padding:9px 11px;font-family:Consolas,Menlo,monospace;font-size:11.5px;
+  line-height:1.55;height:112px;overflow-y:auto;
+}
+.console .ok{color:#4ADE80}.console .info{color:#38BDF8}.console .warn{color:#FBBF24}
+/* Modal */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(15,23,42,0.5);display:none;
+  align-items:center;justify-content:center;padding:16px;z-index:30;
+}
+.modal-bg.on{display:flex}
+.modal{background:#fff;border-radius:12px;max-width:420px;width:100%;padding:16px;box-shadow:0 12px 32px rgba(0,0,0,0.2)}
+.modal h3{font-size:15px;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.modal textarea,.modal input[type=text]{width:100%;border:1px solid #CBD5E1;border-radius:8px;padding:8px;font-size:12.5px;font-family:inherit;margin-bottom:8px}
+.modal textarea{height:92px;resize:vertical}
+.modal .mfoot{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+.btn-ghost{background:#E2E8F0;color:#334155}
+.toast{
+  position:fixed;left:50%;top:14px;transform:translateX(-50%);
+  background:#111827;color:#fff;padding:7px 15px;border-radius:999px;
+  font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40;white-space:nowrap;
+}
+.toast.on{opacity:.96}
+</style>
+</head>
+<body>
+<div class="win">
+  <div class="titlebar">
+    <div class="tb-left"><span class="tb-icon">易</span>易班自动化工作台 v3.2</div>
+    <div class="tb-right">
+      <button class="mini-btn" id="btnLexicon">自定义词库</button>
+      <button class="auth-badge" id="btnAuth">● 飞书 HWID 已授权</button>
+    </div>
+  </div>
+  <div class="body">
+    <h1>易班发帖点赞控制台</h1>
+
+    <div class="box">
+      <h2>发帖目标配置</h2>
+      <div class="sub">由于易班版块较多，初次使用请先点击【读取版块】</div>
+      <div class="row"><label for="selRange">发帖范围:</label><select id="selRange"></select></div>
+      <div class="row"><label for="selBoard">发帖版块:</label><select id="selBoard"></select></div>
+      <div class="btn-row">
+        <button class="btn btn-amber" id="btnRead">自动读取发布范围与版块</button>
+        <button class="btn btn-green" id="btnSaveCfg">保存当前配置</button>
+      </div>
+    </div>
+
+    <div class="tips">
+      <b>💡 防封号防屏蔽发帖技巧：</b>
+      <p>1. 绝对不要选择学校里有专门排版美化、管理严格的版块，否则帖子100%会被屏蔽！<br>2. 尽量挑选已经含有大量“灌水帖”的版块发布（建议先在手机易班查看各个板块发帖情况）。</p>
+    </div>
+
+    <div class="limit-box">
+      <h2>任务上限配置</h2>
+      <div class="limit-grid">
+        <div class="l-item"><span>发帖上限</span><div><input id="limPost" type="number" min="1" value="20"><span>条</span></div></div>
+        <div class="l-item"><span>评论上限</span><div><input id="limComment" type="number" min="1" value="30"><span>条</span></div></div>
+        <div class="l-item"><span>点赞上限</span><div><input id="limLike" type="number" min="1" value="35"><span>次</span></div></div>
+      </div>
+      <div class="limit-actions">
+        <button class="btn btn-indigo" id="btnSaveLim">保存上限配置</button>
+        <button class="btn btn-slate" id="btnUpdate">检查云端更新</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-yiban" id="btnComment">自动评论 / 点赞入口</button>
+      <button class="btn btn-yiban" id="btnPost">按以上配置 -&gt; 自动发帖</button>
+    </div>
+
+    <div class="stats">
+      <div><b id="stPost">0 / 20</b><span>本次已发帖</span></div>
+      <div><b id="stCom">0 / 30</b><span>本次已评论</span></div>
+      <div><b id="stExp">+0</b><span>预计获得网薪</span></div>
+    </div>
+
+    <div class="console" id="log">
+      <div><span class="ok">[授权]</span> 飞书多维表格 HWID 核验通过 · 卡密：YB-8K2M9-...（月卡有效）</div>
+      <div><span class="info">[配置]</span> 已加载本地版块缓存（5 个发布范围 · 36 个版块）与自定义词库</div>
+      <div><span class="info">[就绪]</span> 点击上方任意按钮可完整体验桌面客户端工作流</div>
+    </div>
+  </div>
+</div>
+
+<!-- 飞书 HWID 授权弹窗 -->
+<div class="modal-bg" id="authModal">
+  <div class="modal">
+    <h3><span>飞书多维表格 · HWID 卡密授权</span></h3>
+    <div style="font-size:12px;color:#475569;margin-bottom:8px">设备硬件码 (HWID)：<code style="background:#F1F5F9;padding:2px 6px;border-radius:4px">WIN-BFEBFBFF000906EA</code></div>
+    <input type="text" id="authKey" value="YB-8K2M9-P4X7Q-N3W5R-T6V2H" placeholder="输入 YB-XXXXX-... 激活码">
+    <div style="font-size:11.5px;color:#059669;margin-bottom:8px">状态：已激活 · 卡片类型：月卡（31天）· 封禁状态：否</div>
+    <div class="mfoot">
+      <button class="btn btn-ghost" onclick="closeModals()">关闭</button>
+      <button class="btn btn-green" id="btnVerifyKey">重新联网校验</button>
+    </div>
+  </div>
+</div>
+
+<!-- 自定义词库弹窗 -->
+<div class="modal-bg" id="lexModal">
+  <div class="modal">
+    <h3><span>自定义发帖 / 评论词库（本地接口同步）</span></h3>
+    <div style="font-size:11.5px;color:#64748B;margin-bottom:5px">发帖与评论随机语句（每行一条，实时同步至浏览器悬浮窗脚本）：</div>
+    <textarea id="lexText">今日打卡，记录美好校园生活！
+好好学习天天向上，继续加油~
+分享今日好心情，祝大家学业顺利！
+来看看大家的精彩分享，点赞支持一下！</textarea>
+    <div class="mfoot">
+      <button class="btn btn-ghost" onclick="closeModals()">取消</button>
+      <button class="btn btn-indigo" id="btnSaveLex">保存词库</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const BOARDS = {
+    "广东轻工职业技术大学":["校园大杂烩","杂文区","默认板块","易文化","时事达人","轻院风光","我的社团","学子风采","轻研练","迎新","活动","公告"],
+    "易班":["校园","杂谈","爱好","青梨派","站务"],
+    "应用外语学院":["校园大杂烩","杂文区","默认板块","我的社团","活动","公告"],
+    "国商243":["校园大杂烩","杂文区","默认板块","我的社团","活动","公告"],
+    "2024新生学院":["校园大杂烩","活动","公告"]
+  };
+  const selRange = document.getElementById('selRange');
+  const selBoard = document.getElementById('selBoard');
+  const logEl = document.getElementById('log');
+  const toastEl = document.getElementById('toast');
+  let toastT = null, running = false, posts = 0, coms = 0, exp = 0;
+
+  function toast(m){ toastEl.textContent=m; toastEl.classList.add('on'); clearTimeout(toastT); toastT=setTimeout(()=>toastEl.classList.remove('on'),1800); }
+  function addLog(tag, cls, text){
+    const d = document.createElement('div');
+    d.innerHTML = `<span class="${cls}">[${tag}]</span> ${text}`;
+    logEl.appendChild(d); logEl.scrollTop = logEl.scrollHeight;
+  }
+  function updateStats(){
+    document.getElementById('stPost').textContent = `${posts} / ${document.getElementById('limPost').value}`;
+    document.getElementById('stCom').textContent = `${coms} / ${document.getElementById('limComment').value}`;
+    document.getElementById('stExp').textContent = `+${exp}`;
+  }
+  window.closeModals = function(){
+    document.getElementById('authModal').classList.remove('on');
+    document.getElementById('lexModal').classList.remove('on');
+  };
+
+  Object.keys(BOARDS).forEach(r=>{ const o=document.createElement('option'); o.value=r; o.textContent=r; selRange.appendChild(o); });
+  function syncBoards(){ selBoard.innerHTML=''; (BOARDS[selRange.value]||[]).forEach(b=>{ const o=document.createElement('option'); o.value=b; o.textContent=b; selBoard.appendChild(o); }); }
+  selRange.addEventListener('change', syncBoards);
+  syncBoards();
+
+  document.getElementById('btnAuth').onclick = () => document.getElementById('authModal').classList.add('on');
+  document.getElementById('btnLexicon').onclick = () => document.getElementById('lexModal').classList.add('on');
+  document.getElementById('btnVerifyKey').onclick = () => {
+    addLog('授权','ok','飞书 API 校验成功：HWID 匹配，到期时间有效');
+    closeModals(); toast('飞书 HWID 授权校验通过');
+  };
+  document.getElementById('btnSaveLex').onclick = () => {
+    const lines = document.getElementById('lexText').value.trim().split('\n').filter(Boolean).length;
+    addLog('词库','ok',`已写入本地配置接口：共 ${lines} 条自定义发帖/评论语句`);
+    closeModals(); toast(`已保存 ${lines} 条自定义词库`);
+  };
+  document.getElementById('btnRead').onclick = function(){
+    if(running) return; running = true; this.disabled=true; this.textContent='正在读取中...';
+    addLog('采集','info','已拉起独立 Edge 浏览器实例，自动读取账号权限版块...');
+    setTimeout(()=>{
+      addLog('采集','ok','读取完成：已同步 5 个范围 / 36 个版块并写入 yiban_boards_cache.json');
+      this.disabled=false; this.textContent='自动读取发布范围与版块'; running=false; toast('版块读取完成！');
+    }, 800);
+  };
+  document.getElementById('btnSaveCfg').onclick = () => {
+    const msg = `【${selRange.value}】 -> 【${selBoard.value}】`;
+    addLog('配置','ok','已保存默认发帖目标：' + msg); toast('已保存：' + msg);
+  };
+  document.getElementById('btnSaveLim').onclick = () => {
+    updateStats();
+    addLog('上限','ok',`任务上限已更新：发帖 ${limPost.value} / 评论 ${limComment.value} / 点赞 ${limLike.value}`);
+    toast('上限配置已保存');
+  };
+  document.getElementById('btnUpdate').onclick = () => {
+    addLog('更新','info','正在请求飞书版本表检查最新版本号...');
+    setTimeout(()=>{ addLog('更新','ok','当前已是最新版本 v3.2'); toast('当前已是最新版本 v3.2'); }, 450);
+  };
+  document.getElementById('btnComment').onclick = () => {
+    if(running) return; running = true;
+    addLog('执行','info','启动独立用户目录浏览器，注入「自动评论点赞」加密脚本...');
+    let step = 0;
+    const iv = setInterval(()=>{
+      step++; coms += 2; exp += 6; updateStats();
+      addLog('评论','warn',`第 ${step} 轮：已自动评论 +2、点赞 +3（随机间隔防风控）`);
+      if(step >= 3){ clearInterval(iv); running=false; addLog('完成','ok','本轮自动评论点赞任务执行完毕！'); toast('自动评论/点赞演示完成'); }
+    }, 450);
+  };
+  document.getElementById('btnPost').onclick = () => {
+    if(running) return; running = true;
+    addLog('执行','info',`启动自动发帖 -> 目标：【${selRange.value}】/【${selBoard.value}】`);
+    let step = 0;
+    const iv = setInterval(()=>{
+      step++; posts += 1; exp += 10; updateStats();
+      addLog('发帖','ok',`已发布第 ${posts} 篇帖子（自定义词库随机组合，避开严管版块）`);
+      if(step >= 3){ clearInterval(iv); running=false; addLog('完成','ok','本轮自动发帖执行完毕，网薪经验值已累计！'); toast('自动发帖演示完成'); }
+    }, 480);
+  };
+})();
+</script>
+</body>
+</html>

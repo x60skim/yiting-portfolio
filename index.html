@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>赖怡婷 Yiting Lai｜国际商务 × AI 业务落地与商业交付</title>
+<meta name="description" content="赖怡婷个人作品集：国际商务 × AI 业务落地与商业交付。累计真实交付 285+ 单，综合纠纷率 0.35%，AI 工具纯利 2,000+ 元，广交会优秀实习生。">
+<meta name="theme-color" content="#f5f5f7">
+<style>
+:root{
+  --bg:#f5f5f7;
+  --surface:#ffffff;
+  --surface-2:#f9fafb;
+  --line:rgba(15,23,42,0.08);
+  --line-strong:rgba(15,23,42,0.14);
+  --ink:#111827;
+  --ink-2:#4b5563;
+  --ink-3:#6b7280;
+  --accent:#1b365d;
+  --accent-hover:#122644;
+  --accent-soft:rgba(27,54,93,0.07);
+  --accent-border:rgba(27,54,93,0.16);
+  --ok:#15803d;
+  --ok-soft:#ecfdf5;
+  --ok-border:rgba(21,128,61,0.18);
+  --warn:#b45309;
+  --warn-soft:#fffbeb;
+  --shadow-sm:0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md:0 2px 6px rgba(15,23,42,0.04),0 12px 32px rgba(15,23,42,0.05);
+  --shadow-lg:0 20px 50px rgba(15,23,42,0.14);
+  --radius:18px;
+  --radius-sm:12px;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font:400 15px/1.65 var(--font);
+  background:var(--bg);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+a{color:var(--accent);text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{display:block;max-width:100%}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* Topbar */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(245,245,247,0.86);
+  backdrop-filter:saturate(180%) blur(18px);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{
+  max-width:1080px;margin:0 auto;padding:0 16px;height:56px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--ink);white-space:nowrap}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  padding:6px 10px;border-radius:8px;font-size:13.5px;color:var(--ink-2);white-space:nowrap;
+  transition:background .18s var(--ease),color .18s var(--ease);
+}
+.nav-links a:hover{background:rgba(15,23,42,0.05);color:var(--ink)}
+.nav-cta{
+  display:none;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;
+  background:var(--accent);color:#fff;font-size:13px;font-weight:600;white-space:nowrap;
+  transition:background .18s var(--ease),transform .18s var(--ease);
+}
+.nav-cta:hover{background:var(--accent-hover)}
+.nav-cta:active{transform:scale(.97)}
+
+/* Hero */
+.hero{padding:28px 0 20px}
+.hero-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:24px;
+  padding:26px 20px;box-shadow:var(--shadow-md);
+}
+.status-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);
+  font-size:12.5px;font-weight:600;margin-bottom:14px;
+}
+.status-pill i{width:7px;height:7px;border-radius:50%;background:#16a34a;display:inline-block}
+.hero-head{display:flex;flex-direction:column;gap:16px}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.15;color:var(--ink)}
+.hero h1 span{font-size:17px;font-weight:500;color:var(--ink-3);margin-left:10px;letter-spacing:0}
+.hero-role{font-size:17px;font-weight:700;color:var(--accent);margin-top:8px}
+.hero-desc{font-size:14.5px;color:var(--ink-2);margin-top:6px;max-width:680px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:42px;padding:0 16px;border-radius:11px;font-size:14px;font-weight:600;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  transition:all .18s var(--ease);
+}
+.btn:hover{background:var(--surface-2);border-color:rgba(15,23,42,0.24)}
+.btn:active{transform:scale(.98)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(27,54,93,0.18)}
+.btn.pri:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.btn svg{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-line{margin-top:12px;font-size:13px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 16px}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
+.kpi{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:16px;
+  padding:14px 14px 13px;display:flex;flex-direction:column;gap:3px;
+}
+.kpi .val{font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);line-height:1.15}
+.kpi .val.accent{color:var(--accent)}
+.kpi .lbl{font-size:13px;font-weight:600;color:var(--ink-2)}
+.kpi .sub{font-size:11.5px;color:var(--ink-3)}
+
+/* Sections */
+section{padding:28px 0 8px}
+.sec-head{display:flex;flex-direction:column;gap:4px;margin-bottom:18px}
+.sec-eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.sec-head h2{font-size:22px;font-weight:800;letter-spacing:-0.015em;color:var(--ink)}
+.sec-head p{font-size:14px;color:var(--ink-2)}
+
+/* Case Study Card */
+.case{
+  background:var(--surface);border:1px solid var(--line);border-radius:22px;
+  padding:20px 18px;margin-bottom:20px;box-shadow:var(--shadow-sm);
+}
+.case-top{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}
+.case-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;
+  font-size:12px;font-weight:700;background:var(--accent-soft);color:var(--accent);margin-bottom:8px;
+}
+.case-badge.live{background:#ecfdf5;color:#15803d}
+.case h3{font-size:19px;font-weight:800;letter-spacing:-0.01em;color:var(--ink);line-height:1.3}
+.case-meta{font-size:13px;color:var(--ink-3);margin-top:4px}
+.case-kpis{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  display:inline-flex;align-items:center;padding:4px 10px;border-radius:8px;
+  font-size:12px;font-weight:600;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+}
+.chip.ok{background:var(--ok-soft);border-color:var(--ok-border);color:var(--ok)}
+
+/* 3-part Narrative */
+.tri{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:18px}
+.tri-box{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:14px;
+  padding:13px 14px;
+}
+.tri-box.res{background:var(--ok-soft);border-color:var(--ok-border)}
+.tri-k{font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--accent);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.tri-box.res .tri-k{color:var(--ok)}
+.tri-box p{font-size:13.8px;color:var(--ink-2);line-height:1.6}
+.tri-box.res p{color:#14532d;font-weight:500}
+
+/* Interactive Demo Stage */
+.stage{
+  background:var(--bg);border:1px solid var(--line);border-radius:18px;
+  padding:16px 14px;
+}
+.stage-bar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:14px;
+}
+.stage-title{font-size:13.5px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:7px}
+.stage-title i{width:8px;height:8px;border-radius:50%;background:#16a34a;display:inline-block}
+.stage-tabs{display:inline-flex;background:rgba(15,23,42,0.06);padding:3px;border-radius:10px;gap:2px}
+.stage-tab{
+  padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--ink-2);
+  transition:all .16s var(--ease);
+}
+.stage-tab.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,0.08)}
+.stage-split{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.desktop-frame{
+  width:100%;border-radius:16px;border:1px solid var(--line-strong);
+  background:#fff;overflow:hidden;box-shadow:var(--shadow-md);
+}
+.desktop-bar{
+  height:32px;background:#f1f5f9;border-bottom:1px solid var(--line);
+  padding:0 12px;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-3);
+}
+.desktop-bar i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.desktop-bar .r{background:#ef4444}.desktop-bar .y{background:#f59e0b}.desktop-bar .g{background:#22c55e}
+.desktop-bar span{margin-left:6px;font-weight:600;color:var(--ink-2)}
+.desktop-frame iframe{display:block;width:100%;height:610px;border:0;background:#fff}
+.desktop-frame.dark .desktop-bar{background:#111827;border-bottom-color:rgba(255,255,255,0.08)}
+.desktop-frame.dark .desktop-bar span{color:#cbd5e1}
+.desktop-frame.dark iframe{background:#0b0f19;height:540px}
+.sub-stage{margin-top:16px}
+.sub-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:8px;
+  font-size:12px;font-weight:700;background:#111827;color:#fff;margin-right:6px;
+}
+.sub-badge.web{background:var(--accent)}
+
+/* Phone Frame */
+.phone-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.phone{
+  width:100%;max-width:410px;
+  border-radius:30px;border:8px solid #18181b;
+  background:#fff;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+}
+.phone-notch{height:18px;background:#18181b;display:flex;align-items:center;justify-content:center}
+.phone-notch span{width:64px;height:5px;border-radius:99px;background:#3f3f46}
+.phone iframe{display:block;width:100%;height:650px;border:0;background:#fff}
+.phone.compact iframe{height:520px}
+
+/* Guide Panel next to Demo */
+.guide{display:flex;flex-direction:column;gap:10px}
+.guide-title{font-size:14px;font-weight:700;color:var(--ink)}
+.guide-list{display:grid;gap:8px;list-style:none}
+.guide-item{
+  background:var(--surface);border:1px solid var(--line);border-radius:13px;
+  padding:11px 13px;display:flex;gap:10px;align-items:flex-start;
+}
+.guide-num{
+  width:22px;height:22px;border-radius:7px;flex:none;
+  background:var(--accent);color:#fff;font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.guide-item b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:2px}
+.guide-item span{display:block;font-size:12.8px;color:var(--ink-2);line-height:1.5}
+.guide-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+
+/* Admin Shot & Proof Gallery */
+.shot-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  cursor:zoom-in;transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+}
+.shot-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.shot-card img{width:100%;height:auto;display:block}
+.shot-cap{padding:10px 13px;font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.shot-cap b{color:var(--ink)}
+.proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.proof-card{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  cursor:zoom-in;transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+  display:flex;flex-direction:column;
+}
+.proof-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.proof-img{aspect-ratio:3/4;overflow:hidden;background:#eef0f4;display:flex;align-items:center;justify-content:center}
+.proof-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.proof-cap{padding:9px 11px;font-size:12px;color:var(--ink-2);border-top:1px solid var(--line);background:var(--surface);flex:1}
+.proof-cap b{display:block;font-size:12.5px;color:var(--ink);margin-bottom:2px}
+
+/* Workflow 3-Grid */
+.wf-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.wf-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  padding:18px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:8px;
+}
+.wf-num{
+  width:30px;height:30px;border-radius:9px;background:var(--accent);color:#fff;
+  font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;
+}
+.wf-card h3{font-size:16px;font-weight:700;color:var(--ink)}
+.wf-card p{font-size:13.8px;color:var(--ink-2)}
+.tool-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tool-tags span{font-size:11.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:3px 9px;border-radius:6px}
+
+/* Role Fit 2-Grid */
+.fit-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.fit-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:20px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+}
+.fit-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
+.fit-card.alt::before{background:#0f766e}
+.fit-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin-bottom:4px}
+.fit-card.alt .fit-label{color:#0f766e}
+.fit-card h3{font-size:17px;font-weight:800;margin-bottom:10px;color:var(--ink)}
+.fit-card ul{list-style:none;display:grid;gap:8px}
+.fit-card li{font-size:13.8px;color:var(--ink-2);padding-left:18px;position:relative}
+.fit-card li::before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:800}
+.fit-card.alt li::before{color:#0f766e}
+
+/* Education */
+.edu-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:20px;box-shadow:var(--shadow-sm);display:grid;gap:16px;
+}
+.edu-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.edu-top h3{font-size:18px;font-weight:800;color:var(--ink)}
+.edu-gpa{font-size:14px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:4px 12px;border-radius:999px}
+.course-group h4{font-size:12.5px;font-weight:700;color:var(--ink-3);margin-bottom:8px;letter-spacing:.03em}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{
+  font-size:13px;padding:5px 11px;border-radius:9px;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--ink);
+}
+.pill b{color:var(--accent);margin-left:4px}
+.pill.honor{background:#fffbeb;border-color:rgba(180,83,9,0.2);color:#92400e;font-weight:600}
+
+/* Footer */
+footer{
+  margin-top:36px;padding:28px 0 44px;border-top:1px solid var(--line);
+  text-align:center;color:var(--ink-3);font-size:13px;
+}
+footer strong{color:var(--ink)}
+
+/* Toast & Lightbox */
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(8px);
+  background:#111827;color:#fff;padding:10px 18px;border-radius:999px;
+  font-size:13.5px;font-weight:500;opacity:0;pointer-events:none;
+  transition:all .2s var(--ease);z-index:80;box-shadow:0 8px 24px rgba(0,0,0,0.22);
+}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#lb{
+  position:fixed;inset:0;z-index:90;background:rgba(15,23,42,0.84);
+  backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;
+  padding:20px;cursor:zoom-out;
+}
+#lb.on{display:flex}
+#lb img{max-width:96vw;max-height:90vh;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.5)}
+#lb .lb-close{
+  position:fixed;top:16px;right:18px;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,0.16);color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;
+}
+
+@media(min-width:768px){
+  .wrap,.topbar-in{padding:0 24px}
+  .nav-cta{display:inline-flex}
+  .hero{padding:36px 0 24px}
+  .hero-card{padding:34px 36px}
+  .hero h1{font-size:36px}
+  .kpi-grid{grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi .val{font-size:28px}
+  .case{padding:28px 30px}
+  .tri{grid-template-columns:repeat(3,1fr);gap:12px}
+  .stage{padding:22px}
+  .stage-split{grid-template-columns:410px 1fr;gap:24px}
+  .proof-grid{grid-template-columns:repeat(4,1fr)}
+  .wf-grid{grid-template-columns:repeat(3,1fr)}
+  .fit-grid{grid-template-columns:repeat(2,1fr)}
+  .edu-card{padding:26px 28px}
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#top"><span class="brand-dot"></span>赖怡婷 · 作品集</a>
+    <div class="nav-links">
+      <a href="#p1">广交会核对</a>
+      <a href="#p2">易班自动化</a>
+      <a href="#p3">活动代预约</a>
+      <a href="#p4">电商与跨境</a>
+      <a href="#fit">定岗自评</a>
+      <a href="#edu">教育背景</a>
+    </div>
+    <a class="nav-cta" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载 PDF 简历</a>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <!-- 首屏核心名片 -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="status-pill"><i></i>2027 届大专 · 可全周实习 · 广东广州</div>
+      <div class="hero-head">
+        <div>
+          <h1>赖怡婷<span>Yiting Lai</span></h1>
+          <div class="hero-role">国际商务 × AI 业务落地与商业交付</div>
+          <p class="hero-desc">懂一线业务痛点，能借助 AI 快速搭建可上线运行的业务工具，并独立跑通「需求洞察 — 产品交付 — 售后低纠纷履约」真实流程。</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn pri" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">
+            <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+            下载 PDF 简历
+          </a>
+          <button class="btn" data-copy="13794875992">
+            <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制手机号
+          </button>
+          <button class="btn" data-copy="x60skim@gmail.com">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            复制邮箱
+          </button>
+        </div>
+        <div class="contact-line num">
+          <span>手机：13794875992</span>
+          <span>邮箱：x60skim@gmail.com</span>
+          <span>广东轻工职业技术大学 · 国际商务（GPA 3.81 / 5.0）</span>
+        </div>
+      </div>
+
+      <div class="kpi-grid num">
+        <div class="kpi">
+          <div class="val accent">285+ 单</div>
+          <div class="lbl">累计真实交付</div>
+          <div class="sub">AI 工具 80+ 单 + 电商 205 单</div>
+        </div>
+        <div class="kpi">
+          <div class="val">0.35%</div>
+          <div class="lbl">综合纠纷率</div>
+          <div class="sub">AI 工具 0 纠纷 · 电商仅 1 笔</div>
+        </div>
+        <div class="kpi">
+          <div class="val">¥2,000+</div>
+          <div class="lbl">AI 工具商业纯利</div>
+          <div class="sub">独立定价、交付与售后变现</div>
+        </div>
+        <div class="kpi">
+          <div class="val">零错漏</div>
+          <div class="lbl">广交会“优秀实习生”</div>
+          <div class="sub">自研工具支撑高压核对</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 实战案例区 -->
+  <section id="projects">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Selected Projects · 可直接在线体验</div>
+      <h2>实战作品与商业交付案例</h2>
+    </div>
+
+    <!-- 项目 1：广交会取餐核对台 -->
+    <article class="case" id="p1">
+      <div class="case-top">
+        <div>
+          <div class="case-badge live">项目 01</div>
+          <h3>广交会移动端实时对账核对系统（取餐核对台）</h3>
+          <div class="case-meta">2026.10 – 2026.11 · 广东广交会新大地会展服务有限公司 · 运营核对实习生</div>
+        </div>
+        <div class="case-kpis">
+          <span class="chip ok">高压现场零错漏</span>
+          <span class="chip">广交会“优秀实习生”</span>
+        </div>
+      </div>
+
+      <div class="tri">
+        <div class="tri-box">
+          <div class="tri-k">01 业务痛点</div>
+          <p>展会期间需负责 20+ 部门餐券回收、清点、每日对账与共享表格录入。人工纸质抄录效率低，现场“报了多少、取了多少、还差多少、谁多拿了”难以及时核清，高压时段极易出错。</p>
+        </div>
+        <div class="tri-box">
+          <div class="tri-k">02 落地动作</div>
+          <p>借助 AI 独立开发移动端网页核对系统「取餐核对台」：打通共享报餐表数据自动读取、多品牌余量实时刷新、超量/换餐/加餐即时校验标红，并支持日结一键生成“需补餐券”清单与离线导出 Excel。</p>
+        </div>
+        <div class="tri-box res">
+          <div class="tri-k">03 商业结果</div>
+          <p>直接上线投入广交会真实场次使用，大幅压缩每日对账与复核耗时，全程保障账目零错漏，获评公司“优秀实习生”。</p>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="stage-title"><i></i>页面还原</div>
+          <a class="btn" style="min-height:34px;padding:0 12px;font-size:12.5px" href="./src/reconcile.html" target="_blank" rel="noopener">全屏打开体验 ↗</a>
+        </div>
+        <div class="stage-split">
+          <div class="phone-wrap">
+            <div class="phone">
+              <div class="phone-notch"><span></span></div>
+              <iframe src="./src/reconcile.html" title="广交会取餐核对台 在线演示"></iframe>
+            </div>
+          </div>
+          <div class="guide">
+            <div class="guide-title">核心功能：</div>
+            <ol class="guide-list">
+              <li class="guide-item">
+                <div class="guide-num">1</div>
+                <div><b>品牌余量实时看板</b><span>顶部多满分 / 真功夫 / 麦当劳 / 肯德基 / 清真餐卡片，大数字实时显示剩余份数，下方核对「已取 / 报餐」与供应商「实际到餐 / 备用份数」。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">2</div>
+                <div><b>一键筛选异常部门</b><span>点击「未取完」「需补餐券」「加/换餐/超量」筛选胶囊，定位超报标红与未结清部门。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">3</div>
+                <div><b>现场登记 + 超量校验</b><span>点进任意部门卡片记录取餐，系统自动校验「人数 = 餐份数」，超出报餐名额立即拦截并标红提醒。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">4</div>
+                <div><b>日结补餐券闭环 &amp; 导出 Excel</b><span>点右上角「⋯」→「结束今日取餐」，所有少取未拿部门一键转为「需补餐券」；底部支持直接离线导出格式化 `.xlsx` 对账表。</span></div>
+              </li>
+            </ol>
+            <div class="guide-actions">
+              <a class="btn pri" href="./src/reconcile.html" target="_blank" rel="noopener">新窗口全屏操作</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 项目 2：易班自动化脚本 -->
+    <article class="case" id="p2">
+      <div class="case-top">
+        <div>
+          <div class="case-badge live">项目 02</div>
+          <h3>易班自动化脚本（桌面客户端 + 飞书 HWID 授权发卡）</h3>
+          <div class="case-meta">2025.06 – 至今 · 独立研发与商业化交付（AI 工具线合计 80+ 单 / 0 纠纷 / 纯利 ¥2,000+）</div>
+        </div>
+        <div class="case-kpis">
+          <span class="chip ok">桌面端</span>
+          <span class="chip">飞书多维表格</span>
+          <span class="chip">0 纠纷</span>
+        </div>
+      </div>
+
+      <div class="tri">
+        <div class="tri-box">
+          <div class="tri-k">01 业务痛点</div>
+          <p>高校易班日常发帖、评论、点赞与网薪经验值任务高频重复且耗时；普通学生不会配环境，同时需要防盗版卡密授权与防版块屏蔽策略。</p>
+        </div>
+        <div class="tri-box">
+          <div class="tri-k">02 落地动作</div>
+          <p>借助 AI 独立开发 Python + CustomTkinter 桌面客户端「易班自动化工作台」，实现自动采集账号权限版块、自定义上限配置、一键拉起独立浏览器注入发帖/评论/点赞脚本；结合飞书多维表格做 HWID 硬件码在线鉴权，并配套「易班发卡」网页批量发卡。</p>
+        </div>
+        <div class="tri-box res">
+          <div class="tri-k">03 商业结果</div>
+          <p>打包为 `Setup.exe` 零门槛交付，独立完成定价、发卡、答疑与迭代，与项目 03 共同构成 AI 工具线：累计交付 80+ 单、0 纠纷、纯利 2,000+ 元。</p>
+        </div>
+      </div>
+
+      <div class="stage" id="p2-stage">
+        <div class="stage-bar">
+          <div class="stage-title"><i></i>桌面客户端交互演示 </div>
+          <div class="stage-tabs" role="tablist">
+            <button class="stage-tab active" data-group="p2" data-tab="p2-client">易班桌面客户端（默认）</button>
+            <button class="stage-tab" data-group="p2" data-tab="p2-card">配套飞书发卡网页</button>
+          </div>
+        </div>
+
+        <div id="p2-client" class="stage-split">
+          <div class="desktop-frame">
+            <div class="desktop-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>易班自动化工作台 v3.2 · Windows 桌面客户端</span></div>
+            <iframe src="./src/yiban-client.html" title="易班自动化工作台 桌面客户端演示"></iframe>
+          </div>
+          <div class="guide">
+            <div class="guide-title">客户端特点：</div>
+            <ol class="guide-list">
+              <li class="guide-item">
+                <div class="guide-num">1</div>
+                <div><b>自动读取发布范围与版块 + 防屏蔽策略</b><span>无需手动找链接，一键抓取账号下所有学校/学院/班级版块（已内置真实版块缓存），内置防封号提示引导避开严管版块。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">2</div>
+                <div><b>可视化上限配置 + 一键启动双引擎</b><span>自由设定发帖/评论/点赞每日上限，点「自动评论 / 登录入口」或「按以上配置 -&gt; 自动发帖」即可自动拉起隔离浏览器并注入加密脚本执行。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">3</div>
+                <div><b>飞书多维表格 HWID 商业鉴权 + 云端更新</b><span>客户端启动自动校验设备硬件码（HWID）与到期时间，并在后台拉取飞书版本表提醒更新；零服务器成本跑通售卖闭环。</span></div>
+              </li>
+            </ol>
+            <div class="guide-actions">
+              <a class="btn pri" href="./src/yiban-client.html" target="_blank" rel="noopener">新窗口打开客户端 ↗</a>
+              <button class="btn" onclick="switchGroupTab('p2','p2-card')">切换到「易班发卡」网页 →</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="p2-card" class="stage-split" style="display:none">
+          <div class="phone-wrap">
+            <div class="phone compact">
+              <div class="phone-notch"><span></span></div>
+              <iframe src="./src/yiban-card.html" title="易班发卡 真实上线页"></iframe>
+            </div>
+          </div>
+          <div class="guide">
+            <div class="guide-title">配套商家端发卡工具：</div>
+            <ol class="guide-list">
+              <li class="guide-item">
+                <div class="guide-num">1</div>
+                <div><b>带校验位算法批量发卡</b><span>支持日卡 / 周卡 / 月卡 / 季卡 / 半年卡 / 年卡 / 永久卡，一键批量生成 `YB-XXXXX-...` 防伪激活码。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">2</div>
+                <div><b>按列一键复制同步飞书表</b><span>生成后分别点击复制【激活码】【卡片类型】【封禁状态】，直接整列粘贴进飞书多维表格即可售卖生效。</span></div>
+              </li>
+            </ol>
+            <div class="guide-actions">
+              <a class="btn pri" href="./src/yiban-card.html" target="_blank" rel="noopener">全屏打开发卡页 ↗</a>
+              <button class="btn" onclick="switchGroupTab('p2','p2-client')">← 返回桌面客户端</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 项目 3：校园活动代预约系统（前端网站端 + 后端程序端） -->
+    <article class="case" id="p3">
+      <div class="case-top">
+        <div>
+          <div class="case-badge live">项目 03</div>
+          <h3>智慧校园 3.0 校园活动代预约系统</h3>
+          <div class="case-meta">2025.06 – 至今 · 独立研发与运营（前端客户自助下单网站 + 后端多账号自动化执行与实时管理程序）</div>
+        </div>
+        <div class="case-kpis">
+          <span class="chip ok">前端自助下单 + 后端自动抢报</span>
+          <span class="chip">实时状态看板 + 批量复核结算</span>
+        </div>
+      </div>
+
+      <div class="tri">
+        <div class="tri-box">
+          <div class="tri-k">01 业务痛点</div>
+          <p>热门综测活动名额秒光，高校同学经常因为各种环境原因抢不到加学分活动。</p>
+        </div>
+        <div class="tri-box">
+          <div class="tri-k">02 落地动作</div>
+          <p>独立拆分为「前端网站端」与「后端程序端」双端协同：前端提供移动端自适应自助下单网页（活动同步、筛选勾选、查单与工单）；后端采用 Python + Node.js/SQLite 实现多账号并发抢报、名额置换、桌面实时监控看板与批量账单快照结算。</p>
+        </div>
+        <div class="tri-box res">
+          <div class="tri-k">03 商业结果</div>
+          <p>全自动自助下单，大幅放大接单上限，与易班工具共同实现 200+ 单 0 纠纷、纯利 2,000+ 元。</p>
+        </div>
+      </div>
+
+      <!-- 模块 A：前端网站端 -->
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="stage-title"><span class="sub-badge web">前端网站端</span>客户自助在线下单网页</div>
+          <a class="btn" style="min-height:34px;padding:0 12px;font-size:12.5px" href="./src/zhxy-order.html" target="_blank" rel="noopener">全屏打开下单页 ↗</a>
+        </div>
+        <div class="stage-split">
+          <div class="phone-wrap">
+            <div class="phone">
+              <div class="phone-notch"><span></span></div>
+              <iframe src="./src/zhxy-order.html" title="智慧校园3.0 前端自助下单网站"></iframe>
+            </div>
+          </div>
+          <div class="guide">
+            <div class="guide-title">前端网站端特点：</div>
+            <ol class="guide-list">
+              <li class="guide-item">
+                <div class="guide-num">1</div>
+                <div><b>全自动活动同步与多维筛选</b><span>后端定时抓取校园新活动并同步上架，客户可按关键词、「未浏览 / 线上活动 / 线下活动 / 已预约」秒级筛选，已看过的活动自动沉底。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">2</div>
+                <div><b>批量勾选自助下单 + 首次短信验号</b><span>勾选多个活动一键批量提交预约，首单自动触发账号有效性核验，彻底杜绝客户填错密码导致的无效单。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">3</div>
+                <div><b>透明查单与自助工单闭环</b><span>底部切换「我的订单」随时查看排队中 / 已抢到状态，支持自助退单与提交售后工单，大幅减少微信人工回复压力。</span></div>
+              </li>
+            </ol>
+            <div class="guide-actions">
+              <a class="btn pri" href="./src/zhxy-order.html" target="_blank" rel="noopener">新窗口体验前端网站 ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模块 B：后端程序端 -->
+      <div class="stage sub-stage" id="p3-backend">
+        <div class="stage-bar">
+          <div class="stage-title"><span class="sub-badge">后端程序端</span>智慧校园 3.0 助手（桌面主控制台 + 实时状态看板 + 订单实时管理后台）</div>
+          <div class="stage-tabs" role="tablist">
+            <button class="stage-tab active" data-group="p3b" data-tab="p3b-console">桌面主控制台（可交互）</button>
+            <button class="stage-tab" data-group="p3b" data-tab="p3b-board">桌面实时状态看板</button>
+            <button class="stage-tab" data-group="p3b" data-tab="p3b-admin">订单实时管理后台（真实截图）</button>
+          </div>
+        </div>
+
+        <div id="p3b-console">
+          <div class="desktop-frame">
+            <div class="desktop-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>智慧校园 3.0 助手 · 桌面主控制台（支持切换模式 / 运营菜单 / 添加任务 / 立即复核）</span></div>
+            <iframe src="./src/zhxy-console.html" title="智慧校园3.0 后端程序桌面主控制台" style="height:540px"></iframe>
+          </div>
+          <div class="guide" style="margin-top:14px">
+            <div class="guide-title">后端程序端核心能力与特点：</div>
+            <ol class="guide-list" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+              <li class="guide-item">
+                <div class="guide-num">1</div>
+                <div><b>双模式切换 + HTTP 直连高并发抢报</b><span>支持「智能活动助手」（自动抓新活动并同步至前端网站）与「抢活动」（多账号隔离 + HTTP 协议签名预热抢报）一键切换。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">2</div>
+                <div><b>占位与名额置换机制</b><span>统一维护已验账号池，热门活动拿空闲账号先占位、提供置换名额给忘记预约或抢失败的客户，显著提高销量和履约成功率。</span></div>
+              </li>
+              <li class="guide-item">
+                <div class="guide-num">3</div>
+                <div><b>实时状态看板 + 自动复核批量结算</b><span>点上方标签可切换查看 「桌面实时状态看板」与「订单实时管理后台」（自动复核 + 批量生成待结账单快照）。</span></div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div id="p3b-board" style="display:none">
+          <div class="desktop-frame dark">
+            <div class="desktop-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>智慧校园 3.0 · 桌面状态看板）</span></div>
+            <iframe src="./src/zhxy-status-board.html" title="智慧校园3.0 后端程序桌面状态看板"></iframe>
+          </div>
+        </div>
+
+        <div id="p3b-admin" style="display:none">
+          <div class="shot-card" data-zoom="./assets/order-admin.png">
+            <img src="./assets/order-admin.png" alt="智慧校园3.0 订单实时管理后台真实截图" loading="lazy">
+            <div class="shot-cap">
+              <span><b>网页下单 - 订单实时管理后台</b>：支持按客户/日期筛选、一键复核全部订单、批量生成客户待结账单快照与批量结算</span>
+              <span style="white-space:nowrap;color:var(--accent);font-weight:600">点击放大</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 项目 4：独立电商与 G2G 跨境交易 -->
+    <article class="case" id="p4">
+      <div class="case-top">
+        <div>
+          <div class="case-badge">项目 04</div>
+          <h3>独立电商全链路履约与 G2G 跨境交易 </h3>
+          <div class="case-meta">2024.06 – 2025.12 · 独立操盘（C2C 电商老号 + AI 工具新号 + 海外平台 G2G）</div>
+        </div>
+        <div class="case-kpis">
+          <span class="chip ok">老号 205 单 · 95% 好评</span>
+          <span class="chip">流水 ¥6,132.24 + ¥1,286</span>
+          <span class="chip">G2G 首单 6.00 USD / 7,680 KRW</span>
+        </div>
+      </div>
+
+      <div class="tri">
+        <div class="tri-box">
+          <div class="tri-k">01 业务痛点</div>
+          <p>C2C 电商面临选品同质化、询盘流失与物流/漏发引发的售后客诉风险；独立探索跨境业务需跑通海外平台入驻、英文沟通上架及跨境收款链路。</p>
+        </div>
+        <div class="tri-box">
+          <div class="tri-k">02 落地动作</div>
+          <p>独立操盘闲鱼选品、定价、询盘促单与供应链发货协调，对漏发与物流异常第一时间安抚补发；同步完成海外数字交易平台 G2G 入驻、全英文商品上架与 Payoneer 收款配置。</p>
+        </div>
+        <div class="tri-box res">
+          <div class="tri-k">03 商业结果</div>
+          <p>C2C 老号累计交付 205 单、流水 6,132.24 元、95% 好评率（仅 1 笔客诉、纠纷率 &lt;0.5%）；AI 工具新号保持 100% 好评 0 纠纷；成功跑通 G2G 首笔海外订单英文交付（入账 7,680 KRW）。</p>
+        </div>
+      </div>
+
+      <div class="proof-grid" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+        <div class="proof-card" data-zoom="./assets/proof-credit.jpg">
+          <div class="proof-img"><img src="./assets/proof-credit.jpg" alt="卖家信用：老号205单95%好评 + 新号100%好评0纠纷" loading="lazy"></div>
+          <div class="proof-cap"><b>双号卖家信用（极好）</b>老号 205 单 95% 好评 · 新号 100% 好评 0 纠纷</div>
+        </div>
+        <div class="proof-card" data-zoom="./assets/proof-profit-1.jpg">
+          <div class="proof-img"><img src="./assets/proof-profit-1.jpg" alt="AI工具新号收益 1286元 89单" loading="lazy"></div>
+          <div class="proof-cap"><b>流水与利润（AI 工具新号）</b>闲鱼已赚 ¥1,286.00 · 卖出 89 单</div>
+        </div>
+        <div class="proof-card" data-zoom="./assets/proof-profit-2.jpg">
+          <div class="proof-img"><img src="./assets/proof-profit-2.jpg" alt="C2C电商老号流水 6132.24元" loading="lazy"></div>
+          <div class="proof-cap"><b>流水与利润（C2C 电商老号）</b>闲鱼已赚 ¥6,132.24 · 鱼小铺 L3</div>
+        </div>
+        <div class="proof-card" data-zoom="./assets/proof-deals.jpg">
+          <div class="proof-img"><img src="./assets/proof-deals.jpg" alt="易班网薪自动化软件高频真实成交记录" loading="lazy"></div>
+          <div class="proof-cap"><b>真实成交记录</b>月卡 ¥12 / 季卡 ¥35 / 永久卡 ¥79.20 连续成交</div>
+        </div>
+      </div>
+
+      <!-- 海外平台证明 -->
+      <div class="stage sub-stage">
+        <div class="stage-bar">
+          <div class="stage-title"><span class="sub-badge web">海外平台证明</span>G2G 跨境首单发货记录 +  PAYMENT ADVICE 结算单</div>
+          <a class="btn pri" style="min-height:34px;padding:0 12px;font-size:12.5px" href="./assets/g2g-payment-advice.pdf" target="_blank" rel="noopener">查看 / 下载官方 PDF 结算单 ↗</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+          <div class="shot-card" data-zoom="./assets/g2g-order.jpg">
+            <img src="./assets/g2g-order.jpg" alt="G2G 海外已售出订单截图" loading="lazy" style="max-height:320px;object-fit:contain;background:#f8fafc">
+            <div class="shot-cap"><b>G2G 平台已售出订单</b><span>订单号 1751075435260X6OY · 6.00 USD 已发货</span></div>
+          </div>
+          <div class="shot-card" data-zoom="./assets/g2g-advice.jpg">
+            <img src="./assets/g2g-advice.jpg" alt="G2G 官方 PAYMENT ADVICE 结算单 PDF 预览" loading="lazy" style="max-height:320px;object-fit:contain;background:#fff">
+            <div class="shot-cap"><b>官方结算单（G-1751358268000BDGJ.pdf）</b><span>收款人：赖怡婷 · 净入账 5.40 USD</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  
+  <!-- 适合岗位自评 -->
+  <section id="fit">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Role Fit · 写给评估定岗的您</div>
+      <h2>适合岗位自评</h2>
+      <p>结合过往真实交付经历，以下两类岗位我可以最快上手并产生实际产出：</p>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-card">
+        <div class="fit-label">方向 A · 交付与提效</div>
+        <h3>客户交付 / 技术支持 / AI 业务提效</h3>
+        <ul>
+          <li>能听懂一线业务痛点，充当业务/客户与技术团队之间的翻译桥梁</li>
+          <li>能用 AI 独立搭建轻量工具与排错，快速上手企业排查工具与业务 SOP</li>
+          <li>200+ 单软件与在线系统交付 0 纠纷，答疑耐心、情绪稳定、抗压能力强</li>
+          <li>广交会高压现场零错漏对账经验，对细节与交付结果负责到底</li>
+        </ul>
+      </div>
+      <div class="fit-card alt">
+        <div class="fit-label">方向 B · 商务与出海</div>
+        <h3>跨境电商运营 / 外贸业务跟单与数字化提效</h3>
+        <ul>
+          <li>具备 205 单完整 C2C 选品、定价、询盘促单与物流异常安抚实战经验</li>
+          <li>独立跑通 G2G 海外平台入驻、全英文上架、Payoneer 收款与首单交付</li>
+          <li>国际商务专业底子扎实：数字贸易平台运营 99 分、商务英语 98 分、海外新媒体营销 95 分</li>
+          <li>能把重复的跟单、报价、对账表格改造成自动化工具，一个人干出更高人效</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 教育与荣誉 -->
+  <section id="edu">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Education &amp; Honors</div>
+      <h2>教育背景与荣誉证书</h2>
+    </div>
+    <div class="edu-card">
+      <div class="edu-top">
+        <div>
+          <h3>广东轻工职业技术大学 · 国际商务（2024.09 – 2027.06）</h3>
+          <div class="case-meta">2027 届大专 · 大三下可全周实习</div>
+        </div>
+        <div class="edu-gpa num">历年均分 88.24 · GPA 3.81 / 5.0</div>
+      </div>
+
+      <div class="course-group">
+        <h4>高分核心专业课</h4>
+        <div class="pills num">
+          <span class="pill">数字贸易平台运营 <b>99</b></span>
+          <span class="pill">商务英语 <b>98</b></span>
+          <span class="pill">电子商务 <b>96</b></span>
+          <span class="pill">海外新媒体营销 <b>95</b></span>
+          <span class="pill">国际贸易实务 <b>90</b></span>
+        </div>
+      </div>
+
+      <div class="course-group">
+        <h4>数字化与商务基础课</h4>
+        <div class="pills">
+          <span class="pill">网页设计与制作</span>
+          <span class="pill">计算机应用基础</span>
+          <span class="pill">商务数据分析基础</span>
+          <span class="pill">人工智能概论</span>
+          <span class="pill">跨文化商务沟通</span>
+        </div>
+      </div>
+
+      <div class="course-group">
+        <h4>荣誉与证书</h4>
+        <div class="pills">
+          <span class="pill honor">广交会“优秀实习生”</span>
+          <span class="pill honor">校级二等奖学金</span>
+          <span class="pill honor">“讲好湾区故事”翻译大赛全国一等奖</span>
+          <span class="pill">英语四级（CET-4）</span>
+          <span class="pill">全国计算机二级（WPS Office）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>赖怡婷 Yiting Lai</strong> ｜ 手机 13794875992 ｜ 邮箱 x60skim@gmail.com</p>
+    <p style="margin-top:6px">纯静态构建 · 无外链 CDN · 适配微信内置浏览器与 PC 端访问</p>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<div id="lb" role="dialog" aria-label="图片放大预览">
+  <button class="lb-close" aria-label="关闭">×</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+(function(){
+  const toastEl = document.getElementById('toast');
+  let toastTimer = null;
+  function showToast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>toastEl.classList.remove('on'), 1800);
+  }
+  function copyText(text){
+    if(navigator.clipboard && window.isSecureContext){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise((resolve, reject)=>{
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand('copy') ? resolve() : reject(); }
+      catch(e){ reject(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const val = btn.getAttribute('data-copy');
+      copyText(val).then(()=>showToast('已复制：' + val)).catch(()=>showToast('请手动复制：' + val));
+    });
+  });
+
+  // Multi-group tab switcher
+  window.switchGroupTab = function(group, id){
+    document.querySelectorAll(`.stage-tab[data-group="${group}"]`).forEach(b=>{
+      const target = b.getAttribute('data-tab');
+      b.classList.toggle('active', target === id);
+      const panel = document.getElementById(target);
+      if(panel) panel.style.display = target === id ? '' : 'none';
+    });
+  };
+  document.querySelectorAll('.stage-tab[data-group]').forEach(btn=>{
+    btn.addEventListener('click', ()=>window.switchGroupTab(btn.getAttribute('data-group'), btn.getAttribute('data-tab')));
+  });
+
+  // Lightbox for screenshots
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  document.querySelectorAll('[data-zoom]').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      lbImg.src = el.getAttribute('data-zoom');
+      lb.classList.add('on');
+    });
+  });
+  lb.addEventListener('click', ()=>{ lb.classList.remove('on'); lbImg.src = ''; });
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
+</body>
+</html>

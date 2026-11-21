@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>智慧校园3.0助手 · 桌面主控制台</title>
+<style>
+:root{
+  --bg:#f4f6fa;--surface:#ffffff;--line:#e5e7eb;--text:#111827;--muted:#6b7280;
+  --primary:#2563eb;--indigo:#6366f1;--sky:#0284c7;--violet:#8b5cf6;--ok:#16a34a;--warn:#d97706;--bad:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:"Microsoft YaHei",-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.45;height:100vh;display:flex;overflow:hidden}
+.sidebar{
+  width:225px;flex:none;background:var(--surface);border-right:1px solid var(--line);
+  padding:14px 12px;display:flex;flex-direction:column;gap:11px;overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:9px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#004ea2,#2563eb);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.brand h1{font-size:14.5px;font-weight:800}
+.grp-lbl{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;letter-spacing:.03em}
+.mode-sw{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#f1f5f9;padding:3px;border-radius:8px}
+.mode-opt{text-align:center;padding:5px 4px;border-radius:6px;font-size:11.5px;font-weight:600;color:#475569;cursor:pointer;transition:all .15s}
+.mode-opt.active{background:#fff;color:var(--primary);box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.st-item{display:flex;align-items:center;gap:7px;font-size:12px;margin-bottom:5px;color:#374151}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dot.ok{background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,.5)}
+.dot.blue{background:#3b82f6;box-shadow:0 0 6px rgba(59,130,246,.5)}
+.dot.amber{background:#f59e0b}
+.mon-box{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:8px;font-size:11.5px;display:grid;gap:6px}
+.mon-row{display:flex;justify-content:space-between;align-items:center;gap:4px}
+.mon-row b{color:var(--primary);font-variant-numeric:tabular-nums}
+.inp,select.inp,textarea.inp{width:100%;border:1px solid #cbd5e1;border-radius:6px;padding:6px 8px;font-size:12px;font-family:inherit;outline:none;background:#fff}
+.inp:focus{border-color:var(--primary)}
+.btn-out{width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px;font-size:12.5px;font-weight:600;cursor:pointer;color:#374151}
+.btn-out:hover{background:#f8fafc;border-color:#cbd5e1}
+.btn-run{width:100%;border:0;background:var(--primary);color:#fff;border-radius:8px;padding:9px;font-size:13px;font-weight:700;cursor:pointer}
+.btn-run.stop{background:#dc2626}
+.main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.header{
+  background:var(--surface);border-bottom:1px solid var(--line);padding:10px 14px;
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+}
+.page-title{font-size:15px;font-weight:800;margin-right:4px}
+.hbtn{
+  border:1px solid var(--line);background:#fff;color:#374151;border-radius:7px;
+  padding:5px 10px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;
+}
+.hbtn:hover{background:#f8fafc}
+.hbtn.pri{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.hbtn.pri:hover{background:#4f46e5}
+.hbtn.sky{border-color:var(--sky);color:var(--sky)}
+.hbtn.vio{border-color:var(--violet);color:var(--violet)}
+.hbtn.ok{background:#10b981;border-color:#10b981;color:#fff}
+.hbtn.bad{border-color:#fca5a5;color:#dc2626;background:#fef2f2}
+.dd-wrap{position:relative}
+.dd-menu{
+  position:absolute;top:115%;right:0;min-width:165px;background:#fff;border:1px solid var(--line);
+  border-radius:9px;box-shadow:0 10px 24px rgba(0,0,0,0.14);padding:4px;display:none;z-index:25;
+}
+.dd-menu.on{display:block}
+.dd-item{padding:7px 10px;border-radius:6px;font-size:12px;cursor:pointer;color:#334155;display:flex;justify-content:space-between;align-items:center}
+.dd-item:hover{background:#f1f5f9;color:var(--primary)}
+.badge-red{background:#ef4444;color:#fff;border-radius:999px;padding:0 6px;font-size:10.5px;font-weight:700}
+.clock{margin-left:auto;font-family:Consolas,monospace;font-size:13px;font-weight:700;color:#475569;font-variant-numeric:tabular-nums}
+.content{flex:1;padding:12px 14px;overflow-y:auto}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:10px}
+.tcard{
+  background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 12px;
+  display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 2px rgba(0,0,0,0.03);
+}
+.tcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.tcard h3{font-size:13px;font-weight:700;color:#111827;line-height:1.35}
+.tag{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.tag.run{background:#eff6ff;color:#1d4ed8}
+.tag.ok{background:#ecfdf5;color:#15803d}
+.tag.swap{background:#f5f3ff;color:#6d28d9}
+.tag.wait{background:#fffbeb;color:#b45309}
+.tag.bad{background:#fef2f2;color:#dc2626}
+.tmeta{font-size:11.5px;color:#64748b;display:flex;flex-wrap:wrap;gap:4px 10px}
+.tlog{background:#f8fafc;border-radius:6px;padding:6px 8px;font-family:Consolas,monospace;font-size:11px;color:#475569}
+.tfoot{display:flex;justify-content:space-between;align-items:center;padding-top:4px;border-top:1px solid #f1f5f9;font-size:11.5px}
+.tfoot button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:2px 8px;font-size:11px;cursor:pointer;color:#334155}
+.tfoot button:hover{border-color:var(--primary);color:var(--primary)}
+
+/* Modal & Drawer */
+.overlay{
+  position:fixed;inset:0;background:rgba(15,23,42,0.45);display:none;
+  align-items:center;justify-content:center;padding:12px;z-index:40;
+}
+.overlay.on{display:flex}
+.modal{
+  background:#fff;border-radius:14px;width:100%;max-width:860px;max-height:92vh;
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.25);
+}
+.modal.sm{max-width:520px}
+.mhead{
+  padding:11px 16px;border-bottom:1px solid var(--line);display:flex;
+  justify-content:space-between;align-items:center;gap:10px;background:#fff;
+}
+.mhead h2{font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:8px}
+.mclose{width:28px;height:28px;border-radius:7px;border:0;background:#f1f5f9;cursor:pointer;font-size:15px}
+.mbody{padding:12px 16px;overflow-y:auto;flex:1}
+.mfoot{padding:10px 16px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px;background:#f8fafc}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:8px 8px;text-align:left;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+th{background:#f8fafc;color:#64748b;font-weight:700;font-size:11.5px;white-space:nowrap}
+.op-btns{display:flex;flex-wrap:wrap;gap:4px}
+.op-btns button{border:1px solid #e2e8f0;background:#fff;border-radius:5px;padding:2px 7px;font-size:11px;cursor:pointer}
+.op-btns button.g{border-color:#86efac;color:#15803d;background:#f0fdf4}
+.op-btns button.r{border-color:#fecaca;color:#dc2626;background:#fef2f2}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;width:320px;max-width:90vw;background:#fff;
+  box-shadow:-8px 0 30px rgba(0,0,0,0.16);z-index:45;display:none;flex-direction:column;
+}
+.drawer.on{display:flex}
+.snap-bill{
+  border:2px solid #1e3a5f;border-radius:12px;padding:14px;background:#f8fafc;
+}
+.snap-bill h4{font-size:15px;color:#1e3a5f;margin-bottom:8px;display:flex;justify-content:space-between}
+.toast{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#111827;color:#fff;
+  padding:7px 14px;border-radius:999px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60;white-space:nowrap;
+}
+.toast.on{opacity:.95}
+@media(max-width:640px){
+  body{flex-direction:column;height:auto;overflow:auto}
+  .sidebar{width:100%;border-right:0;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">智</div>
+    <h1>智慧校园3.0助手</h1>
+  </div>
+  <div>
+    <div class="grp-lbl">运行模式</div>
+    <div class="mode-sw">
+      <div class="mode-opt active" id="mScan">智能活动助手</div>
+      <div class="mode-opt" id="mSnipe">抢活动</div>
+    </div>
+  </div>
+  <div>
+    <div class="grp-lbl">系统状态</div>
+    <div class="st-item"><span class="dot ok" id="sysDot"></span><span id="sysTxt">守护运行中 · 3 实例在线</span></div>
+    <div class="st-item"><span class="dot blue" id="webDot"></span><span id="webTxt">Web 订单服务 (3527) 在线</span></div>
+    <div class="st-item"><span class="dot amber"></span><span id="latTxt">网络延迟: 24 ms</span></div>
+  </div>
+  <div>
+    <div class="grp-lbl">活动监控倒计时</div>
+    <div class="mon-box">
+      <div class="mon-row"><span>寻梦环游记观影活动</span><b id="cd1">00:02:14</b></div>
+      <div class="mon-row"><span>中华传统文化知识竞赛</span><b id="cd2">00:18:40</b></div>
+    </div>
+  </div>
+  <div>
+    <div class="grp-lbl">手动添加活动</div>
+    <div style="display:flex;gap:5px">
+      <input class="inp" id="addInp" placeholder="输入活动名称或链接...">
+      <button class="hbtn pri" id="btnAdd">添加</button>
+    </div>
+  </div>
+  <div style="margin-top:auto;display:grid;gap:6px">
+    <button class="btn-out" onclick="openZongce()">综测查询</button>
+    <button class="btn-out" onclick="openSettings()">系统设置</button>
+    <button class="btn-run" id="btnRun">停止监控</button>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="header">
+    <div class="page-title">系统控制台</div>
+    <button class="hbtn pri" onclick="openAdmin()">订单管理后台</button>
+    <button class="hbtn" onclick="openDrawer()">任务清单 (<span id="taskCnt">4</span>)</button>
+    <button class="hbtn sky" onclick="openMiniBoard()">状态看板</button>
+    <div class="dd-wrap">
+      <button class="hbtn vio" id="btnOps">运营 ▾</button>
+      <div class="dd-menu" id="opsMenu">
+        <div class="dd-item" onclick="openAccounts()">已验账号管理<span>42</span></div>
+        <div class="dd-item" onclick="openSlots()">名额置换/占位管理<span>6</span></div>
+        <div class="dd-item" onclick="openAnnounce()">发布公告</div>
+        <div class="dd-item" onclick="openTickets()">客户工单 <span class="badge-red" id="tkBadge">1</span></div>
+        <div class="dd-item" onclick="syncToWeb()">同步上架到网站</div>
+        <div class="dd-item" onclick="restartWeb()">重启网站后端进程</div>
+      </div>
+    </div>
+    <div class="clock" id="clk">16:20:00</div>
+  </div>
+  <div class="content">
+    <div class="task-grid" id="grid"></div>
+  </div>
+</main>
+
+<!-- 订单实时管理后台弹窗（全功能可交互） -->
+<div class="overlay" id="mAdmin">
+  <div class="modal">
+    <div class="mhead">
+      <h2>网页下单 - 订单实时管理后台 <span class="tag run" style="font-size:11px">全功能可交互</span></h2>
+      <button class="mclose" onclick="closeAll()">×</button>
+    </div>
+    <div class="mbody">
+      <div class="toolbar">
+        <button class="hbtn" id="btnOnlyUnpaid" onclick="toggleUnpaid()">只看待结算</button>
+        <select class="inp" id="selCust" style="width:140px" onchange="renderAdmin()"></select>
+        <button class="hbtn" onclick="selectAllAdmin(false)">全选当前</button>
+        <button class="hbtn" onclick="selectAllAdmin(true)">全选待结算</button>
+        <button class="hbtn sky" onclick="batchRecheck()">复核所选</button>
+        <button class="hbtn pri" onclick="genSnapshot()">生成待结账单快照</button>
+        <button class="hbtn ok" onclick="batchSettle()">批量结算</button>
+        <button class="hbtn bad" onclick="batchHide()">批量隐藏</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th><input type="checkbox" id="chkAll" onchange="toggleChkAll(this.checked)"></th><th>客户备注</th><th>学号账号</th><th>活动名称</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="adminTb"></tbody>
+        </table>
+      </div>
+      <div id="snapArea" style="margin-top:12px;display:none"></div>
+    </div>
+    <div class="mfoot"><button class="hbtn" onclick="closeAll()">关闭窗口</button></div>
+  </div>
+</div>
+
+<!-- 通用交互弹窗（综测/设置/账号池/名额置换/公告/工单/状态看板） -->
+<div class="overlay" id="mGen">
+  <div class="modal sm">
+    <div class="mhead"><h2 id="genTitle"></h2><button class="mclose" onclick="closeAll()">×</button></div>
+    <div class="mbody" id="genBody"></div>
+    <div class="mfoot" id="genFoot"></div>
+  </div>
+</div>
+
+<!-- 右侧任务清单抽屉 -->
+<div class="drawer" id="drawer">
+  <div class="mhead"><h2>活动任务清单</h2><button class="mclose" onclick="document.getElementById('drawer').classList.remove('on')">×</button></div>
+  <div class="mbody" id="drawerBody"></div>
+  <div class="mfoot"><button class="hbtn bad" onclick="resetTasks()">重置全部进度</button></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const tasks = [
+    { name:'寻梦环游记观影活动', acct:'主号 + 3 客户单', mode:'HTTP直连抢报', state:'run', stText:'抢报中', log:'[16:19:58] 提前 200ms 预热签名参数，等待开抢窗口...' },
+    { name:'“寻脉知萃,竞悟传承”中华传统文化知识竞赛', acct:'客户单 #1042', mode:'自动复核完成', state:'ok', stText:'已抢到', log:'[16:12:04] 报名成功 · 已生成待结账单快照并通知结算' },
+    { name:'生命健康学院“健康生活”打卡活动(第四期)', acct:'副号占位 → 客户置换', mode:'名额置换模式', state:'swap', stText:'置换中', log:'[16:18:22] 副号已释放名额，客户号毫秒级接盘成功' },
+    { name:'“青春悦动 艺起打卡”第十四期', acct:'客户单 #1048', mode:'智能定时排队', state:'wait', stText:'排队中', log:'[16:15:10] 已通过短信验号校验，加入 18:00 并发队列' }
+  ];
+  let orders = [
+    { id:1, cust:'小红书 白子.', sid:'2026052506427', act:'寻梦环游记观影活动', status:'已抢到', paid:false, checked:false, hidden:false, sel:false, price:8 },
+    { id:2, cust:'小红书 BiQQ', sid:'2026233803434', act:'“寻脉知萃,竞悟传承”中华传统文化知识竞赛', status:'已抢到', paid:false, checked:true, hidden:false, sel:false, price:10 },
+    { id:3, cust:'小红书 jbjsbsjdj', sid:'2026052004322', act:'生命健康学院“健康生活”打卡活动(第四期)', status:'已抢到', paid:false, checked:false, hidden:false, sel:false, price:8 },
+    { id:4, cust:'小红书 jbjsbsjdj', sid:'2026052004322', act:'“青春悦动 艺起打卡”第十四期', status:'排队中', paid:false, checked:false, hidden:false, sel:false, price:8 },
+    { id:5, cust:'微信 Yayya', sid:'2025240701305', act:'“足下生光，益路相伴”第二期爱心步数捐赠活动', status:'已抢到', paid:true, checked:true, hidden:false, sel:false, price:8 }
+  ];
+  let accounts = [
+    { sid:'2026052506427', role:'客户主号', state:'已验有效', zongce:{德育:4.5, 智育:3.0, 体育:2.5, 美育:2.0, 劳育:3.5} },
+    { sid:'2026233803434', role:'客户主号', state:'已验有效', zongce:{德育:5.0, 智育:2.5, 体育:3.0, 美育:1.5, 劳育:2.0} },
+    { sid:'2024210202302', role:'占位副号', state:'在线待命', zongce:{德育:6.0, 智育:4.0, 体育:3.0, 美育:3.0, 劳育:4.0} }
+  ];
+  let slots = [
+    { act:'生命健康学院“健康生活”打卡活动(第四期)', holder:'副号 2024210202302', target:'客户 2026052004322', done:false },
+    { act:'寻梦环游记观影活动', holder:'副号 2024220303341', target:'客户 2026052506427', done:false }
+  ];
+  let tickets = [
+    { id:101, cust:'小红书 BiQQ', msg:'老师请问中华传统文化知识竞赛抢到了吗？什么时候发账单？', done:false }
+  ];
+  let cfg = { threads:4, httpDirect:true, preMs:200, autoRecheck:true };
+  let onlyUnpaid = false, running = true, sec1 = 134, sec2 = 1120, toastT = null;
+
+  const grid = document.getElementById('grid');
+  const toastEl = document.getElementById('toast');
+  window.toast = function(m){ toastEl.textContent=m; toastEl.classList.add('on'); clearTimeout(toastT); toastT=setTimeout(()=>toastEl.classList.remove('on'),1900); };
+  window.closeAll = function(){
+    document.getElementById('mAdmin').classList.remove('on');
+    document.getElementById('mGen').classList.remove('on');
+    document.getElementById('opsMenu').classList.remove('on');
+  };
+
+  function renderTasks(){
+    document.getElementById('taskCnt').textContent = tasks.length;
+    grid.innerHTML = tasks.map((t,i)=>`
+      <div class="tcard">
+        <div class="tcard-top"><h3>${t.name}</h3><span class="tag ${t.state}">${t.stText}</span></div>
+        <div class="tmeta"><span>账号：${t.acct}</span><span>策略：${t.mode}</span></div>
+        <div class="tlog">${t.log}</div>
+        <div class="tfoot">
+          <span style="color:#94a3b8">多账号隔离引擎</span>
+          <div style="display:flex;gap:5px">
+            <button onclick="recheckTask(${i})">立即复核</button>
+            <button onclick="delTask(${i})">移除</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+  window.recheckTask = function(i){
+    tasks[i].state='ok'; tasks[i].stText='已抢到 · 已复核';
+    tasks[i].log=`[${new Date().toTimeString().slice(0,8)}] 复核通过：报名记录真实有效，可批量结算`;
+    renderTasks(); toast('复核完成：' + tasks[i].name);
+  };
+  window.delTask = function(i){ tasks.splice(i,1); renderTasks(); toast('已移除任务'); };
+  renderTasks();
+
+  /* ===== 订单管理后台（全交互） ===== */
+  window.openAdmin = function(){
+    closeAll();
+    const sel = document.getElementById('selCust');
+    const custs = [...new Set(orders.filter(o=>!o.hidden).map(o=>o.cust))];
+    sel.innerHTML = '<option value="">全部客户</option>' + custs.map(c=>`<option value="${c}">${c}</option>`).join('');
+    document.getElementById('snapArea').style.display='none';
+    renderAdmin();
+    document.getElementById('mAdmin').classList.add('on');
+  };
+  window.toggleUnpaid = function(){
+    onlyUnpaid = !onlyUnpaid;
+    document.getElementById('btnOnlyUnpaid').classList.toggle('pri', onlyUnpaid);
+    renderAdmin();
+  };
+  function visibleOrders(){
+    const c = document.getElementById('selCust').value;
+    return orders.filter(o=>!o.hidden && (!onlyUnpaid || !o.paid) && (!c || o.cust===c));
+  }
+  window.renderAdmin = function(){
+    const list = visibleOrders();
+    document.getElementById('adminTb').innerHTML = list.map(o=>`
+      <tr>
+        <td><input type="checkbox" ${o.sel?'checked':''} onchange="setSel(${o.id},this.checked)"></td>
+        <td><b>${o.cust}</b></td>
+        <td style="font-family:Consolas,monospace">${o.sid}</td>
+        <td>${o.act}</td>
+        <td>
+          <span class="tag ${o.status==='已抢到'?'ok':'wait'}">${o.status}</span>
+          <span class="tag ${o.paid?'ok':'bad'}">${o.paid?'已结算':'未结算'}</span>
+          ${o.checked?'<div style="font-size:10.5px;color:#15803d;margin-top:2px">✓ 已复核</div>':''}
+        </td>
+        <td><div class="op-btns">
+          <button class="g" onclick="payOrder(${o.id})">${o.paid?'撤销收款':'确认收款'}</button>
+          <button onclick="doneOrder(${o.id})">标记抢到</button>
+          <button class="r" onclick="hideOrder(${o.id})">隐藏</button>
+        </div></td>
+      </tr>`).join('') || '<tr><td colspan="6" style="text-align:center;color:#94a3b8;padding:20px">当前筛选下暂无订单</td></tr>';
+  };
+  window.setSel = (id,v)=>{ const o=orders.find(x=>x.id===id); if(o) o.sel=v; };
+  window.toggleChkAll = (v)=>{ visibleOrders().forEach(o=>o.sel=v); renderAdmin(); };
+  window.selectAllAdmin = (unpaidOnly)=>{ visibleOrders().forEach(o=>o.sel=unpaidOnly?!o.paid:true); renderAdmin(); toast(unpaidOnly?'已全选待结算订单':'已全选当前列表'); };
+  window.payOrder = (id)=>{ const o=orders.find(x=>x.id===id); if(o){ o.paid=!o.paid; renderAdmin(); toast(o.paid?'已确认收款':'已撤销收款'); } };
+  window.doneOrder = (id)=>{ const o=orders.find(x=>x.id===id); if(o){ o.status='已抢到'; o.checked=true; renderAdmin(); toast('已标记为抢到并复核'); } };
+  window.hideOrder = (id)=>{ const o=orders.find(x=>x.id===id); if(o){ o.hidden=true; renderAdmin(); toast('已隐藏该订单'); } };
+  window.batchRecheck = ()=>{
+    const s = visibleOrders().filter(o=>o.sel);
+    if(!s.length){ toast('请先勾选需要复核的订单'); return; }
+    s.forEach(o=>{ o.status='已抢到'; o.checked=true; });
+    renderAdmin(); toast(`已完成 ${s.length} 笔订单自动复核`);
+  };
+  window.batchSettle = ()=>{
+    const s = visibleOrders().filter(o=>o.sel);
+    if(!s.length){ toast('请先勾选要结算的订单'); return; }
+    s.forEach(o=>{ o.paid=true; o.sel=false; });
+    renderAdmin(); toast(`已批量结算 ${s.length} 笔订单`);
+  };
+  window.batchHide = ()=>{
+    const s = visibleOrders().filter(o=>o.sel);
+    if(!s.length){ toast('请先勾选要隐藏的订单'); return; }
+    s.forEach(o=>{ o.hidden=true; o.sel=false; });
+    renderAdmin(); toast(`已批量隐藏 ${s.length} 笔订单`);
+  };
+  window.genSnapshot = ()=>{
+    const s = visibleOrders().filter(o=>!o.paid && o.status==='已抢到');
+    const sum = s.reduce((a,b)=>a+b.price,0);
+    const el = document.getElementById('snapArea');
+    el.style.display='block';
+    el.innerHTML = `<div class="snap-bill"><h4><span>待结账单快照（已自动生图）</span><span>合计 ¥${sum}.00</span></h4>` +
+      (s.map(o=>`<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px dashed #cbd5e1"><span>${o.cust} · ${o.act}</span><b>¥${o.price}.00</b></div>`).join('') || '<div style="font-size:12px;color:#64748b">当前全部已抢到订单均已结算</div>') +
+      `</div>`;
+    toast('已生成客户待结账单快照！');
+  };
+
+  /* ===== 通用弹窗工具 ===== */
+  function showGen(title, bodyHtml, footHtml){
+    closeAll();
+    document.getElementById('genTitle').textContent = title;
+    document.getElementById('genBody').innerHTML = bodyHtml;
+    document.getElementById('genFoot').innerHTML = footHtml || '<button class="hbtn" onclick="closeAll()">关闭</button>';
+    document.getElementById('mGen').classList.add('on');
+  }
+  window.openZongce = ()=>{
+    showGen('综测学分实时查询',
+      `<div style="display:grid;gap:10px">${accounts.map(a=>`
+        <div style="border:1px solid var(--line);border-radius:10px;padding:10px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px"><b>学号 ${a.sid}（${a.role}）</b><span class="tag ok">${a.state}</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">${Object.entries(a.zongce).map(([k,v])=>`<span class="hbtn" style="cursor:default">${k}: <b>${v}</b></span>`).join('')}</div>
+        </div>`).join('')}</div>`
+    );
+  };
+  window.openSettings = ()=>{
+    showGen('系统运行参数设置',
+      `<div style="display:grid;gap:10px">
+        <label>并发抢报线程数：<input class="inp" id="cfgT" type="number" min="1" max="16" value="${cfg.threads}"></label>
+        <label>提前预热毫秒数 (ms)：<input class="inp" id="cfgMs" type="number" value="${cfg.preMs}"></label>
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="cfgHttp" ${cfg.httpDirect?'checked':''}> 启用 HTTP 协议直连抢报（绕过浏览器渲染延迟）</label>
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="cfgAuto" ${cfg.autoRecheck?'checked':''}> 抢报完成后自动触发结果复核</label>
+      </div>`,
+      `<button class="hbtn" onclick="closeAll()">取消</button><button class="hbtn pri" onclick="saveCfg()">保存配置</button>`
+    );
+  };
+  window.saveCfg = ()=>{
+    cfg.threads = Number(document.getElementById('cfgT').value)||4;
+    cfg.preMs = Number(document.getElementById('cfgMs').value)||200;
+    cfg.httpDirect = document.getElementById('cfgHttp').checked;
+    cfg.autoRecheck = document.getElementById('cfgAuto').checked;
+    closeAll(); toast(`配置已保存：${cfg.threads} 线程 · 提前 ${cfg.preMs}ms`);
+  };
+  window.openAccounts = ()=>{
+    showGen('已验账号池管理',
+      `<div style="display:flex;gap:6px;margin-bottom:10px"><input class="inp" id="newSid" placeholder="新增测试学号..."><button class="hbtn pri" onclick="addAcct()">添加</button></div>
+      <div style="display:grid;gap:6px">${accounts.map(a=>`<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:7px 10px"><span><b>${a.sid}</b> · ${a.role}</span><span class="tag ok">${a.state}</span></div>`).join('')}</div>`
+    );
+  };
+  window.addAcct = ()=>{
+    const v = document.getElementById('newSid').value.trim();
+    if(!v) return;
+    accounts.unshift({ sid:v, role:'新增测试号', state:'已验有效', zongce:{德育:2,智育:2,体育:1,美育:1,劳育:1} });
+    openAccounts(); toast('已添加并验证账号：' + v);
+  };
+  window.openSlots = ()=>{
+    showGen('名额置换 / 副号占位管理',
+      `<div style="display:grid;gap:8px">${slots.map((s,i)=>`
+        <div style="border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <div><b>${s.act}</b><div style="font-size:11.5px;color:#64748b">${s.holder} → ${s.target}</div></div>
+          <button class="hbtn ${s.done?'ok':'pri'}" onclick="doSwap(${i})">${s.done?'已完成置换':'立即执行置换'}</button>
+        </div>`).join('')}</div>`
+    );
+  };
+  window.doSwap = (i)=>{ slots[i].done=true; openSlots(); toast('副号释放 + 客户号毫秒级接盘成功！'); };
+  window.openAnnounce = ()=>{
+    showGen('发布网站顶部公告',
+      `<textarea class="inp" id="annTxt" rows="4">本周五晚 18:00 有一批高分综测活动集中开放，请提前提交预约并完成短信验号！</textarea>`,
+      `<button class="hbtn" onclick="closeAll()">取消</button><button class="hbtn pri" onclick="closeAll();toast('公告已同步推送至客户自助下单网页！')">立即发布</button>`
+    );
+  };
+  window.openTickets = ()=>{
+    showGen('客户售后工单处理',
+      `<div style="display:grid;gap:8px">${tickets.map((t,i)=>`
+        <div style="border:1px solid var(--line);border-radius:10px;padding:10px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px"><b>工单 #${t.id} · ${t.cust}</b><span class="tag ${t.done?'ok':'bad'}">${t.done?'已处理':'待回复'}</span></div>
+          <div style="font-size:12px;color:#475569;margin-bottom:8px">${t.msg}</div>
+          ${t.done?'':'<button class="hbtn ok" onclick="solveTk('+i+')">一键回复并结单</button>'}
+        </div>`).join('')}</div>`
+    );
+  };
+  window.solveTk = (i)=>{
+    tickets[i].done=true;
+    document.getElementById('tkBadge').textContent = tickets.filter(t=>!t.done).length;
+    openTickets(); toast('工单已回复并结单');
+  };
+  window.openMiniBoard = ()=>{
+    showGen('实时运行摘要（可切换上方「桌面实时状态看板」查看完整版）',
+      `<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+        <div class="tcard"><b>运行中任务</b><div style="font-size:22px;font-weight:800;color:var(--primary)">${tasks.length}</div></div>
+        <div class="tcard"><b>待结算订单</b><div style="font-size:22px;font-weight:800;color:var(--warn)">${orders.filter(o=>!o.paid&&!o.hidden).length}</div></div>
+        <div class="tcard"><b>已验账号池</b><div style="font-size:22px;font-weight:800;color:var(--ok)">${accounts.length + 39} 个</div></div>
+        <div class="tcard"><b>Web 订单后端</b><div style="font-size:22px;font-weight:800;color:var(--ok)">在线 (3527)</div></div>
+      </div>`
+    );
+  };
+  window.openDrawer = ()=>{
+    document.getElementById('drawerBody').innerHTML = tasks.map((t,i)=>`
+      <div style="border-bottom:1px solid var(--line);padding:8px 0;display:flex;justify-content:space-between;align-items:center;gap:6px">
+        <div><b style="font-size:12.5px">${t.name}</b><div style="font-size:11px;color:#64748b">${t.stText} · ${t.acct}</div></div>
+        <button class="hbtn" style="padding:3px 7px;font-size:11px" onclick="recheckTask(${i});openDrawer()">复核</button>
+      </div>`).join('');
+    document.getElementById('drawer').classList.add('on');
+  };
+  window.resetTasks = ()=>{ tasks.forEach(t=>{t.state='wait';t.stText='排队中'}); renderTasks(); openDrawer(); toast('已重置全部任务进度'); };
+  window.syncToWeb = ()=>{ closeAll(); toast('已将最新 18 个校园活动同步上架至客户前端网站！'); };
+  window.restartWeb = ()=>{
+    closeAll();
+    document.getElementById('webDot').className='dot amber';
+    document.getElementById('webTxt').textContent='Web 服务重启中...';
+    setTimeout(()=>{
+      document.getElementById('webDot').className='dot blue';
+      document.getElementById('webTxt').textContent='Web 订单服务 (3527) 在线';
+      toast('端口 3527 客户下单网站后端已重启恢复');
+    }, 900);
+  };
+
+  document.getElementById('mScan').onclick = function(){ this.classList.add('active'); document.getElementById('mSnipe').classList.remove('active'); toast('已切换：智能活动助手模式'); };
+  document.getElementById('mSnipe').onclick = function(){ this.classList.add('active'); document.getElementById('mScan').classList.remove('active'); toast('已切换：多账号高并发抢活动模式'); };
+  document.getElementById('btnOps').onclick = (e)=>{ e.stopPropagation(); document.getElementById('opsMenu').classList.toggle('on'); };
+  document.addEventListener('click', ()=>document.getElementById('opsMenu').classList.remove('on'));
+  document.getElementById('btnAdd').onclick = ()=>{
+    const v = document.getElementById('addInp').value.trim();
+    if(!v){ toast('请输入活动名称'); return; }
+    tasks.unshift({ name:v, acct:'主号 + 演示单', mode:'手动加入监控', state:'wait', stText:'排队中', log:`[${new Date().toTimeString().slice(0,8)}] 已添加至监控队列并同步至前端网站` });
+    document.getElementById('addInp').value=''; renderTasks(); toast('已添加监控任务：'+v);
+  };
+  document.getElementById('btnRun').onclick = function(){
+    running = !running;
+    this.textContent = running ? '停止监控' : '启动监控';
+    this.classList.toggle('stop', !running);
+    document.getElementById('sysDot').className = running ? 'dot ok' : 'dot amber';
+    document.getElementById('sysTxt').textContent = running ? '守护运行中 · 3 实例在线' : '已暂停 · 待命状态';
+    toast(running ? '后台多账号守护进程已启动' : '已暂停后台任务调度');
+  };
+  function fmt(s){ const h=String(Math.floor(s/3600)).padStart(2,'0'), m=String(Math.floor(s%3600/60)).padStart(2,'0'), ss=String(s%60).padStart(2,'0'); return `${h}:${m}:${ss}`; }
+  setInterval(()=>{
+    document.getElementById('clk').textContent = new Date().toTimeString().slice(0,8);
+    if(running){
+      sec1 = sec1 > 1 ? sec1 - 1 : 134; sec2 = sec2 > 1 ? sec2 - 1 : 1120;
+      document.getElementById('cd1').textContent = fmt(sec1);
+      document.getElementById('cd2').textContent = fmt(sec2);
+      document.getElementById('latTxt').textContent = `网络延迟: ${18 + Math.floor(Math.random()*14)} ms`;
+    }
+  }, 1000);
+})();
+</script>
+</body>
+</html>
