@@ -447,6 +447,8 @@ article.work{padding:var(--s-10) 0}
 
 .sb-stage{
   position:relative;
+  display:grid;
+  align-items:center;
   background:var(--paper-2);
   margin:0 var(--s-3) var(--s-3);
   border-radius:var(--r-md);
@@ -455,13 +457,23 @@ article.work{padding:var(--s-10) 0}
   touch-action:pan-y;
 }
 .band-obsidian .sb-stage{background:var(--obsidian);color:var(--obsidian-ink)}
-.sb-stage img{
+.sb-slide{
+  grid-area:1 / 1;
   width:100%;height:auto;display:block;
-  transition:opacity 240ms var(--ease),transform 260ms var(--ease);
+  transition:opacity 240ms var(--ease);
+  pointer-events:none;
 }
-.sb-stage img.swap{opacity:0.2;transform:scale(0.992)}
+.js .sb-slide:not(.active){
+  opacity:0;
+  visibility:hidden;
+}
+.sb-slide.active{
+  opacity:1;
+  visibility:visible;
+  z-index:2;
+}
 .sb-idx{
-  position:absolute;right:var(--s-3);bottom:var(--s-3);
+  position:absolute;right:var(--s-3);bottom:var(--s-3);z-index:3;
   padding:var(--s-1) var(--s-3);
   border-radius:var(--r-pill);
   background:var(--scrim);color:var(--obsidian-ink);
@@ -1127,6 +1139,7 @@ footer{
 
 <script>
 (function(){
+  document.documentElement.classList.add('js');
   const toastEl = document.getElementById('toast');
   let toastTimer = null;
   function showToast(msg){
@@ -1206,17 +1219,18 @@ footer{
       { tab: '全能工具', t: '到餐录入、批量导表与 WPS 结算复制', s: '支持实到录入、粘贴导入报餐表、一键复制 WPS 结算数据与误导区域转移', img: './assets/shots/r6.jpg?v=2' }
     ],
     'zhxy-web': [
-      { tab: '活动筛选', t: '1,225 场校园活动自动同步上架', s: '后台持续抓取新活动并补全综测加分项，按空闲名额与线上线下精准筛选', img: './assets/shots/w1.jpg?v=2' },
-      { tab: '批量下单', t: '多场勾选合并预约与首次短信验号', s: '一次勾选多场活动提交，首次下单自动校验学号密码杜绝无效单', img: './assets/shots/w2.jpg?v=2' },
-      { tab: '自助查单', t: '客户透明查单与状态实时同步', s: '按学号查询已抢到、排队中与待结算进度，大幅减少微信咨询', img: './assets/shots/w3.jpg?v=2' },
-      { tab: '互助占位', t: '37 位客户签约互助占位换免费掉落', s: '出借空闲名额换取热门活动免费名额，累计置换 216 次、掉落 35 次', img: './assets/shots/w4.jpg?v=2' }
+      { tab: '活动筛选', t: '1,225 场校园活动自动同步上架', s: '后台持续抓取新活动并补全综测加分项，按空闲名额与线上线下精准筛选', img: './assets/shots/w1.jpg?v=3' },
+      { tab: '批量下单', t: '多场勾选合并预约与首次短信验号', s: '一次勾选多场活动提交，首次下单自动校验学号密码杜绝无效单', img: './assets/shots/w2.jpg?v=3' },
+      { tab: '自助查单', t: '客户透明查单与状态实时同步', s: '按学号查询已抢到、排队中与待结算进度，大幅减少微信咨询', img: './assets/shots/w3.jpg?v=3' },
+      { tab: '互助占位', t: '37 位客户签约互助占位换免费掉落', s: '出借空闲名额换取热门活动免费名额，累计置换 216 次、掉落 35 次', img: './assets/shots/w4.jpg?v=3' }
     ],
     'zhxy-console': [
-      { tab: '并发监控', t: '主控制台与多任务实时日志监控', s: '左侧监控守护进程、延迟与开抢倒计时，右侧展开实时名额置换与抢票日志', img: './assets/shots/c1.jpg?v=2' },
-      { tab: '订单后台', t: '861 笔系统订单集中履约后台', s: '同步网页自助订单，支持一键复核真伪、批量生图与批量结算', img: './assets/shots/c2.jpg?v=2' },
-      { tab: '待结生图', t: '待结算客户一键筛选准备自动生图', s: '自动滤出已抢到未付款订单，批量生成对账账单图发客户收款', img: './assets/shots/c3.jpg?v=2' },
-      { tab: '名额置换', t: '216 次副号让位与客户接盘调度', s: '统一维护占位账号池，自动化执行让位与接盘，提升热门活动成功率', img: './assets/shots/c4.jpg?v=2' },
-      { tab: '客户工单', t: '前台工单同步桌面端集中回复', s: '客户网页提交的反馈与撤单请求实时同步，处理完成后自动提醒客户', img: './assets/shots/c5.jpg?v=2' }
+      { tab: '并发监控', t: '主控制台与多任务实时日志监控', s: '左侧监控守护进程、延迟与开抢倒计时，右侧展开实时名额置换与抢票日志', img: './assets/shots/c1.jpg?v=3' },
+      { tab: '订单后台', t: '861 笔系统订单集中履约后台', s: '同步网页自助订单，支持一键复核真伪、批量生图与批量结算', img: './assets/shots/c2.jpg?v=3' },
+      { tab: '账单生图', t: '一键自动生成客户对账账单快照', s: '选中客户直接生成清晰对账账单图，一键复制发微信核对收款', img: './assets/shots/c3.jpg?v=3' },
+      { tab: '名额置换', t: '216 次副号让位与客户接盘调度', s: '统一维护占位账号池，自动化执行让位与接盘，提升热门活动成功率', img: './assets/shots/c4.jpg?v=3' },
+      { tab: '客户工单', t: '前台工单同步桌面端集中回复', s: '客户网页提交的反馈与撤单请求实时同步，处理完成后自动提醒客户', img: './assets/shots/c5.jpg?v=3' },
+      { tab: '任务排期', t: '全流程建群、签到与加分确认清单', s: '按活动场次集中跟进建群打卡与综测加分，确保每笔预约闭环履约', img: './assets/shots/c6.jpg?v=3' }
     ],
     'yiban': [
       { tab: '飞书授权', t: '飞书表格零成本一机一码授权', s: '不租云服务器，直接联网校验硬件码与卡密有效期，服务器成本 ¥0/月', img: './assets/shots/y1.jpg?v=2' },
@@ -1274,28 +1288,34 @@ footer{
 
     const stageEl = document.createElement('div');
     stageEl.className = 'sb-stage';
-    const imgEl = document.createElement('img');
-    imgEl.src = items[0].img;
-    imgEl.alt = items[0].t;
-    imgEl.loading = 'eager';
+    const slideImgs = items.map((it, i)=>{
+      const im = document.createElement('img');
+      im.className = 'sb-slide' + (i === 0 ? ' active' : '');
+      im.src = it.img;
+      im.alt = it.t;
+      im.decoding = 'async';
+      im.loading = i === 0 ? 'eager' : 'lazy';
+      stageEl.appendChild(im);
+      return im;
+    });
     const idxEl = document.createElement('span');
     idxEl.className = 'sb-idx num';
-    stageEl.appendChild(imgEl);
     stageEl.appendChild(idxEl);
 
     root.appendChild(tabsEl);
     root.appendChild(capEl);
     root.appendChild(stageEl);
 
-    /* Preload sibling slides gently once visible */
+    /* Ensure sibling slides decode eagerly once visible */
     let preloaded = false;
     function preloadRest(){
       if(preloaded) return;
       preloaded = true;
-      items.slice(1).forEach(it=>{ const im = new Image(); im.src = it.img; });
+      slideImgs.forEach(im=>{ im.loading = 'eager'; });
     }
 
     let cur = 0, timer = null, userPaused = reducedMotion, inView = false, hovered = false;
+    const hasFineHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
     function render(nextIdx, animate){
       cur = (nextIdx + items.length) % items.length;
@@ -1314,23 +1334,22 @@ footer{
           }
         }
       });
+      slideImgs.forEach((im, i)=>{
+        const on = i === cur;
+        im.classList.toggle('active', on);
+        if(on) im.loading = 'eager';
+      });
       idxEl.textContent = (cur + 1) + ' / ' + items.length;
       if(animate){
         copyEl.classList.add('swap');
-        imgEl.classList.add('swap');
         setTimeout(()=>{
           titleEl.textContent = it.t;
           subEl.textContent = it.s;
-          imgEl.src = it.img;
-          imgEl.alt = it.t;
           copyEl.classList.remove('swap');
-          imgEl.classList.remove('swap');
-        }, 110);
+        }, 90);
       } else {
         titleEl.textContent = it.t;
         subEl.textContent = it.s;
-        imgEl.src = it.img;
-        imgEl.alt = it.t;
       }
       schedule();
     }
@@ -1360,16 +1379,18 @@ footer{
 
     tabBtns.forEach((b, i)=>b.addEventListener('click', ()=>{
       userPaused = false;
+      hovered = false;
       render(i, true);
     }));
     ctlBtn.addEventListener('click', ()=>{
       userPaused = !userPaused;
+      hovered = false;
       schedule();
     });
-    root.addEventListener('mouseenter', ()=>{ hovered = true; syncBtn(); clearTimeout(timer); });
-    root.addEventListener('mouseleave', ()=>{ hovered = false; schedule(); });
-    root.addEventListener('focusin', ()=>{ hovered = true; syncBtn(); clearTimeout(timer); });
-    root.addEventListener('focusout', ()=>{ hovered = false; schedule(); });
+    if(hasFineHover){
+      root.addEventListener('mouseenter', ()=>{ hovered = true; syncBtn(); clearTimeout(timer); });
+      root.addEventListener('mouseleave', ()=>{ hovered = false; schedule(); });
+    }
 
     /* Horizontal touch swipe (never blocks vertical page scroll) + tap to zoom */
     let tx = 0, ty = 0, swiped = false;
