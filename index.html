@@ -128,9 +128,12 @@ article.work{padding:40px 0 44px;border-bottom:1px solid var(--rule)}
 .etab{padding:4px 0 8px;font-size:13px;font-weight:500;color:var(--ink-3);white-space:nowrap;position:relative}
 .etab:hover,.etab.active{color:var(--ink)}
 .etab.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--accent)}
-.stage-frame{background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;box-shadow:0 8px 26px rgba(20,20,19,0.06)}
+.stage-frame{position:relative;background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;box-shadow:0 8px 26px rgba(20,20,19,0.06)}
 .stage-frame.mobile-view{max-width:100%;margin:0 auto}
-.stage-frame iframe{display:block;width:100%;height:72vh;min-height:480px;max-height:620px;border:0;background:#fff}
+.stage-frame iframe{display:block;width:100%;height:64svh;min-height:440px;max-height:540px;border:0;background:#fff}
+.stage-guard{display:none;position:absolute;inset:0;z-index:6;background:transparent;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+@media(pointer:coarse){.stage-guard{display:block}}
+body.touch-scroll-guard .stage-guard{display:block}
 .exhibit-link{color:var(--accent);font-size:12.5px;font-weight:500;white-space:nowrap}
 .exhibit-link:hover{text-decoration:underline}
 
@@ -311,10 +314,10 @@ footer strong{color:var(--ink);font-weight:600}
     <div class="exhibit">
       <div class="exhibit-bar">
         <div class="exhibit-label">广交会取餐核对台</div>
-        <a class="exhibit-link" href="./src/reconcile.html?v=13" target="_blank" rel="noopener">全屏打开 ↗</a>
+        <a class="exhibit-link" href="./src/reconcile.html?v=14" target="_blank" rel="noopener">全屏打开 ↗</a>
       </div>
       <div class="stage-frame mobile-view">
-        <iframe src="./src/reconcile.html?v=13" title="广交会取餐核对台"></iframe>
+        <iframe src="./src/reconcile.html?v=14" title="广交会取餐核对台"></iframe>
       </div>
     </div>
   </article>
@@ -349,17 +352,17 @@ footer strong{color:var(--ink);font-weight:600}
           <button class="etab" data-group="p2" data-tab="p2-bill">自动生成账单图</button>
           <button class="etab" data-group="p2" data-tab="p2-admin">真实后台截图</button>
         </div>
-        <a class="exhibit-link" id="p2-open" href="./src/zhxy-order.html?v=13" target="_blank" rel="noopener">全屏打开 ↗</a>
+        <a class="exhibit-link" id="p2-open" href="./src/zhxy-order.html?v=14" target="_blank" rel="noopener">全屏打开 ↗</a>
       </div>
 
       <div id="p2-web">
         <div class="stage-frame mobile-view">
-          <iframe src="./src/zhxy-order.html?v=13" title="智慧校园前端自助下单网站"></iframe>
+          <iframe src="./src/zhxy-order.html?v=14" title="智慧校园前端自助下单网站"></iframe>
         </div>
       </div>
       <div id="p2-console" style="display:none">
         <div class="stage-frame desktop-view">
-          <iframe src="./src/zhxy-console.html?v=13" title="智慧校园 1:1 真实后端主控制台"></iframe>
+          <iframe src="./src/zhxy-console.html?v=14" title="智慧校园 1:1 真实后端主控制台"></iframe>
         </div>
       </div>
       <div id="p2-bill" style="display:none">
@@ -401,10 +404,10 @@ footer strong{color:var(--ink);font-weight:600}
     <div class="exhibit">
       <div class="exhibit-bar">
         <div class="exhibit-label">易班自动化桌面软件</div>
-        <a class="exhibit-link" href="./src/yiban-client.html?v=13" target="_blank" rel="noopener">新窗口打开 ↗</a>
+        <a class="exhibit-link" href="./src/yiban-client.html?v=14" target="_blank" rel="noopener">新窗口打开 ↗</a>
       </div>
       <div class="stage-frame desktop-view">
-        <iframe src="./src/yiban-client.html?v=13" title="易班自动化桌面软件"></iframe>
+        <iframe src="./src/yiban-client.html?v=14" title="易班自动化桌面软件"></iframe>
       </div>
     </div>
   </article>
@@ -542,8 +545,8 @@ footer strong{color:var(--ink);font-weight:600}
   }));
 
   const openLinks = {
-    'p2-web': './src/zhxy-order.html?v=13',
-    'p2-console': './src/zhxy-console.html?v=13',
+    'p2-web': './src/zhxy-order.html?v=14',
+    'p2-console': './src/zhxy-console.html?v=14',
     'p2-bill': './assets/bill-sample.jpg',
     'p2-admin': './assets/order-admin-blur.jpg'
   };
@@ -568,6 +571,58 @@ footer strong{color:var(--ink);font-weight:600}
     const link = document.getElementById(g + '-open');
     if(link && openLinks[id]) link.href = openLinks[id];
   }));
+
+  // Mobile page-scroll protection: swipes over iframes scroll the main page natively, taps click straight into the demo
+  const enableTouchGuard = () => document.body.classList.add('touch-scroll-guard');
+  if(window.matchMedia && window.matchMedia('(pointer: coarse)').matches) enableTouchGuard();
+  else window.addEventListener('touchstart', enableTouchGuard, { once: true, passive: true });
+
+  document.querySelectorAll('.stage-frame').forEach(frame=>{
+    const iframe = frame.querySelector('iframe');
+    if(!iframe) return;
+    const guard = document.createElement('div');
+    guard.className = 'stage-guard';
+    frame.appendChild(guard);
+    let sx = 0, sy = 0, st = 0, moved = false;
+    guard.addEventListener('touchstart', e=>{
+      if(e.touches.length !== 1) return;
+      const t = e.touches[0];
+      sx = t.clientX; sy = t.clientY; st = Date.now(); moved = false;
+    }, { passive: true });
+    guard.addEventListener('touchmove', e=>{
+      if(moved || e.touches.length !== 1) return;
+      const t = e.touches[0];
+      if(Math.abs(t.clientX - sx) > 8 || Math.abs(t.clientY - sy) > 8) moved = true;
+    }, { passive: true });
+    guard.addEventListener('touchend', e=>{
+      if(moved || (Date.now() - st) > 420 || !e.changedTouches.length) return;
+      e.preventDefault();
+      try{ iframe.contentWindow.postMessage({ type: 'AUTO_TOUR_STOP' }, '*'); }catch(err){}
+      const t = e.changedTouches[0];
+      const rect = iframe.getBoundingClientRect();
+      const x = t.clientX - rect.left, y = t.clientY - rect.top;
+      try{
+        const doc = iframe.contentDocument, win = iframe.contentWindow;
+        if(!doc || !win) return;
+        const raw = doc.elementFromPoint(x, y);
+        if(!raw) return;
+        let hit = raw;
+        while(hit && typeof hit.click !== 'function') hit = hit.parentElement;
+        if(!hit) return;
+        const field = hit.closest && hit.closest('input,textarea,select');
+        if(field && field.type !== 'checkbox' && field.type !== 'radio' && field.type !== 'button' && field.type !== 'submit'){
+          guard.style.pointerEvents = 'none';
+          field.focus();
+          field.click();
+          const relock = ()=>{ guard.style.pointerEvents = ''; };
+          field.addEventListener('blur', relock, { once: true });
+          window.addEventListener('touchstart', ev=>{ if(!frame.contains(ev.target)) relock(); }, { once: true, passive: true });
+          return;
+        }
+        hit.click();
+      }catch(err){}
+    }, { passive: false });
+  });
 
   // Auto-play demo when HR scrolls each exhibit into view (mobile & desktop)
   if('IntersectionObserver' in window){

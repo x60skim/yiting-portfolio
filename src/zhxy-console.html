@@ -21,7 +21,7 @@
   ];
   let liveSent = false;
   let cfg = {
-    mode: 'scan', ui_font_scale: 1, admin_default_filter: 'all',
+    mode: 'scan', ui_font_scale: 1, token: 'ok', admin_default_filter: 'all',
     admin_keep_review_browser: true, push_enabled: true, threads: 4
   };
   let appSettings = {
@@ -31,11 +31,12 @@
 
   const handlers = {
     load_config: () => cfg,
+    get_upcoming_activities_html: () => '<div style="font-size:12px;line-height:1.7;color:#475569"><div>• 寻梦环游记观影 <b style="color:#2563eb;float:right">02:18</b></div><div>• 传统文化知识竞赛 <b style="color:#16a34a;float:right">已抢到</b></div></div>',
     save_config: (c) => { cfg = Object.assign(cfg, c || {}); return { status: 'ok' }; },
     get_app_settings: () => ({ status: 'ok', settings: appSettings }),
     save_app_settings: (s) => { appSettings = Object.assign(appSettings, s || {}); return { status: 'ok' }; },
     get_account_settings: () => ({ status: 'ok', main_account: { username: '2024****302' }, sub_accounts: [{ username: '2024****341', remark: '副号1' }, { username: '2024****325', remark: '副号2' }] }),
-    get_runtime_status: () => ({ daemons: { task_reminder: true, verify: true, slot_swap: true }, web_online: true }),
+    get_runtime_status: () => ({ daemons: { task_reminder: true, verify: true, slot_swap: true }, web_online: true, push_configured: true }),
     get_app_topmost: () => ({ topmost: false }),
     set_app_topmost: (v) => ({ topmost: !!v }),
     get_task_list: () => TASKS,
@@ -124,43 +125,12 @@
   };
 
   window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => window.dispatchEvent(new Event('pywebviewready')), 60);
+    setTimeout(() => { window.dispatchEvent(new Event('pywebviewready')); setTimeout(() => { if (window.App && App.pollUpdates) App.pollUpdates(); }, 80); }, 40);
   });
 })();
 </script>
 
-<style id="portfolio-mobile-adapt">
-html, body { overflow-x: hidden !important; }
-@media (max-width: 720px) {
-  body { flex-direction: column !important; height: auto !important; min-height: 100vh !important; overflow-y: auto !important; }
-  aside.sidebar {
-    width: 100% !important; min-width: 0 !important; max-width: 100% !important;
-    height: auto !important; border-right: 0 !important; border-bottom: 1px solid var(--border, #e5e7eb) !important;
-    padding: 10px 12px !important; gap: 8px !important; position: static !important;
-  }
-  aside.sidebar .brand { margin-bottom: 4px !important; padding-bottom: 6px !important; }
-  aside.sidebar .brand h1 { font-size: 15px !important; }
-  aside.sidebar .menu { display: grid !important; grid-template-columns: 1fr 1fr; gap: 8px !important; }
-  aside.sidebar .menu > div[style*="flex:1"] { display: none !important; }
-  aside.sidebar .menu-group { margin: 0 !important; padding: 8px !important; }
-  aside.sidebar .btn-outline, aside.sidebar .btn-run { padding: 8px 6px !important; font-size: 12px !important; margin: 0 !important; }
-  main.main { width: 100% !important; min-width: 0 !important; height: auto !important; overflow: visible !important; padding: 10px !important; }
-  main.main .header { padding: 8px 10px !important; gap: 6px !important; }
-  main.main .page-title { font-size: 14px !important; width: 100% !important; }
-  main.main .header-btn { padding: 5px 9px !important; font-size: 12px !important; }
-  main.main .clock { display: none !important; }
-  .task-grid { grid-template-columns: 1fr !important; padding: 8px 0 64px !important; }
-  .modal-content, #admin-portal-modal .modal-content, .admin-window {
-    width: 96vw !important; max-width: 96vw !important; height: 86vh !important; max-height: 86vh !important;
-    left: 2vw !important; top: 6vh !important; transform: none !important; margin: 0 !important;
-  }
-  .modal-body { overflow: auto !important; -webkit-overflow-scrolling: touch !important; }
-  #admin-portal-modal table { min-width: 640px !important; }
-  .task-drawer { width: 88vw !important; max-width: 340px !important; }
-}
-</style>
-
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>智慧校园3.0助手</title>
     <style>
@@ -2968,6 +2938,167 @@ html[data-theme="dark"] .admin-menu-sep { background: #334155 !important; }
             document.documentElement.setAttribute('data-theme', _t);
         } catch (e) { }
     </script>
+
+
+
+
+
+<style id="portfolio-mobile-adapt">
+@media (max-width: 720px) {
+  *, *::before, *::after { box-sizing: border-box !important; }
+  html, body {
+    display: block !important;
+    width: 100% !important; max-width: 100% !important;
+    overflow-x: hidden !important; overflow-y: auto !important;
+    height: auto !important; min-height: 100vh !important;
+    margin: 0 !important; padding: 0 !important;
+  }
+  aside.sidebar {
+    display: block !important;
+    width: 100% !important; max-width: 100% !important; min-width: 0 !important;
+    height: auto !important; max-height: none !important; overflow: visible !important;
+    position: static !important;
+    border-right: 0 !important; border-bottom: 1px solid #e5e7eb !important;
+    padding: 10px 12px 12px !important;
+  }
+  aside.sidebar .brand {
+    display: flex !important; flex-direction: row !important; align-items: center !important;
+    justify-content: flex-start !important; gap: 8px !important;
+    padding: 0 0 8px !important; margin: 0 0 8px !important;
+    height: auto !important; min-height: 0 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+  }
+  aside.sidebar .brand-logo, aside.sidebar .brand img {
+    width: 24px !important; height: 24px !important; margin: 0 !important; flex: none !important;
+  }
+  aside.sidebar .brand h1, aside.sidebar .brand .brand-title {
+    font-size: 14.5px !important; margin: 0 !important; line-height: 1.2 !important;
+  }
+  aside.sidebar .menu {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important; max-width: 100% !important;
+    padding: 0 !important; margin: 0 !important;
+    overflow: visible !important; height: auto !important;
+  }
+  aside.sidebar .menu > div[style*="flex:1"],
+  #sidebar-countdown-group,
+  #manual-add-activity-group { display: none !important; }
+  aside.sidebar .menu-group {
+    min-width: 0 !important; max-width: 100% !important; width: 100% !important;
+    margin: 0 !important; padding: 8px 8px !important; border-radius: 8px !important;
+    background: #f8fafc !important; border: 1px solid #e5e7eb !important;
+    overflow: hidden !important;
+  }
+  aside.sidebar .menu-label { font-size: 10.5px !important; margin-bottom: 5px !important; }
+  aside.sidebar .mode-switch {
+    display: grid !important; grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr) !important;
+    padding: 2px !important; gap: 2px !important; width: 100% !important;
+  }
+  aside.sidebar .mode-opt {
+    font-size: 10.5px !important; padding: 5px 2px !important; text-align: center !important;
+    white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
+    min-width: 0 !important;
+  }
+  aside.sidebar .status-dot { flex: none !important; }
+  aside.sidebar .status-dot.ready { background: #10b981 !important; }
+  aside.sidebar .status-item {
+    font-size: 11px !important; gap: 5px !important; margin-bottom: 3px !important;
+    white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
+    max-width: 100% !important;
+  }
+  aside.sidebar .status-item:last-child { margin-bottom: 0 !important; }
+  aside.sidebar .status-item span:last-child {
+    overflow: hidden !important; text-overflow: ellipsis !important; min-width: 0 !important;
+  }
+  aside.sidebar .btn-outline, aside.sidebar .btn-run {
+    min-width: 0 !important; max-width: 100% !important; width: 100% !important;
+    margin: 0 !important; padding: 7px 6px !important;
+    font-size: 12.5px !important; min-height: 34px !important; height: auto !important;
+  }
+  aside.sidebar .btn-run { grid-column: 1 / -1 !important; }
+
+  main.main {
+    display: block !important;
+    width: 100% !important; max-width: 100% !important; min-width: 0 !important;
+    height: auto !important; overflow: visible !important;
+    padding: 12px 12px 24px !important;
+  }
+  main.main .header {
+    width: 100% !important; max-width: 100% !important;
+    padding: 0 0 10px !important; margin: 0 0 10px !important;
+    gap: 6px !important; flex-wrap: wrap !important; height: auto !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+  main.main .page-title {
+    font-size: 14.5px !important; width: 100% !important; margin: 0 0 4px !important;
+  }
+  main.main .header-btn {
+    padding: 6px 10px !important; font-size: 12px !important; height: auto !important;
+  }
+  main.main .clock { display: none !important; }
+
+  .task-grid {
+    display: flex !important; flex-direction: column !important; gap: 10px !important;
+    width: 100% !important; max-width: 100% !important;
+    padding: 0 !important; margin: 0 !important; overflow: visible !important;
+  }
+  .card {
+    width: 100% !important; max-width: 100% !important; min-width: 0 !important;
+    margin: 0 !important; overflow: hidden !important;
+  }
+  .card .card-header {
+    display: flex !important; flex-wrap: wrap !important; align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important; padding: 10px 12px !important;
+    width: 100% !important; min-width: 0 !important;
+  }
+  .card .card-title {
+    flex: 1 1 100% !important; min-width: 0 !important; max-width: 100% !important;
+    font-size: 13px !important; gap: 6px !important; align-items: flex-start !important;
+  }
+  .card .card-title > .badge { flex: none !important; margin-top: 1px !important; }
+  .card .card-title > span:last-child {
+    flex: 1 1 0 !important; min-width: 0 !important;
+    white-space: normal !important; word-break: break-word !important;
+    overflow: visible !important; text-overflow: clip !important;
+    line-height: 1.38 !important;
+  }
+  .card .card-actions {
+    width: 100% !important; min-width: 0 !important;
+    display: flex !important; flex-wrap: wrap !important;
+    justify-content: flex-end !important; align-items: center !important;
+    gap: 6px !important; margin-left: 0 !important; white-space: normal !important;
+  }
+  .card .card-actions .btn-sm {
+    padding: 4px 9px !important; font-size: 11.5px !important;
+  }
+  .card .card-body {
+    grid-template-columns: 1fr !important; padding: 10px 12px !important; gap: 8px !important;
+  }
+
+  /* Modals on mobile */
+  .modal-content,
+  #admin-portal-modal .modal-content,
+  #admin-portal-window {
+    position: fixed !important;
+    top: 10px !important; left: 10px !important; right: 10px !important; bottom: 10px !important;
+    width: calc(100vw - 20px) !important; max-width: calc(100vw - 20px) !important; min-width: 0 !important;
+    height: calc(100vh - 20px) !important; max-height: calc(100vh - 20px) !important; min-height: 0 !important;
+    transform: none !important; margin: 0 !important; resize: none !important;
+    border-radius: 10px !important;
+  }
+  #admin-portal-header, .modal-header {
+    padding: 10px 12px !important; flex-wrap: wrap !important; gap: 6px !important;
+  }
+  .modal-body {
+    overflow: auto !important; -webkit-overflow-scrolling: touch !important; padding: 10px !important;
+  }
+  #admin-portal-modal .admin-table { min-width: 680px !important; font-size: 12px !important; }
+  .task-drawer { width: 88vw !important; max-width: 340px !important; }
+}
+</style>
 </head>
 
 <body>
