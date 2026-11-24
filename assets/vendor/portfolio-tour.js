@@ -385,7 +385,7 @@
       cleanup: cleanYiban,
       steps: [
         {
-          tab: '飞书授权',
+          tab: '云端授权',
           prepare: async function () {
             cleanYiban();
             await wait(140);
@@ -394,8 +394,8 @@
           },
           selector: '#authModal .modal',
           side: 'bottom',
-          title: '飞书多维表格零成本一机一码授权',
-          desc: '不租云服务器，直接联网读取飞书表格校验设备硬件码（HWID）与月卡有效期，实现 ¥0 / 月商业授权与远程风控管理。'
+          title: '云端多维表格零成本一机一码授权',
+          desc: '不租云服务器，直接联网读取云端表格校验设备硬件码（HWID）与月卡有效期，实现 ¥0 / 月商业授权与远程风控管理。'
         },
         {
           tab: '读取版块',

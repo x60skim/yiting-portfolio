@@ -115,7 +115,7 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
     <div class="tb-left"><span class="tb-icon">易</span>易班自动化工作台 v3.2</div>
     <div class="tb-right">
       <button class="mini-btn" id="btnLexicon">自定义词库</button>
-      <button class="auth-badge" id="btnAuth">● 飞书 HWID 已授权</button>
+      <button class="auth-badge" id="btnAuth">● 云端 HWID 已授权</button>
     </div>
   </div>
   <div class="body">
@@ -162,17 +162,17 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
     </div>
 
     <div class="console" id="log">
-      <div><span class="ok">[授权]</span> 飞书多维表格 HWID 核验通过 · 卡密：YB-8K2M9-...（月卡有效）</div>
+      <div><span class="ok">[授权]</span> 云端多维表格 HWID 核验通过 · 卡密：YB-8K2M9-...（月卡有效）</div>
       <div><span class="info">[配置]</span> 已加载本地版块缓存（5 个发布范围 · 36 个版块）与自定义词库</div>
       <div><span class="info">[就绪]</span> 点击上方任意按钮可完整体验桌面客户端工作流</div>
     </div>
   </div>
 </div>
 
-<!-- 飞书 HWID 授权弹窗 -->
+<!-- 云端 HWID 授权弹窗 -->
 <div class="modal-bg" id="authModal">
   <div class="modal">
-    <h3><span>飞书多维表格 · HWID 卡密授权</span></h3>
+    <h3><span>云端多维表格 · HWID 卡密授权</span></h3>
     <div style="font-size:12px;color:#475569;margin-bottom:8px">设备硬件码 (HWID)：<code style="background:#F1F5F9;padding:2px 6px;border-radius:4px">WIN-BFEB****06EA</code></div>
     <input type="text" id="authKey" value="YB-8K2**-*****-*****-T6V2H" placeholder="输入 YB-XXXXX-... 激活码">
     <div style="font-size:11.5px;color:#059669;margin-bottom:8px">状态：已激活 · 卡片类型：月卡（31天）· 封禁状态：否</div>
@@ -240,8 +240,8 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   document.getElementById('btnAuth').onclick = () => document.getElementById('authModal').classList.add('on');
   document.getElementById('btnLexicon').onclick = () => document.getElementById('lexModal').classList.add('on');
   document.getElementById('btnVerifyKey').onclick = () => {
-    addLog('授权','ok','飞书 API 校验成功：HWID 匹配，到期时间有效');
-    closeModals(); toast('飞书 HWID 授权校验通过');
+    addLog('授权','ok','云端表格 API 校验成功：HWID 匹配，到期时间有效');
+    closeModals(); toast('云端 HWID 授权校验通过');
   };
   document.getElementById('btnSaveLex').onclick = () => {
     const lines = document.getElementById('lexText').value.trim().split('\n').filter(Boolean).length;
@@ -266,7 +266,7 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
     toast('上限配置已保存');
   };
   document.getElementById('btnUpdate').onclick = () => {
-    addLog('更新','info','正在请求飞书版本表检查最新版本号...');
+    addLog('更新','info','正在请求云端版本表检查最新版本号...');
     setTimeout(()=>{ addLog('更新','ok','当前已是最新版本 v3.2'); toast('当前已是最新版本 v3.2'); }, 450);
   };
   document.getElementById('btnComment').onclick = () => {
@@ -296,7 +296,7 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
 <link rel="stylesheet" href="../assets/vendor/driver.css?v=2">
 <link rel="stylesheet" href="../assets/vendor/portfolio-tour.css?v=2">
 <script src="../assets/vendor/driver.js.iife.js?v=2"></script>
-<script src="../assets/vendor/portfolio-tour.js?v=2"></script>
+<script src="../assets/vendor/portfolio-tour.js?v=3"></script>
 <!-- PORTFOLIO_TOUR_END -->
 </body>
 </html>
