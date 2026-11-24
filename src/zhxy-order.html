@@ -15,7 +15,7 @@
     id: 1001 + i,
     activity_id: a.id,
     activity_name: a.name,
-    account_username: '2024000001',
+    account_username: '2024****01',
     nickname: '演示同学',
     status: i === 0 ? 'success' : 'pending',
     payment_status: i === 0 ? 'paid' : 'unpaid',
@@ -69,7 +69,7 @@
         id: Date.now() + idx,
         activity_id: a.id,
         activity_name: a.name,
-        account_username: body.account_username || '2024000001',
+        account_username: body.account_username || '2024****01',
         nickname: body.nickname || '演示同学',
         status: 'pending',
         payment_status: 'unpaid',
@@ -3423,6 +3423,91 @@ function buildOrderSnapshotCanvas(orders) {
         loadActivities();
         // 公告 / 提醒已由 loadActivities 的首屏 /api/bootstrap 一起带回，不再单独发请求
     </script>
+
+<!-- AUTO_TOUR_START -->
+<style>
+#at-bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(20,20,19,0.92);color:#F7F6F2;padding:6px 10px 6px 8px;border-radius:999px;font:500 12px/1.3 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.28);max-width:94vw;backdrop-filter:blur(8px)}
+#at-btn{border:0;background:#fff;color:#141413;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex:none}
+#at-btn:active{transform:scale(.96)}
+#at-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:56vw}
+#at-step{font-variant-numeric:tabular-nums;opacity:.65;font-size:11px;flex:none}
+#at-dot{position:fixed;z-index:9998;width:28px;height:28px;border-radius:50%;border:2.5px solid #18344E;background:rgba(24,52,78,0.18);pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.7);transition:left .45s cubic-bezier(.22,1,.36,1),top .45s cubic-bezier(.22,1,.36,1),opacity .2s,transform .2s}
+#at-dot.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#at-dot.tap{transform:translate(-50%,-50%) scale(1.38);background:rgba(24,52,78,0.34)}
+</style>
+<div id="at-bar"><button id="at-btn" type="button">▶ 自动演示全部功能</button><span id="at-txt">点击观看实操演示，随时可手动接管</span><span id="at-step"></span></div>
+<div id="at-dot"></div>
+<script>
+(function(){
+  const STEPS = [
+  { t: '1. 自动同步上架的活动大厅，支持关键词搜索与多维筛选', sel: '#search-input', fn: (el)=>{ el.focus(); }, wait: 2200 },
+  { t: '2. 点击「线上活动」标签快速筛选', sel: '#chips button:nth-child(3), #chips .chip:nth-child(2)', wait: 2400 },
+  { t: '3. 切回「全部」并勾选一场活动加入批量预约', sel: '#chips button:first-child', fn: (el)=>{ if(el) el.click(); setTimeout(()=>{ const cb=document.querySelector('#grid input[type="checkbox"], #grid .card'); if(cb) cb.click(); }, 400); }, wait: 2800 },
+  { t: '4. 切换至「我的订单」，客户随时自助查看进度或取消', sel: '[data-view="my-orders"], button[onclick*="my-orders"]', wait: 3000 },
+  { t: '5. 返回活动大厅，可自由点击体验', sel: '[data-view="activities"], button[onclick*="activities"]', wait: 1500 }
+];
+  const btn = document.getElementById('at-btn');
+  const txt = document.getElementById('at-txt');
+  const stepEl = document.getElementById('at-step');
+  const dot = document.getElementById('at-dot');
+  let playing = false, idx = 0, timer = null;
+
+  function pointAndRun(st){
+    txt.textContent = st.t;
+    stepEl.textContent = (idx + 1) + '/' + STEPS.length;
+    const el = st.sel ? document.querySelector(st.sel) : null;
+    if(el){
+      try{ el.scrollIntoView({ behavior:'smooth', block:'center' }); }catch(e){}
+      setTimeout(()=>{
+        if(!playing) return;
+        const r = el.getBoundingClientRect();
+        dot.style.left = (r.left + r.width/2) + 'px';
+        dot.style.top = (r.top + r.height/2) + 'px';
+        dot.classList.add('on');
+        setTimeout(()=>{
+          if(!playing) return;
+          dot.classList.add('tap');
+          setTimeout(()=>dot.classList.remove('tap'), 260);
+          try{ if(st.fn) st.fn(el); else el.click(); }catch(e){}
+        }, 480);
+      }, 260);
+    } else {
+      dot.classList.remove('on');
+      try{ if(st.fn) st.fn(null); }catch(e){}
+    }
+  }
+
+  function next(){
+    if(!playing) return;
+    if(idx >= STEPS.length){
+      stop('演示完成 · 可自由点按体验或重新播放');
+      return;
+    }
+    const st = STEPS[idx];
+    pointAndRun(st);
+    idx++;
+    timer = setTimeout(next, st.wait || 2500);
+  }
+
+  function start(){
+    playing = true; idx = 0;
+    btn.textContent = '⏸ 暂停演示';
+    next();
+  }
+  function stop(msg){
+    playing = false; clearTimeout(timer);
+    dot.classList.remove('on');
+    btn.textContent = '▶ 自动演示全部功能';
+    if(msg) txt.textContent = msg;
+    stepEl.textContent = '';
+  }
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可手动体验') : start(); });
+  document.addEventListener('pointerdown', (e)=>{
+    if(playing && !e.target.closest('#at-bar')) stop('已切回手动操作');
+  }, true);
+})();
+</script>
+<!-- AUTO_TOUR_END -->
 </body>
 
 </html>
