@@ -1,1151 +1,2316 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>赖怡婷 Yiting Lai，作品集与实战项目</title>
-<meta name="description" content="赖怡婷个人作品集：广交会手机端取餐核对工具、智慧校园 3.0 活动代预约系统、易班自动化桌面软件、线上电商实绩与 G2G 海外首单。">
-<style>
-/* Hallmark · v2.0.0 · mode: redesign · depth: full · genre: editorial · custom: Apple-Event Bento × Storyboard Highlights · hero: Index (Bento) · nav: translucent floating bar · footer: statement colophon · copy: verbatim */
-/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 · replaced passive long videos with zero-latency Apple Highlights Retina storyboards so mobile WeChat HR always sees live motion immediately */
-/* Hallmark · dropped #lb-img · lightbox image mounts dynamically on open so no empty img tag exists at rest per Gate 76 */
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>赖怡婷 Yiting Lai，作品集与实战项目</title>
+  <meta name="description" content="赖怡婷个人作品集：广交会手机端取餐核对工具、智慧校园 3.0 活动代预约系统、易班自动化桌面软件、线上电商实绩与 G2G 海外首单。">
+  <link rel="stylesheet" href="./assets/vendor/stageshow-theaters.css?v=2">
+  <style>
+    :root {
+      --paper: #F6F5F0;
+      --paper-2: #ECEAE3;
+      --surface: #FCFBF8;
+      --surface-muted: #F1EFE8;
+      --ink: #15181F;
+      --ink-2: #484E5A;
+      --ink-3: #646B78;
+      --accent: #1B3B60;
+      --accent-hover: #142D4A;
+      --accent-soft: #E7EEF6;
+      --accent-ink: #F7F6F2;
+      --obsidian: #15181F;
+      --obsidian-2: #1E232D;
+      --obsidian-3: #282E3B;
+      --obsidian-ink: #F6F5F0;
+      --obsidian-muted: #B3B9C6;
+      --obsidian-rule: rgba(246, 245, 240, 0.14);
+      --glass-bg: rgba(246, 245, 240, 0.84);
+      --glass-solid: #F6F5F0;
+      --scrim: rgba(21, 24, 31, 0.88);
+      --pill-shadow: 0 2px 8px rgba(21, 24, 31, 0.08);
+      --card-shadow: 0 12px 32px -12px rgba(21, 24, 31, 0.10);
+      --stage-shadow: 0 20px 44px -16px rgba(21, 24, 31, 0.16);
+      --rule: rgba(21, 24, 31, 0.10);
+      --rule-strong: rgba(21, 24, 31, 0.22);
 
-:root{
-  --paper:#F6F5F0;
-  --paper-2:#ECEAE3;
-  --surface:#FCFBF8;
-  --surface-muted:#F1EFE8;
-  --ink:#15181F;
-  --ink-2:#484E5A;
-  --ink-3:#646B78;
-  --accent:#1B3B60;
-  --accent-hover:#142D4A;
-  --accent-soft:#E7EEF6;
-  --accent-ink:#F7F6F2;
-  --obsidian:#15181F;
-  --obsidian-2:#1E232D;
-  --obsidian-3:#282E3B;
-  --obsidian-ink:#F6F5F0;
-  --obsidian-muted:#B3B9C6;
-  --obsidian-rule:rgba(246,245,240,0.14);
-  --glass-bg:rgba(246,245,240,0.84);
-  --glass-solid:#F6F5F0;
-  --scrim:rgba(21,24,31,0.88);
-  --bar-track:rgba(21,24,31,0.12);
-  --bar-track-dark:rgba(246,245,240,0.18);
-  --pill-shadow:0 2px 8px rgba(21,24,31,0.08);
-  --card-shadow:0 12px 32px -12px rgba(21,24,31,0.10);
-  --stage-shadow:0 20px 44px -16px rgba(21,24,31,0.16);
-  --rule:rgba(21,24,31,0.10);
-  --rule-strong:rgba(21,24,31,0.22);
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --font-sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      --s-1: 4px;
+      --s-2: 8px;
+      --s-3: 12px;
+      --s-4: 16px;
+      --s-5: 20px;
+      --s-6: 24px;
+      --s-8: 32px;
+      --s-10: 40px;
+      --s-12: 48px;
+      --s-16: 64px;
+      --s-20: 80px;
+      --s-24: 96px;
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 20px;
+      --r-pill: 999px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --nav-h: 96px;
+    }
 
-  --s-1:4px;
-  --s-2:8px;
-  --s-3:12px;
-  --s-4:16px;
-  --s-5:20px;
-  --s-6:24px;
-  --s-8:32px;
-  --s-10:40px;
-  --s-12:48px;
-  --s-16:64px;
-  --s-20:80px;
-  --s-24:96px;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-  --r-sm:8px;
-  --r-md:14px;
-  --r-lg:20px;
-  --r-pill:999px;
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      width: 100%;
+      background: var(--paper);
+      color: var(--ink)
+    }
 
-  --ease:cubic-bezier(0.22,1,0.36,1);
-  --nav-h:96px;
-}
+    body {
+      font-family: var(--font-sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      width: 100%;
+      padding-top: var(--nav-h);
+    }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{
-  scroll-behavior:smooth;
-  overflow-x:clip;
-  width:100%;
-  background:var(--paper);
-  color:var(--ink);
-  caret-color:var(--accent);
-  scrollbar-color:var(--rule-strong) var(--paper);
-}
-body{
-  font-family:var(--font-sans);
-  background:var(--paper);
-  color:var(--ink);
-  font-size:16px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:clip;
-  width:100%;
-  padding-top:var(--nav-h);
-}
-::selection{background:var(--accent);color:var(--accent-ink)}
-img,video{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.num{font-variant-numeric:tabular-nums}
-.wrap{max-width:1200px;margin:0 auto;padding-inline:var(--s-4)}
-section,article.work{scroll-margin-top:calc(var(--nav-h) + var(--s-4))}
+    ::selection {
+      background: var(--accent);
+      color: var(--accent-ink)
+    }
 
-/* Translucent Apple-style top bar */
-.topbar{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  background:var(--glass-bg);
-  backdrop-filter:blur(20px) saturate(180%);
-  -webkit-backdrop-filter:blur(20px) saturate(180%);
-  border-bottom:1px solid var(--rule);
-  transition:box-shadow 220ms var(--ease);
-}
-.topbar.scrolled{box-shadow:var(--pill-shadow)}
-.topbar-in{
-  max-width:1200px;margin:0 auto;
-  padding:var(--s-3) var(--s-4) 0;
-  display:flex;flex-direction:column;gap:var(--s-2);
-}
-.topbar-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3)}
-.brand{display:inline-flex;align-items:baseline;gap:var(--s-2);white-space:nowrap}
-.brand strong{font-size:16px;font-weight:700;letter-spacing:-0.02em}
-.brand span{font-size:13px;color:var(--ink-3)}
-.nav-cta{
-  display:inline-flex;align-items:center;gap:var(--s-2);
-  padding:var(--s-2) var(--s-4);
-  font-size:13px;font-weight:600;
-  border-radius:var(--r-pill);
-  background:var(--accent);color:var(--accent-ink);
-  white-space:nowrap;
-  transition:transform 110ms var(--ease),background-color 180ms var(--ease);
-}
-.nav-cta:hover{background:var(--accent-hover)}
-.nav-cta:active{transform:scale(0.97)}
-.nav-links{
-  display:flex;justify-content:space-between;gap:var(--s-2);
-  overflow-x:auto;scrollbar-width:none;
-  padding-bottom:var(--s-2);
-}
-.nav-links::-webkit-scrollbar{display:none}
-.nav-links a{
-  font-size:13px;font-weight:500;color:var(--ink-2);
-  white-space:nowrap;padding:var(--s-1) 0 var(--s-2);position:relative;
-  transition:color 160ms var(--ease);
-}
-.nav-links a:hover,.nav-links a.active{color:var(--ink)}
-.nav-links a.active::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
-  border-radius:var(--r-pill);background:var(--accent);
-}
+    img,
+    video {
+      display: block;
+      max-width: 100%
+    }
 
-/* Hero + Apple Keynote Bento Overview */
-.hero{padding:var(--s-5) 0 var(--s-10)}
-.hero-top{display:grid;gap:var(--s-3);margin-bottom:var(--s-6)}
-.hero-meta{
-  display:flex;flex-wrap:wrap;gap:var(--s-1) var(--s-4);
-  font-size:13.5px;color:var(--ink-2);
-}
-.hero-meta span{display:inline-flex;align-items:center}
-.hero-title{
-  font-size:clamp(34px,6vw,56px);
-  font-weight:700;
-  line-height:1.06;
-  letter-spacing:-0.032em;
-  text-wrap:balance;
-  overflow-wrap:break-word;
-  min-width:0;
-}
-.hero-title span{
-  display:inline-block;
-  font-weight:400;
-  color:var(--ink-3);
-  font-size:clamp(20px,3vw,30px);
-  margin-left:var(--s-3);
-  letter-spacing:-0.015em;
-}
-.hero-role{
-  font-size:clamp(18px,2.4vw,22px);
-  font-weight:600;
-  color:var(--accent);
-  letter-spacing:-0.015em;
-}
-.hero-lead{
-  max-width:60ch;
-  font-size:16px;
-  color:var(--ink-2);
-  line-height:1.65;
-}
-.hero-actions{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-2);
-  margin-top:var(--s-2);
-}
-.hero-actions .btn.pri{grid-column:1 / -1}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);
-  min-height:44px;padding:0 var(--s-4);
-  border-radius:var(--r-pill);
-  font-size:13.5px;font-weight:600;white-space:nowrap;
-  transition:transform 110ms var(--ease),background-color 180ms var(--ease),border-color 180ms var(--ease);
-}
-.btn:active{transform:scale(0.97)}
-.btn:disabled,.etab:disabled,.sb-tab:disabled{opacity:0.45;cursor:not-allowed}
-.btn.pri{background:var(--accent);color:var(--accent-ink)}
-.btn.pri:hover{background:var(--accent-hover)}
-.btn.quiet{background:transparent;color:var(--ink);border:1px solid var(--rule-strong)}
-.btn.quiet:hover{background:var(--paper-2)}
-.btn svg,.icon{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-/* Bento Keynote Grid */
-.bento{
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
-  gap:var(--s-4);
-}
-.btile{
-  display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-5);
-  padding:var(--s-6);
-  border-radius:var(--r-lg);
-  background:var(--surface);
-  box-shadow:var(--card-shadow);
-  position:relative;overflow:hidden;
-  transition:transform 180ms var(--ease),box-shadow 220ms var(--ease);
-}
-.btile:hover{transform:translateY(-2px);box-shadow:var(--stage-shadow)}
-.btile:active{transform:scale(0.985)}
-.btile.obsidian{background:var(--obsidian);color:var(--obsidian-ink)}
-.btile.accent{background:var(--accent);color:var(--accent-ink)}
-.btile.tinted{background:var(--paper-2)}
-.btile-top{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-3)}
-.btile-no{font-family:var(--font-mono);font-size:13px;font-weight:600;opacity:0.62}
-.btile-go{
-  display:inline-flex;align-items:center;gap:var(--s-1);
-  font-size:13px;font-weight:500;opacity:0.78;white-space:nowrap;
-}
-.btile-stat{
-  font-size:clamp(32px,5vw,46px);
-  font-weight:700;
-  line-height:1.05;
-  letter-spacing:-0.03em;
-  font-variant-numeric:tabular-nums;
-}
-.btile-title{
-  margin-top:var(--s-2);
-  font-size:18px;font-weight:650;
-  letter-spacing:-0.015em;
-  line-height:1.3;
-  text-wrap:balance;
-}
-.btile-desc{
-  margin-top:var(--s-2);
-  font-size:14px;line-height:1.55;
-  color:var(--ink-2);
-}
-.btile.obsidian .btile-desc{color:var(--obsidian-muted)}
-.btile.accent .btile-desc{color:var(--accent-soft)}
-.btile-facts{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-3);
-  padding-top:var(--s-4);
-  border-top:1px solid var(--rule);
-}
-.btile.obsidian .btile-facts{border-top-color:var(--obsidian-rule)}
-.btile.accent .btile-facts{border-top-color:var(--obsidian-rule)}
-.bfact b{display:block;font-size:16px;font-weight:650;line-height:1.25}
-.bfact span{display:block;font-size:12.5px;margin-top:var(--s-1);opacity:0.76}
-.btile-preview{
-  display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);align-items:center;
-}
-.btile-thumb{
-  border-radius:var(--r-md);overflow:hidden;
-  background:var(--obsidian-2);
-  aspect-ratio:16/10;
-}
-.btile-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center}
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      cursor: pointer
+    }
 
-/* Distinct Section Band System */
-.band-paper{background:var(--paper)}
-.band-tint{background:var(--paper-2)}
-.band-obsidian{background:var(--obsidian);color:var(--obsidian-ink)}
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px
+    }
 
-article.work{padding:var(--s-10) 0}
-.work-head{display:grid;gap:var(--s-3);margin-bottom:var(--s-6);max-width:66ch}
-.work-meta{
-  display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-4);
-  font-size:13.5px;color:var(--ink-3);
-}
-.band-obsidian .work-meta{color:var(--obsidian-muted)}
-.work-meta .w-no{font-family:var(--font-mono);font-weight:700;color:var(--accent)}
-.band-obsidian .work-meta .w-no{color:var(--accent-soft)}
-.work-head h2{
-  font-size:clamp(28px,4.5vw,42px);
-  font-weight:700;
-  line-height:1.12;
-  letter-spacing:-0.028em;
-  text-wrap:balance;
-  overflow-wrap:break-word;
-  min-width:0;
-}
-.work-summary{font-size:16px;color:var(--ink-2);line-height:1.65}
-.band-obsidian .work-summary{color:var(--obsidian-muted)}
+    .num {
+      font-variant-numeric: tabular-nums
+    }
 
-/* Split Layout */
-.split-stage{
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
-  gap:var(--s-8);
-  align-items:center;
-}
-.split-copy{display:grid;gap:var(--s-6);min-width:0;width:100%;max-width:100%}
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-inline: var(--s-4)
+    }
 
-/* Figures Strip */
-.metrics{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:var(--s-4);
-  padding:var(--s-5) 0;
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-}
-.band-obsidian .metrics{border-color:var(--obsidian-rule)}
-.m-cell b{display:block;font-size:22px;font-weight:700;letter-spacing:-0.02em;line-height:1.2}
-.m-cell span{display:block;font-size:13px;color:var(--ink-3);margin-top:var(--s-1)}
-.band-obsidian .m-cell span{color:var(--obsidian-muted)}
+    section,
+    article.work {
+      scroll-margin-top: calc(var(--nav-h) + var(--s-4))
+    }
 
-/* Impact Rows */
-.points{display:grid;gap:var(--s-4)}
-.pt{
-  padding-left:var(--s-4);
-  border-left:2px solid var(--accent);
-  font-size:14.5px;color:var(--ink-2);line-height:1.6;
-}
-.band-obsidian .pt{border-left-color:var(--accent-soft);color:var(--obsidian-muted)}
-.pt b{display:block;font-size:15px;font-weight:650;color:var(--ink);margin-bottom:var(--s-1)}
-.band-obsidian .pt b{color:var(--obsidian-ink)}
+    /* Translucent Apple-Style Top Bar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--rule);
+      transition: box-shadow 220ms var(--ease);
+    }
 
-/* Action Bar Above Showcase */
-.stage-col{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-3);min-width:0;width:100%;max-width:100%}
-.stage-bar{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-3);
-}
-.stage-label{font-size:14px;font-weight:600;color:var(--ink-2)}
-.band-obsidian .stage-label{color:var(--obsidian-muted)}
-.stage-actions{display:inline-flex;align-items:center;gap:var(--s-2);flex-wrap:wrap}
-.preview-link,.video-link{
-  display:inline-flex;align-items:center;gap:var(--s-1);
-  padding:var(--s-2) var(--s-4);
-  border-radius:var(--r-pill);
-  font-size:13px;font-weight:600;
-  white-space:nowrap;
-  transition:transform 110ms var(--ease),background-color 160ms var(--ease);
-}
-.preview-link{color:var(--accent);background:var(--accent-soft)}
-.preview-link:hover{background:var(--paper-2)}
-.video-link{color:var(--ink-2);background:var(--surface);border:1px solid var(--rule-strong)}
-.video-link:hover{background:var(--paper-2)}
-.preview-link:active,.video-link:active{transform:scale(0.97)}
-.band-obsidian .preview-link{background:var(--accent);color:var(--accent-ink)}
-.band-obsidian .preview-link:hover{background:var(--accent-hover)}
-.band-obsidian .video-link{background:var(--obsidian-2);color:var(--obsidian-ink);border-color:var(--obsidian-rule)}
-.band-obsidian .video-link:hover{background:var(--obsidian-3)}
+    .topbar.scrolled {
+      box-shadow: var(--pill-shadow)
+    }
 
-/* Apple Highlights Storyboard Carousel (Zero video lag, 100% mobile autoplay) */
-.sb{
-  background:var(--surface);
-  border-radius:var(--r-lg);
-  box-shadow:var(--stage-shadow);
-  overflow:hidden;
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
-  gap:0;
-  min-width:0;
-  width:100%;
-  max-width:100%;
-}
-.band-obsidian .sb{background:var(--obsidian-2);color:var(--obsidian-ink)}
-.sb.mobile-view{max-width:440px;width:100%;margin-inline:auto}
-.sb.compact-view{max-width:520px;width:100%;margin-inline:auto}
-.sb.desktop-view{max-width:100%;width:100%}
+    .topbar-in {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--s-3) var(--s-4) 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2)
+    }
 
-.sb-tabs{
-  display:flex;gap:var(--s-1);
-  padding:var(--s-2) var(--s-3);
-  overflow-x:auto;scrollbar-width:none;
-  border-bottom:1px solid var(--rule);
-}
-.band-obsidian .sb-tabs{border-bottom-color:var(--obsidian-rule)}
-.sb-tabs::-webkit-scrollbar{display:none}
-.sb-tab{
-  position:relative;flex:none;
-  padding:var(--s-2) var(--s-2) var(--s-3);
-  border-radius:var(--r-sm);
-  font-size:12.5px;font-weight:600;
-  color:var(--ink-3);
-  white-space:nowrap;
-  overflow:hidden;
-  transition:color 160ms var(--ease),background-color 160ms var(--ease),transform 100ms var(--ease);
-}
-.sb-tab:hover{color:var(--ink);background:var(--paper)}
-.sb-tab.active{color:var(--ink);background:var(--paper)}
-.sb-tab:active{transform:scale(0.97)}
-.band-obsidian .sb-tab{color:var(--obsidian-muted)}
-.band-obsidian .sb-tab:hover,.band-obsidian .sb-tab.active{color:var(--obsidian-ink);background:var(--obsidian-3)}
+    .topbar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3)
+    }
 
-/* GPU-only transform:scaleX progress hairline inside active pill */
-.sb-prog{
-  position:absolute;left:var(--s-2);right:var(--s-2);bottom:var(--s-1);height:2.5px;
-  border-radius:var(--r-pill);
-  background:var(--bar-track);
-  overflow:hidden;opacity:0;
-  transition:opacity 180ms var(--ease);
-}
-.band-obsidian .sb-prog{background:var(--bar-track-dark)}
-.sb-tab.active .sb-prog{opacity:1}
-.sb-prog i{
-  display:block;width:100%;height:100%;
-  background:var(--accent);
-  transform-origin:left center;
-  transform:scaleX(0);
-}
-.band-obsidian .sb-prog i{background:var(--accent-soft)}
-.sb-tab.active.run .sb-prog i{
-  animation:sbFill 3600ms linear forwards;
-}
-.sb.is-paused .sb-tab.active.run .sb-prog i{animation-play-state:paused}
-@keyframes sbFill{
-  from{transform:scaleX(0)}
-  to{transform:scaleX(1)}
-}
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: var(--s-2);
+      white-space: nowrap
+    }
 
-.sb-cap{
-  padding:var(--s-4) var(--s-4) var(--s-3);
-  display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-3);
-}
-.sb-copy{
-  min-width:0;flex:1;
-  transition:opacity 200ms var(--ease),transform 240ms var(--ease);
-}
-.sb-copy.swap{opacity:0.18;transform:translate3d(0,4px,0)}
-.sb-title{font-size:15.5px;font-weight:700;letter-spacing:-0.015em;line-height:1.3}
-.sb-sub{margin-top:var(--s-1);font-size:13.5px;color:var(--ink-2);line-height:1.5}
-.band-obsidian .sb-sub{color:var(--obsidian-muted)}
+    .brand strong {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em
+    }
 
-.sb-ctl{
-  flex:none;
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:32px;padding:0 var(--s-3);
-  border-radius:var(--r-pill);
-  background:var(--paper-2);color:var(--ink-2);
-  font-size:12.5px;font-weight:600;white-space:nowrap;
-  transition:transform 110ms var(--ease),background-color 160ms var(--ease);
-}
-.sb-ctl:hover{background:var(--accent-soft);color:var(--accent)}
-.sb-ctl:active{transform:scale(0.96)}
-.band-obsidian .sb-ctl{background:var(--obsidian-3);color:var(--obsidian-ink)}
+    .brand span {
+      font-size: 13px;
+      color: var(--ink-3)
+    }
 
-.sb-stage{
-  position:relative;
-  display:grid;
-  align-items:center;
-  background:var(--paper-2);
-  margin:0 var(--s-3) var(--s-3);
-  border-radius:var(--r-md);
-  overflow:hidden;
-  cursor:zoom-in;
-  touch-action:pan-y;
-}
-.band-obsidian .sb-stage{background:var(--obsidian);color:var(--obsidian-ink)}
-.sb-slide{
-  grid-area:1 / 1;
-  width:100%;height:auto;display:block;
-  transition:opacity 240ms var(--ease);
-  pointer-events:none;
-}
-.js .sb-slide:not(.active){
-  opacity:0;
-  visibility:hidden;
-}
-.sb-slide.active{
-  opacity:1;
-  visibility:visible;
-  z-index:2;
-}
-.sb-idx{
-  position:absolute;right:var(--s-3);bottom:var(--s-3);z-index:3;
-  padding:var(--s-1) var(--s-3);
-  border-radius:var(--r-pill);
-  background:var(--scrim);color:var(--obsidian-ink);
-  font-size:12px;font-weight:600;
-  pointer-events:none;
-}
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      padding: var(--s-2) var(--s-4);
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--r-pill);
+      background: var(--accent);
+      color: var(--accent-ink);
+      white-space: nowrap;
+      transition: transform 110ms var(--ease), background-color 180ms var(--ease);
+    }
 
-/* Apple Segmented Control (Section 02: 2x2 grid on mobile, sliding pill on desktop) */
-.seg-wrap{
-  position:relative;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:var(--s-1);
-  width:100%;
-  background:var(--paper-2);
-  padding:var(--s-1);
-  border-radius:var(--r-md);
-  border:1px solid var(--rule);
-  max-width:100%;
-}
-.seg-thumb{
-  display:none;
-  position:absolute;top:var(--s-1);bottom:var(--s-1);left:0;
-  border-radius:var(--r-pill);
-  background:var(--surface);
-  box-shadow:var(--pill-shadow);
-  pointer-events:none;
-  transition:transform 300ms var(--ease);
-  z-index:1;
-}
-.etab{
-  position:relative;z-index:2;
-  padding:var(--s-2) var(--s-2);
-  font-size:13px;font-weight:600;color:var(--ink-2);
-  border-radius:var(--r-sm);
-  white-space:nowrap;
-  text-align:center;
-  transition:color 180ms var(--ease),background-color 180ms var(--ease),transform 100ms var(--ease);
-}
-.etab:active{transform:scale(0.97)}
-.etab.active{color:var(--ink);background:var(--surface);box-shadow:var(--pill-shadow)}
+    .nav-cta:hover {
+      background: var(--accent-hover)
+    }
 
-/* Section 02 Showcase Shell */
-.deck-shell{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);min-width:0;width:100%}
-.deck-head-row{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-3);min-width:0;
-}
-.deck-stage{min-height:320px;min-width:0;width:100%}
-.deck-stage > div{min-width:0;width:100%}
+    .nav-cta:active {
+      transform: scale(0.97)
+    }
 
-/* Proof Gallery (Section 04) */
-.plates{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:var(--s-4);
-  margin-bottom:var(--s-6);
-}
-.plates-2{
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
-  gap:var(--s-4);
-}
-.plate{
-  background:var(--surface);
-  border-radius:var(--r-md);
-  overflow:hidden;
-  box-shadow:var(--card-shadow);
-  cursor:zoom-in;
-  text-align:left;
-  width:100%;
-  transition:transform 180ms var(--ease),box-shadow 220ms var(--ease);
-}
-.plate:hover{transform:translateY(-2px);box-shadow:var(--stage-shadow)}
-.plate:active{transform:scale(0.985)}
-.plate-img{aspect-ratio:3/4;overflow:hidden;background:var(--paper-2)}
-.plate-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.plate-img.wide{aspect-ratio:16/10;background:var(--surface);display:flex;align-items:center;justify-content:center}
-.plate-img.wide img{object-fit:contain}
-.plate-cap{padding:var(--s-3) var(--s-4)}
-.plate-cap b{display:block;font-size:14px;font-weight:650;color:var(--ink)}
-.plate-cap span{display:block;font-size:13px;color:var(--ink-3);margin-top:var(--s-1)}
+                  <!-- Beat 1 -->
+                  <div class="ss-pane" id="t1-p1" style="gap:8px">
+                    <div class="t1-card">
+                      <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:750"><span>跨日期场次日历</span><span class="s-pill blue">支持错区转移</span></div>
+                      <div class="t1-cal">
+                        <div class="t1-day">15<small style="color:#059669">已录</small></div>
+                        <div class="t1-day on" id="t1-d16">16<small style="color:#FBBF24">补 · !</small></div>
+                        <div class="t1-day" id="t1-d17" data-t="t1-d17">17<small style="color:#059669">已录</small></div>
+                        <div class="t1-day">18<small style="color:#B45309">补</small></div>
+                        <div class="t1-day">19<small style="color:#059669">已录</small></div>
+                      </div>
+                      <div style="font-size:11.5px;color:#484E5A;background:#F5F3EC;padding:7px 9px;border-radius:8px" id="t1-cal-info">10月16日 B座 午餐 · 2 个部门待补券 · 1 张问题餐券</div>
+                    </div>
+                    <div class="t1-row">
+                      <div><b>报餐改动自动留档</b><span>表格中途调整份数会自动记录变动明细，现场对账有据可查</span></div>
+                      <span class="s-pill green">有据可查</span>
+                    </div>
+                  </div>
 
-/* Overseas Banner */
-.overseas-head{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-3);
-  margin:var(--s-10) 0 var(--s-4);
-  padding-top:var(--s-8);
-  border-top:1px solid var(--rule);
-}
-.overseas-head h3{font-size:20px;font-weight:700;letter-spacing:-0.015em;text-wrap:balance}
+    .nav-links::-webkit-scrollbar {
+      display: none
+    }
 
-/* Profile Dossier (Section 05) */
-.profile{padding:var(--s-16) 0 var(--s-20)}
-.profile-head{
-  font-size:clamp(28px,4vw,40px);
-  font-weight:700;letter-spacing:-0.025em;
-  margin-bottom:var(--s-8);
-  text-wrap:balance;
-}
-.profile-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1fr);
-  gap:var(--s-10);
-}
-.col-title{
-  font-size:14px;font-weight:650;color:var(--accent);
-  padding-bottom:var(--s-3);border-bottom:1px solid var(--rule-strong);
-  margin-bottom:var(--s-5);
-}
-.fit-block{padding-bottom:var(--s-5);margin-bottom:var(--s-5);border-bottom:1px solid var(--rule)}
-.fit-block:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
-.fit-block h3{font-size:18px;font-weight:650;margin-bottom:var(--s-2);letter-spacing:-0.01em}
-.fit-block p{font-size:15px;color:var(--ink-2);line-height:1.65}
-.edu-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2);margin-bottom:var(--s-2)}
-.edu-row strong{font-size:18px;font-weight:700;letter-spacing:-0.015em}
-.edu-row span{font-size:14px;color:var(--ink-3)}
-.edu-gpa{font-size:14.5px;color:var(--accent);font-weight:600;margin-bottom:var(--s-5)}
-.edu-dl{border-top:1px solid var(--rule);margin-bottom:var(--s-5)}
-.edu-dl div{padding:var(--s-3) 0;border-bottom:1px solid var(--rule);display:grid;gap:var(--s-1)}
-.edu-dl dt{font-size:13px;font-weight:600;color:var(--ink-3)}
-.edu-dl dd{font-size:14.5px;color:var(--ink-2);line-height:1.6}
-.cert-thumb{
-  display:flex;align-items:center;gap:var(--s-4);
-  padding:var(--s-4);width:100%;text-align:left;
-  background:var(--surface);border-radius:var(--r-md);
-  box-shadow:var(--card-shadow);cursor:zoom-in;
-  transition:transform 180ms var(--ease),box-shadow 220ms var(--ease);
-}
-.cert-thumb:hover{transform:translateY(-2px);box-shadow:var(--stage-shadow)}
-.cert-thumb:active{transform:scale(0.985)}
-.cert-thumb img{width:64px;height:88px;object-fit:cover;border-radius:var(--r-sm);flex:none}
-.cert-thumb b{display:block;font-size:15px;font-weight:650;line-height:1.4}
-.cert-thumb span{display:block;font-size:13px;color:var(--ink-3);margin-top:var(--s-1)}
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-2);
+      white-space: nowrap;
+      padding: var(--s-1) 0 var(--s-2);
+      position: relative;
+      transition: color 160ms var(--ease)
+    }
 
-/* Statement Closing Footer */
-footer{
-  background:var(--obsidian);color:var(--obsidian-ink);
-  padding:var(--s-16) 0 var(--s-12);
-}
-.foot-in{display:grid;gap:var(--s-6)}
-.foot-lead{
-  font-size:clamp(22px,3.2vw,30px);
-  font-weight:650;letter-spacing:-0.02em;line-height:1.3;
-  max-width:26ch;text-wrap:balance;
-}
-.foot-actions{display:flex;flex-wrap:wrap;gap:var(--s-3)}
-.foot-actions .btn.quiet{
-  background:var(--obsidian-2);color:var(--obsidian-ink);
-  border-color:var(--obsidian-rule);
-}
-.foot-actions .btn.quiet:hover{background:var(--accent)}
-.foot-meta{
-  display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-3);
-  padding-top:var(--s-6);border-top:1px solid var(--obsidian-rule);
-  font-size:13.5px;color:var(--obsidian-muted);
-}
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink)
+    }
 
-/* Toast & Lightbox (Images + On-Demand Full Video Modal) */
-#toast{
-  position:fixed;left:50%;bottom:var(--s-6);
-  transform:translate3d(-50%,8px,0);
-  background:var(--obsidian);color:var(--obsidian-ink);
-  padding:var(--s-2) var(--s-5);border-radius:var(--r-pill);
-  font-size:13.5px;font-weight:500;
-  opacity:0;pointer-events:none;z-index:80;
-  transition:opacity 180ms var(--ease),transform 240ms var(--ease);
-}
-#toast.on{opacity:0.96;transform:translate3d(-50%,0,0)}
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: var(--r-pill);
+      background: var(--accent)
+    }
 
-#lb{
-  position:fixed;inset:0;z-index:90;
-  background:var(--scrim);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  display:flex;align-items:center;justify-content:center;
-  padding:var(--s-5);cursor:zoom-out;
-  opacity:0;visibility:hidden;pointer-events:none;
-  transition:opacity 220ms var(--ease),visibility 220ms var(--ease);
-}
-#lb.on{opacity:1;visibility:visible;pointer-events:auto}
-#lb-inner{
-  position:relative;max-width:94vw;max-height:88vh;
-  transform:scale(0.94);
-  transition:transform 280ms var(--ease);
-}
-#lb.on #lb-inner{transform:scale(1)}
-#lb-close{
-  position:fixed;top:var(--s-5);right:var(--s-5);z-index:95;
-  width:44px;height:44px;border-radius:var(--r-pill);
-  background:var(--obsidian-2);color:var(--obsidian-ink);
-  display:inline-flex;align-items:center;justify-content:center;
-  font-size:20px;line-height:1;
-}
-#lb-inner img,#lb-inner video{max-width:94vw;max-height:86vh;border-radius:var(--r-md);background:var(--obsidian)}
+    /* Hero + Bento */
+    .hero {
+      padding: var(--s-5) 0 var(--s-10)
+    }
 
-/* Desktop Breakpoint */
-@media(min-width:860px){
-  :root{--nav-h:64px}
-  .wrap{padding-inline:var(--s-8)}
-  .topbar-in{
-    flex-direction:row;align-items:center;justify-content:space-between;
-    height:64px;padding:0 var(--s-8);
-  }
-  .topbar-row{display:contents}
-  .nav-links{padding-bottom:0;gap:var(--s-6);order:0}
-  .nav-links a{padding:var(--s-5) 0}
-  .nav-cta{order:1}
+    .hero-top {
+      display: grid;
+      gap: var(--s-3);
+      margin-bottom: var(--s-6)
+    }
 
-  .hero{padding:var(--s-10) 0 var(--s-16)}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:var(--s-3)}
-  .hero-actions .btn.pri{grid-column:auto}
-  .hero-meta span + span{padding-left:var(--s-4);border-left:1px solid var(--rule-strong)}
-  .bento{
-    grid-template-columns:repeat(12,minmax(0,1fr));
-    gap:var(--s-5);
-  }
-  .btile.span-7{grid-column:span 7}
-  .btile.span-5{grid-column:span 5}
-  .btile-preview{grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr)}
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-1) var(--s-4);
+      font-size: 13.5px;
+      color: var(--ink-2)
+    }
 
-  article.work{padding:var(--s-24) 0}
-  .work-head{margin-bottom:var(--s-8)}
-  .sb-tabs{gap:var(--s-2);padding:var(--s-3) var(--s-4) var(--s-2)}
-  .sb-tab{padding:var(--s-2) var(--s-3) var(--s-3);font-size:13px}
-  .seg-wrap{
-    display:inline-flex;align-items:center;gap:0;width:auto;
-    background:var(--paper);border-radius:var(--r-pill);
-  }
-  .seg-thumb{display:block}
-  .etab{padding:var(--s-2) var(--s-4);font-size:13.5px;border-radius:var(--r-pill)}
-  .etab.active{background:transparent;box-shadow:none}
-  .split-stage{
-    grid-template-columns:minmax(0,1fr) minmax(0,450px);
-    gap:var(--s-12);
-  }
-  .split-stage.rev{
-    grid-template-columns:minmax(0,520px) minmax(0,1fr);
-  }
-  .split-stage.rev .stage-col{order:-1}
-  .metrics.cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}
-  .metrics.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .points.cols-3{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-6)}
-  .plates{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-5)}
-  .plates-2{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-5)}
-  .profile-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-16)}
-}
+    .hero-title {
+      font-size: clamp(34px, 6vw, 56px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.032em;
+      text-wrap: balance
+    }
 
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{
-    animation-duration:0.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:0.01ms !important;
-  }
-}
-@media(prefers-reduced-transparency:reduce){
-  .topbar{background:var(--glass-solid);backdrop-filter:none;-webkit-backdrop-filter:none}
-  #lb{backdrop-filter:none;-webkit-backdrop-filter:none}
-}
-</style>
+    .hero-title span {
+      display: inline-block;
+      font-weight: 400;
+      color: var(--ink-3);
+      font-size: clamp(20px, 3vw, 30px);
+      margin-left: var(--s-3);
+      letter-spacing: -0.015em
+    }
+
+    .hero-role {
+      font-size: clamp(18px, 2.4vw, 22px);
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.015em
+    }
+
+    .hero-lead {
+      max-width: 60ch;
+      font-size: 16px;
+      color: var(--ink-2);
+      line-height: 1.65
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-2);
+      margin-top: var(--s-2)
+    }
+
+    .hero-actions .btn.pri {
+      grid-column: 1 / -1
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s-2);
+      min-height: 44px;
+      padding: 0 var(--s-4);
+      border-radius: var(--r-pill);
+      font-size: 13.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: transform 110ms var(--ease), background-color 180ms var(--ease);
+    }
+
+    .btn:active {
+      transform: scale(0.97)
+    }
+
+    .btn.pri {
+      background: var(--accent);
+      color: var(--accent-ink)
+    }
+
+    .btn.pri:hover {
+      background: var(--accent-hover)
+    }
+
+    .btn.quiet {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule-strong)
+    }
+
+    .btn.quiet:hover {
+      background: var(--paper-2)
+    }
+
+    .btn svg,
+    .icon {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: none
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-4)
+    }
+
+    .btile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--s-5);
+      padding: var(--s-6);
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 180ms var(--ease), box-shadow 220ms var(--ease);
+    }
+
+    .btile:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--stage-shadow)
+    }
+
+    .btile:active {
+      transform: scale(0.985)
+    }
+
+    .btile.obsidian {
+      background: var(--obsidian);
+      color: var(--obsidian-ink)
+    }
+
+    .btile.accent {
+      background: var(--accent);
+      color: var(--accent-ink)
+    }
+
+    .btile.tinted {
+      background: var(--paper-2)
+    }
+
+    .btile-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--s-3)
+    }
+
+    .btile-no {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.62
+    }
+
+    .btile-go {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-1);
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.78;
+      white-space: nowrap
+    }
+
+    .btile-stat {
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums
+    }
+
+    .btile-title {
+      margin-top: var(--s-2);
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+      text-wrap: balance
+    }
+
+    .btile-desc {
+      margin-top: var(--s-2);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-2)
+    }
+
+    .btile.obsidian .btile-desc {
+      color: var(--obsidian-muted)
+    }
+
+    .btile.accent .btile-desc {
+      color: var(--accent-soft)
+    }
+
+    .btile-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-3);
+      padding-top: var(--s-4);
+      border-top: 1px solid var(--rule)
+    }
+
+    .btile.obsidian .btile-facts,
+    .btile.accent .btile-facts {
+      border-top-color: var(--obsidian-rule)
+    }
+
+    .bfact b {
+      display: block;
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.25
+    }
+
+    .bfact span {
+      display: block;
+      font-size: 12.5px;
+      margin-top: var(--s-1);
+      opacity: 0.76
+    }
+
+    .btile-preview {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-5);
+      align-items: center
+    }
+
+    .btile-thumb {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--obsidian-2);
+      aspect-ratio: 16/10
+    }
+
+    .btile-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center
+    }
+
+    /* Sections */
+    .band-paper {
+      background: var(--paper)
+    }
+
+    .band-tint {
+      background: var(--paper-2)
+    }
+
+    .band-obsidian {
+      background: var(--obsidian);
+      color: var(--obsidian-ink)
+    }
+
+    article.work {
+      padding: var(--s-10) 0
+    }
+
+    .work-head {
+      display: grid;
+      gap: var(--s-3);
+      margin-bottom: var(--s-6);
+      max-width: 68ch
+    }
+
+    .work-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-2) var(--s-4);
+      font-size: 13.5px;
+      color: var(--ink-3)
+    }
+
+    .band-obsidian .work-meta {
+      color: var(--obsidian-muted)
+    }
+
+    .work-meta .w-no {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent)
+    }
+
+    .band-obsidian .work-meta .w-no {
+      color: var(--accent-soft)
+    }
+
+    .work-head h2 {
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.028em;
+      text-wrap: balance
+    }
+
+    .work-summary {
+      font-size: 16px;
+      color: var(--ink-2);
+      line-height: 1.65
+    }
+
+    .band-obsidian .work-summary {
+      color: var(--obsidian-muted)
+    }
+
+    .split-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-8);
+      align-items: center
+    }
+
+    .split-copy {
+      display: grid;
+      gap: var(--s-6);
+      min-width: 0
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-4);
+      padding: var(--s-5) 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .band-obsidian .metrics {
+      border-color: var(--obsidian-rule)
+    }
+
+    .m-cell b {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2
+    }
+
+    .m-cell span {
+      display: block;
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-top: var(--s-1)
+    }
+
+    .band-obsidian .m-cell span {
+      color: var(--obsidian-muted)
+    }
+
+    .points {
+      display: grid;
+      gap: var(--s-4)
+    }
+
+    .pt {
+      padding-left: var(--s-4);
+      border-left: 2px solid var(--accent);
+      font-size: 14.5px;
+      color: var(--ink-2);
+      line-height: 1.6
+    }
+
+    .band-obsidian .pt {
+      border-left-color: var(--accent-soft);
+      color: var(--obsidian-muted)
+    }
+
+    .pt b {
+      display: block;
+      font-size: 15px;
+      font-weight: 650;
+      color: var(--ink);
+      margin-bottom: var(--s-1)
+    }
+
+    .band-obsidian .pt b {
+      color: var(--obsidian-ink)
+    }
+
+    .stage-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-3);
+      min-width: 0
+    }
+
+    .stage-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3)
+    }
+
+    .stage-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-2)
+    }
+
+    .band-obsidian .stage-label {
+      color: var(--obsidian-muted)
+    }
+
+    .stage-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      flex-wrap: wrap
+    }
+
+    .preview-link,
+    .video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-1);
+      padding: var(--s-2) var(--s-4);
+      border-radius: var(--r-pill);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: transform 110ms var(--ease), background-color 160ms var(--ease);
+    }
+
+    .preview-link {
+      color: var(--accent);
+      background: var(--accent-soft)
+    }
+
+    .preview-link:hover {
+      background: var(--paper-2)
+    }
+
+    .video-link {
+      color: var(--ink-2);
+      background: var(--surface);
+      border: 1px solid var(--rule-strong)
+    }
+
+    .video-link:hover {
+      background: var(--paper-2)
+    }
+
+    .preview-link:active,
+    .video-link:active {
+      transform: scale(0.97)
+    }
+
+    .band-obsidian .preview-link {
+      background: var(--accent);
+      color: var(--accent-ink)
+    }
+
+    .band-obsidian .preview-link:hover {
+      background: var(--accent-hover)
+    }
+
+    .band-obsidian .video-link {
+      background: var(--obsidian-2);
+      color: var(--obsidian-ink);
+      border-color: var(--obsidian-rule)
+    }
+
+    /* Apple Segmented Control (Section 02: 2 tabs only) */
+    .seg-wrap {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-1);
+      width: 100%;
+      background: var(--paper-2);
+      padding: var(--s-1);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--rule);
+    }
+
+    .seg-thumb {
+      display: none;
+      position: absolute;
+      top: var(--s-1);
+      bottom: var(--s-1);
+      left: 0;
+      border-radius: var(--r-pill);
+      background: var(--surface);
+      box-shadow: var(--pill-shadow);
+      pointer-events: none;
+      transition: transform 300ms var(--ease);
+      z-index: 1;
+    }
+
+    .etab {
+      position: relative;
+      z-index: 2;
+      padding: var(--s-2) var(--s-3);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-2);
+      border-radius: var(--r-pill);
+      white-space: nowrap;
+      text-align: center;
+      transition: color 180ms var(--ease), background-color 180ms var(--ease), transform 100ms var(--ease);
+    }
+
+    .etab:active {
+      transform: scale(0.97)
+    }
+
+    .etab.active {
+      color: var(--ink);
+      background: var(--surface);
+      box-shadow: var(--pill-shadow)
+    }
+
+    .deck-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-5)
+    }
+
+    .deck-head-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3)
+    }
+
+    /* Proof Gallery, Profile, Footer */
+    .plates {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-4);
+      margin-bottom: var(--s-6)
+    }
+
+    .plates-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-4)
+    }
+
+    .plate {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      cursor: zoom-in;
+      text-align: left;
+      width: 100%;
+      transition: transform 180ms var(--ease), box-shadow 220ms var(--ease)
+    }
+
+    .plate:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--stage-shadow)
+    }
+
+    .plate-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--paper-2)
+    }
+
+    .plate-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center
+    }
+
+    .plate-img.wide {
+      aspect-ratio: 16/10;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .plate-img.wide img {
+      object-fit: contain
+    }
+
+    .plate-cap {
+      padding: var(--s-3) var(--s-4)
+    }
+
+    .plate-cap b {
+      display: block;
+      font-size: 14px;
+      font-weight: 650;
+      color: var(--ink)
+    }
+
+    .plate-cap span {
+      display: block;
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-top: var(--s-1)
+    }
+
+    .overseas-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s-3);
+      margin: var(--s-10) 0 var(--s-4);
+      padding-top: var(--s-8);
+      border-top: 1px solid var(--rule)
+    }
+
+    .overseas-head h3 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.015em
+    }
+
+    .profile {
+      padding: var(--s-16) 0 var(--s-20)
+    }
+
+    .profile-head {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--s-8)
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-10)
+    }
+
+    .col-title {
+      font-size: 14px;
+      font-weight: 650;
+      color: var(--accent);
+      padding-bottom: var(--s-3);
+      border-bottom: 1px solid var(--rule-strong);
+      margin-bottom: var(--s-5)
+    }
+
+    .fit-block {
+      padding-bottom: var(--s-5);
+      margin-bottom: var(--s-5);
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .fit-block:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0
+    }
+
+    .fit-block h3 {
+      font-size: 18px;
+      font-weight: 650;
+      margin-bottom: var(--s-2)
+    }
+
+    .fit-block p {
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.65
+    }
+
+    .edu-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--s-2);
+      margin-bottom: var(--s-2)
+    }
+
+    .edu-row strong {
+      font-size: 18px;
+      font-weight: 700
+    }
+
+    .edu-row span {
+      font-size: 14px;
+      color: var(--ink-3)
+    }
+
+    .edu-gpa {
+      font-size: 14.5px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: var(--s-5)
+    }
+
+    .edu-dl {
+      border-top: 1px solid var(--rule);
+      margin-bottom: var(--s-5)
+    }
+
+    .edu-dl div {
+      padding: var(--s-3) 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      gap: var(--s-1)
+    }
+
+    .edu-dl dt {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-3)
+    }
+
+    .edu-dl dd {
+      font-size: 14.5px;
+      color: var(--ink-2);
+      line-height: 1.6
+    }
+
+    .cert-thumb {
+      display: flex;
+      align-items: center;
+      gap: var(--s-4);
+      padding: var(--s-4);
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border-radius: var(--r-md);
+      box-shadow: var(--card-shadow);
+      cursor: zoom-in
+    }
+
+    .cert-thumb img {
+      width: 64px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: var(--r-sm);
+      flex: none
+    }
+
+    .cert-thumb b {
+      display: block;
+      font-size: 15px;
+      font-weight: 650;
+      line-height: 1.4
+    }
+
+    .cert-thumb span {
+      display: block;
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-top: var(--s-1)
+    }
+
+    footer {
+      background: var(--obsidian);
+      color: var(--obsidian-ink);
+      padding: var(--s-16) 0 var(--s-12)
+    }
+
+    .foot-in {
+      display: grid;
+      gap: var(--s-6)
+    }
+
+    .foot-lead {
+      font-size: clamp(22px, 3.2vw, 30px);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      max-width: 26ch
+    }
+
+    .foot-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-3)
+    }
+
+    .foot-actions .btn.quiet {
+      background: var(--obsidian-2);
+      color: var(--obsidian-ink);
+      border-color: var(--obsidian-rule)
+    }
+
+    .foot-actions .btn.quiet:hover {
+      background: var(--accent)
+    }
+
+    .foot-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--s-3);
+      padding-top: var(--s-6);
+      border-top: 1px solid var(--obsidian-rule);
+      font-size: 13.5px;
+      color: var(--obsidian-muted)
+    }
+
+    #toast {
+      position: fixed;
+      left: 50%;
+      bottom: var(--s-6);
+      transform: translate3d(-50%, 8px, 0);
+      background: var(--obsidian);
+      color: var(--obsidian-ink);
+      padding: var(--s-2) var(--s-5);
+      border-radius: var(--r-pill);
+      font-size: 13.5px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 80;
+      transition: opacity 180ms var(--ease), transform 240ms var(--ease)
+    }
+
+    #toast.on {
+      opacity: 0.96;
+      transform: translate3d(-50%, 0, 0)
+    }
+
+    #lb {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: var(--scrim);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--s-5);
+      cursor: zoom-out;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 220ms var(--ease), visibility 220ms var(--ease)
+    }
+
+    #lb.on {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto
+    }
+
+    #lb-inner {
+      position: relative;
+      max-width: 94vw;
+      max-height: 88vh;
+      transform: scale(0.94);
+      transition: transform 280ms var(--ease)
+    }
+
+    #lb.on #lb-inner {
+      transform: scale(1)
+    }
+
+    #lb-close {
+      position: fixed;
+      top: var(--s-5);
+      right: var(--s-5);
+      z-index: 95;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-pill);
+      background: var(--obsidian-2);
+      color: var(--obsidian-ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px
+    }
+
+    #lb-inner img,
+    #lb-inner video {
+      max-width: 94vw;
+      max-height: 86vh;
+      border-radius: var(--r-md);
+      background: var(--obsidian)
+    }
+
+    @media(min-width:860px) {
+      :root {
+        --nav-h: 64px
+      }
+
+      .wrap {
+        padding-inline: var(--s-8)
+      }
+
+      .topbar-in {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        padding: 0 var(--s-8)
+      }
+
+      .topbar-row {
+        display: contents
+      }
+
+      .nav-links {
+        padding-bottom: 0;
+        gap: var(--s-6);
+        order: 0
+      }
+
+      .nav-links a {
+        padding: var(--s-5) 0
+      }
+
+      .nav-cta {
+        order: 1
+      }
+
+      .hero {
+        padding: var(--s-10) 0 var(--s-16)
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--s-3)
+      }
+
+      .hero-actions .btn.pri {
+        grid-column: auto
+      }
+
+      .hero-meta span+span {
+        padding-left: var(--s-4);
+        border-left: 1px solid var(--rule-strong)
+      }
+
+      .bento {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: var(--s-5)
+      }
+
+      .btile.span-7 {
+        grid-column: span 7
+      }
+
+      .btile.span-5 {
+        grid-column: span 5
+      }
+
+      .btile-preview {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr)
+      }
+
+      article.work {
+        padding: var(--s-24) 0
+      }
+
+      .work-head {
+        margin-bottom: var(--s-8)
+      }
+
+      .seg-wrap {
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        width: auto;
+        background: var(--paper)
+      }
+
+      .seg-thumb {
+        display: block
+      }
+
+      .etab {
+        padding: var(--s-2) var(--s-5);
+        font-size: 13.5px
+      }
+
+      .etab.active {
+        background: transparent;
+        box-shadow: none
+      }
+
+      .split-stage {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+        gap: var(--s-12)
+      }
+
+      .split-stage.rev {
+        grid-template-columns: minmax(0, 540px) minmax(0, 1fr)
+      }
+
+      .split-stage.rev .stage-col {
+        order: -1
+      }
+
+      .metrics.cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr))
+      }
+
+      .metrics.cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+
+      .plates {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--s-5)
+      }
+
+      .plates-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--s-5)
+      }
+
+      .profile-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--s-16)
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="topbar" id="topbar" aria-label="主导航">
-  <div class="topbar-in">
-    <div class="topbar-row">
-      <a class="brand" href="#top"><strong>赖怡婷</strong><span>Yiting Lai</span></a>
-      <a class="nav-cta" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历 PDF</a>
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="#p1" class="active">01 取餐核对</a>
-      <a href="#p2">02 代预约</a>
-      <a href="#p3">03 易班</a>
-      <a href="#p4">04 实绩</a>
-      <a href="#profile">履历</a>
-    </div>
-  </div>
-</nav>
-
-<main id="top">
-
-  <!-- 首屏：极简大字头 + 苹果发布会式 Bento 战绩总览 -->
-  <section class="hero band-paper">
-    <div class="wrap">
-      <div class="hero-top">
-        <div class="hero-meta num">
-          <span>广东轻工职业技术大学 国际商务</span>
-          <span>2027 届大专，可提前全周实习</span>
-          <span>广东广州</span>
-        </div>
-        <h1 class="hero-title">赖怡婷<span>Yiting Lai</span></h1>
-        <div class="hero-role">外贸业务 × AI 工具落地与客户交付</div>
-        <p class="hero-lead">能发现一线工作里的耗时痛点，用 AI 快速做出可上线的网页和桌面软件，并独立跑通客户沟通、售卖交付与售后迭代。</p>
-        <div class="hero-actions">
-          <a class="btn pri" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
-            下载简历 PDF
-          </a>
-          <button class="btn quiet" type="button" data-copy="13794875992">复制手机号</button>
-          <button class="btn quiet" type="button" data-copy="x60skim@gmail.com">复制邮箱</button>
-        </div>
+  <nav class="topbar" id="topbar" aria-label="主导航">
+    <div class="topbar-in">
+      <div class="topbar-row">
+        <a class="brand" href="#top"><strong>赖怡婷</strong><span>Yiting Lai</span></a>
+        <a class="nav-cta" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历 PDF</a>
       </div>
-
-      <div class="bento" aria-label="核心项目与实绩总览">
-        <a class="btile obsidian span-7" href="#p1">
-          <div class="btile-top">
-            <span class="btile-no">01</span>
-            <span class="btile-go">查看特写演示 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span>
-          </div>
-          <div class="btile-preview">
-            <div>
-              <div class="btile-stat num">70,042 份</div>
-              <div class="btile-title">广交会手机端取餐核对工具</div>
-              <p class="btile-desc">10 部手机现场实时协作，把每天 50 分钟的纸笔核对压缩至 5 分钟，33 天 95 场零错漏。</p>
-            </div>
-            <div class="btile-thumb">
-              <img src="./assets/shots/r1.jpg?v=2" alt="广交会手机端取餐核对工具界面预览" fetchpriority="high">
-            </div>
-          </div>
-          <div class="btile-facts num">
-            <div class="bfact"><b>50 至 5 分钟</b><span>每日核对耗时压缩</span></div>
-            <div class="bfact"><b>55 笔 / 0 错漏</b><span>补餐券闭环与优秀实习生</span></div>
-          </div>
-        </a>
-
-        <a class="btile accent span-5" href="#p2">
-          <div class="btile-top">
-            <span class="btile-no">02</span>
-            <span class="btile-go">查看前后端 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span>
-          </div>
-          <div>
-            <div class="btile-stat num">861 笔</div>
-            <div class="btile-title">智慧校园 3.0 活动代预约系统</div>
-            <p class="btile-desc">独立做成客户自助下单网站与后台自动执行程序，支持互助占位置换与自动生图结算。</p>
-          </div>
-          <div class="btile-facts num">
-            <div class="bfact"><b>1,225 场</b><span>自动同步上架活动</span></div>
-            <div class="bfact"><b>216 次</b><span>互助占位名额置换</span></div>
-          </div>
-        </a>
-
-        <a class="btile span-5" href="#p3">
-          <div class="btile-top">
-            <span class="btile-no">03</span>
-            <span class="btile-go">查看软件功能 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span>
-          </div>
-          <div>
-            <div class="btile-stat num">100% 好评</div>
-            <div class="btile-title">易班自动化桌面软件</div>
-            <p class="btile-desc">双击即用的 Windows 安装包，用飞书表格实现零服务器成本一机一码授权。</p>
-          </div>
-          <div class="btile-facts num">
-            <div class="bfact"><b>89 单 / ¥1,286</b><span>线上实售与零纠纷交付</span></div>
-            <div class="bfact"><b>¥0 / 月</b><span>飞书表格零成本授权</span></div>
-          </div>
-        </a>
-
-        <a class="btile tinted span-7" href="#p4">
-          <div class="btile-top">
-            <span class="btile-no">04</span>
-            <span class="btile-go">查看真实凭证 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></span>
-          </div>
-          <div>
-            <div class="btile-stat num">294 单 / ¥7,418.24</div>
-            <div class="btile-title">线上销售实绩、客户口碑与 G2G 海外首单</div>
-            <p class="btile-desc">独立跑通国内电商选品、聊单、交付与售后，综合纠纷率低至 0.35%，并打通 G2G 全英文上架与 Payoneer 跨境收款首单。</p>
-          </div>
-          <div class="btile-facts num">
-            <div class="bfact"><b>0.35% 纠纷率</b><span>工具 89 单与电商 205 单</span></div>
-            <div class="bfact"><b>6.00 美元首单</b><span>海外平台已发货与跨境回款</span></div>
-          </div>
-        </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#p1" class="active">01 取餐核对</a>
+        <a href="#p2">02 代预约</a>
+        <a href="#p3">03 易班</a>
+        <a href="#p4">04 实绩</a>
+        <a href="#profile">履历</a>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <!-- 01 广交会取餐核对工具：左右分栏 + 5 步实景特写故事板 -->
-  <article class="work band-tint" id="p1">
-    <div class="wrap">
-      <div class="split-stage">
-        <div class="split-copy">
-          <header class="work-head" style="margin-bottom:0">
-            <div class="work-meta num">
-              <span class="w-no">01</span>
-              <span>2026.10 至 2026.11</span>
-              <span>广东广交会新大地会展服务有限公司，获评优秀实习生</span>
-            </div>
-            <h2>广交会手机端取餐核对工具</h2>
-            <p class="work-summary">用 AI 自研手机核对网页替代纸笔抄录，10 部手机现场实时协作，把每天 50 分钟的核对缩短至 5 分钟，高峰期错漏当场拦下。</p>
-          </header>
+  <main id="top">
 
-          <div class="metrics num">
-            <div class="m-cell"><b>10 部</b><span>现场同时在线手机</span></div>
-            <div class="m-cell"><b>33 天 / 95 场</b><span>完整展期真实运行</span></div>
-            <div class="m-cell"><b>70,042 份</b><span>精准核对餐品总数</span></div>
-            <div class="m-cell"><b>50 至 5 分钟</b><span>每日核对耗时压缩</span></div>
+    <!-- 首屏 Bento 总览 -->
+    <section class="hero band-paper">
+      <div class="wrap">
+        <div class="hero-top">
+          <div class="hero-meta num">
+            <span>广东轻工职业技术大学 国际商务</span>
+            <span>2027 届大专，可提前全周实习</span>
+            <span>广东广州</span>
           </div>
-
-          <div class="points">
-            <div class="pt"><b>自动读表与余量看板</b>直接同步共享表格报餐数并实时计算 5 大品牌余量与备餐</div>
-            <div class="pt"><b>高峰期超报当场拦截</b>点选登记自动核验份数，超领漏领立刻标红拦住</div>
-            <div class="pt"><b>需补餐券与一键日结导出</b>收工一键汇总未取部门转为待补餐券，断网也能导出标准 Excel</div>
-          </div>
-        </div>
-
-        <div class="stage-col">
-          <div class="stage-bar">
-            <span class="stage-label">广交会取餐核对台</span>
-            <div class="stage-actions">
-              <button class="video-link" type="button" data-video="./assets/demo-reconcile.mp4?v=7" data-poster="./assets/demo-reconcile.jpg?v=7">完整录屏</button>
-              <a class="preview-link" href="./src/reconcile.html?v=16&tour=1" target="_blank" rel="noopener">
-                项目预览 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-              </a>
-            </div>
-          </div>
-          <div class="sb mobile-view" data-sb="reconcile" aria-label="广交会取餐核对台功能特写轮播"></div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- 02 智慧校园 3.0 活动代预约系统：苹果分段切换 + 双故事板与真实账单/后台截图 -->
-  <article class="work band-paper" id="p2">
-    <div class="wrap">
-      <div class="deck-shell">
-        <header class="work-head" style="margin-bottom:0">
-          <div class="work-meta num">
-            <span class="w-no">02</span>
-            <span>2025.06 至今</span>
-            <span>独立开发与运营，前端下单网站与后端管理程序</span>
-          </div>
-          <h2>智慧校园 3.0 活动代预约系统</h2>
-          <p class="work-summary">替代手动微信接单对账，做成客户自助下单网站与后台自动执行、自动生图结算整套系统，稳定承接 861 笔订单。</p>
-        </header>
-
-        <div class="metrics cols-5 num">
-          <div class="m-cell"><b>1,225 场</b><span>自动同步上架活动</span></div>
-          <div class="m-cell"><b>861 笔</b><span>系统处理预约订单</span></div>
-          <div class="m-cell"><b>38 个</b><span>已验证客户账号</span></div>
-          <div class="m-cell"><b>216 次</b><span>互助占位名额置换</span></div>
-          <div class="m-cell"><b>37 人 / 35 次</b><span>签约占位与免费掉落</span></div>
-        </div>
-
-        <div class="deck-head-row">
-          <div class="seg-wrap" role="tablist" aria-label="系统模块切换" id="p2Seg">
-            <div class="seg-thumb" id="p2Thumb" aria-hidden="true"></div>
-            <button class="etab active" type="button" role="tab" aria-selected="true" data-group="p2" data-tab="p2-web">前端下单网站</button>
-            <button class="etab" type="button" role="tab" aria-selected="false" data-group="p2" data-tab="p2-console">后端主控制台</button>
-            <button class="etab" type="button" role="tab" aria-selected="false" data-group="p2" data-tab="p2-bill">自动生成账单图</button>
-            <button class="etab" type="button" role="tab" aria-selected="false" data-group="p2" data-tab="p2-admin">真实后台截图</button>
-          </div>
-          <div class="stage-actions">
-            <button class="video-link" id="p2-vid" type="button" data-video="./assets/demo-zhxy-web.mp4?v=7" data-poster="./assets/demo-zhxy-web.jpg?v=7">完整录屏</button>
-            <a class="preview-link" id="p2-open" href="./src/zhxy-order.html?v=16&tour=1" target="_blank" rel="noopener">
-              <span id="p2-open-txt">项目预览</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          <h1 class="hero-title">赖怡婷<span>Yiting Lai</span></h1>
+          <div class="hero-role">外贸业务 × AI 业务工具开发与客户交付</div>
+          <p class="hero-lead">善于在一线业务中发现重复耗时的环节，结合 AI 快速开发可稳定上线的网页与桌面软件，并独立完成客户沟通、售卖、交付与售后升级。</p>
+          <div class="hero-actions">
+            <a class="btn pri" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" />
+              </svg>
+              下载简历 PDF
             </a>
+            <button class="btn quiet" type="button" data-copy="13794875992">复制手机号</button>
+            <button class="btn quiet" type="button" data-copy="x60skim@gmail.com">复制邮箱</button>
           </div>
         </div>
 
-        <div class="deck-stage">
-          <div id="p2-web">
-            <div class="sb mobile-view" data-sb="zhxy-web" aria-label="智慧校园前端下单网站功能特写轮播"></div>
-          </div>
-          <div id="p2-console" style="display:none">
-            <div class="sb desktop-view" data-sb="zhxy-console" aria-label="智慧校园后端主控制台功能特写轮播"></div>
-          </div>
-          <div id="p2-bill" style="display:none">
-            <button class="plate" type="button" data-zoom="./assets/bill-sample.jpg" data-alt="系统自动生成的待结账单图">
-              <div class="plate-img wide"><img src="./assets/bill-sample.jpg" alt="系统自动生成的待结账单图" loading="lazy"></div>
-              <div class="plate-cap"><b>系统自动生成的待结账单图</b><span>抢到后自动出图直接发客户核对收款</span></div>
-            </button>
-          </div>
-          <div id="p2-admin" style="display:none">
-            <button class="plate" type="button" data-zoom="./assets/order-admin-blur.jpg" data-alt="真实订单实时管理后台">
-              <div class="plate-img wide"><img src="./assets/order-admin-blur.jpg" alt="真实订单实时管理后台" loading="lazy"></div>
-              <div class="plate-cap"><b>订单实时管理后台</b><span>支持批量复核、批量生图与批量结算</span></div>
-            </button>
-          </div>
-        </div>
-
-        <div class="points cols-3">
-          <div class="pt"><b>前端自助下单</b>客户按线上线下与空闲名额筛选、勾选预约并自助查单</div>
-          <div class="pt"><b>互助占位机制</b>37 位客户自愿出借空闲名额，换取热门活动免费掉落</div>
-          <div class="pt"><b>自动生图结算</b>抢完批量复核真伪，一键生成对账图发客户收款</div>
+        <div class="bento" aria-label="核心项目与实绩总览">
+          <a class="btile obsidian span-7" href="#p1">
+            <div class="btile-top"><span class="btile-no">01</span><span class="btile-go">看 6 步操作演示 <svg class="icon"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-6-6l6 6-6 6" />
+                </svg></span></div>
+            <div class="btile-preview">
+              <div>
+                <div class="btile-stat num">70,042 份</div>
+                <div class="btile-title">广交会手机端取餐核对工具</div>
+                <p class="btile-desc">直接读金山文档报餐表，10 部手机现场同步记账，把每天 50 分钟的纸笔核对压到 5 分钟，33 天 95 场零错漏。</p>
+              </div>
+              <div class="btile-thumb"><img src="./assets/shots/r1.jpg?v=2" alt="广交会手机端取餐核对工具界面预览" fetchpriority="high">
+              </div>
+            </div>
+            <div class="btile-facts num">
+              <div class="bfact"><b>50 至 5 分钟</b><span>每日核对耗时缩短</span></div>
+              <div class="bfact"><b>55 笔 / 0 错漏</b><span>补餐券全核清，获优秀实习生</span></div>
+            </div>
+          </a>
+          <a class="btile accent span-5" href="#p2">
+            <div class="btile-top"><span class="btile-no">02</span><span class="btile-go">看前后端 12 步演示 <svg class="icon"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-6-6l6 6-6 6" />
+                </svg></span></div>
+            <div>
+              <div class="btile-stat num">861 笔</div>
+              <div class="btile-title">智慧校园 3.0 活动代预约系统</div>
+              <p class="btile-desc">独立做出客户自助下单网页和电脑端抢报后台，把活动上架、自动抢报、互助换位和出账单收款串成一套顺手流程。</p>
+            </div>
+            <div class="btile-facts num">
+              <div class="bfact"><b>1,225 场</b><span>自动抓取整理上架</span></div>
+              <div class="bfact"><b>216 次 / 35 次掉落</b><span>互助占位换位与免费送名额</span></div>
+            </div>
+          </a>
+          <a class="btile span-5" href="#p3">
+            <div class="btile-top"><span class="btile-no">03</span><span class="btile-go">看 5 步操作演示 <svg class="icon"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-6-6l6 6-6 6" />
+                </svg></span></div>
+            <div>
+              <div class="btile-stat num">100% 好评</div>
+              <div class="btile-title">易班自动化桌面软件</div>
+              <p class="btile-desc">双击就能装的 Windows 软件，不租服务器、直接用飞书表格管一机一码授权，按客户需求当天改版更新。</p>
+            </div>
+            <div class="btile-facts num">
+              <div class="bfact"><b>89 单 / ¥1,286</b><span>线上真实售出，零纠纷</span></div>
+              <div class="bfact"><b>¥0 / 月</b><span>用飞书表格替代授权服务器</span></div>
+            </div>
+          </a>
+          <a class="btile tinted span-7" href="#p4">
+            <div class="btile-top"><span class="btile-no">04</span><span class="btile-go">看真实凭证 <svg class="icon"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-6-6l6 6-6 6" />
+                </svg></span></div>
+            <div>
+              <div class="btile-stat num">294 单 / ¥7,418.24</div>
+              <div class="btile-title">线上销售实绩、客户口碑与 G2G 海外首单</div>
+              <p class="btile-desc">独立负责闲鱼选品、聊单、发货与售后，纠纷率低至 0.35%；同时完成海外平台 G2G 全英文上架与 Payoneer 跨境收款首单。</p>
+            </div>
+            <div class="btile-facts num">
+              <div class="bfact"><b>0.35% 纠纷率</b><span>自研工具 89 单 + 电商 205 单</span></div>
+              <div class="bfact"><b>6.00 美元首单</b><span>海外平台已发货并收到回款</span></div>
+            </div>
+          </a>
         </div>
       </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- 03 易班自动化桌面软件：黑曜石深色展厅，移动端文案优先、桌面端视觉反置 -->
-  <article class="work band-obsidian" id="p3">
-    <div class="wrap">
-      <div class="split-stage rev">
-        <div class="split-copy">
-          <header class="work-head" style="margin-bottom:0">
-            <div class="work-meta num">
-              <span class="w-no">03</span>
-              <span>2025.06 至今</span>
-              <span>独立开发、打包交付与售后迭代</span>
+    <!-- ======================================================================
+       01 广交会手机端取餐核对工具
+       ====================================================================== -->
+    <article class="work band-tint" id="p1">
+      <div class="wrap">
+        <div class="split-stage">
+          <div class="split-copy">
+            <header class="work-head" style="margin-bottom:0">
+              <div class="work-meta num"><span class="w-no">01</span><span>2026.10 至
+                  2026.11</span><span>广东广交会新大地会展服务有限公司，获评优秀实习生</span></div>
+              <h2>广交会手机端取餐核对工具</h2>
+              <p class="work-summary">把展馆里容易算错的纸笔发餐台搬到手机上：自动读金山文档报餐表，10 部手机同时发餐实时同步余量，每天收工对账从 50 分钟降到 5 分钟，整个展期 33 天 95
+                场零错漏。</p>
+            </header>
+            <div class="metrics num">
+              <div class="m-cell"><b>10 部</b><span>现场同时在线手机</span></div>
+              <div class="m-cell"><b>33 天 / 95 场</b><span>A区 / B座 午晚餐全展期</span></div>
+              <div class="m-cell"><b>70,042 份</b><span>6 种餐品准确核对总数</span></div>
+              <div class="m-cell"><b>50 至 5 分钟</b><span>每天收工核对用时</span></div>
             </div>
-            <h2>易班自动化桌面软件</h2>
-            <p class="work-summary">把重复发帖、评论点赞打包成双击即用的 Windows 安装包，并按客户建议当天快速迭代，保持 100% 好评零纠纷。</p>
-          </header>
-
-          <div class="metrics num">
-            <div class="m-cell"><b>89 单</b><span>线上实售交付记录</span></div>
-            <div class="m-cell"><b>¥1,286</b><span>单店软件成交额</span></div>
-            <div class="m-cell"><b>100% 好评</b><span>全程 0 纠纷客诉</span></div>
-            <div class="m-cell"><b>¥0 / 月</b><span>飞书表格零成本授权</span></div>
+            <div class="points">
+              <div class="pt"><b>金山表格 AirScript 自动同步</b>调用金山文档脚本接口读取当日报餐表，自动解析红字标注与加换餐备注，消除人工抄表与口径偏差</div>
+              <div class="pt"><b>Node.js SSE 多端推送 + FRP HTTPS 穿透</b>通过服务端事件流（SSE）实时广播余量与流水，10
+                部现场手机毫秒同步；超领当场红框拦截，跨品牌换餐自动算平库存</div>
+              <div class="pt"><b>LocalStorage 离线暂存 + 图片存证与导出</b>展馆断网自动切换本地持久化存储，恢复后无缝续传；问题餐券拍照上传服务端存底，一键复制 WPS 结算列或导出标准
+                Excel</div>
+            </div>
           </div>
 
-          <div class="points">
-            <div class="pt"><b>双击即用安装包</b>自动读取 36 个版块并内置防屏蔽提示，打包成 Setup.exe</div>
-            <div class="pt"><b>零成本飞书授权</b>直接用飞书表格管理一机一码授权与云端新版提醒</div>
-            <div class="pt"><b>当天响应迭代</b>源码加密打包，根据付费客户反馈当天修改升级</div>
+          <div class="stage-col">
+            <div class="stage-bar">
+              <span class="stage-label">广交会取餐核对台 · 6 步操作演示</span>
+              <div class="stage-actions">
+                <button class="video-link" type="button" data-video="./assets/demo-reconcile.mp4?v=7"
+                  data-poster="./assets/demo-reconcile.jpg?v=7">完整录屏</button>
+                <a class="preview-link" href="./src/reconcile.html?v=17&tour=1" target="_blank" rel="noopener">
+                  真机互动体验 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="ss-shell phone-w" id="theater-reconcile">
+              <div class="ss-top">
+                <div class="ss-beats" role="tablist">
+                  <button class="ss-beat active" type="button">1 读表同步</button>
+                  <button class="ss-beat" type="button">2 跨日历查账</button>
+                  <button class="ss-beat" type="button">3 超领与换餐</button>
+                  <button class="ss-beat" type="button">4 留证与撤销</button>
+                  <button class="ss-beat" type="button">5 收工转补券</button>
+                  <button class="ss-beat" type="button">6 断网与导出</button>
+                </div>
+                <div class="ss-ctls">
+                  <button class="ss-step-btn ss-prev" type="button" aria-label="上一步">‹</button>
+                  <button class="ss-step-btn ss-next" type="button" aria-label="下一步">›</button>
+                  <button class="ss-ctl" type="button">暂停</button>
+                </div>
+              </div>
+              <div class="ss-narr">
+                <div class="ss-narr-copy">
+                  <div class="ss-narr-t">活动自动同步上架，按线上与空闲名额筛选</div>
+                  <div class="ss-narr-d">后台持续同步校园新活动，自动标出加分项和校区要求；按「未看 / 线上 / 有空位」一键筛选</div>
+                </div>
+                <div class="ss-narr-s">1 / 6</div>
+              </div>
+
+              <div class="ss-stage t1-stage">
+                <div class="t1-phone">
+                  <div class="t1-top">
+                    <div class="t1-title">取餐核对台</div>
+                    <div class="t1-net" id="t1-net">● 10 部手机同步中</div>
+                  </div>
+                  <div class="t1-subbar">
+                    <div class="t1-date-btn">10月16日 <span class="t1-badge-bu">补</span><span
+                        class="t1-badge-err">!</span></div>
+                    <div class="t1-zone"><span>A区</span><span class="on">B座</span><span class="on">午餐</span></div>
+                  </div>
+                  <div class="t1-body">
+                    <!-- Beat 0 -->
+                    <div class="ss-pane active" id="t1-p0" style="gap:7px">
+                      <div class="t1-grid">
+                        <div class="t1-bcard c1">
+                          <div class="bn">多满分</div>
+                          <div class="bv" id="t1-dm">10</div>
+                          <div class="bm">报118 · 到121</div>
+                        </div>
+                        <div class="t1-bcard c2">
+                          <div class="bn">真功夫</div>
+                          <div class="bv">1</div>
+                          <div class="bm">报72 · 到75</div>
+                        </div>
+                        <div class="t1-bcard c3">
+                          <div class="bn">麦当劳</div>
+                          <div class="bv">0</div>
+                          <div class="bm">报46 · 已发完</div>
+                        </div>
+                        <div class="t1-bcard c4">
+                          <div class="bn">肯德基</div>
+                          <div class="bv">2</div>
+                          <div class="bm">报49 · 到52</div>
+                        </div>
+                        <div class="t1-bcard c5">
+                          <div class="bn">清真餐</div>
+                          <div class="bv">0</div>
+                          <div class="bm">报2 · 实取2</div>
+                        </div>
+                        <div class="t1-bcard c6">
+                          <div class="bn">白饭</div>
+                          <div class="bv">5</div>
+                          <div class="bm">报11 · 备用1</div>
+                        </div>
+                      </div>
+                      <div class="t1-sync-strip">
+                        <div style="font-size:11px;color:#484E5A;line-height:1.35" id="t1-sync-txt">准备读取 10月16日 B座 午餐报餐表
+                        </div>
+                        <div class="t1-sync-btn" id="t1-sync-btn" data-t="t1-sync">读取金山文档</div>
+                      </div>
+                    </div>
+
+                    <!-- Beat 1 -->
+                    <div class="ss-pane" id="t1-p1" style="gap:8px">
+                      <div class="t1-card">
+                        <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:750"><span>33
+                            天 95 场跨日历查看</span><span class="s-pill blue">支持错区转移</span></div>
+                        <div class="t1-cal">
+                          <div class="t1-day">15<small style="color:#059669">已录</small></div>
+                          <div class="t1-day on" id="t1-d16">16<small style="color:#FBBF24">补 · !</small></div>
+                          <div class="t1-day" id="t1-d17" data-t="t1-d17">17<small style="color:#059669">已录</small>
+                          </div>
+                          <div class="t1-day">18<small style="color:#B45309">补</small></div>
+                          <div class="t1-day">19<small style="color:#059669">已录</small></div>
+                        </div>
+                        <div style="font-size:11.5px;color:#484E5A;background:#F5F3EC;padding:7px 9px;border-radius:8px"
+                          id="t1-cal-info">10月16日 B座 午餐 · 2 个部门待补券 · 1 张问题餐券</div>
+                      </div>
+                      <div class="t1-row">
+                        <div><b>报餐改动自动留档</b><span>表格中途调整份数会自动记录变动明细，现场对账有据可查</span></div>
+                        <span class="s-pill green">有据可查</span>
+                      </div>
+                    </div>
+
+                    <!-- Beat 2 -->
+                    <div class="ss-pane" id="t1-p2" style="gap:7px">
+                      <div class="t1-card">
+                        <div style="display:flex;justify-content:space-between;align-items:center"><b
+                            style="font-size:13px">会议**处 · 核对发餐</b><span class="s-pill muted">报餐 2 份</span></div>
+                        <div
+                          style="display:flex;justify-content:space-between;align-items:center;background:#F3F1EA;padding:7px 10px;border-radius:8px">
+                          <span style="font-size:12px;font-weight:700">多满分 实取</span>
+                          <div style="display:flex;align-items:center;gap:8px">
+                            <span style="font-size:16px;font-weight:800;font-variant-numeric:tabular-nums"
+                              id="t1-dval">2</span>
+                            <span class="t1-mini-btn ghost" data-t="t1-plus">+2</span>
+                          </div>
+                        </div>
+                        <div class="t1-alert" id="t1-alert">
+                          <div>
+                            <div class="t1-alert-box">超出提醒：实取 4 份比报餐多了 2 份，请先核对餐券</div>
+                          </div>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:6px">
+                          <span style="font-size:11px;color:#484E5A" id="t1-swap-note">临时换餐：比如把多满分换成真功夫，两边余量一起调整</span>
+                          <span class="t1-mini-btn ghost" data-t="t1-swap">跨品牌换餐</span>
+                        </div>
+                        <div class="t1-fbtn pri" id="t1-cfm" style="margin-top:2px">确认发餐</div>
+                      </div>
+                    </div>
+
+                    <!-- Beat 3 -->
+                    <div class="ss-pane" id="t1-p3" style="gap:7px">
+                      <div class="t1-photo-ev">
+                        <div class="t1-ev-thumb">餐券<br>照片</div>
+                        <div style="min-width:0;flex:1">
+                          <div style="font-size:12px;font-weight:750;color:#9A3412">问题餐券拍照存证 · 12:14</div>
+                          <div style="font-size:11px;color:#7C2D12" id="t1-log-st">问题餐券已拍照存证（日期涂改），随时点开看原图</div>
+                        </div>
+                      </div>
+                      <div class="t1-row">
+                        <div><b>外联**处 · 多满分 +2（误录演示）</b><span>现场 4 号机录入 · 录错可一键撤销，余量自动加回</span></div>
+                        <span class="t1-mini-btn warn" id="t1-undo" data-t="t1-undo">撤销这条</span>
+                      </div>
+                      <div class="t1-row">
+                        <div><b>按部门和状态筛选记录</b><span>支持查正常发餐、加换餐、问题餐券与已撤销记录</span></div>
+                        <span class="s-pill blue">随查随翻</span>
+                      </div>
+                    </div>
+
+                    <!-- Beat 4 -->
+                    <div class="ss-pane" id="t2-p4" style="gap:8px">
+                      <div class="t2-detail-box">
+                        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:13px">占位账号互助协议</b><span class="s-pill amber" id="t2-consent-st">未参与</span></div>
+                        <div style="font-size:11.5px;color:#475569;line-height:1.5">1. 账号空闲时帮忙占热门名额，报名截止前没人要会自动取消，不影响本人。<br>2. <b>互助福利：</b>多余的热门名额会随机免费掉落给参与同学。</div>
+                      </div>
+                      <div class="t1-row">
+                        <div><b>待补餐券核对</b><span id="t1-v-meta">外联**处 · 少取真功夫 2 份、麦当劳 1 份</span></div>
+                        <span class="t1-mini-btn" id="t1-v-ok" data-t="t1-vok">确认已补</span>
+                      </div>
+                    </div>
+
+                    <!-- Beat 5 -->
+                    <div class="ss-pane" id="t1-p5" style="gap:7px">
+                      <div class="t1-tools-grid">
+                        <div class="t1-tool">录入实际到餐<small>算清各品牌真实剩几份</small></div>
+                        <div class="t1-tool">表格格式检查<small>自动找出红字和改餐备注</small></div>
+                        <div class="t1-tool" id="t1-tool-wps" data-t="t1-wps">一键复制 WPS 列<small>直接粘进结算表不串行</small></div>
+                        <div class="t1-tool">导错区一键转移<small>A区 / B座 误录快速迁移</small></div>
+                      </div>
+                      <div
+                        style="font-size:11px;color:#B45309;background:#FEF3C7;padding:6px 9px;border-radius:8px;font-weight:650">
+                        展馆断网时数据先存在本机不丢单，连上网自动同步</div>
+                    </div>
+                  </div>
+                  <div class="t1-footbar">
+                    <div class="t1-fbtn">取餐记录 (43)</div>
+                    <div class="t1-fbtn pri" id="t1-exp-btn" data-t="t1-exp">导出今日 Excel</div>
+                  </div>
+                </div>
+                <div class="ss-cursor arrow" id="cur-t1">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 3l14 10-6.2 1.1L16 20l-2.6 1.2-3.2-5.9L5 19V3z" fill="#15181F" stroke="#FFFFFF"
+                      stroke-width="1.6" stroke-linejoin="round" />
+                  </svg>
+                  <div class="ss-ripple"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </article>
 
-        <div class="stage-col">
-          <div class="stage-bar">
-            <span class="stage-label">易班自动化桌面软件</span>
+    <!-- ======================================================================
+       02 智慧校园 3.0 活动代预约系统（仅保留前端下单网站 + 后端主控制台）
+       ====================================================================== -->
+    <article class="work band-paper" id="p2">
+      <div class="wrap">
+        <div class="deck-shell">
+          <header class="work-head" style="margin-bottom:0">
+            <div class="work-meta num"><span class="w-no">02</span><span>2025.06 至今</span><span>独立开发与运营 · 客户自助下单网页 +
+                电脑端管理软件</span></div>
+            <h2>智慧校园 3.0 活动代预约系统</h2>
+            <p class="work-summary">以前全靠微信一条条记学号、手动抢活动再手工对账，后来自己做成客户自助选活动下单的网页，配上电脑端自动抢报、互助换位和自动出账单软件，稳稳处理了 861 笔真实订单。
+            </p>
+          </header>
+
+          <div class="metrics cols-5 num">
+            <div class="m-cell"><b>1,225 场</b><span>自动整理上架的活动</span></div>
+            <div class="m-cell"><b>861 笔</b><span>系统处理的预约订单</span></div>
+            <div class="m-cell"><b>38 个</b><span>验证通过的客户账号</span></div>
+            <div class="m-cell"><b>216 次</b><span>副号退位与客户接盘</span></div>
+            <div class="m-cell"><b>37 人 / 35 次</b><span>参与互助与免费送出名额</span></div>
+          </div>
+
+          <div class="deck-head-row">
+            <div class="seg-wrap" role="tablist" aria-label="系统模块切换" id="p2Seg">
+              <div class="seg-thumb" id="p2Thumb" aria-hidden="true"></div>
+              <button class="etab active" type="button" role="tab" aria-selected="true" data-group="p2"
+                data-tab="p2-web">前端下单网站（6 步）</button>
+              <button class="etab" type="button" role="tab" aria-selected="false" data-group="p2"
+                data-tab="p2-console">后端主控制台（6 步）</button>
+            </div>
             <div class="stage-actions">
-              <button class="video-link" type="button" data-video="./assets/demo-yiban.mp4?v=6" data-poster="./assets/demo-yiban.jpg?v=6">完整录屏</button>
-              <a class="preview-link" href="./src/yiban-client.html?v=16&tour=1" target="_blank" rel="noopener">
-                项目预览 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              <button class="video-link" id="p2-vid" type="button" data-video="./assets/demo-zhxy-web.mp4?v=7"
+                data-poster="./assets/demo-zhxy-web.jpg?v=7">完整录屏</button>
+              <a class="preview-link" id="p2-open" href="./src/zhxy-order.html?v=17&tour=1" target="_blank"
+                rel="noopener">
+                <span id="p2-open-txt">真机互动体验</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17L17 7M9 7h8v8" />
+                </svg>
               </a>
             </div>
           </div>
-          <div class="sb compact-view" data-sb="yiban" aria-label="易班自动化桌面软件功能特写轮播"></div>
-        </div>
-      </div>
-    </div>
-  </article>
 
-  <!-- 04 线上销售实绩、客户口碑与 G2G 海外首单 -->
-  <article class="work band-paper" id="p4">
-    <div class="wrap">
-      <header class="work-head">
-        <div class="work-meta num">
-          <span class="w-no">04</span>
-          <span>2024.06 至 2025.12</span>
-          <span>自研工具销售、国内电商与海外平台首单</span>
-        </div>
-        <h2>线上销售实绩、客户口碑与海外平台首单</h2>
-        <p class="work-summary">独立跑通国内闲鱼选品、聊单、交付与售后，累计成交 294 单、总成交额 ¥7,418.24；并独立完成海外平台 G2G 入驻、全英文上架与 Payoneer 收款首单交付。</p>
-      </header>
+          <div class="deck-stage">
+            <!-- 02-A 前端下单网站（6 步） -->
+            <div id="p2-web">
+              <div class="ss-shell phone-w" id="theater-zhxy-web">
+                <div class="ss-top">
+                  <div class="ss-beats" role="tablist">
+                    <button class="ss-beat active" type="button">1 筛选活动</button>
+                    <button class="ss-beat" type="button">2 详情与群码</button>
+                    <button class="ss-beat" type="button">3 批量验号</button>
+                    <button class="ss-beat" type="button">4 查单取消</button>
+                    <button class="ss-beat" type="button">5 互助占位</button>
+                    <button class="ss-beat" type="button">6 留言提醒</button>
+                  </div>
+                  <div class="ss-ctls">
+                    <button class="ss-step-btn ss-prev" type="button" aria-label="上一步">‹</button>
+                    <button class="ss-step-btn ss-next" type="button" aria-label="下一步">›</button>
+                    <button class="ss-ctl" type="button">暂停</button>
+                  </div>
+                </div>
+                <div class="ss-narr">
+                  <div class="ss-narr-copy">
+                    <div class="ss-narr-t">1,225 场活动自动上架，按线上和空位快速筛选</div>
+                    <div class="ss-narr-d">后台持续同步校园新活动，自动标出加分项和校区要求；同学按「未看 / 线上 / 有空位」一点就找到想报的</div>
+                  </div>
+                  <div class="ss-narr-s">1 / 6</div>
+                </div>
+                <div class="ss-stage t2-stage">
+                  <div class="t2-phone">
+                    <div class="t2-head"><b>智慧校园 3.0 · 活动代预约</b><span class="s-pill blue">自助下单端</span></div>
+                    <div class="t2-body">
+                      <!-- Beat 0 -->
+                      <div class="ss-pane active" id="t2-p0" style="gap:8px">
+                        <div class="t2-chips">
+                          <span class="t2-chip on" id="t2-c-all">全部 18</span>
+                          <span class="t2-chip" id="t2-c-on" data-t="t2-on">线上活动 9</span>
+                          <span class="t2-chip">有空闲名额 3</span>
+                          <span class="t2-chip">未浏览</span>
+                        </div>
+                        <div class="t2-collapse" id="t2-off">
+                          <div>
+                            <div class="t2-card">
+                              <div><span class="s-pill muted">线下 · 美育</span>
+                                <h5>第二期五子棋擂台赛</h5>
+                                <p>48栋棋协 · 名额 13/50</p>
+                              </div>
+                              <div class="t2-chk"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="t2-card">
+                          <div><span class="s-pill blue">线上 · 德育+2</span>
+                            <h5>“品读小雪节气”知识答题</h5>
+                            <p>自动整理策划书：≥90 分加 2 分德育</p>
+                          </div>
+                          <div class="t2-chk"></div>
+                        </div>
+                        <div class="t2-card">
+                          <div><span class="s-pill green">空闲名额 2</span>
+                            <h5>“光影砺志，微光成炬”观影</h5>
+                            <p>支持用互助名额直接换位</p>
+                          </div>
+                          <div class="t2-chk"></div>
+                        </div>
+                      </div>
 
-      <div class="metrics cols-4 num" style="margin-bottom:var(--s-8)">
-        <div class="m-cell"><b>294 单</b><span>累计真实成交单数</span></div>
-        <div class="m-cell"><b>¥7,418.24</b><span>累计总成交额</span></div>
-        <div class="m-cell"><b>0.35%</b><span>综合客诉纠纷率</span></div>
-        <div class="m-cell"><b>6.00 美元</b><span>G2G 海外平台首单交付</span></div>
-      </div>
+                      <!-- Beat 1 -->
+                      <div class="ss-pane" id="t2-p1" style="gap:8px">
+                        <div class="t2-detail-box">
+                          <div style="font-size:13px;font-weight:800">“品读小雪节气”知识答题活动</div>
+                          <div class="t2-kv"><span>综测加分项</span><b>学院德育 · 最高 +2.0 分</b></div>
+                          <div class="t2-kv"><span>对象与校区</span><b>全校全体学生（限 200 人）</b></div>
+                          <div class="t2-kv"><span>报名时间</span><b>11/22 10:30 — 11/23 10:30</b></div>
+                        </div>
+                        <div class="t2-qr-card">
+                          <span id="t2-qr-txt">已整理活动咨询群二维码，点一下就能扫码进群</span>
+                          <span class="s-pill dark" id="t2-qr-btn" data-t="t2-qr">查看群码</span>
+                        </div>
+                      </div>
 
-      <div class="plates">
-        <button class="plate" type="button" data-zoom="./assets/review-followup.jpg" data-alt="售后当天修好获追加好评">
-          <div class="plate-img"><img src="./assets/review-followup.jpg" alt="售后当天修好获追加好评" loading="lazy"></div>
-          <div class="plate-cap"><b>售后当天修好获追评</b><span>客户提需求当晚改完发新版</span></div>
-        </button>
-        <button class="plate" type="button" data-zoom="./assets/review-list.jpg" data-alt="100% 真实客户好评">
-          <div class="plate-img"><img src="./assets/review-list.jpg" alt="100% 真实客户好评" loading="lazy"></div>
-          <div class="plate-cap"><b>100% 真实客户好评</b><span>工具交付全程零纠纷零差评</span></div>
-        </button>
-        <button class="plate" type="button" data-zoom="./assets/proof-profit-2.jpg" data-alt="单店销售数据 205 单 ¥6,132.24">
-          <div class="plate-img"><img src="./assets/proof-profit-2.jpg" alt="单店销售数据 205 单" loading="lazy"></div>
-          <div class="plate-cap"><b>单店成交 205 单</b><span class="num">成交额 ¥6,132.24，纠纷率 0.5%</span></div>
-        </button>
-        <button class="plate" type="button" data-zoom="./assets/proof-profit-1.jpg" data-alt="工具交付 89 单 ¥1,286.00">
-          <div class="plate-img"><img src="./assets/proof-profit-1.jpg" alt="工具交付 89 单" loading="lazy"></div>
-          <div class="plate-cap"><b>工具交付 89 单</b><span class="num">成交额 ¥1,286.00，0% 纠纷率</span></div>
-        </button>
-        <button class="plate" type="button" data-zoom="./assets/proof-credit.jpg" data-alt="闲鱼信用极好与低纠纷记录">
-          <div class="plate-img"><img src="./assets/proof-credit.jpg" alt="闲鱼信用极好与低纠纷记录" loading="lazy"></div>
-          <div class="plate-cap"><b>信用极好认证</b><span>长期高评分低退单记录</span></div>
-        </button>
-        <button class="plate" type="button" data-zoom="./assets/proof-deals.jpg" data-alt="真实交易流水记录">
-          <div class="plate-img"><img src="./assets/proof-deals.jpg" alt="真实交易流水记录" loading="lazy"></div>
-          <div class="plate-cap"><b>真实交易流水</b><span>多批次高频成交与按时发货</span></div>
-        </button>
-      </div>
+                      <!-- Beat 2 -->
+                      <div class="ss-pane" id="t3-p2" style="gap:8px">
+                        <div class="t3-bar">
+                          <div class="t3-bar-t">订单管理 &amp; 收款前批量查真伪</div>
+                          <div class="t3-acts">
+                            <span class="t3-btn" id="t3-flt" data-t="t3-flt">只看待结算</span>
+                            <span class="t3-btn indigo" id="t3-rev" data-t="t3-rev">核对选中订单</span>
+                          </div>
+                        </div>
+                        <div class="t2-btn" id="t2-sub-btn" data-t="t2-sub">验证并提交 2 场预约</div>
+                      </div>
 
-      <div class="overseas-head">
-        <h3>海外平台履约凭证：G2G 已发货订单与官方收款凭证</h3>
-        <a class="preview-link" href="./assets/g2g-payment-advice.pdf" target="_blank" rel="noopener">
-          查看凭证 PDF <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-        </a>
-      </div>
-      <div class="plates-2">
-        <button class="plate" type="button" data-zoom="./assets/g2g-order.jpg" data-alt="G2G 海外订单 Delivered">
-          <div class="plate-img wide"><img src="./assets/g2g-order.jpg" alt="G2G 海外订单 Delivered" loading="lazy"></div>
-          <div class="plate-cap"><b>G2G 全英文独立上架首单</b><span class="num">订单金额 6.00 美元，已发货完成履约</span></div>
-        </button>
-        <button class="plate" type="button" data-zoom="./assets/g2g-advice.jpg" data-alt="G2G 官方 Payment Advice 收款凭证">
-          <div class="plate-img wide"><img src="./assets/g2g-advice.jpg" alt="G2G 官方收款凭证" loading="lazy"></div>
-          <div class="plate-cap"><b>官方跨境收款凭证</b><span class="num">扣佣净入账 5.40 美元，折合 7,680 韩元</span></div>
-        </button>
-      </div>
-    </div>
-  </article>
+                      <!-- Beat 3 -->
+                      <div class="ss-pane" id="t2-p3" style="gap:8px">
+                        <div
+                          style="display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:7px 10px;font-size:12px">
+                          <span>学号：<b>2024****01</b></span><span class="s-pill blue">共 2 笔 · 进度实时看</span>
+                        </div>
+                        <div class="t2-detail-box">
+                          <div style="display:flex;justify-content:space-between;align-items:center"><b
+                              style="font-size:12.5px">“光影砺志”线下观影</b><span class="s-pill blue"
+                              id="t2-order-st">排队中</span></div>
+                          <div style="font-size:11px;color:#64748B">开抢前如果临时不去，自己点一下就能取消预约</div>
+                          <div class="t2-btn ghost" id="t2-cancel-btn" data-t="t2-cancel">取消预约</div>
+                        </div>
+                      </div>
 
-  <!-- 05 履历、方向与证书 -->
-  <section class="profile band-tint" id="profile">
-    <div class="wrap">
-      <h2 class="profile-head">履历、方向与证书</h2>
-      <div class="profile-grid">
-        <div>
-          <div class="col-title">求职方向与可落地价值</div>
-          <div class="fit-block">
-            <h3>外贸业务员与 AI 提效方向</h3>
-            <p>国际商务专业在读，商务英语 98 分、全国翻译大赛一等奖，有 G2G 全英文上架、跨境履约与 294 单线上成单跟进实战经验；同时能自制报价整理、客户跟单和内部核对小工具提效。</p>
-          </div>
-          <div class="fit-block">
-            <h3>客户交付与业务工具支持</h3>
-            <p>既能直接听懂客户和一线同事的业务痛点，又能快速把重复手工流程做成稳定好用的网页和安装包，具备发现问题、快速落地、响应售后的完整交付能力。</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="col-title">教育背景与获奖证书</div>
-          <div class="edu-row">
-            <strong>广东轻工职业技术大学 国际商务</strong>
-            <span class="num">2024.09 至 2027.06</span>
-          </div>
-          <div class="edu-gpa num">均分 88.24，GPA 3.81 / 5.0，可提前全周实习</div>
-          <dl class="edu-dl">
-            <div><dt>核心高分课程</dt><dd class="num">数字贸易平台运营 99、商务英语 98、电子商务 96、海外新媒体营销 95、国际贸易实务 90</dd></div>
-            <div><dt>荣誉与证书</dt><dd>广交会优秀实习生、翻译大赛全国一等奖、校级二等奖学金、英语四级、计算机二级</dd></div>
-          </dl>
-          <button class="cert-thumb" type="button" data-zoom="./assets/cert-translation.jpg" data-alt="全国外语翻译大赛全国一等奖证书">
-            <img src="./assets/cert-translation.jpg" alt="全国外语翻译大赛全国一等奖证书" loading="lazy">
-            <div>
-              <b>第三届“讲好湾区故事”全国外语翻译大赛全国一等奖</b>
-              <span>深圳市翻译协会颁发，2026 年 7 月</span>
+                      <!-- Beat 4 -->
+                      <div class="ss-pane" id="t3-p4" style="gap:9px">
+                        <div class="t3-bar">
+                          <div class="t3-bar-t">互助占位调度中心</div>
+                          <span class="t3-btn on" id="t3-swap-btn" data-t="t3-swap">开始自动换位</span>
+                        </div>
+                        <div class="t3-swap-flow">
+                          <div class="t3-node" id="t3-n1"><b>① 空闲账号退位</b><span>2024****302 放出名额</span></div>
+                          <div class="t3-node" id="t3-n2"><b>② 客户立刻顶上</b><span>下单客户顺势报上</span></div>
+                          <div class="t3-node" id="t3-n3"><b>③ 余位免费送出</b><span>随机送给签约老客</span></div>
+                        </div>
+                        <div class="t2-notice" id="t2-notice"><b>消息提醒：</b>管理员已回复你的留言 #11 并更新了活动群二维码，点开就能看。</div>
+                      </div>
+                    </div>
+                    <div class="t2-tabbar"><span class="on">活动列表</span><span>群码</span><span>我的预约</span><span>留言公告</span>
+                    </div>
+                  </div>
+                  <div class="ss-cursor arrow" id="cur-t2">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M5 3l14 10-6.2 1.1L16 20l-2.6 1.2-3.2-5.9L5 19V3z" fill="#15181F" stroke="#FFFFFF"
+                        stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                    <div class="ss-ripple"></div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- 02-B 后端主控制台（6 步） -->
+            <div id="p2-console" style="display:none">
+              <div class="ss-shell wide-w" id="theater-zhxy-console">
+                <div class="ss-top">
+                  <div class="ss-beats" role="tablist">
+                    <button class="ss-beat active" type="button">1 直连抢报</button>
+                    <button class="ss-beat" type="button">2 弹出接手</button>
+                    <button class="ss-beat" type="button">3 订单核真</button>
+                    <button class="ss-beat" type="button">4 生图收款</button>
+                    <button class="ss-beat" type="button">5 互助换位</button>
+                    <button class="ss-beat" type="button">6 排期回复</button>
+                  </div>
+                  <div class="ss-ctls">
+                    <button class="ss-step-btn ss-prev" type="button" aria-label="上一步">‹</button>
+                    <button class="ss-step-btn ss-next" type="button" aria-label="下一步">›</button>
+                    <button class="ss-ctl" type="button">暂停</button>
+                  </div>
+                </div>
+                <div class="ss-narr">
+                  <div class="ss-narr-copy">
+                    <div class="ss-narr-t">无浏览器 HTTP 加密直连发包 + 抢报耗时节奏校准</div>
+                    <div class="ss-narr-d">复用已验证 Session 与请求体加密跳过网页渲染直接发包抢报，并按历史耗时数据自动校准提前发起毫秒数</div>
+                  </div>
+                  <div class="ss-narr-s">1 / 6</div>
+                </div>
+                <div class="ss-stage t3-stage">
+                  <div class="t3-win">
+                    <div class="t3-side">
+                      <div class="t3-logo">智慧校园 3.0 助手</div>
+                      <div class="t3-health">
+                        <div><b>● 后台运行正常</b></div>
+                        <div>网络延迟：29ms</div>
+                        <div>已验账号：38 个</div>
+                      </div>
+                      <div class="t3-nav">
+                        <div class="t3-nav-i on">自动抢报台</div>
+                        <div class="t3-nav-i">订单与收款</div>
+                        <div class="t3-nav-i">互助占位</div>
+                        <div class="t3-nav-i">活动排期</div>
+                        <div class="t3-nav-i">留言与公告</div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="t3-mob-strip"><span>智慧校园 3.0 后端主控</span><span style="color:#059669">● 运行中 29ms · 38
+                          账号</span></div>
+                      <div class="t3-main">
+                        <!-- Beat 0 -->
+                        <div class="ss-pane active" id="t3-p0" style="gap:9px">
+                          <div class="t3-bar">
+                            <div class="t3-bar-t">双模式运行 &amp; 抢报节奏分析</div>
+                            <div class="t3-acts">
+                              <span class="t3-btn">日常扫活动</span>
+                              <span class="t3-btn" id="t3-mode-http" data-t="t3-http">接口直接抢报</span>
+                            </div>
+                          </div>
+                          <div class="t3-term" id="t3-http-log">
+                            <div><span class="info">[状态]</span> 后台运行正常 · 延迟 29ms · 开抢前自动唤醒</div>
+                          </div>
+                          <div class="t3-item">
+                            <div><b>按历史记录调抢报时机</b><small>统计每次抢报快慢，自动算出最合适的提前提交时间</small></div><span
+                              class="s-pill blue">自动调优</span>
+                          </div>
+                        </div>
+
+                        <!-- Beat 1 -->
+                        <div class="ss-pane" id="t3-p1" style="gap:8px">
+                          <div class="t3-bar">
+                            <div class="t3-bar-t">多任务各自运行 &amp; 随时人工接手</div><span class="s-pill blue">带桌面置顶小窗</span>
+                          </div>
+                          <div class="t3-item hi">
+                            <div><b>[抢活动] 寻梦环游记主题观影</b><small id="t3-br-st">运行中 · 多账号独立环境隔离，互不干扰</small></div>
+                            <span class="t3-btn on" id="t3-pop-br" data-t="t3-pop">弹出浏览器</span>
+                          </div>
+                          <div class="t3-item">
+                            <div><b>[名额换位] 生命健康学院打卡活动</b><small>已完成 · 副号退位与客户接上已自动跑完</small></div>
+                            <span class="s-pill green">已完成</span>
+                          </div>
+                        </div>
+
+                        <!-- Beat 2 -->
+                        <div class="ss-pane" id="t3-p2" style="gap:8px">
+                          <div class="t3-bar">
+                            <div class="t3-bar-t">861 笔订单管理 &amp; 收款前批量查真伪</div>
+                            <div class="t3-acts">
+                              <span class="t3-btn" id="t3-flt" data-t="t3-flt">只看待结算</span>
+                              <span class="t3-btn indigo" id="t3-rev" data-t="t3-rev">核对选中订单</span>
+                            </div>
+                          </div>
+                          <div class="t3-cards">
+                            <div class="t3-item">
+                              <div><b>微信 客户B · 小雪节气知识答题</b><small>2025****348 · 自动登录学校系统核对是否真报上</small></div><span
+                                class="s-pill amber" id="t3-rev-tag">未核对</span>
+                            </div>
+                            <div class="t3-item" id="t3-paid-row">
+                              <div><b>微信 客户F · 心拓展第十期</b><small>2025****348 · 已收款完成</small></div><span
+                                class="s-pill blue">已结算</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Beat 3 -->
+                        <div class="ss-pane" id="t3-p3" style="gap:8px">
+                          <div class="t3-bar">
+                            <div class="t3-bar-t">一键生成账单图 &amp; 手机画廊直接发微信</div>
+                            <div class="t3-acts">
+                              <span class="t3-btn indigo" id="t3-bill" data-t="t3-bill">批量生成账单图</span>
+                              <span class="t3-btn green" id="t3-settle" data-t="t3-settle">批量标记已收款</span>
+                            </div>
+                          </div>
+                          <div class="t3-sat" id="t3-sat">
+                            <div style="display:flex;justify-content:space-between;align-items:center"><b
+                                style="font-size:12.5px">待结账单 · 微信 客户B</b><span class="s-pill green"
+                                id="t3-sat-tag">手机画廊已可保存</span></div>
+                            <div class="t3-sat-row"><span>1. “品读小雪节气”知识答题</span><b>¥6.00</b></div>
+                            <div class="t3-sat-row"><span>2. “光影砺志”线下观影活动</span><b>¥6.00</b></div>
+                            <div class="t3-sat-row"
+                              style="border-top:1px dashed #CBD5E1;padding-top:4px;color:#1B3B60;font-weight:750">
+                              <span>手机打开局域网画廊就能存图发客户</span><b>合计 ¥12.00</b></div>
+                          </div>
+                        </div>
+
+                        <!-- Beat 4 -->
+                        <div class="ss-pane" id="t3-p4" style="gap:9px">
+                          <div class="t3-bar">
+                            <div class="t3-bar-t">互助占位管理（216 次换位 / 35 次免费送名额）</div>
+                            <span class="t3-btn on" id="t3-swap-btn" data-t="t3-swap">开始自动换位</span>
+                          </div>
+                          <div class="t3-swap-flow">
+                            <div class="t3-node" id="t3-n1"><b>① 副号先退出来</b><span>2024****302 放出名额</span></div>
+                            <div class="t3-node" id="t3-n2"><b>② 客户立刻顶上</b><span>下单客户顺势报上</span></div>
+                            <div class="t3-node" id="t3-n3"><b>③ 余位免费送出</b><span>随机送给签约老客</span></div>
+                          </div>
+                        </div>
+
+                        <!-- Beat 5 -->
+                        <div class="ss-pane" id="t3-p5" style="gap:8px">
+                          <div class="t3-bar">
+                            <div class="t3-bar-t">活动排期清单 &amp; 客户留言回复</div><span class="s-pill blue">进群 → 签到 → 拿分</span>
+                          </div>
+                          <div class="t3-item">
+                            <div><b>留言 #11 · 2026****207 反馈活动群码</b><small>支持群发带图公告，也能单独回复并推给对应客户</small></div>
+                            <div style="display:flex;gap:6px;align-items:center">
+                              <span class="s-pill amber" id="t3-tk-st">待回复</span>
+                              <span class="t3-btn on" id="t3-reply-btn" data-t="t3-reply">回复并通知客户</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ss-cursor arrow" id="cur-t3">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M5 3l14 10-6.2 1.1L16 20l-2.6 1.2-3.2-5.9L5 19V3z" fill="#15181F" stroke="#FFFFFF"
+                        stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                    <div class="ss-ripple"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 唯一技术架构区（不与上方演示重复） -->
+          <div class="arch-panel">
+            <div class="arch-head">
+              <h3>系统架构与核心技术实现</h3>
+              <span>Python 桌面主控 ⇄ SQLite ⇄ Node.js 网页服务端（FRP HTTPS 穿透）</span>
+            </div>
+            <div class="flow-chain cols-5">
+              <div class="flow-node"><span class="flow-step">01 数据同步</span><b>活动抓取与文本解析</b>
+                <p>定时爬取 1,225 场活动，自动提取时间、校区限制与综测加分规则入库 SQLite</p>
+              </div>
+              <div class="flow-node"><span class="flow-step">02 自助接口</span><b>Node.js 预约与短信验号</b>
+                <p>提供批量下单、首次短信校验账号密码、自助查单撤单及带图留言提醒 API</p>
+              </div>
+              <div class="flow-node"><span class="flow-step">03 直连发包</span><b>无浏览器 HTTP 加密直连</b>
+                <p>复用已验证 Session 与请求体加密直接发包抢报，并按历史耗时校准提前发起节奏</p>
+              </div>
+              <div class="flow-node"><span class="flow-step">04 守护调度</span><b>独立会话与互助占位</b>
+                <p>多账号独立 Browser Profile 隔离并支持一键接管；守护线程调度 38 账号退位接盘与免费掉落</p>
+              </div>
+              <div class="flow-node"><span class="flow-step">05 自动对账</span><b>真伪复核与画廊收款</b>
+                <p>批量校验真实报名结果，一键渲染待结账单快照并通过局域网手机画廊分发收款</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ======================================================================
+       03 易班自动化桌面软件
+       ====================================================================== -->
+    <article class="work band-obsidian" id="p3">
+      <div class="wrap">
+        <div class="split-stage rev">
+          <div class="split-copy">
+            <header class="work-head" style="margin-bottom:0">
+              <div class="work-meta num"><span class="w-no">03</span><span>2025.06
+                  至今</span><span>独立开发、加密打包交付与当天响应售后</span></div>
+              <h2>易班自动化桌面软件</h2>
+              <p class="work-summary">把每天重复发帖、评论点赞做成双击就能装的 Windows 桌面软件；不租云服务器，直接用飞书表格管一机一码授权，线上真实售出 89 单，保持 100% 好评零纠纷。
+              </p>
+            </header>
+            <div class="metrics num">
+              <div class="m-cell"><b>89 单</b><span>线上真实售出记录</span></div>
+              <div class="m-cell"><b>¥1,286</b><span>单店软件成交额</span></div>
+              <div class="m-cell"><b>100% 好评</b><span>全程 0 纠纷客诉</span></div>
+              <div class="m-cell"><b>¥0 / 月</b><span>飞书表格零成本授权</span></div>
+            </div>
+            <div class="points">
+              <div class="pt"><b>飞书多维表格 Open API + HWID 绑定</b>采集设备硬件码并对接网络标准校时（防篡改本地时间绕过），搭配发卡页实现 ¥0/月 零服务器一机一码授权</div>
+              <div class="pt"><b>自动采集 36 版块 + 本地 HTTP 接口热同步</b>自动抓取账号权限版块缓存到本地 JSON；客户端内置本地 HTTP 服务，自定义词库保存后实时推送给浏览器执行脚本
+              </div>
+              <div class="pt"><b>XOR 内存解密 + PyArmor &amp; Inno Setup 双版打包</b>核心脚本内存解密注入独立用户目录浏览器，主程序经 PyArmor
+                加密后自动构建内置浏览器完整版与轻巧 Edge 版，内置云端更新检测</div>
+            </div>
+          </div>
+
+          <div class="stage-col">
+            <div class="stage-bar">
+              <span class="stage-label">易班自动化桌面软件 · 5 步操作演示</span>
+              <div class="stage-actions">
+                <button class="video-link" type="button" data-video="./assets/demo-yiban.mp4?v=6"
+                  data-poster="./assets/demo-yiban.jpg?v=6">完整录屏</button>
+                <a class="preview-link" href="./src/yiban-client.html?v=17&tour=1" target="_blank" rel="noopener">
+                  真机互动体验 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="ss-narr">
+              <div class="ss-narr-copy">
+                <div class="ss-narr-t">云端多维表格 Open API 一机一码授权 + 网络校时防篡改</div>
+                <div class="ss-narr-d">启动时校验设备硬件码（HWID）、卡密有效期与网络标准时间，防止篡改系统时间绕过</div>
+              </div>
+              <div class="ss-narr">
+                <div class="ss-narr-copy">
+                  <div class="ss-narr-t">飞书多维表格 Open API 一机一码授权 + 网络校时防篡改</div>
+                  <div class="ss-narr-d">启动时校验设备硬件码（HWID）、卡密有效期与网络标准时间（防止篡改系统时间绕过），服务器成本 ¥0/月</div>
+                </div>
+                <div class="ss-narr-s">1 / 5</div>
+              </div>
+              <div class="ss-stage t4-stage">
+                <div class="t4-win">
+                  <div class="t4-tb">
+                    <div class="t4-tb-l">易班自动化工作台 v3.2</div>
+                    <div class="t4-tb-r">
+                      <span class="t4-pill lex" id="t4-lex-p">自定义词库</span>
+                      <span class="t4-pill auth hi" id="t4-auth-p">● 飞书已授权</span>
+                    </div>
+                  </div>
+                  <div class="t4-body">
+                    <!-- Beat 0 -->
+                    <div class="ss-pane active" id="t4-p0" style="gap:8px">
+                      <div class="t4-box">
+                        <div style="font-size:12.5px;font-weight:800;color:#0F172A">飞书表格 · 一机一码授权核对</div>
+                        <div
+                          style="font-family:var(--font-mono);font-size:11px;background:#fff;border:1px solid #CBD5E1;border-radius:7px;padding:6px 8px">
+                          设备码: WIN-BFEB****06EA · 卡密 YB-8K2**-T6V2H</div>
+                        <div style="font-size:11px;color:#059669;font-weight:650" id="t4-auth-st">正在核对飞书表格里的授权记录与标准时间...
+                        </div>
+                        <div class="t4-btn green" id="t4-v-btn" data-t="t4-verify">联网核对授权</div>
+                      </div>
+                      <div class="t4-tip">配套发卡网页一键生成激活码并写进飞书表格，不用花钱租服务器就能远程管理月卡和封禁。</div>
+                    </div>
+
+                    <!-- Beat 1 -->
+                    <div class="ss-pane" id="t4-p1" style="gap:8px">
+                      <div class="t4-box">
+                        <div style="font-size:12px;font-weight:750">发帖目标自动读取</div>
+                        <div
+                          style="background:#fff;border:1px solid #CBD5E1;border-radius:7px;padding:6px 9px;font-size:11.5px;font-weight:650"
+                          id="t4-board-val">还没有读取账号版块...</div>
+                        <div class="t4-btn amber" id="t4-read-btn" data-t="t4-read">自动读取可发版块</div>
+                      </div>
+                      <div class="t4-tip"><b>防屏蔽选版块提示：</b>避开管理严格的官方宣传版块，优先选择日常互动活跃的公共版块，降低帖子被屏蔽概率。</div>
+                    </div>
+
+                    <!-- Beat 2 -->
+                    <div class="ss-pane" id="t4-p2" style="gap:8px">
+                      <div class="t4-box">
+                        <div style="font-size:12px;font-weight:750">自己写发帖 / 评论常用语</div>
+                        <div
+                          style="background:#fff;border:1px solid #CBD5E1;border-radius:7px;padding:7px 9px;font-size:11px;line-height:1.5;color:#334155">
+                          今日打卡，记录美好校园生活！<br>好好学习天天向上，继续加油~<br>分享今日好心情，祝大家学业顺利！</div>
+                        <div style="font-size:11px;color:#1D4ED8;font-weight:650" id="t4-lex-st">共 4 条常用语，改完不用重启软件就能直接用
+                        </div>
+                        <div class="t4-btn indigo" id="t4-lex-btn" data-t="t4-lex">保存词库</div>
+                      </div>
+                    </div>
+
+                    <!-- Beat 3 -->
+                    <div class="ss-pane" id="t4-p3" style="gap:7px">
+                      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px">
+                        <span class="s-pill blue">上限 20帖 / 30评 / 35赞</span>
+                        <div class="t4-btn blue" id="t4-run-btn" data-t="t4-run" style="flex:1">开始自动发帖 / 评论点赞</div>
+                      </div>
+                      <div class="t4-kpis">
+                        <div><b id="t4-k1">0 / 20</b><span>本次已发帖</span></div>
+                        <div><b id="t4-k2">0 / 30</b><span>本次已评论</span></div>
+                        <div><b id="t4-k3">+0</b><span>预计获得网薪</span></div>
+                      </div>
+                      <div class="t4-term">
+                        <div class="t4-line on"><span class="ok">[启动]</span> 打开独立浏览器窗口，载入加密执行脚本</div>
+                        <div class="t4-line"><span class="info">[运行]</span> 读取自定义词库，按随机间隔开始发帖评论...</div>
+                        <div class="t4-line"><span class="warn">[进度]</span> 已发帖 +2、评论 +4、点赞 +6（正常展示）</div>
+                        <div class="t4-line"><span class="ok">[完成]</span> 本轮任务已跑完 · 预计获得网薪 +48</div>
+                      </div>
+                    </div>
+
+                    <!-- Beat 4 -->
+                    <div class="ss-pane" id="t4-p4" style="gap:8px">
+                      <div class="t4-btn indigo" id="t4-upd-btn" data-t="t4-upd">检查软件更新</div>
+                      <div class="t4-pipe">
+                        <div class="t4-pstep on"><b>① 脚本加密保护</b><span>核心脚本内存解密运行，防止明文外泄</span></div>
+                        <div class="t4-pstep"><b>② 主程序加密</b><span>打包前自动加密源码，保护商业版权</span></div>
+                        <div class="t4-pstep"><b>③ 两个安装包</b><span>自带浏览器完整版 &amp; 轻巧 Edge 版</span></div>
+                        <div class="t4-pstep"><b>④ 当天改版售后</b><span>线上售出 89 单，保持 100% 好评</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ss-cursor arrow" id="cur-t4">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 3l14 10-6.2 1.1L16 20l-2.6 1.2-3.2-5.9L5 19V3z" fill="#15181F" stroke="#FFFFFF"
+                      stroke-width="1.6" stroke-linejoin="round" />
+                  </svg>
+                  <div class="ss-ripple"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 实绩与凭证 -->
+    <article class="work band-paper" id="p4">
+      <div class="wrap">
+        <header class="work-head">
+          <div class="work-meta num"><span class="w-no">04</span><span>2024.06 至
+              2025.12</span><span>自研工具售卖、国内电商与海外平台首单</span></div>
+          <h2>线上销售实绩、客户口碑与海外平台首单</h2>
+          <p class="work-summary">自己负责国内闲鱼选品、聊单、发货与售后，累计成交 294 单、总成交额 ¥7,418.24；也独立跑通了海外平台 G2G 注册、全英文上架与 Payoneer
+            跨境收款首单。</p>
+        </header>
+        <div class="metrics cols-4 num" style="margin-bottom:var(--s-8)">
+          <div class="m-cell"><b>294 单</b><span>累计真实成交单数</span></div>
+          <div class="m-cell"><b>¥7,418.24</b><span>累计总成交额</span></div>
+          <div class="m-cell"><b>0.35%</b><span>综合客诉纠纷率</span></div>
+          <div class="m-cell"><b>6.00 美元</b><span>G2G 海外平台首单成交</span></div>
+        </div>
+        <div class="plates">
+          <button class="plate" type="button" data-zoom="./assets/review-followup.jpg" data-alt="售后当天修好获追加好评">
+            <div class="plate-img"><img src="./assets/review-followup.jpg" alt="售后当天修好获追加好评" loading="lazy"></div>
+            <div class="plate-cap"><b>售后当天修好获追评</b><span>客户提需求当晚改完发新版</span></div>
+          </button>
+          <button class="plate" type="button" data-zoom="./assets/review-list.jpg" data-alt="100% 真实客户好评">
+            <div class="plate-img"><img src="./assets/review-list.jpg" alt="100% 真实客户好评" loading="lazy"></div>
+            <div class="plate-cap"><b>100% 真实客户好评</b><span>工具售出全程零纠纷零差评</span></div>
+          </button>
+          <button class="plate" type="button" data-zoom="./assets/proof-profit-2.jpg" data-alt="单店销售数据 205 单">
+            <div class="plate-img"><img src="./assets/proof-profit-2.jpg" alt="单店销售数据 205 单" loading="lazy"></div>
+            <div class="plate-cap"><b>单店成交 205 单</b><span class="num">成交额 ¥6,132.24，纠纷率 0.5%</span></div>
+          </button>
+          <button class="plate" type="button" data-zoom="./assets/proof-profit-1.jpg" data-alt="工具交付 89 单">
+            <div class="plate-img"><img src="./assets/proof-profit-1.jpg" alt="工具交付 89 单" loading="lazy"></div>
+            <div class="plate-cap"><b>工具售出 89 单</b><span class="num">成交额 ¥1,286.00，0% 纠纷率</span></div>
+          </button>
+          <button class="plate" type="button" data-zoom="./assets/proof-credit.jpg" data-alt="闲鱼信用极好与低纠纷记录">
+            <div class="plate-img"><img src="./assets/proof-credit.jpg" alt="闲鱼信用极好与低纠纷记录" loading="lazy"></div>
+            <div class="plate-cap"><b>信用极好认证</b><span>长期高评分低退单记录</span></div>
+          </button>
+          <button class="plate" type="button" data-zoom="./assets/proof-deals.jpg" data-alt="真实交易流水记录">
+            <div class="plate-img"><img src="./assets/proof-deals.jpg" alt="真实交易流水记录" loading="lazy"></div>
+            <div class="plate-cap"><b>真实交易记录</b><span>多批次高频成交与按时发货</span></div>
+          </button>
+        </div>
+        <div class="overseas-head">
+          <h3>海外平台真实凭证：G2G 已发货订单与官方收款单</h3>
+          <a class="preview-link" href="./assets/g2g-payment-advice.pdf" target="_blank" rel="noopener">查看凭证 PDF <svg
+              class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17L17 7M9 7h8v8" />
+            </svg></a>
+        </div>
+        <div class="plates-2">
+          <button class="plate" type="button" data-zoom="./assets/g2g-order.jpg" data-alt="G2G 海外订单 Delivered">
+            <div class="plate-img wide"><img src="./assets/g2g-order.jpg" alt="G2G 海外订单 Delivered" loading="lazy"></div>
+            <div class="plate-cap"><b>G2G 全英文独立上架首单</b><span class="num">订单金额 6.00 美元，已发货完成</span></div>
+          </button>
+          <button class="plate" type="button" data-zoom="./assets/g2g-advice.jpg" data-alt="G2G 官方收款凭证">
+            <div class="plate-img wide"><img src="./assets/g2g-advice.jpg" alt="G2G 官方收款凭证" loading="lazy"></div>
+            <div class="plate-cap"><b>官方跨境收款凭证</b><span class="num">扣佣净入账 5.40 美元，折合 7,680 韩元</span></div>
           </button>
         </div>
       </div>
-    </div>
-  </section>
+    </article>
 
-</main>
+    <!-- 05 履历 -->
+    <section class="profile band-tint" id="profile">
+      <div class="wrap">
+        <h2 class="profile-head">履历、方向与证书</h2>
+        <div class="profile-grid">
+          <div>
+            <div class="col-title">求职方向与能帮团队做什么</div>
+            <div class="fit-block">
+              <h3>外贸业务与 AI 提效方向</h3>
+              <p>国际商务专业在读，商务英语 98 分、全国翻译大赛一等奖，有 G2G 全英文上架、跨境收款与 294 单线上成单跟进实战经验；平时也能自己做报价整理、客户跟单和内部核对小工具帮团队省时间。</p>
+            </div>
+            <div class="fit-block">
+              <h3>客户服务与业务工具支持</h3>
+              <p>既能听懂客户和一线同事的真实麻烦，也能很快把重复手工活做成稳定好用的网页或安装包，从发现问题、做出来用上，到售后改版都能自己跟到底。</p>
+            </div>
+          </div>
+          <div>
+            <div class="col-title">教育背景与获奖证书</div>
+            <div class="edu-row"><strong>广东轻工职业技术大学 国际商务</strong><span class="num">2024.09 至 2027.06</span></div>
+            <div class="edu-gpa num">均分 88.24，GPA 3.81 / 5.0，可提前全周实习</div>
+            <dl class="edu-dl">
+              <div>
+                <dt>核心高分课程</dt>
+                <dd class="num">数字贸易平台运营 99、商务英语 98、电子商务 96、海外新媒体营销 95、国际贸易实务 90</dd>
+              </div>
+              <div>
+                <dt>荣誉与证书</dt>
+                <dd>广交会优秀实习生、翻译大赛全国一等奖、校级二等奖学金、英语四级、计算机二级</dd>
+              </div>
+            </dl>
+            <button class="cert-thumb" type="button" data-zoom="./assets/cert-translation.jpg"
+              data-alt="全国外语翻译大赛全国一等奖证书">
+              <img src="./assets/cert-translation.jpg" alt="全国外语翻译大赛全国一等奖证书" loading="lazy">
+              <div><b>第三届“讲好湾区故事”全国外语翻译大赛全国一等奖</b><span>深圳市翻译协会颁发，2026 年 7 月</span></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<footer>
-  <div class="wrap foot-in">
-    <p class="foot-lead">可提前全周实习，欢迎下载简历或直接联系沟通面试。</p>
-    <div class="foot-actions">
-      <a class="btn pri" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历 PDF</a>
-      <button class="btn quiet num" type="button" data-copy="13794875992">复制手机 13794875992</button>
-      <button class="btn quiet" type="button" data-copy="x60skim@gmail.com">复制邮箱 x60skim@gmail.com</button>
+  <footer>
+    <div class="wrap foot-in">
+      <p class="foot-lead">可提前全周实习，欢迎下载简历或直接联系沟通面试。</p>
+      <div class="foot-actions">
+        <a class="btn pri" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历 PDF</a>
+        <button class="btn quiet num" type="button" data-copy="13794875992">复制手机 13794875992</button>
+        <button class="btn quiet" type="button" data-copy="x60skim@gmail.com">复制邮箱 x60skim@gmail.com</button>
+      </div>
+      <div class="foot-meta">
+        <div>赖怡婷 Yiting Lai，外贸业务 × AI 业务工具开发与客户交付</div>
+        <div class="num">13794875992 / x60skim@gmail.com</div>
+      </div>
     </div>
-    <div class="foot-meta">
-      <div>赖怡婷 Yiting Lai，外贸业务 × AI 工具落地与客户交付</div>
-      <div class="num">13794875992 / x60skim@gmail.com</div>
-    </div>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="lb" role="dialog" aria-modal="true" aria-label="媒体放大预览">
+    <button id="lb-close" type="button" aria-label="关闭预览">×</button>
+    <div id="lb-inner"></div>
   </div>
-</footer>
 
-<div id="toast" role="status" aria-live="polite"></div>
-<div id="lb" role="dialog" aria-modal="true" aria-label="媒体放大预览">
-  <button id="lb-close" type="button" aria-label="关闭预览">×</button>
-  <div id="lb-inner"></div>
-</div>
+  <script src="./assets/vendor/stageshow-theaters.js?v=5"></script>
+  <script>
+    (function () {
+      const toastEl = document.getElementById('toast');
+      let toastTimer = null;
+      function showToast(msg) { toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('on'), 1600); }
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+        return new Promise((ok, no) => {
+          const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy') ? ok() : no(); } catch (e) { no(); }
+          document.body.removeChild(ta);
+        });
+      }
+      document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
+        const v = btn.getAttribute('data-copy');
+        copyText(v).then(() => showToast('已复制 ' + v), () => showToast('请手动复制 ' + v));
+      }));
 
+<script src="./assets/vendor/stageshow-theaters.js?v=6"></script>
 <script>
 (function(){
-  document.documentElement.classList.add('js');
   const toastEl = document.getElementById('toast');
   let toastTimer = null;
-  function showToast(msg){
-    toastEl.textContent = msg; toastEl.classList.add('on');
-    clearTimeout(toastTimer); toastTimer = setTimeout(()=>toastEl.classList.remove('on'), 1600);
-  }
+  function showToast(msg){ toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(()=>toastEl.classList.remove('on'), 1600); }
   function copyText(text){
     if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
     return new Promise((ok, no)=>{
@@ -1160,364 +2325,91 @@ footer{
     copyText(v).then(()=>showToast('已复制 ' + v), ()=>showToast('请手动复制 ' + v));
   }));
 
-  const topbar = document.getElementById('topbar');
-  window.addEventListener('scroll', ()=>{
-    if(topbar) topbar.classList.toggle('scrolled', window.scrollY > 8);
-  }, { passive: true });
+      /* Lightbox for zoomed proof plates and on-demand full HD videos */
+      const lb = document.getElementById('lb'), lbInner = document.getElementById('lb-inner'), lbClose = document.getElementById('lb-close');
+      function closeLb() {
+        const v = lbInner.querySelector('video'); if (v) v.pause();
+        lb.classList.remove('on');
+        setTimeout(() => { if (!lb.classList.contains('on')) lbInner.innerHTML = ''; }, 240);
+      }
+      document.querySelectorAll('[data-zoom]').forEach(el => el.addEventListener('click', () => {
+        lbInner.innerHTML = '';
+        const img = document.createElement('img'); img.src = el.getAttribute('data-zoom'); img.alt = el.getAttribute('data-alt') || '大图预览';
+        lbInner.appendChild(img); lb.classList.add('on');
+      }));
+      document.querySelectorAll('[data-video]').forEach(el => el.addEventListener('click', () => {
+        lbInner.innerHTML = '';
+        const v = document.createElement('video');
+        v.src = el.getAttribute('data-video');
+        if (el.getAttribute('data-poster')) v.poster = el.getAttribute('data-poster');
+        v.controls = true; v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true;
+        v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+        lbInner.appendChild(v); lb.classList.add('on'); v.play().catch(() => { });
+      }));
+      lb.addEventListener('click', e => { if (e.target === lb || e.target === lbClose) closeLb(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('on')) closeLb(); });
 
-  /* Lightbox for zoomed shots and on-demand full HD videos */
-  const lb = document.getElementById('lb');
-  const lbInner = document.getElementById('lb-inner');
-  const lbClose = document.getElementById('lb-close');
-  function closeLb(){
-    const v = lbInner.querySelector('video');
-    if(v) v.pause();
-    lb.classList.remove('on');
-    setTimeout(()=>{ if(!lb.classList.contains('on')) lbInner.innerHTML = ''; }, 240);
-  }
-  function openImgZoom(src, alt){
-    lbInner.innerHTML = '';
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = alt || '大图预览';
-    lbInner.appendChild(img);
-    lb.classList.add('on');
-  }
-  function openVideoModal(src, poster){
-    lbInner.innerHTML = '';
-    const v = document.createElement('video');
-    v.src = src;
-    if(poster) v.poster = poster;
-    v.controls = true;
-    v.autoplay = true;
-    v.muted = true;
-    v.loop = true;
-    v.playsInline = true;
-    v.setAttribute('playsinline', '');
-    v.setAttribute('webkit-playsinline', '');
-    lbInner.appendChild(v);
-    lb.classList.add('on');
-    v.play().catch(()=>{});
-  }
-  document.querySelectorAll('[data-zoom]').forEach(el=>el.addEventListener('click', ()=>{
-    openImgZoom(el.getAttribute('data-zoom'), el.getAttribute('data-alt'));
-  }));
-  document.querySelectorAll('[data-video]').forEach(el=>el.addEventListener('click', ()=>{
-    openVideoModal(el.getAttribute('data-video'), el.getAttribute('data-poster'));
-  }));
-  lb.addEventListener('click', e=>{ if(e.target === lb || e.target === lbClose) closeLb(); });
-  document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && lb.classList.contains('on')) closeLb(); });
+      /* Project 02 Segmented Control (2 tabs: Frontend & Backend) */
+      const segWrap = document.getElementById('p2Seg'), segThumb = document.getElementById('p2Thumb');
+      function syncSegThumb(activeBtn) {
+        if (!segWrap || !segThumb || !activeBtn || window.innerWidth < 860) return;
+        segThumb.style.width = activeBtn.offsetWidth + 'px';
+        segThumb.style.transform = 'translate3d(' + activeBtn.offsetLeft + 'px,0,0)';
+      }
+      const initActive = segWrap ? segWrap.querySelector('.etab.active') : null;
+      if (initActive) {
+        requestAnimationFrame(() => syncSegThumb(initActive));
+        window.addEventListener('resize', () => { const c = segWrap.querySelector('.etab.active'); if (c) syncSegThumb(c); });
+      }
+      const p2Meta = {
+        'p2-web': { href: './src/zhxy-order.html?v=17&tour=1', vid: './assets/demo-zhxy-web.mp4?v=7', poster: './assets/demo-zhxy-web.jpg?v=7', theater: 'theater-zhxy-web' },
+        'p2-console': { href: './src/zhxy-console.html?v=17&tour=1', vid: './assets/demo-zhxy-console.mp4?v=6', poster: './assets/demo-zhxy-console.jpg?v=6', theater: 'theater-zhxy-console' }
+      };
+      document.querySelectorAll('.etab[data-group]').forEach(btn => btn.addEventListener('click', () => {
+        const g = btn.getAttribute('data-group'), id = btn.getAttribute('data-tab');
+        const theaters = window.__STAGESHOW_THEATERS;
+        document.querySelectorAll(`.etab[data-group="${g}"]`).forEach(b => {
+          const tid = b.getAttribute('data-tab'), on = tid === id;
+          b.classList.toggle('active', on); b.setAttribute('aria-selected', on ? 'true' : 'false');
+          const p = document.getElementById(tid); if (p) p.style.display = on ? '' : 'none';
+          const meta = p2Meta[tid];
+          if (theaters && meta && theaters.has(meta.theater)) theaters.get(meta.theater).setVisible(on);
+        });
+        syncSegThumb(btn);
+        const meta = p2Meta[id], link = document.getElementById('p2-open'), vidBtn = document.getElementById('p2-vid');
+        if (meta) {
+          if (link) link.href = meta.href;
+          if (vidBtn) { vidBtn.setAttribute('data-video', meta.vid); vidBtn.setAttribute('data-poster', meta.poster); }
+        }
+      }));
 
-  /* Apple Highlights Storyboards (Zero video blocking, instant WeChat playback, swipe + click) */
-  const STORYBOARDS = {
-    'reconcile': [
-      { tab: '余量看板', t: '5 大品牌实时余量与备餐看板', s: '10 部手机实时同步，各品牌报餐、已取与备用餐自动联动', img: './assets/shots/r1.jpg?v=2' },
-      { tab: '需补餐券', t: '需补餐券挂账部门筛选与核销', s: '按部门汇总会议**处、外联**处少取明细，核对后直接点击确认已补', img: './assets/shots/r2.jpg?v=2' },
-      { tab: '发餐防呆', t: '部门抽屉核对、加餐与换餐防呆', s: '点选录入自动核验份数，高峰期超领漏领当场标红拦截', img: './assets/shots/r3.jpg?v=2' },
-      { tab: '取餐流水', t: '问题餐券留证、换餐加餐与撤销全记录', s: '按状态筛选问题餐券与换加餐，涂改餐券现场拍照留证、误录随时撤销回溯', img: './assets/shots/r4.jpg?v=2' },
-      { tab: '日终转券', t: '收工一键盘点未取部门并导出 Excel', s: '自动汇总所有少取部门批量转券，断网本地留存，核对由 50 分钟缩至 5 分钟', img: './assets/shots/r5.jpg?v=2' },
-      { tab: '全能工具', t: '到餐录入、批量导表与 WPS 结算复制', s: '支持实到录入、粘贴导入报餐表、一键复制 WPS 结算数据与误导区域转移', img: './assets/shots/r6.jpg?v=2' }
-    ],
-    'zhxy-web': [
-      { tab: '活动筛选', t: '1,225 场校园活动自动同步上架', s: '后台持续抓取新活动并补全综测加分项，按空闲名额与线上线下精准筛选', img: './assets/shots/w1.jpg?v=3' },
-      { tab: '批量下单', t: '多场勾选合并预约与首次短信验号', s: '一次勾选多场活动提交，首次下单自动校验学号密码杜绝无效单', img: './assets/shots/w2.jpg?v=3' },
-      { tab: '自助查单', t: '客户透明查单与状态实时同步', s: '按学号查询已抢到、排队中与待结算进度，大幅减少微信咨询', img: './assets/shots/w3.jpg?v=3' },
-      { tab: '互助占位', t: '37 位客户签约互助占位换免费掉落', s: '出借空闲名额换取热门活动免费名额，累计置换 216 次、掉落 35 次', img: './assets/shots/w4.jpg?v=3' }
-    ],
-    'zhxy-console': [
-      { tab: '并发监控', t: '主控制台与多任务实时日志监控', s: '左侧监控守护进程、延迟与开抢倒计时，右侧展开实时名额置换与抢票日志', img: './assets/shots/c1.jpg?v=3' },
-      { tab: '订单后台', t: '861 笔系统订单集中履约后台', s: '同步网页自助订单，支持一键复核真伪、批量生图与批量结算', img: './assets/shots/c2.jpg?v=3' },
-      { tab: '账单生图', t: '一键自动生成客户对账账单快照', s: '选中客户直接生成清晰对账账单图，一键复制发微信核对收款', img: './assets/shots/c3.jpg?v=3' },
-      { tab: '名额置换', t: '216 次副号让位与客户接盘调度', s: '统一维护占位账号池，自动化执行让位与接盘，提升热门活动成功率', img: './assets/shots/c4.jpg?v=3' },
-      { tab: '客户工单', t: '前台工单同步桌面端集中回复', s: '客户网页提交的反馈与撤单请求实时同步，处理完成后自动提醒客户', img: './assets/shots/c5.jpg?v=3' },
-      { tab: '任务排期', t: '全流程建群、签到与加分确认清单', s: '按活动场次集中跟进建群打卡与综测加分，确保每笔预约闭环履约', img: './assets/shots/c6.jpg?v=3' }
-    ],
-    'yiban': [
-      { tab: '飞书授权', t: '飞书表格零成本一机一码授权', s: '不租云服务器，直接联网校验硬件码与卡密有效期，服务器成本 ¥0/月', img: './assets/shots/y1.jpg?v=2' },
-      { tab: '读取版块', t: '自动同步 5 个范围 / 36 个可发版块', s: '自动读取账号权限版块列表，内置防屏蔽发帖规则指引', img: './assets/shots/y2.jpg?v=2' },
-      { tab: '自定义词库', t: '本地可视化配置发帖与评论话术', s: '随机组合多条语料，保存后自动同步注入浏览器执行脚本', img: './assets/shots/y3.jpg?v=2' },
-      { tab: '实机执行', t: '自动发帖评论与实时网薪日志', s: '按上限随机间隔防风控执行，线上实售 89 单保持 100% 好评 0 纠纷', img: './assets/shots/y4.jpg?v=2' }
-    ]
-  };
-
-  const sbControllers = new Map();
-  const DURATION = 3600;
-  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  document.querySelectorAll('.sb[data-sb]').forEach(root=>{
-    const key = root.getAttribute('data-sb');
-    const items = STORYBOARDS[key] || [];
-    if(!items.length) return;
-
-    root.innerHTML = '';
-    const tabsEl = document.createElement('div');
-    tabsEl.className = 'sb-tabs';
-    tabsEl.setAttribute('role', 'tablist');
-
-    const tabBtns = items.map((it, i)=>{
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'sb-tab' + (i === 0 ? ' active' : '');
-      b.setAttribute('role', 'tab');
-      b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      b.textContent = it.tab;
-      const prog = document.createElement('span');
-      prog.className = 'sb-prog';
-      prog.appendChild(document.createElement('i'));
-      b.appendChild(prog);
-      tabsEl.appendChild(b);
-      return b;
-    });
-
-    const capEl = document.createElement('div');
-    capEl.className = 'sb-cap';
-    const copyEl = document.createElement('div');
-    copyEl.className = 'sb-copy';
-    const titleEl = document.createElement('div');
-    titleEl.className = 'sb-title';
-    const subEl = document.createElement('div');
-    subEl.className = 'sb-sub';
-    copyEl.appendChild(titleEl);
-    copyEl.appendChild(subEl);
-    const ctlBtn = document.createElement('button');
-    ctlBtn.type = 'button';
-    ctlBtn.className = 'sb-ctl';
-    ctlBtn.textContent = '暂停';
-    capEl.appendChild(copyEl);
-    capEl.appendChild(ctlBtn);
-
-    const stageEl = document.createElement('div');
-    stageEl.className = 'sb-stage';
-    const slideImgs = items.map((it, i)=>{
-      const im = document.createElement('img');
-      im.className = 'sb-slide' + (i === 0 ? ' active' : '');
-      im.src = it.img;
-      im.alt = it.t;
-      im.decoding = 'async';
-      im.loading = i === 0 ? 'eager' : 'lazy';
-      stageEl.appendChild(im);
-      return im;
-    });
-    const idxEl = document.createElement('span');
-    idxEl.className = 'sb-idx num';
-    stageEl.appendChild(idxEl);
-
-    root.appendChild(tabsEl);
-    root.appendChild(capEl);
-    root.appendChild(stageEl);
-
-    /* Ensure sibling slides decode eagerly once visible */
-    let preloaded = false;
-    function preloadRest(){
-      if(preloaded) return;
-      preloaded = true;
-      slideImgs.forEach(im=>{ im.loading = 'eager'; });
-    }
-
-    let cur = 0, timer = null, userPaused = reducedMotion, inView = false, hovered = false;
-    const hasFineHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    function render(nextIdx, animate){
-      cur = (nextIdx + items.length) % items.length;
-      const it = items[cur];
-      tabBtns.forEach((b, i)=>{
-        const on = i === cur;
-        b.classList.toggle('active', on);
-        b.classList.remove('run');
-        b.setAttribute('aria-selected', on ? 'true' : 'false');
-        if(on){
-          void b.offsetWidth;
-          if(inView && !userPaused && !hovered) b.classList.add('run');
-          if(tabsEl.scrollWidth > tabsEl.clientWidth){
-            const left = b.offsetLeft - (tabsEl.clientWidth - b.offsetWidth) / 2;
-            tabsEl.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+      /* Smooth Nav & Scroll Spy */
+      const navBar = document.getElementById('navLinks');
+      const navLinks = [...document.querySelectorAll('#navLinks a')];
+      const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      function setActive(id) {
+        navLinks.forEach(a => {
+          const on = a.getAttribute('href') === '#' + id;
+          a.classList.toggle('active', on);
+          if (on && navBar && navBar.scrollWidth > navBar.clientWidth) {
+            const left = a.offsetLeft - (navBar.clientWidth - a.offsetWidth) / 2;
+            navBar.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
           }
-        }
-      });
-      slideImgs.forEach((im, i)=>{
-        const on = i === cur;
-        im.classList.toggle('active', on);
-        if(on) im.loading = 'eager';
-      });
-      idxEl.textContent = (cur + 1) + ' / ' + items.length;
-      if(animate){
-        copyEl.classList.add('swap');
-        setTimeout(()=>{
-          titleEl.textContent = it.t;
-          subEl.textContent = it.s;
-          copyEl.classList.remove('swap');
-        }, 90);
-      } else {
-        titleEl.textContent = it.t;
-        subEl.textContent = it.s;
+        });
       }
-      schedule();
-    }
-
-    function syncBtn(){
-      const paused = userPaused || !inView || hovered;
-      root.classList.toggle('is-paused', paused);
-      ctlBtn.textContent = userPaused ? '继续' : '暂停';
-      ctlBtn.setAttribute('aria-label', userPaused ? '继续自动切换' : '暂停自动切换');
-    }
-
-    function schedule(){
-      clearTimeout(timer);
-      syncBtn();
-      const activeBtn = tabBtns[cur];
-      if(!inView || userPaused || hovered || root.offsetParent === null){
-        if(activeBtn) activeBtn.classList.remove('run');
-        return;
+      document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1), el = document.getElementById(id);
+        if (!el) return; e.preventDefault();
+        const barH = (topbar ? topbar.offsetHeight : 64) + 12;
+        window.scrollTo({ top: id === 'top' ? 0 : Math.max(0, el.getBoundingClientRect().top + window.scrollY - barH), behavior: 'smooth' });
+        if (id !== 'top') setActive(id);
+      }));
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => { entries.forEach(en => { if (en.isIntersecting) setActive(en.target.id); }); }, { rootMargin: '-22% 0px -65% 0px' });
+        sections.forEach(s => io.observe(s));
       }
-      if(activeBtn){
-        activeBtn.classList.remove('run');
-        void activeBtn.offsetWidth;
-        activeBtn.classList.add('run');
-      }
-      timer = setTimeout(()=>render(cur + 1, true), DURATION);
-    }
-
-    tabBtns.forEach((b, i)=>b.addEventListener('click', ()=>{
-      userPaused = false;
-      hovered = false;
-      render(i, true);
-    }));
-    ctlBtn.addEventListener('click', ()=>{
-      userPaused = !userPaused;
-      hovered = false;
-      schedule();
-    });
-    if(hasFineHover){
-      root.addEventListener('mouseenter', ()=>{ hovered = true; syncBtn(); clearTimeout(timer); });
-      root.addEventListener('mouseleave', ()=>{ hovered = false; schedule(); });
-    }
-
-    /* Horizontal touch swipe (never blocks vertical page scroll) + tap to zoom */
-    let tx = 0, ty = 0, swiped = false;
-    stageEl.addEventListener('touchstart', e=>{
-      if(e.touches.length !== 1) return;
-      tx = e.touches[0].clientX; ty = e.touches[0].clientY; swiped = false;
-    }, { passive: true });
-    stageEl.addEventListener('touchend', e=>{
-      if(!e.changedTouches.length) return;
-      const dx = e.changedTouches[0].clientX - tx;
-      const dy = e.changedTouches[0].clientY - ty;
-      if(Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy) * 1.25){
-        swiped = true;
-        render(dx < 0 ? cur + 1 : cur - 1, true);
-      }
-    }, { passive: true });
-    stageEl.addEventListener('click', ()=>{
-      if(swiped){ swiped = false; return; }
-      openImgZoom(items[cur].img, items[cur].t);
-    });
-
-    render(0, false);
-    sbControllers.set(key, {
-      setVisible(v){
-        inView = v;
-        if(v) preloadRest();
-        schedule();
-      }
-    });
-  });
-
-  if('IntersectionObserver' in window){
-    const sbIO = new IntersectionObserver(entries=>{
-      entries.forEach(en=>{
-        const ctrl = sbControllers.get(en.target.getAttribute('data-sb'));
-        if(ctrl) ctrl.setVisible(en.isIntersecting && en.target.offsetParent !== null);
-      });
-    }, { threshold: 0.18 });
-    document.querySelectorAll('.sb[data-sb]').forEach(el=>sbIO.observe(el));
-  }
-
-  /* Apple-style spring sliding pill for Project 02 Segmented Control */
-  const segWrap = document.getElementById('p2Seg');
-  const segThumb = document.getElementById('p2Thumb');
-  function syncSegThumb(activeBtn){
-    if(!segWrap || !segThumb || !activeBtn || window.innerWidth < 860) return;
-    segThumb.style.width = activeBtn.offsetWidth + 'px';
-    segThumb.style.transform = 'translate3d(' + activeBtn.offsetLeft + 'px,0,0)';
-  }
-  const initActiveTab = segWrap ? segWrap.querySelector('.etab.active') : null;
-  if(initActiveTab){
-    requestAnimationFrame(()=>syncSegThumb(initActiveTab));
-    window.addEventListener('resize', ()=>{
-      const cur = segWrap.querySelector('.etab.active');
-      if(cur) syncSegThumb(cur);
-    });
-  }
-
-  const p2Meta = {
-    'p2-web': { href: './src/zhxy-order.html?v=16&tour=1', label: '项目预览', vid: './assets/demo-zhxy-web.mp4?v=7', poster: './assets/demo-zhxy-web.jpg?v=7', sb: 'zhxy-web' },
-    'p2-console': { href: './src/zhxy-console.html?v=16&tour=1', label: '项目预览', vid: './assets/demo-zhxy-console.mp4?v=6', poster: './assets/demo-zhxy-console.jpg?v=6', sb: 'zhxy-console' },
-    'p2-bill': { href: './assets/bill-sample.jpg', label: '查看原图', vid: '', poster: '', sb: '' },
-    'p2-admin': { href: './assets/order-admin-blur.jpg', label: '查看原图', vid: '', poster: '', sb: '' }
-  };
-  document.querySelectorAll('.etab[data-group]').forEach(btn=>btn.addEventListener('click', ()=>{
-    const g = btn.getAttribute('data-group'), id = btn.getAttribute('data-tab');
-    document.querySelectorAll(`.etab[data-group="${g}"]`).forEach(b=>{
-      const tid = b.getAttribute('data-tab');
-      const on = tid === id;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-selected', on ? 'true' : 'false');
-      const p = document.getElementById(tid);
-      if(p) p.style.display = on ? '' : 'none';
-      const meta = p2Meta[tid];
-      if(meta && meta.sb && sbControllers.has(meta.sb)){
-        sbControllers.get(meta.sb).setVisible(on);
-      }
-    });
-    syncSegThumb(btn);
-    const meta = p2Meta[id];
-    const link = document.getElementById('p2-open');
-    const txt = document.getElementById('p2-open-txt');
-    const vidBtn = document.getElementById('p2-vid');
-    if(meta){
-      if(link) link.href = meta.href;
-      if(txt) txt.textContent = meta.label;
-      if(vidBtn){
-        if(meta.vid){
-          vidBtn.style.display = '';
-          vidBtn.setAttribute('data-video', meta.vid);
-          vidBtn.setAttribute('data-poster', meta.poster);
-        } else {
-          vidBtn.style.display = 'none';
-        }
-      }
-    }
-  }));
-
-  /* Smooth navigation & scroll spy */
-  const navBar = document.getElementById('navLinks');
-  const navLinks = [...document.querySelectorAll('#navLinks a')];
-  const sections = navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  function setActive(id){
-    navLinks.forEach(a=>{
-      const on = a.getAttribute('href') === '#' + id;
-      a.classList.toggle('active', on);
-      if(on && navBar && navBar.scrollWidth > navBar.clientWidth){
-        const left = a.offsetLeft - (navBar.clientWidth - a.offsetWidth) / 2;
-        navBar.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
-      }
-    });
-  }
-  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{
-    const id = a.getAttribute('href').slice(1), el = document.getElementById(id);
-    if(!el) return; e.preventDefault();
-    const barH = (topbar ? topbar.offsetHeight : 64) + 12;
-    const top = id === 'top' ? 0 : Math.max(0, el.getBoundingClientRect().top + window.scrollY - barH);
-    window.scrollTo({ top, behavior: 'smooth' });
-    if(id !== 'top') setActive(id);
-  }));
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(en=>{ if(en.isIntersecting) setActive(en.target.id); });
-    }, { rootMargin: '-22% 0px -65% 0px', threshold: 0 });
-    sections.forEach(s=>io.observe(s));
-  }
-})();
-</script>
+    })();
+  </script>
 </body>
+
 </html>

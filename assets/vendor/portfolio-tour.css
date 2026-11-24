@@ -52,6 +52,17 @@ body.pt-has-bottombar #pt-fab{
   bottom:calc(68px + env(safe-area-inset-bottom, 0px));
 }
 
+/* Embedded showcase mode: hide scrollbars subtly & refine popover footprint */
+body.pt-embed #pt-fab{
+  padding:7px 13px;
+  font-size:12px;
+  right:10px;
+  bottom:12px;
+}
+body.pt-embed.pt-has-bottombar #pt-fab{
+  bottom:62px;
+}
+
 /* Ensure Driver.js overlay & popover sit above all app drawers/modals (strictly above driver.css 10^9 scale) */
 .driver-overlay{z-index:1000000000 !important}
 .driver-active-element{z-index:1000000002 !important}
@@ -66,6 +77,14 @@ body.pt-has-bottombar #pt-fab{
   min-width:min(264px, calc(100vw - 28px));
   box-shadow:0 22px 48px -12px rgba(15,23,42,0.42);
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;
+  overflow:hidden;
+}
+body.pt-embed .driver-popover.pt-popover{
+  padding:12px 13px 11px;
+  border-radius:14px;
+  max-width:min(316px, calc(100vw - 20px));
+  min-width:min(238px, calc(100vw - 24px));
+  box-shadow:0 16px 36px -10px rgba(15,23,42,0.38);
 }
 .driver-popover.pt-popover .driver-popover-title{
   font-size:15.5px;
@@ -76,11 +95,19 @@ body.pt-has-bottombar #pt-fab{
   padding-right:24px;
   margin-bottom:6px;
 }
+body.pt-embed .driver-popover.pt-popover .driver-popover-title{
+  font-size:14px;
+  margin-bottom:4px;
+}
 .driver-popover.pt-popover .driver-popover-description{
   font-size:13.5px;
   line-height:1.58;
   color:var(--pt-ink-2);
   margin:0;
+}
+body.pt-embed .driver-popover.pt-popover .driver-popover-description{
+  font-size:12.5px;
+  line-height:1.48;
 }
 .driver-popover.pt-popover .driver-popover-close-btn{
   top:10px;
@@ -96,6 +123,13 @@ body.pt-has-bottombar #pt-fab{
   justify-content:center;
   transition:background-color 140ms ease, color 140ms ease;
 }
+body.pt-embed .driver-popover.pt-popover .driver-popover-close-btn{
+  top:8px;
+  right:8px;
+  width:24px;
+  height:24px;
+  font-size:16px;
+}
 .driver-popover.pt-popover .driver-popover-close-btn:hover{
   background:rgba(21,24,31,0.07);
   color:var(--pt-ink);
@@ -108,6 +142,10 @@ body.pt-has-bottombar #pt-fab{
   align-items:center;
   justify-content:space-between;
   gap:8px;
+}
+body.pt-embed .driver-popover.pt-popover .driver-popover-footer{
+  margin-top:10px;
+  padding-top:8px;
 }
 .driver-popover.pt-popover .driver-popover-progress-text{
   font-size:12px;
@@ -132,6 +170,11 @@ body.pt-has-bottombar #pt-fab{
   white-space:nowrap;
   transition:transform 110ms ease, background-color 140ms ease;
 }
+body.pt-embed .driver-popover.pt-popover .driver-popover-prev-btn,
+body.pt-embed .driver-popover.pt-popover .driver-popover-next-btn{
+  padding:5px 10px;
+  font-size:11.5px;
+}
 .driver-popover.pt-popover .driver-popover-prev-btn{
   background:transparent;
   color:var(--pt-ink-2);
@@ -153,6 +196,35 @@ body.pt-has-bottombar #pt-fab{
 .driver-popover.pt-popover .driver-popover-next-btn:active{
   transform:scale(0.96);
 }
+
+/* Auto-play hairline progress at bottom edge of embedded popover */
+.pt-auto-track{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:3px;
+  background:rgba(27,59,96,0.10);
+  overflow:hidden;
+}
+.pt-auto-bar{
+  width:100%;
+  height:100%;
+  background:var(--pt-accent);
+  transform-origin:left center;
+  transform:scaleX(0);
+}
+.pt-auto-bar.run{
+  animation:ptAutoFill var(--pt-dur, 4000ms) linear forwards;
+}
+.pt-auto-bar.paused{
+  animation-play-state:paused;
+}
+@keyframes ptAutoFill{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+
 .driver-popover.pt-popover .driver-popover-arrow{
   border-color:var(--pt-surface);
 }
