@@ -2,7 +2,7 @@
 
 > 国际商务 × AI 业务落地与商业交付
 
-- 在线作品集：https://mmmmmmmm84.github.io/yiting-portfolio/
+- 在线作品集：https://x60skim.github.io/yiting-portfolio/
 - 个人简历 PDF：[assets/resume.pdf](./assets/resume.pdf)
 
 ## 真实项目与数据库核验数据
