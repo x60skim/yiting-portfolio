@@ -469,7 +469,7 @@
     if (isEmbed) {
       fab.innerHTML = '<span class="pt-spark">✦</span><span>恢复自动导览</span>';
     } else {
-      fab.innerHTML = '<span class="pt-spark">✦</span><span>亮点导览</span><span class="pt-cnt">' + cfg.steps.length + '步</span>';
+      fab.innerHTML = '<span class="pt-spark">✦</span><span>亮点导览</span>';
     }
   }
   updateFabLabel();

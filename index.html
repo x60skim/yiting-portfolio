@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>赖怡婷 Yiting Lai，作品集与实战项目</title>
   <meta name="description" content="赖怡婷个人作品集：广交会手机端取餐核对工具、智慧校园 3.0 活动代预约系统、易班自动化桌面软件、线上电商实绩与 G2G 海外首单。">
-  <link rel="stylesheet" href="./assets/vendor/stageshow-theaters.css?v=2">
+  <link rel="stylesheet" href="./assets/vendor/stageshow-theaters.css?v=3">
   <style>
     :root {
       --paper: #F6F5F0;
@@ -55,7 +55,7 @@
       --r-lg: 20px;
       --r-pill: 999px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --nav-h: 96px;
+      --nav-h: 100px;
     }
 
     *,
@@ -125,6 +125,7 @@
       padding-inline: var(--s-4)
     }
 
+    main,
     section,
     article.work {
       scroll-margin-top: calc(var(--nav-h) + var(--s-4))
@@ -204,24 +205,15 @@
       transform: scale(0.97)
     }
 
-                  <!-- Beat 1 -->
-                  <div class="ss-pane" id="t1-p1" style="gap:8px">
-                    <div class="t1-card">
-                      <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:750"><span>跨日期场次日历</span><span class="s-pill blue">支持错区转移</span></div>
-                      <div class="t1-cal">
-                        <div class="t1-day">15<small style="color:#059669">已录</small></div>
-                        <div class="t1-day on" id="t1-d16">16<small style="color:#FBBF24">补 · !</small></div>
-                        <div class="t1-day" id="t1-d17" data-t="t1-d17">17<small style="color:#059669">已录</small></div>
-                        <div class="t1-day">18<small style="color:#B45309">补</small></div>
-                        <div class="t1-day">19<small style="color:#059669">已录</small></div>
-                      </div>
-                      <div style="font-size:11.5px;color:#484E5A;background:#F5F3EC;padding:7px 9px;border-radius:8px" id="t1-cal-info">10月16日 B座 午餐 · 2 个部门待补券 · 1 张问题餐券</div>
-                    </div>
-                    <div class="t1-row">
-                      <div><b>报餐改动自动留档</b><span>表格中途调整份数会自动记录变动明细，现场对账有据可查</span></div>
-                      <span class="s-pill green">有据可查</span>
-                    </div>
-                  </div>
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 0 0;
+    }
 
     .nav-links::-webkit-scrollbar {
       display: none
@@ -255,7 +247,7 @@
 
     /* Hero + Bento */
     .hero {
-      padding: var(--s-5) 0 var(--s-10)
+      padding: var(--s-6) 0 var(--s-10)
     }
 
     .hero-top {
@@ -1430,7 +1422,7 @@
                 场零错漏。</p>
             </header>
             <div class="metrics num">
-              <div class="m-cell"><b>10 部</b><span>现场同时在线手机</span></div>
+              <div class="m-cell"><b>10 部</b><span>现场同时在线设备</span></div>
               <div class="m-cell"><b>33 天 / 95 场</b><span>A区 / B座 午晚餐全展期</span></div>
               <div class="m-cell"><b>70,042 份</b><span>6 种餐品准确核对总数</span></div>
               <div class="m-cell"><b>50 至 5 分钟</b><span>每天收工核对用时</span></div>
@@ -1446,7 +1438,7 @@
 
           <div class="stage-col">
             <div class="stage-bar">
-              <span class="stage-label">广交会取餐核对台 · 6 步操作演示</span>
+              <span class="stage-label">广交会取餐核对台 · 操作演示</span>
               <div class="stage-actions">
                 <button class="video-link" type="button" data-video="./assets/demo-reconcile.mp4?v=7"
                   data-poster="./assets/demo-reconcile.jpg?v=7">完整录屏</button>
@@ -1476,8 +1468,8 @@
               </div>
               <div class="ss-narr">
                 <div class="ss-narr-copy">
-                  <div class="ss-narr-t">活动自动同步上架，按线上与空闲名额筛选</div>
-                  <div class="ss-narr-d">后台持续同步校园新活动，自动标出加分项和校区要求；按「未看 / 线上 / 有空位」一键筛选</div>
+                  <div class="ss-narr-t">金山表格 AirScript 同步 + Node.js SSE 多端实时广播</div>
+                  <div class="ss-narr-d">自动读取金山文档当日报餐与实到数，服务端通过 SSE 长连接把 6 种餐品余量毫秒同步到现场设备</div>
                 </div>
                 <div class="ss-narr-s">1 / 6</div>
               </div>
@@ -1486,7 +1478,7 @@
                 <div class="t1-phone">
                   <div class="t1-top">
                     <div class="t1-title">取餐核对台</div>
-                    <div class="t1-net" id="t1-net">● 10 部手机同步中</div>
+                    <div class="t1-net" id="t1-net">● 多端设备同步中</div>
                   </div>
                   <div class="t1-subbar">
                     <div class="t1-date-btn">10月16日 <span class="t1-badge-bu">补</span><span
@@ -1604,10 +1596,10 @@
                     </div>
 
                     <!-- Beat 4 -->
-                    <div class="ss-pane" id="t2-p4" style="gap:8px">
-                      <div class="t2-detail-box">
-                        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:13px">占位账号互助协议</b><span class="s-pill amber" id="t2-consent-st">未参与</span></div>
-                        <div style="font-size:11.5px;color:#475569;line-height:1.5">1. 账号空闲时帮忙占热门名额，报名截止前没人要会自动取消，不影响本人。<br>2. <b>互助福利：</b>多余的热门名额会随机免费掉落给参与同学。</div>
+                    <div class="ss-pane" id="t1-p4" style="gap:8px">
+                      <div class="t1-row">
+                        <div><b>完成今日结算</b><span>自动列出所有没取、少取部门转成待补餐券</span></div>
+                        <span class="t1-mini-btn" id="t1-end-btn" data-t="t1-end">收工一键转待补餐券</span>
                       </div>
                       <div class="t1-row">
                         <div><b>待补餐券核对</b><span id="t1-v-meta">外联**处 · 少取真功夫 2 份、麦当劳 1 份</span></div>
@@ -1673,9 +1665,9 @@
             <div class="seg-wrap" role="tablist" aria-label="系统模块切换" id="p2Seg">
               <div class="seg-thumb" id="p2Thumb" aria-hidden="true"></div>
               <button class="etab active" type="button" role="tab" aria-selected="true" data-group="p2"
-                data-tab="p2-web">前端下单网站（6 步）</button>
+                data-tab="p2-web">前端下单网站</button>
               <button class="etab" type="button" role="tab" aria-selected="false" data-group="p2"
-                data-tab="p2-console">后端主控制台（6 步）</button>
+                data-tab="p2-console">后端主控制台</button>
             </div>
             <div class="stage-actions">
               <button class="video-link" id="p2-vid" type="button" data-video="./assets/demo-zhxy-web.mp4?v=7"
@@ -1769,13 +1761,13 @@
                       </div>
 
                       <!-- Beat 2 -->
-                      <div class="ss-pane" id="t3-p2" style="gap:8px">
-                        <div class="t3-bar">
-                          <div class="t3-bar-t">订单管理 &amp; 收款前批量查真伪</div>
-                          <div class="t3-acts">
-                            <span class="t3-btn" id="t3-flt" data-t="t3-flt">只看待结算</span>
-                            <span class="t3-btn indigo" id="t3-rev" data-t="t3-rev">核对选中订单</span>
-                          </div>
+                      <div class="ss-pane" id="t2-p2" style="gap:8px">
+                        <div class="t2-detail-box">
+                          <div style="display:flex;justify-content:space-between;align-items:center"><b
+                              style="font-size:12.5px">已勾选 2 场活动 · 首次下单验证</b><span class="s-pill amber"
+                              id="t2-sms-st">待短信验证</span></div>
+                          <div style="font-size:11.5px;color:#475569">学号：2024****01 · 手机尾号 5992（验证通过后下次自动填入）</div>
+                          <div style="font-size:11px;color:#64748B">过滤输错密码的无效单，不用微信逐条发学号密码</div>
                         </div>
                         <div class="t2-btn" id="t2-sub-btn" data-t="t2-sub">验证并提交 2 场预约</div>
                       </div>
@@ -1796,15 +1788,23 @@
                       </div>
 
                       <!-- Beat 4 -->
-                      <div class="ss-pane" id="t3-p4" style="gap:9px">
-                        <div class="t3-bar">
-                          <div class="t3-bar-t">互助占位调度中心</div>
-                          <span class="t3-btn on" id="t3-swap-btn" data-t="t3-swap">开始自动换位</span>
+                      <div class="ss-pane" id="t2-p4" style="gap:8px">
+                        <div class="t2-detail-box">
+                          <div style="display:flex;justify-content:space-between;align-items:center"><b
+                              style="font-size:13px">占位账号互助协议</b><span class="s-pill amber"
+                              id="t2-consent-st">未参与</span></div>
+                          <div style="font-size:11.5px;color:#475569;line-height:1.5">1.
+                            账号空闲时帮忙占热门名额，报名截止前没人要会自动取消，不影响本人。<br>2. <b>互助福利：</b>多余的热门名额会随机免费掉落给参与同学。</div>
                         </div>
-                        <div class="t3-swap-flow">
-                          <div class="t3-node" id="t3-n1"><b>① 空闲账号退位</b><span>2024****302 放出名额</span></div>
-                          <div class="t3-node" id="t3-n2"><b>② 客户立刻顶上</b><span>下单客户顺势报上</span></div>
-                          <div class="t3-node" id="t3-n3"><b>③ 余位免费送出</b><span>随机送给签约老客</span></div>
+                        <div class="t2-btn" id="t2-agree-btn" data-t="t2-agree">同意参与 · 享免费热门掉落</div>
+                      </div>
+
+                      <!-- Beat 5 -->
+                      <div class="ss-pane" id="t2-p5" style="gap:8px">
+                        <div class="t2-detail-box">
+                          <div style="font-size:12.5px;font-weight:750">带图提交问题留言</div>
+                          <div style="font-size:11.5px;color:#475569">自动压缩截图上传，支持反馈取消预约、群码失效或加分疑问</div>
+                          <div class="t2-btn" id="t2-tk-btn" data-t="t2-tk">提交带图留言</div>
                         </div>
                         <div class="t2-notice" id="t2-notice"><b>消息提醒：</b>管理员已回复你的留言 #11 并更新了活动群二维码，点开就能看。</div>
                       </div>
@@ -2035,7 +2035,7 @@
             </div>
             <div class="points">
               <div class="pt"><b>飞书多维表格 Open API + HWID 绑定</b>采集设备硬件码并对接网络标准校时（防篡改本地时间绕过），搭配发卡页实现 ¥0/月 零服务器一机一码授权</div>
-              <div class="pt"><b>自动采集 36 版块 + 本地 HTTP 接口热同步</b>自动抓取账号权限版块缓存到本地 JSON；客户端内置本地 HTTP 服务，自定义词库保存后实时推送给浏览器执行脚本
+              <div class="pt"><b>自动采集可发版块 + 本地 HTTP 接口热同步</b>自动抓取账号全部权限版块缓存到本地 JSON；客户端内置本地 HTTP 服务，自定义词库保存后实时推送给浏览器执行脚本
               </div>
               <div class="pt"><b>XOR 内存解密 + PyArmor &amp; Inno Setup 双版打包</b>核心脚本内存解密注入独立用户目录浏览器，主程序经 PyArmor
                 加密后自动构建内置浏览器完整版与轻巧 Edge 版，内置云端更新检测</div>
@@ -2044,7 +2044,7 @@
 
           <div class="stage-col">
             <div class="stage-bar">
-              <span class="stage-label">易班自动化桌面软件 · 5 步操作演示</span>
+              <span class="stage-label">易班自动化桌面软件 · 操作演示</span>
               <div class="stage-actions">
                 <button class="video-link" type="button" data-video="./assets/demo-yiban.mp4?v=6"
                   data-poster="./assets/demo-yiban.jpg?v=6">完整录屏</button>
@@ -2129,9 +2129,9 @@
 
                     <!-- Beat 3 -->
                     <div class="ss-pane" id="t4-p3" style="gap:7px">
-                      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px">
+                      <div class="t4-run-row">
                         <span class="s-pill blue">上限 20帖 / 30评 / 35赞</span>
-                        <div class="t4-btn blue" id="t4-run-btn" data-t="t4-run" style="flex:1">开始自动发帖 / 评论点赞</div>
+                        <div class="t4-btn blue" id="t4-run-btn" data-t="t4-run">开始自动发帖 / 评论点赞</div>
                       </div>
                       <div class="t4-kpis">
                         <div><b id="t4-k1">0 / 20</b><span>本次已发帖</span></div>
@@ -2153,7 +2153,7 @@
                         <div class="t4-pstep on"><b>① 脚本加密保护</b><span>核心脚本内存解密运行，防止明文外泄</span></div>
                         <div class="t4-pstep"><b>② 主程序加密</b><span>打包前自动加密源码，保护商业版权</span></div>
                         <div class="t4-pstep"><b>③ 两个安装包</b><span>自带浏览器完整版 &amp; 轻巧 Edge 版</span></div>
-                        <div class="t4-pstep"><b>④ 当天改版售后</b><span>线上售出 89 单，保持 100% 好评</span></div>
+                        <div class="t4-pstep"><b>④ 云端版本检测</b><span>启动或手动检测云端版本，随时升级新版</span></div>
                       </div>
                     </div>
                   </div>
@@ -2296,7 +2296,7 @@
     <div id="lb-inner"></div>
   </div>
 
-  <script src="./assets/vendor/stageshow-theaters.js?v=6"></script>
+  <script src="./assets/vendor/stageshow-theaters.js?v=7"></script>
   <script>
     (function () {
       const topbar = document.getElementById('topbar');

@@ -81,36 +81,43 @@
       if (narrD) narrD.textContent = b.desc;
       if (narrS) narrS.textContent = `${cur + 1} / ${cfg.beats.length}`;
 
-      b.run(act, runId);
+      try {
+        b.run(act, runId);
+      } catch (err) {
+        if (window.console && console.error) console.error('[stageshow]', cfg.rootId, cur, err);
+      }
       if (inView && !paused && root.offsetParent !== null) {
         later(b.duration || 3600, () => setBeat(cur + 1), runId);
       }
     }
 
     beatBtns.forEach((btn, i) => btn.addEventListener('click', () => {
-      paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(i);
+      inView = true; paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(i);
     }));
     if (prevBtn) prevBtn.addEventListener('click', () => {
-      paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(cur - 1);
+      inView = true; paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(cur - 1);
     });
     if (nextBtn) nextBtn.addEventListener('click', () => {
-      paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(cur + 1);
+      inView = true; paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(cur + 1);
     });
     if (ctlBtn) ctlBtn.addEventListener('click', () => {
       paused = !paused;
       ctlBtn.textContent = paused ? '继续' : '暂停';
       if (paused) { runId++; clearTimers(); }
-      else setBeat(cur);
+      else { inView = true; setBeat(cur); }
     });
 
     setBeat(0);
     const ctrl = {
       setVisible(v) {
         inView = v;
-        if (v && !paused) setBeat(cur);
-        else if (!v) { runId++; clearTimers(); }
+        if (v && !paused) {
+          requestAnimationFrame(() => { if (inView && !paused && root.offsetParent !== null) setBeat(cur); });
+        } else if (!v) {
+          runId++; clearTimers();
+        }
       },
-      jumpTo(i) { paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(i); }
+      jumpTo(i) { inView = true; paused = false; if (ctlBtn) ctlBtn.textContent = '暂停'; setBeat(i); }
     };
     theaters.set(cfg.rootId, ctrl);
     return ctrl;
@@ -611,7 +618,7 @@
         const ctrl = theaters.get(en.target.id);
         if (ctrl) ctrl.setVisible(en.isIntersecting && en.target.offsetParent !== null);
       });
-    }, { threshold: 0.16 });
+    }, { threshold: 0.02 });
     theaters.forEach((_, id) => {
       const el = document.getElementById(id);
       if (el) io.observe(el);
