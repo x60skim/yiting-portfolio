@@ -315,7 +315,7 @@ footer strong{color:var(--ink);font-weight:600}
         <a class="exhibit-link" href="./src/reconcile.html?v=14" target="_blank" rel="noopener">查看项目预览 ↗</a>
       </div>
       <div class="stage-frame mobile-view">
-        <video class="demo-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline controls controlslist="nodownload" preload="metadata" poster="./assets/demo-reconcile.jpg?v=4">
+        <video class="demo-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5-page" controls controlslist="nodownload" preload="auto" poster="./assets/demo-reconcile.jpg?v=4">
           <source src="./assets/demo-reconcile.mp4?v=4" type="video/mp4">
         </video>
       </div>
@@ -357,14 +357,14 @@ footer strong{color:var(--ink);font-weight:600}
 
       <div id="p2-web">
         <div class="stage-frame mobile-view">
-          <video class="demo-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline controls controlslist="nodownload" preload="metadata" poster="./assets/demo-zhxy-web.jpg?v=4">
+          <video class="demo-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5-page" controls controlslist="nodownload" preload="auto" poster="./assets/demo-zhxy-web.jpg?v=4">
             <source src="./assets/demo-zhxy-web.mp4?v=4" type="video/mp4">
           </video>
         </div>
       </div>
       <div id="p2-console" style="display:none">
         <div class="stage-frame desktop-view">
-          <video class="demo-video" muted loop playsinline webkit-playsinline x5-playsinline controls controlslist="nodownload" preload="metadata" poster="./assets/demo-zhxy-console.jpg?v=4">
+          <video class="demo-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5-page" controls controlslist="nodownload" preload="metadata" poster="./assets/demo-zhxy-console.jpg?v=4">
             <source src="./assets/demo-zhxy-console.mp4?v=4" type="video/mp4">
           </video>
         </div>
@@ -411,7 +411,7 @@ footer strong{color:var(--ink);font-weight:600}
         <a class="exhibit-link" href="./src/yiban-client.html?v=14" target="_blank" rel="noopener">查看项目预览 ↗</a>
       </div>
       <div class="stage-frame compact-view">
-        <video class="demo-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline controls controlslist="nodownload" preload="metadata" poster="./assets/demo-yiban.jpg?v=4">
+        <video class="demo-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5-page" controls controlslist="nodownload" preload="auto" poster="./assets/demo-yiban.jpg?v=4">
           <source src="./assets/demo-yiban.mp4?v=4" type="video/mp4">
         </video>
       </div>
@@ -556,11 +556,43 @@ footer strong{color:var(--ink);font-weight:600}
     'p2-bill': { href: './assets/bill-sample.jpg', label: '查看原图 ↗' },
     'p2-admin': { href: './assets/order-admin-blur.jpg', label: '查看原图 ↗' }
   };
-  function safePlay(v){
-    if(!v) return;
+  const allVideos = [...document.querySelectorAll('video.demo-video')];
+  allVideos.forEach(v=>{
     v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+  });
+  function isInView(v){
+    if(!v || v.offsetParent === null) return false;
+    const r = v.getBoundingClientRect();
+    return r.bottom > -120 && r.top < window.innerHeight + 120;
+  }
+  function safePlay(v){
+    if(!v || v.offsetParent === null) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    if(v.readyState === 0){
+      try{ v.load(); }catch(e){}
+      v.addEventListener('loadeddata', ()=>{ if(isInView(v)) safePlay(v); }, { once: true });
+    }
     const p = v.play();
-    if(p && typeof p.catch === 'function') p.catch(()=>{});
+    if(p && typeof p.catch === 'function'){
+      p.catch(()=>{
+        v.addEventListener('canplay', ()=>{ if(isInView(v)) { v.muted = true; v.play().catch(()=>{}); } }, { once: true });
+      });
+    }
+  }
+  function syncVisibleVideos(){
+    allVideos.forEach(v=>{
+      if(isInView(v)){
+        if(v.paused) safePlay(v);
+      } else {
+        if(!v.paused) v.pause();
+      }
+    });
   }
   document.querySelectorAll('.etab[data-group]').forEach(btn=>btn.addEventListener('click', ()=>{
     const g = btn.getAttribute('data-group'), id = btn.getAttribute('data-tab');
@@ -583,8 +615,26 @@ footer strong{color:var(--ink);font-weight:600}
     }
   }));
 
-  // Auto-play visible demo videos when scrolled into view, pause off-screen to keep scrolling silky smooth
-  const allVideos = [...document.querySelectorAll('video.demo-video')];
+  // Unlock mobile/WeChat autoplay on first user touch gesture so scrolling into any video plays immediately
+  let gestureUnlocked = false;
+  function unlockVideosOnGesture(){
+    if(gestureUnlocked) return;
+    gestureUnlocked = true;
+    allVideos.forEach(v=>{
+      v.muted = true;
+      v.defaultMuted = true;
+      const visibleNow = isInView(v);
+      const p = v.play();
+      if(p && typeof p.then === 'function'){
+        p.then(()=>{ if(!visibleNow) v.pause(); }).catch(()=>{});
+      }
+    });
+  }
+  ['touchstart', 'touchend', 'pointerdown', 'click'].forEach(ev=>{
+    window.addEventListener(ev, unlockVideosOnGesture, { once: true, passive: true });
+  });
+
+  // Auto-play visible demo videos when scrolled into view (IO + scroll fallback + WeChat bridge)
   if('IntersectionObserver' in window){
     const vidIO = new IntersectionObserver(entries=>{
       entries.forEach(en=>{
@@ -592,15 +642,17 @@ footer strong{color:var(--ink);font-weight:600}
         if(en.isIntersecting && vid.offsetParent !== null) safePlay(vid);
         else vid.pause();
       });
-    }, { threshold: 0.25 });
+    }, { rootMargin: '140px 0px 140px 0px', threshold: 0.05 });
     allVideos.forEach(v=>vidIO.observe(v));
   }
-  document.addEventListener('WeixinJSBridgeReady', ()=>{
-    allVideos.forEach(v=>{
-      const r = v.getBoundingClientRect();
-      if(v.offsetParent !== null && r.top < window.innerHeight && r.bottom > 0) safePlay(v);
-    });
-  }, false);
+  let scrollRaf = 0;
+  window.addEventListener('scroll', ()=>{
+    if(scrollRaf) return;
+    scrollRaf = requestAnimationFrame(()=>{ scrollRaf = 0; syncVisibleVideos(); });
+  }, { passive: true });
+  document.addEventListener('WeixinJSBridgeReady', syncVisibleVideos, false);
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) syncVisibleVideos(); });
+  syncVisibleVideos();
 
   const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
   document.querySelectorAll('[data-zoom]').forEach(el=>el.addEventListener('click', ()=>{
