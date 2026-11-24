@@ -5583,52 +5583,64 @@ table.p td:last-child{text-align:left;min-width:150px}
 
 <!-- AUTO_TOUR_START -->
 <style>
-#at-bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(20,20,19,0.92);color:#F7F6F2;padding:6px 10px 6px 8px;border-radius:999px;font:500 12px/1.3 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.28);max-width:94vw;backdrop-filter:blur(8px)}
-#at-btn{border:0;background:#fff;color:#141413;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex:none}
-#at-btn:active{transform:scale(.96)}
+#at-bar{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:99999;display:flex;align-items:center;gap:7px;background:rgba(20,20,19,0.92);color:#F7F6F2;padding:6px 10px 6px 7px;border-radius:999px;font:500 12px/1.3 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.3);max-width:94vw;backdrop-filter:blur(8px)}
+#at-btn{border:0;background:#fff;color:#141413;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap;flex:none}
 #at-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:56vw}
 #at-step{font-variant-numeric:tabular-nums;opacity:.65;font-size:11px;flex:none}
-#at-dot{position:fixed;z-index:9998;width:28px;height:28px;border-radius:50%;border:2.5px solid #18344E;background:rgba(24,52,78,0.18);pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.7);transition:left .45s cubic-bezier(.22,1,.36,1),top .45s cubic-bezier(.22,1,.36,1),opacity .2s,transform .2s}
+#at-dot{position:fixed;z-index:99998;width:28px;height:28px;border-radius:50%;border:2.5px solid #18344E;background:rgba(24,52,78,0.22);pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.7);transition:left .42s cubic-bezier(.22,1,.36,1),top .42s cubic-bezier(.22,1,.36,1),opacity .2s,transform .2s}
 #at-dot.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
-#at-dot.tap{transform:translate(-50%,-50%) scale(1.38);background:rgba(24,52,78,0.34)}
+#at-dot.tap{transform:translate(-50%,-50%) scale(1.42);background:rgba(24,52,78,0.4)}
+.at-hi{outline:2px solid #18344E !important;outline-offset:2px !important;transition:outline-color .2s}
 </style>
-<div id="at-bar"><button id="at-btn" type="button">▶ 自动演示全部功能</button><span id="at-txt">点击观看实操演示，随时可手动接管</span><span id="at-step"></span></div>
+<div id="at-bar"><button id="at-btn" type="button">▶ 自动演示</button><span id="at-txt">滑入自动播放重点功能，点击页面随时手动体验</span><span id="at-step"></span></div>
 <div id="at-dot"></div>
 <script>
 (function(){
   const STEPS = [
-  { t: '1. 顶部 5 大品牌实时余量与实际到餐备用份数', sel: '#strip', fn: ()=>{} , wait: 2400 },
-  { t: '2. 筛选「需补餐券」一键定位未取完异常部门', sel: '#chipVoucher', wait: 2400 },
-  { t: '3. 切回「全部」查看全部 20 个部门实时进度', sel: '.chip[data-f="all"]', wait: 1800 },
-  { t: '4. 点进部门抽屉，现场手机点选登记取餐与防呆校验', sel: '#deptList .dcard, .drow, [data-dept]', wait: 2800 },
-  { t: '5. 关闭抽屉并打开右上「更多操作」菜单', sel: '#dClose', fn: (el)=>{ if(el) el.click(); setTimeout(()=>{ const m=document.getElementById('moreBtn'); if(m) m.click(); }, 450); }, wait: 2400 },
-  { t: '6. 点击「结束今日取餐」，一键将少取部门转入补餐券', sel: '.mrow[data-open="end-day"]', wait: 3000 },
-  { t: '7. 演示结束，关闭弹窗返回主看板', sel: '.sheet.open [data-close], [data-close]', wait: 1500 }
+  { t: '亮点1：5大品牌实时余量与实际到餐备用份数', sel: '#strip', fn: ()=>{}, wait: 2500 },
+  { t: '亮点2：一键筛出「需补餐券」异常部门', sel: '#chipVoucher', wait: 2300 },
+  { t: '切回全部20个部门，点击任一部门现场核对', sel: '.chip[data-f="all"]', wait: 1600 },
+  { t: '亮点3：手机点选登记取餐，超报当场拦截标红', sel: '#deptList .dcard, .drow, [data-dept]', wait: 2800 },
+  { t: '打开右上角「更多操作」菜单', sel: '#dClose', fn: (el)=>{ if(el) el.click(); setTimeout(()=>{ const m=document.getElementById('moreBtn'); if(m) m.click(); }, 400); }, wait: 2200 },
+  { t: '亮点4：一键「结束今日取餐」，少取部门自动转补券', sel: '.mrow[data-open="end-day"]', wait: 3000 },
+  { t: '演示完成，回到主看板可自由点按体验', sel: '.sheet.open [data-close], [data-close]', wait: 1200 }
 ];
   const btn = document.getElementById('at-btn');
   const txt = document.getElementById('at-txt');
   const stepEl = document.getElementById('at-step');
   const dot = document.getElementById('at-dot');
-  let playing = false, idx = 0, timer = null;
+  let playing = false, idx = 0, timer = null, lastHi = null, hasAutoPlayed = false;
+
+  function clearHi(){ if(lastHi){ lastHi.classList.remove('at-hi'); lastHi = null; } }
+  function safeScrollInside(el){
+    // 只在当前 iframe 内部滚动，绝不调用 scrollIntoView 避免拽动外层主页！
+    if(!el) return;
+    const r = el.getBoundingClientRect();
+    if(r.top < 20 || r.bottom > window.innerHeight - 60){
+      try{ window.scrollTo({ top: Math.max(0, window.scrollY + r.top - 70), behavior: 'smooth' }); }catch(e){}
+    }
+  }
 
   function pointAndRun(st){
+    clearHi();
     txt.textContent = st.t;
     stepEl.textContent = (idx + 1) + '/' + STEPS.length;
     const el = st.sel ? document.querySelector(st.sel) : null;
     if(el){
-      try{ el.scrollIntoView({ behavior:'smooth', block:'center' }); }catch(e){}
+      safeScrollInside(el);
+      lastHi = el; el.classList.add('at-hi');
       setTimeout(()=>{
         if(!playing) return;
         const r = el.getBoundingClientRect();
-        dot.style.left = (r.left + r.width/2) + 'px';
-        dot.style.top = (r.top + r.height/2) + 'px';
+        dot.style.left = Math.max(18, Math.min(window.innerWidth - 18, r.left + r.width/2)) + 'px';
+        dot.style.top = Math.max(18, Math.min(window.innerHeight - 54, r.top + r.height/2)) + 'px';
         dot.classList.add('on');
         setTimeout(()=>{
           if(!playing) return;
           dot.classList.add('tap');
           setTimeout(()=>dot.classList.remove('tap'), 260);
           try{ if(st.fn) st.fn(el); else el.click(); }catch(e){}
-        }, 480);
+        }, 450);
       }, 260);
     } else {
       dot.classList.remove('on');
@@ -5639,7 +5651,7 @@ table.p td:last-child{text-align:left;min-width:150px}
   function next(){
     if(!playing) return;
     if(idx >= STEPS.length){
-      stop('演示完成 · 可自由点按体验或重新播放');
+      stop('演示完成 · 现在可以直接点击体验', '↻ 重播');
       return;
     }
     const st = STEPS[idx];
@@ -5649,21 +5661,33 @@ table.p td:last-child{text-align:left;min-width:150px}
   }
 
   function start(){
-    playing = true; idx = 0;
-    btn.textContent = '⏸ 暂停演示';
+    if(playing) return;
+    playing = true; idx = 0; hasAutoPlayed = true;
+    btn.textContent = '⏸ 暂停';
     next();
   }
-  function stop(msg){
-    playing = false; clearTimeout(timer);
+  function stop(msg, btnLabel){
+    playing = false; clearTimeout(timer); clearHi();
     dot.classList.remove('on');
-    btn.textContent = '▶ 自动演示全部功能';
+    btn.textContent = btnLabel || '▶ 自动演示';
     if(msg) txt.textContent = msg;
     stepEl.textContent = '';
   }
-  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可手动体验') : start(); });
+
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可直接点击体验', '▶ 继续/重播') : start(); });
   document.addEventListener('pointerdown', (e)=>{
-    if(playing && !e.target.closest('#at-bar')) stop('已切回手动操作');
+    if(playing && !e.target.closest('#at-bar')) stop('已切回手动操作 · 自由点击体验', '↻ 重播');
   }, true);
+
+  // Listen for parent IntersectionObserver auto-trigger when HR scrolls here
+  window.addEventListener('message', (e)=>{
+    if(e.data && e.data.type === 'AUTO_TOUR_START' && !hasAutoPlayed && !playing){
+      setTimeout(start, 350);
+    }
+    if(e.data && e.data.type === 'AUTO_TOUR_STOP' && playing){
+      stop('已暂停', '▶ 自动演示');
+    }
+  });
 })();
 </script>
 <!-- AUTO_TOUR_END -->

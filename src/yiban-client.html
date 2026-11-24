@@ -8,7 +8,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{
   font-family:"Microsoft YaHei",-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
-  background:#F4F6F9;color:#333;padding:10px;font-size:13px;line-height:1.5;
+  background:#F4F6F9;color:#333;padding:8px 8px 60px;font-size:13px;line-height:1.5;overflow-x:hidden;
 }
 .win{
   max-width:560px;margin:0 auto;background:#fff;border-radius:15px;
@@ -294,50 +294,62 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
 
 <!-- AUTO_TOUR_START -->
 <style>
-#at-bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(20,20,19,0.92);color:#F7F6F2;padding:6px 10px 6px 8px;border-radius:999px;font:500 12px/1.3 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.28);max-width:94vw;backdrop-filter:blur(8px)}
-#at-btn{border:0;background:#fff;color:#141413;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex:none}
-#at-btn:active{transform:scale(.96)}
+#at-bar{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:99999;display:flex;align-items:center;gap:7px;background:rgba(20,20,19,0.92);color:#F7F6F2;padding:6px 10px 6px 7px;border-radius:999px;font:500 12px/1.3 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.3);max-width:94vw;backdrop-filter:blur(8px)}
+#at-btn{border:0;background:#fff;color:#141413;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap;flex:none}
 #at-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:56vw}
 #at-step{font-variant-numeric:tabular-nums;opacity:.65;font-size:11px;flex:none}
-#at-dot{position:fixed;z-index:9998;width:28px;height:28px;border-radius:50%;border:2.5px solid #18344E;background:rgba(24,52,78,0.18);pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.7);transition:left .45s cubic-bezier(.22,1,.36,1),top .45s cubic-bezier(.22,1,.36,1),opacity .2s,transform .2s}
+#at-dot{position:fixed;z-index:99998;width:28px;height:28px;border-radius:50%;border:2.5px solid #18344E;background:rgba(24,52,78,0.22);pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.7);transition:left .42s cubic-bezier(.22,1,.36,1),top .42s cubic-bezier(.22,1,.36,1),opacity .2s,transform .2s}
 #at-dot.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
-#at-dot.tap{transform:translate(-50%,-50%) scale(1.38);background:rgba(24,52,78,0.34)}
+#at-dot.tap{transform:translate(-50%,-50%) scale(1.42);background:rgba(24,52,78,0.4)}
+.at-hi{outline:2px solid #18344E !important;outline-offset:2px !important;transition:outline-color .2s}
 </style>
-<div id="at-bar"><button id="at-btn" type="button">▶ 自动演示全部功能</button><span id="at-txt">点击观看实操演示，随时可手动接管</span><span id="at-step"></span></div>
+<div id="at-bar"><button id="at-btn" type="button">▶ 自动演示</button><span id="at-txt">滑入自动播放重点功能，点击页面随时手动体验</span><span id="at-step"></span></div>
 <div id="at-dot"></div>
 <script>
 (function(){
   const STEPS = [
-  { t: '1. 查看飞书表格零成本一机一码授权状态', sel: '#btnAuth', wait: 2300 },
-  { t: '2. 关闭弹窗，点击「自动读取发布范围与版块」', sel: '#authModal .btn-ghost', fn: (el)=>{ el.click(); setTimeout(()=>{ document.getElementById('btnRead').click(); }, 350); }, wait: 2500 },
-  { t: '3. 打开「自定义词库」配置随机发帖与评论话术', sel: '#btnLexicon', wait: 2300 },
-  { t: '4. 保存词库后启动「自动发帖」，实时滚动进度与日志', sel: '#btnSaveLex', fn: (el)=>{ el.click(); setTimeout(()=>{ document.getElementById('btnPost').click(); }, 400); }, wait: 3200 },
-  { t: '5. 启动「自动评论 / 点赞」，防风控随机间隔执行', sel: '#btnComment', wait: 3000 }
+  { t: '亮点1：飞书表格零成本一机一码授权校验', sel: '#btnAuth', wait: 2400 },
+  { t: '亮点2：一键自动抓取账号下36个版块', sel: '#authModal .btn-ghost', fn: (el)=>{ el.click(); setTimeout(()=>{ document.getElementById('btnRead').click(); }, 350); }, wait: 2500 },
+  { t: '亮点3：自定义发帖/评论词库配置', sel: '#btnLexicon', wait: 2300 },
+  { t: '亮点4：一键自动发帖，实时滚动计数与运行日志', sel: '#btnSaveLex', fn: (el)=>{ el.click(); setTimeout(()=>{ document.getElementById('btnPost').click(); }, 400); }, wait: 3100 },
+  { t: '亮点5：一键自动评论点赞，随机间隔防风控', sel: '#btnComment', wait: 2800 }
 ];
   const btn = document.getElementById('at-btn');
   const txt = document.getElementById('at-txt');
   const stepEl = document.getElementById('at-step');
   const dot = document.getElementById('at-dot');
-  let playing = false, idx = 0, timer = null;
+  let playing = false, idx = 0, timer = null, lastHi = null, hasAutoPlayed = false;
+
+  function clearHi(){ if(lastHi){ lastHi.classList.remove('at-hi'); lastHi = null; } }
+  function safeScrollInside(el){
+    // 只在当前 iframe 内部滚动，绝不调用 scrollIntoView 避免拽动外层主页！
+    if(!el) return;
+    const r = el.getBoundingClientRect();
+    if(r.top < 20 || r.bottom > window.innerHeight - 60){
+      try{ window.scrollTo({ top: Math.max(0, window.scrollY + r.top - 70), behavior: 'smooth' }); }catch(e){}
+    }
+  }
 
   function pointAndRun(st){
+    clearHi();
     txt.textContent = st.t;
     stepEl.textContent = (idx + 1) + '/' + STEPS.length;
     const el = st.sel ? document.querySelector(st.sel) : null;
     if(el){
-      try{ el.scrollIntoView({ behavior:'smooth', block:'center' }); }catch(e){}
+      safeScrollInside(el);
+      lastHi = el; el.classList.add('at-hi');
       setTimeout(()=>{
         if(!playing) return;
         const r = el.getBoundingClientRect();
-        dot.style.left = (r.left + r.width/2) + 'px';
-        dot.style.top = (r.top + r.height/2) + 'px';
+        dot.style.left = Math.max(18, Math.min(window.innerWidth - 18, r.left + r.width/2)) + 'px';
+        dot.style.top = Math.max(18, Math.min(window.innerHeight - 54, r.top + r.height/2)) + 'px';
         dot.classList.add('on');
         setTimeout(()=>{
           if(!playing) return;
           dot.classList.add('tap');
           setTimeout(()=>dot.classList.remove('tap'), 260);
           try{ if(st.fn) st.fn(el); else el.click(); }catch(e){}
-        }, 480);
+        }, 450);
       }, 260);
     } else {
       dot.classList.remove('on');
@@ -348,7 +360,7 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   function next(){
     if(!playing) return;
     if(idx >= STEPS.length){
-      stop('演示完成 · 可自由点按体验或重新播放');
+      stop('演示完成 · 现在可以直接点击体验', '↻ 重播');
       return;
     }
     const st = STEPS[idx];
@@ -358,21 +370,33 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   }
 
   function start(){
-    playing = true; idx = 0;
-    btn.textContent = '⏸ 暂停演示';
+    if(playing) return;
+    playing = true; idx = 0; hasAutoPlayed = true;
+    btn.textContent = '⏸ 暂停';
     next();
   }
-  function stop(msg){
-    playing = false; clearTimeout(timer);
+  function stop(msg, btnLabel){
+    playing = false; clearTimeout(timer); clearHi();
     dot.classList.remove('on');
-    btn.textContent = '▶ 自动演示全部功能';
+    btn.textContent = btnLabel || '▶ 自动演示';
     if(msg) txt.textContent = msg;
     stepEl.textContent = '';
   }
-  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可手动体验') : start(); });
+
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可直接点击体验', '▶ 继续/重播') : start(); });
   document.addEventListener('pointerdown', (e)=>{
-    if(playing && !e.target.closest('#at-bar')) stop('已切回手动操作');
+    if(playing && !e.target.closest('#at-bar')) stop('已切回手动操作 · 自由点击体验', '↻ 重播');
   }, true);
+
+  // Listen for parent IntersectionObserver auto-trigger when HR scrolls here
+  window.addEventListener('message', (e)=>{
+    if(e.data && e.data.type === 'AUTO_TOUR_START' && !hasAutoPlayed && !playing){
+      setTimeout(start, 350);
+    }
+    if(e.data && e.data.type === 'AUTO_TOUR_STOP' && playing){
+      stop('已暂停', '▶ 自动演示');
+    }
+  });
 })();
 </script>
 <!-- AUTO_TOUR_END -->
