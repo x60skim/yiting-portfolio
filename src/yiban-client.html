@@ -295,66 +295,64 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
 <!-- AUTO_TOUR_START -->
 <style>
 #at-banner{
-  position:fixed;top:8px;left:50%;transform:translateX(-50%) translateY(-16px);opacity:0;
+  position:fixed;top:8px;left:50%;transform:translate3d(-50%,-14px,0);opacity:0;
   z-index:99999;width:min(94vw,430px);
-  background:rgba(20,20,19,0.90);color:#F7F6F2;
+  background:rgba(20,20,19,0.92);color:#F7F6F2;
   border:1px solid rgba(255,255,255,0.12);border-radius:12px;
-  box-shadow:0 12px 32px rgba(0,0,0,0.28);
-  backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
+  box-shadow:0 10px 26px rgba(0,0,0,0.24);
   overflow:hidden;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-  transition:transform .38s cubic-bezier(.22,1,.36,1),opacity .32s ease;
-  pointer-events:auto;
+  transition:transform .24s cubic-bezier(.22,1,.36,1),opacity .2s ease;
+  will-change:transform,opacity;pointer-events:auto;
 }
-#at-banner.show{transform:translateX(-50%) translateY(0);opacity:1}
+#at-banner.show{transform:translate3d(-50%,0,0);opacity:1}
 #at-banner.idle{width:auto;max-width:92vw;border-radius:999px}
 #at-banner.idle .at-sub,#at-banner.idle .at-prog{display:none}
-#at-banner.idle .at-row{padding:6px 8px 6px 12px}
-.at-row{display:flex;align-items:center;gap:10px;padding:10px 10px 9px 12px}
+#at-banner.idle .at-row{padding:5px 8px 5px 10px}
+.at-row{display:flex;align-items:center;gap:9px;padding:9px 10px 8px 11px}
 .at-badge{
   font:600 11px/1 ui-monospace,"SF Mono",Consolas,monospace;
   color:#CBD5E1;background:rgba(255,255,255,0.10);
   padding:4px 7px;border-radius:6px;white-space:nowrap;flex:none;
 }
-.at-copy{flex:1;min-width:0;animation:atSlideIn .34s cubic-bezier(.22,1,.36,1)}
-@keyframes atSlideIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.at-copy{flex:1;min-width:0;animation:atSlideIn .22s cubic-bezier(.22,1,.36,1)}
+@keyframes atSlideIn{from{opacity:0;transform:translate3d(0,5px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
 .at-title{font-size:13px;font-weight:600;color:#FFFFFF;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.at-sub{font-size:11.5px;color:rgba(247,246,242,0.72);line-height:1.35;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.at-sub{font-size:11.5px;color:rgba(247,246,242,0.74);line-height:1.35;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #at-btn{
   border:1px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.12);color:#fff;
   border-radius:8px;padding:5px 10px;font-size:11.5px;font-weight:600;cursor:pointer;
-  white-space:nowrap;flex:none;transition:background .16s;
+  white-space:nowrap;flex:none;
 }
-#at-btn:hover{background:rgba(255,255,255,0.22)}
-.at-prog{height:2.5px;background:rgba(255,255,255,0.12);width:100%}
-.at-prog-fill{height:100%;width:0%;background:linear-gradient(90deg,#60A5FA,#E2E8F0);transition:width linear}
+.at-prog{height:2px;background:rgba(255,255,255,0.12);width:100%}
+.at-prog-fill{height:100%;width:0%;background:linear-gradient(90deg,#60A5FA,#E2E8F0);will-change:width}
 
-/* Architectural Corner Bracket Focus Frame (replaces ugly circle!) */
+/* GPU-accelerated Corner Focus Frame (zero layout-reflow lag!) */
 #at-focus{
-  position:fixed;z-index:99997;pointer-events:none;opacity:0;border-radius:10px;
+  position:fixed;top:0;left:0;z-index:99997;pointer-events:none;opacity:0;border-radius:10px;
   background:rgba(24,52,78,0.08);
-  box-shadow:0 0 0 1px rgba(24,52,78,0.34),0 8px 24px rgba(24,52,78,0.14);
-  transition:left .44s cubic-bezier(.22,1,.36,1),top .44s cubic-bezier(.22,1,.36,1),width .44s cubic-bezier(.22,1,.36,1),height .44s cubic-bezier(.22,1,.36,1),opacity .22s ease,transform .2s ease;
+  box-shadow:0 0 0 1px rgba(24,52,78,0.38);
+  transition:transform .22s cubic-bezier(.22,1,.36,1),width .22s cubic-bezier(.22,1,.36,1),height .22s cubic-bezier(.22,1,.36,1),opacity .16s ease;
+  will-change:transform,opacity;
 }
 #at-focus.on{opacity:1}
-#at-focus.press{background:rgba(24,52,78,0.18);box-shadow:0 0 0 2px #18344E,0 0 0 6px rgba(24,52,78,0.16)}
+#at-focus.press{background:rgba(24,52,78,0.18);box-shadow:0 0 0 2px #18344E}
 #at-focus i{position:absolute;width:10px;height:10px;border:2.2px solid #18344E}
 #at-focus .tl{top:-2px;left:-2px;border-right:0;border-bottom:0;border-radius:4px 0 0 0}
 #at-focus .tr{top:-2px;right:-2px;border-left:0;border-bottom:0;border-radius:0 4px 0 0}
 #at-focus .bl{bottom:-2px;left:-2px;border-right:0;border-top:0;border-radius:0 0 0 4px}
 #at-focus .br{bottom:-2px;right:-2px;border-left:0;border-top:0;border-radius:0 0 4px 0}
 
-/* Crisp Minimalist Vector Pointer Cursor */
+/* GPU-accelerated Vector Cursor (pure translate3d, 60fps on mobile!) */
 #at-cursor{
-  position:fixed;z-index:99998;width:24px;height:24px;pointer-events:none;opacity:0;
-  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.32));
-  transition:left .44s cubic-bezier(.22,1,.36,1),top .44s cubic-bezier(.22,1,.36,1),opacity .2s ease,transform .16s cubic-bezier(.22,1,.36,1);
+  position:fixed;top:0;left:0;z-index:99998;width:22px;height:22px;pointer-events:none;opacity:0;
+  transition:transform .22s cubic-bezier(.22,1,.36,1),opacity .16s ease;
+  will-change:transform,opacity;
 }
-#at-cursor.on{opacity:1;transform:translate(-3px,-2px) scale(1)}
-#at-cursor.press{transform:translate(-3px,-2px) scale(0.82)}
+#at-cursor.on{opacity:1}
 </style>
 <div id="at-banner" class="idle">
   <div class="at-row">
-    <span class="at-badge" id="at-step">DEMO</span>
+    <span class="at-badge" id="at-step"></span>
     <div class="at-copy" id="at-copy">
       <div class="at-title" id="at-title"></div>
       <div class="at-sub" id="at-sub"></div>
@@ -365,17 +363,17 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
 </div>
 <div id="at-focus"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
 <svg id="at-cursor" viewBox="0 0 24 24" fill="none">
-  <path d="M5 3.5L19.5 11.2L12.6 13.1L9.6 19.6L5 3.5Z" fill="#141413" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M5 3.5L19.5 11.2L12.6 13.1L9.6 19.6L5 3.5Z" fill="#141413" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"/>
 </svg>
 <script>
 (function(){
   const STEPS = [
-  { t: '飞书表格零成本「一机一码」授权', s: '不买云服务器，直接联网校验硬件码与卡密有效期', sel: '#btnAuth', wait: 2600 },
-  { t: '一键自动读取账号下 36 个版块', s: '省去手动找版块链接，自带防封号防屏蔽提示', sel: '#authModal .btn-ghost', fn: (el)=>{ el.click(); setTimeout(()=>{ document.getElementById('btnRead').click(); }, 320); }, wait: 2700 },
-  { t: '打开「自定义词库」随机组合话术', s: '配置个性化发帖与评论内容，自动同步至浏览器', sel: '#btnLexicon', wait: 2500 },
-  { t: '点击「检查云端更新」实时核对版本', s: '新版发布自动弹窗提醒客户并一键复制提取码', sel: '#btnSaveLex', fn: (el)=>{ el.click(); setTimeout(()=>{ document.getElementById('btnUpdate').click(); }, 320); }, wait: 2500 },
-  { t: '启动「自动发帖」实时滚动进度日志', s: '按配置上限自动发帖并累计网薪与经验值', sel: '#btnPost', wait: 3100 },
-  { t: '启动「自动评论 / 点赞」防风控执行', s: '随机间隔防风控自动执行', sel: '#btnComment', wait: 2900 }
+  { t: '飞书表格零成本「一机一码」授权', s: '不买云服务器，直接联网校验硬件码与卡密有效期', sel: '#btnAuth', wait: 2200 },
+  { pre: ()=>{ if(window.closeModals) closeModals(); }, t: '一键自动读取账号下 36 个版块', s: '省去手动找版块链接，自带防封号防屏蔽提示', sel: '#btnRead', wait: 2300 },
+  { t: '打开「自定义词库」随机组合话术', s: '配置个性化发帖与评论内容，自动同步至浏览器', sel: '#btnLexicon', wait: 2200 },
+  { pre: ()=>{ const s=document.getElementById('btnSaveLex'); if(s) s.click(); }, t: '「检查云端更新」实时核对飞书版本表', s: '新版发布自动弹窗提醒并一键复制提取码', sel: '#btnUpdate', wait: 2100 },
+  { t: '启动「自动发帖」实时滚动进度日志', s: '按配置上限自动发帖并累计网薪与经验值', sel: '#btnPost', wait: 2700 },
+  { t: '启动「自动评论 / 点赞」防风控执行', s: '随机间隔自动执行', sel: '#btnComment', wait: 2500 }
 ];
   const banner = document.getElementById('at-banner');
   const btn = document.getElementById('at-btn');
@@ -402,79 +400,88 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   function safeScrollInside(el){
     if(!el) return;
     const r = el.getBoundingClientRect();
-    if(r.top < 78 || r.bottom > window.innerHeight - 36){
-      try{
-        const targetY = Math.max(0, window.scrollY + r.top - Math.max(92, window.innerHeight * 0.30));
-        window.scrollTo({ top: targetY, behavior: 'auto' });
-      }catch(e){}
+    if(r.top < 74 || r.bottom > window.innerHeight - 28){
+      try{ window.scrollTo(0, Math.max(0, window.scrollY + r.top - Math.max(86, window.innerHeight * 0.28))); }catch(e){}
     }
   }
 
   function updateBanner(stepNum, title, sub, waitMs){
-    banner.classList.remove('idle'); stepEl.style.display = '';
+    banner.classList.remove('idle');
     banner.classList.add('show');
+    stepEl.style.display = '';
     stepEl.textContent = String(stepNum).padStart(2,'0') + ' / ' + String(STEPS.length).padStart(2,'0');
     copyEl.style.animation = 'none';
     void copyEl.offsetWidth;
     copyEl.style.animation = '';
-    titleEl.style.display = ''; titleEl.textContent = title;
+    titleEl.style.display = '';
+    titleEl.textContent = title;
     subEl.textContent = sub || '';
     fillEl.style.transition = 'none';
     fillEl.style.width = '0%';
     requestAnimationFrame(()=>{
-      fillEl.style.transition = 'width ' + (waitMs || 2600) + 'ms linear';
+      fillEl.style.transition = 'width ' + (waitMs || 2200) + 'ms linear';
       fillEl.style.width = '100%';
     });
   }
 
-  function runStep(st){
-    const wait = st.wait || 2600;
-    updateBanner(idx + 1, st.t, st.s, wait);
-    const el = pickVisible(st.sel);
-    if(el){
-      safeScrollInside(el);
-      requestAnimationFrame(()=>{
-        if(!playing) return;
-        const r = el.getBoundingClientRect();
-        const pad = 4;
-        focus.style.left = Math.max(4, r.left - pad) + 'px';
-        focus.style.top = Math.max(66, r.top - pad) + 'px';
-        focus.style.width = Math.min(window.innerWidth - 8, r.width + pad*2) + 'px';
-        focus.style.height = Math.min(window.innerHeight - 76, r.height + pad*2) + 'px';
-        focus.classList.add('on');
-        cursor.style.left = Math.max(14, Math.min(window.innerWidth - 24, r.left + r.width * 0.62)) + 'px';
-        cursor.style.top = Math.max(72, Math.min(window.innerHeight - 24, r.top + r.height * 0.56)) + 'px';
-        cursor.classList.add('on');
+  function placeOverlay(el){
+    const r = el.getBoundingClientRect();
+    const pad = 4;
+    const fx = Math.max(4, r.left - pad);
+    const fy = Math.max(64, r.top - pad);
+    const fw = Math.min(window.innerWidth - 8, r.width + pad*2);
+    const fh = Math.min(window.innerHeight - 72, r.height + pad*2);
+    focus.style.width = fw + 'px';
+    focus.style.height = fh + 'px';
+    focus.style.transform = `translate3d(${fx}px,${fy}px,0)`;
+    focus.classList.add('on');
+    const cx = Math.max(12, Math.min(window.innerWidth - 22, r.left + r.width * 0.60));
+    const cy = Math.max(70, Math.min(window.innerHeight - 22, r.top + r.height * 0.54));
+    cursor.dataset.cx = cx; cursor.dataset.cy = cy;
+    cursor.style.transform = `translate3d(${cx}px,${cy}px,0) scale(1)`;
+    cursor.classList.add('on');
+  }
 
+  function runStep(st){
+    const wait = st.wait || 2200;
+    if(st.pre){ try{ st.pre(); }catch(e){} }
+    updateBanner(idx + 1, st.t, st.s, wait);
+    const runTarget = ()=>{
+      if(!playing) return;
+      const el = pickVisible(st.sel);
+      if(el){
+        safeScrollInside(el);
+        placeOverlay(el);
         setTimeout(()=>{
           if(!playing) return;
-          if(st.noClick){
-            try{ if(st.fn) st.fn(el); }catch(e){}
-            return;
-          }
+          if(st.noClick){ try{ if(st.fn) st.fn(el); }catch(e){} return; }
           focus.classList.add('press');
-          cursor.classList.add('press');
-          setTimeout(()=>{ focus.classList.remove('press'); cursor.classList.remove('press'); }, 240);
+          cursor.style.transform = `translate3d(${cursor.dataset.cx}px,${cursor.dataset.cy}px,0) scale(0.82)`;
+          setTimeout(()=>{
+            focus.classList.remove('press');
+            cursor.style.transform = `translate3d(${cursor.dataset.cx}px,${cursor.dataset.cy}px,0) scale(1)`;
+          }, 170);
           try{ if(st.fn) st.fn(el); else el.click(); }catch(e){}
-        }, 540);
-      });
-    } else {
-      focus.classList.remove('on');
-      cursor.classList.remove('on');
-      try{ if(st.fn) st.fn(null); }catch(e){}
-    }
+        }, 260);
+      } else {
+        focus.classList.remove('on');
+        cursor.classList.remove('on');
+        try{ if(st.fn) st.fn(null); }catch(e){}
+      }
+    };
+    if(st.pre) setTimeout(runTarget, 90); else runTarget();
   }
 
   function next(){
     if(!playing) return;
     if(idx >= STEPS.length){
-      stop('', '↻ 重播');
+      stop('↻ 重播');
       return;
     }
     const st = STEPS[idx];
     runStep(st);
     idx++;
-    timer = setTimeout(next, st.wait || 2600);
+    timer = setTimeout(next, st.wait || 2200);
   }
 
   function start(){
@@ -484,23 +491,23 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
     next();
   }
 
-  function stop(msg, label){
+  function stop(label){
     playing = false; clearTimeout(timer);
     focus.classList.remove('on','press');
-    cursor.classList.remove('on','press');
-    banner.classList.add('idle');
+    cursor.classList.remove('on');
+    banner.classList.add('idle','show');
     stepEl.style.display = 'none';
-    titleEl.textContent = msg || ''; titleEl.style.display = msg ? '' : 'none';
-    btn.textContent = label || '▶ 重播';
+    titleEl.style.display = 'none';
+    btn.textContent = label || '↻ 重播';
   }
 
-  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('', '▶ 重播') : start(); });
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('▶ 重播') : start(); });
   document.addEventListener('pointerdown', (e)=>{
-    if(playing && !e.target.closest('#at-banner')) stop('', '↻ 重播');
+    if(playing && !e.target.closest('#at-banner')) stop('↻ 重播');
   }, true);
   window.addEventListener('message', (e)=>{
-    if(e.data && e.data.type === 'AUTO_TOUR_START' && !hasAutoPlayed && !playing) setTimeout(start, 350);
-    if(e.data && e.data.type === 'AUTO_TOUR_STOP' && playing) stop('已暂停', '▶ 重播');
+    if(e.data && e.data.type === 'AUTO_TOUR_START' && !hasAutoPlayed && !playing) setTimeout(start, 80);
+    if(e.data && e.data.type === 'AUTO_TOUR_STOP' && playing) stop('▶ 重播');
   });
 })();
 </script>

@@ -291,14 +291,14 @@ footer strong{color:var(--ink);font-weight:600}
     <header class="work-head">
       <div class="work-kicker"><span class="work-no mono">01</span><span class="num">2026.10 — 2026.11</span><span>广东广交会新大地会展服务有限公司 · 获评优秀实习生</span></div>
       <h2>广交会手机端取餐核对工具</h2>
-      <p class="work-summary">用 AI 自研手机核对网页替代纸笔抄录，10 部手机现场实时协作，把每天几十分钟的核对压到几分钟，高峰期错漏当场拦下。</p>
+      <p class="work-summary">用 AI 自研手机核对网页替代纸笔抄录，10 部手机现场实时协作，把每天 50 分钟的核对缩短至 5 分钟，高峰期错漏当场拦下。</p>
     </header>
 
     <div class="metrics cols-5 num">
       <div class="m-cell"><b>10 部</b><span>现场同时在线手机</span></div>
       <div class="m-cell"><b>33 天 / 95 场</b><span>完整展期真实运行</span></div>
       <div class="m-cell"><b>70,042 份</b><span>精准核对餐品总数</span></div>
-      <div class="m-cell"><b>几分钟</b><span>替代原几十分钟对账</span></div>
+      <div class="m-cell"><b>50 → 5 分钟</b><span>每日核对耗时压缩</span></div>
       <div class="m-cell"><b>0 错漏</b><span>55 笔补餐券闭环</span></div>
     </div>
 
@@ -311,10 +311,10 @@ footer strong{color:var(--ink);font-weight:600}
     <div class="exhibit">
       <div class="exhibit-bar">
         <div class="exhibit-label">广交会取餐核对台</div>
-        <a class="exhibit-link" href="./src/reconcile.html?v=11" target="_blank" rel="noopener">全屏打开 ↗</a>
+        <a class="exhibit-link" href="./src/reconcile.html?v=12" target="_blank" rel="noopener">全屏打开 ↗</a>
       </div>
       <div class="stage-frame mobile-view">
-        <iframe src="./src/reconcile.html?v=11" title="广交会取餐核对台"></iframe>
+        <iframe src="./src/reconcile.html?v=12" title="广交会取餐核对台"></iframe>
       </div>
     </div>
   </article>
@@ -349,17 +349,17 @@ footer strong{color:var(--ink);font-weight:600}
           <button class="etab" data-group="p2" data-tab="p2-bill">自动生成账单图</button>
           <button class="etab" data-group="p2" data-tab="p2-admin">真实后台截图</button>
         </div>
-        <a class="exhibit-link" id="p2-open" href="./src/zhxy-order.html?v=11" target="_blank" rel="noopener">全屏打开 ↗</a>
+        <a class="exhibit-link" id="p2-open" href="./src/zhxy-order.html?v=12" target="_blank" rel="noopener">全屏打开 ↗</a>
       </div>
 
       <div id="p2-web">
         <div class="stage-frame mobile-view">
-          <iframe src="./src/zhxy-order.html?v=11" title="智慧校园前端自助下单网站"></iframe>
+          <iframe src="./src/zhxy-order.html?v=12" title="智慧校园前端自助下单网站"></iframe>
         </div>
       </div>
       <div id="p2-console" style="display:none">
         <div class="stage-frame desktop-view">
-          <iframe src="./src/zhxy-console.html?v=11" title="智慧校园 1:1 真实后端主控制台"></iframe>
+          <iframe src="./src/zhxy-console.html?v=12" title="智慧校园 1:1 真实后端主控制台"></iframe>
         </div>
       </div>
       <div id="p2-bill" style="display:none">
@@ -401,10 +401,10 @@ footer strong{color:var(--ink);font-weight:600}
     <div class="exhibit">
       <div class="exhibit-bar">
         <div class="exhibit-label">易班自动化桌面软件</div>
-        <a class="exhibit-link" href="./src/yiban-client.html?v=11" target="_blank" rel="noopener">新窗口打开 ↗</a>
+        <a class="exhibit-link" href="./src/yiban-client.html?v=12" target="_blank" rel="noopener">新窗口打开 ↗</a>
       </div>
       <div class="stage-frame desktop-view">
-        <iframe src="./src/yiban-client.html?v=11" title="易班自动化桌面软件"></iframe>
+        <iframe src="./src/yiban-client.html?v=12" title="易班自动化桌面软件"></iframe>
       </div>
     </div>
   </article>
@@ -542,8 +542,8 @@ footer strong{color:var(--ink);font-weight:600}
   }));
 
   const openLinks = {
-    'p2-web': './src/zhxy-order.html?v=11',
-    'p2-console': './src/zhxy-console.html?v=11',
+    'p2-web': './src/zhxy-order.html?v=12',
+    'p2-console': './src/zhxy-console.html?v=12',
     'p2-bill': './assets/bill-sample.jpg',
     'p2-admin': './assets/order-admin-blur.jpg'
   };
@@ -560,7 +560,7 @@ footer strong{color:var(--ink);font-weight:600}
         p.style.display = tid === id ? '' : 'none';
         const fr = p.querySelector('iframe');
         if(fr){
-          if(tid === id) setTimeout(()=>triggerIframeTour(fr), 220);
+          if(tid === id) setTimeout(()=>triggerIframeTour(fr), 40);
           else try{ fr.contentWindow.postMessage({ type: 'AUTO_TOUR_STOP' }, '*'); }catch(e){}
         }
       }
