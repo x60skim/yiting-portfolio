@@ -3,533 +3,738 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>赖怡婷 Yiting Lai｜国际商务 × AI 业务落地与商业交付</title>
-<meta name="description" content="赖怡婷个人作品集：双线交付 285+ 单 · 纠纷率 0.35% · AI 工具纯利 2,000+ 元 · 广交会优秀实习生">
-<meta name="theme-color" content="#f5f5f7">
+<title>赖怡婷 Yiting Lai — 国际商务 × AI 业务落地与商业交付</title>
+<meta name="description" content="赖怡婷个人作品集：广交会 70,042 份餐品实时核对系统、智慧校园 3.0 代预约前后端系统、易班零服务器商业化桌面客户端、独立电商与 G2G 跨境履约。">
+<meta name="theme-color" content="#F7F6F2">
 <style>
 :root{
-  --bg:#f5f5f7;--surface:#fff;--surface-2:#f9fafb;
-  --line:rgba(15,23,42,0.08);--line-strong:rgba(15,23,42,0.14);
-  --ink:#111827;--ink-2:#4b5563;--ink-3:#6b7280;
-  --accent:#1b365d;--accent-hover:#122644;--accent-soft:rgba(27,54,93,0.07);
-  --ok:#15803d;--ok-soft:#ecfdf5;--ok-border:rgba(21,128,61,0.18);
-  --shadow-sm:0 1px 2px rgba(15,23,42,0.04);
-  --shadow-md:0 2px 6px rgba(15,23,42,0.04),0 10px 28px rgba(15,23,42,0.05);
-  --shadow-lg:0 18px 44px rgba(15,23,42,0.14);
+  --paper:#F7F6F2;
+  --paper-deep:#EFEEE9;
+  --surface:#FFFFFF;
+  --ink:#141413;
+  --ink-2:#4A4945;
+  --ink-3:#82807A;
+  --rule:rgba(20,20,19,0.11);
+  --rule-strong:rgba(20,20,19,0.22);
+  --accent:#18344E;
+  --accent-hover:#10253A;
   --ease:cubic-bezier(0.22,1,0.36,1);
-  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
-body{font:400 14.5px/1.6 var(--font);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:clip;padding-top:92px;padding-bottom:env(safe-area-inset-bottom)}
-a{color:var(--accent);text-decoration:none}
+body{
+  font:400 15px/1.7 var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:clip;
+  padding-top:92px;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 img{display:block;max-width:100%}
 .num{font-variant-numeric:tabular-nums}
-.wrap{max-width:1040px;margin:0 auto;padding:0 12px}
-section,article.case{scroll-margin-top:98px}
+.mono{font-family:var(--mono)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+section,article.work{scroll-margin-top:102px}
 
-/* Topbar + Prominent Index (Always Fixed) */
+/* ========== Fixed Editorial Topbar ========== */
 .topbar{
-  position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.96);
-  backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
-  border-bottom:1px solid var(--line-strong);box-shadow:0 2px 10px rgba(15,23,42,0.06);
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(247,246,242,0.94);
+  backdrop-filter:saturate(160%) blur(14px);
+  -webkit-backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid var(--rule);
   padding-top:env(safe-area-inset-top);
 }
-.topbar-in{max-width:1040px;margin:0 auto;padding:8px 12px 0;display:flex;flex-direction:column;gap:8px}
-.topbar-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;color:var(--ink);white-space:nowrap}
-.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.nav-cta{display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;white-space:nowrap}
+.topbar-in{
+  max-width:1080px;margin:0 auto;padding:10px 16px 0;
+  display:flex;flex-direction:column;gap:8px;
+}
+.topbar-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.brand strong{font-size:15px;font-weight:600;letter-spacing:0.01em}
+.brand span{font-size:12.5px;color:var(--ink-3)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12.5px;font-weight:500;color:var(--ink);
+  padding:5px 12px;border:1px solid var(--rule-strong);border-radius:6px;
+  background:var(--surface);white-space:nowrap;
+  transition:border-color .16s var(--ease),background .16s var(--ease);
+}
+.nav-cta:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+
 .nav-links{
-  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 0 9px;
+  display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;
   -webkit-overflow-scrolling:touch;
 }
 .nav-links::-webkit-scrollbar{display:none}
 .nav-links a{
-  flex:none;padding:6px 11px;border-radius:999px;font-size:12.5px;font-weight:600;
-  color:var(--ink-2);background:var(--bg);border:1px solid var(--line);white-space:nowrap;
-  transition:all .16s var(--ease);
+  flex:none;padding:4px 0 10px;font-size:13px;font-weight:500;
+  color:var(--ink-3);white-space:nowrap;position:relative;
+  transition:color .16s var(--ease);
 }
-.nav-links a:hover{color:var(--accent);border-color:rgba(27,54,93,0.3)}
-.nav-links a.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(27,54,93,0.2)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--ink)}
+.nav-links a.active::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--accent);
+}
 
-/* Quick Index Grid in Hero */
-.quick-idx{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
-.quick-idx-lbl{font-size:11.5px;font-weight:700;color:var(--ink-3);margin-bottom:8px;letter-spacing:.04em}
-.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
-.qitem{
-  display:flex;align-items:center;justify-content:space-between;gap:6px;
-  padding:9px 10px;border-radius:11px;background:var(--surface-2);
-  border:1px solid var(--line-strong);color:var(--ink);font-size:12.5px;font-weight:700;
-  transition:all .16s var(--ease);
+/* ========== Hero Cover ========== */
+.hero{padding:28px 0 36px;border-bottom:1px solid var(--rule)}
+.hero-meta{
+  font-size:12.5px;color:var(--ink-3);letter-spacing:0.02em;
+  display:flex;flex-wrap:wrap;gap:4px 14px;margin-bottom:16px;
 }
-.qitem:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.qitem span{display:flex;align-items:center;gap:6px;min-width:0}
-.qitem b{
-  width:20px;height:20px;border-radius:6px;background:var(--accent);color:#fff;
-  font-size:11px;display:inline-flex;align-items:center;justify-content:center;flex:none;
+.hero-title{
+  font-size:34px;font-weight:600;letter-spacing:-0.025em;line-height:1.15;
+  color:var(--ink);
 }
-.qitem em{font-style:normal;color:var(--ink-3);font-size:13px;flex:none}
-
-/* Hero */
-.hero{padding:16px 0 10px}
-.hero-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 14px;box-shadow:var(--shadow-md)}
-.status-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:11.5px;font-weight:600;margin-bottom:10px}
-.status-pill i{width:6px;height:6px;border-radius:50%;background:#16a34a}
-.hero h1{font-size:26px;font-weight:800;letter-spacing:-0.02em;line-height:1.15}
-.hero h1 span{font-size:15px;font-weight:500;color:var(--ink-3);margin-left:8px}
-.hero-role{font-size:15.5px;font-weight:700;color:var(--accent);margin-top:6px}
-.hero-sub{font-size:13px;color:var(--ink-2);margin-top:4px}
-.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-.hero-actions .btn.pri{grid-column:1 / -1}
+.hero-title span{
+  display:inline-block;font-size:18px;font-weight:400;color:var(--ink-3);
+  margin-left:12px;letter-spacing:0;
+}
+.hero-role{
+  margin-top:14px;font-size:17px;font-weight:500;color:var(--accent);line-height:1.45;
+}
+.hero-lead{
+  margin-top:10px;max-width:660px;font-size:15px;color:var(--ink-2);line-height:1.75;
+}
+.hero-actions{
+  margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;
+}
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  min-height:42px;padding:0 14px;border-radius:11px;font-size:13.5px;font-weight:600;
-  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:42px;padding:0 16px;border-radius:6px;font-size:13.5px;font-weight:500;
+  border:1px solid var(--rule-strong);background:var(--surface);color:var(--ink);
   transition:all .16s var(--ease);
 }
-.btn:hover{background:var(--surface-2)}
-.btn:active{transform:scale(.98)}
+.btn:hover{border-color:var(--ink)}
+.btn:active{transform:translateY(1px)}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.pri:hover{background:var(--accent-hover)}
-.btn.sm{min-height:32px;padding:0 10px;font-size:12px;border-radius:8px}
-.btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.contact-line{margin-top:10px;font-size:12px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 12px}
+.btn.pri:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.btn.quiet{background:transparent;border-color:var(--rule-strong)}
+.btn.quiet:hover{background:var(--surface)}
+.btn.sm{min-height:34px;padding:0 12px;font-size:12.5px}
+.btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
-.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
-.kpi{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 11px}
-.kpi .val{font-size:21px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);line-height:1.2}
-.kpi .val.accent{color:var(--accent)}
-.kpi .lbl{font-size:11.5px;color:var(--ink-2);margin-top:2px;line-height:1.35}
+/* Ruled KPI Ledger */
+.ledger{
+  margin-top:32px;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(2,1fr);
+}
+.ledger-item{
+  padding:18px 12px 18px 0;border-bottom:1px solid var(--rule);
+}
+.ledger-item:nth-child(2n){padding-left:16px;padding-right:0;border-left:1px solid var(--rule)}
+.ledger-val{
+  font-size:26px;font-weight:500;letter-spacing:-0.02em;line-height:1.15;color:var(--ink);
+}
+.ledger-val.accent{color:var(--accent)}
+.ledger-lbl{margin-top:5px;font-size:12.5px;color:var(--ink-2)}
+.ledger-sub{margin-top:2px;font-size:11.5px;color:var(--ink-3)}
 
-/* Sections */
-section{padding:18px 0 4px}
-.sec-head{margin-bottom:12px}
-.sec-head h2{font-size:18.5px;font-weight:800;letter-spacing:-0.015em}
-.sec-head p{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+/* Monograph Table of Contents */
+.toc{margin-top:28px}
+.toc-head{font-size:12px;color:var(--ink-3);letter-spacing:0.04em;margin-bottom:10px}
+.toc-list{border-top:1px solid var(--rule)}
+.toc-row{
+  display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--rule);
+  transition:color .16s var(--ease);
+}
+.toc-row:hover .toc-name{color:var(--accent)}
+.toc-row:hover .toc-arrow{transform:translateX(3px);color:var(--accent)}
+.toc-idx{font-size:12px;color:var(--ink-3)}
+.toc-name{font-size:14.5px;font-weight:500;color:var(--ink);transition:color .16s var(--ease)}
+.toc-stat{display:none;font-size:12.5px;color:var(--ink-3);text-align:right}
+.toc-arrow{font-size:13px;color:var(--ink-3);transition:transform .16s var(--ease),color .16s var(--ease)}
 
-/* Case Card */
-.case{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 12px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
-.case-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;margin-bottom:10px}
-.case h3{font-size:16.5px;font-weight:800;line-height:1.3}
-.case-meta{font-size:12px;color:var(--ink-3);margin-top:2px}
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chip{padding:3px 8px;border-radius:999px;font-size:11px;font-weight:600;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2)}
-.chip.ok{background:var(--ok-soft);border-color:var(--ok-border);color:var(--ok)}
+/* ========== Work Chapters ========== */
+.works{padding-top:12px}
+article.work{padding:44px 0 48px;border-bottom:1px solid var(--rule)}
+.work-head{display:grid;gap:10px;margin-bottom:24px}
+.work-kicker{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+  font-size:12.5px;color:var(--ink-3);
+}
+.work-no{color:var(--accent);font-weight:600}
+.work-head h2{
+  font-size:24px;font-weight:600;letter-spacing:-0.02em;line-height:1.28;color:var(--ink);
+}
+.work-summary{max-width:740px;font-size:15px;color:var(--ink-2);line-height:1.75}
 
-/* Concise 3-line summary */
-.tri{display:grid;grid-template-columns:1fr;gap:7px;margin-bottom:12px}
-.tri-box{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:13px;color:var(--ink-2)}
-.tri-box b{color:var(--accent);font-size:11.5px;margin-right:6px}
-.tri-box.res{background:var(--ok-soft);border-color:var(--ok-border);color:#14532d;font-weight:500}
-.tri-box.res b{color:var(--ok)}
+/* Real Data Metrics Bar */
+.metrics{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:14px 18px;
+  padding:16px 0;margin-bottom:24px;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.m-cell b{display:block;font-size:20px;font-weight:500;letter-spacing:-0.015em;color:var(--ink);line-height:1.2}
+.m-cell span{display:block;font-size:12px;color:var(--ink-3);margin-top:3px}
 
-/* Demo Stage */
-.stage{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 8px}
-.sub-stage{margin-top:10px}
-.stage-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:7px;margin-bottom:10px;padding:0 2px}
-.stage-title{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;line-height:1.35}
-.stage-title i{width:7px;height:7px;border-radius:50%;background:#16a34a;flex:none}
-.sub-badge{padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700;background:#111827;color:#fff;flex:none}
-.sub-badge.web{background:var(--accent)}
-.stage-tabs{display:flex;width:100%;background:rgba(15,23,42,0.06);padding:3px;border-radius:9px;gap:2px}
-.stage-tab{flex:1;text-align:center;padding:6px 6px;border-radius:7px;font-size:11.5px;font-weight:600;color:var(--ink-2);white-space:nowrap}
-.stage-tab.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,0.08)}
-.stage-split{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
+/* Editorial 2-Column Deep Analysis */
+.analysis{display:grid;grid-template-columns:1fr;gap:22px;margin-bottom:26px}
+.prose-block h3{
+  font-size:12.5px;font-weight:600;color:var(--ink-3);letter-spacing:0.03em;margin-bottom:8px;
+}
+.prose-block p{font-size:14.5px;color:var(--ink-2);line-height:1.75}
+.spec-list{border-top:1px solid var(--rule)}
+.spec-row{
+  display:grid;grid-template-columns:1fr;gap:3px;
+  padding:11px 0;border-bottom:1px solid var(--rule);
+}
+.spec-row dt{font-size:13.5px;font-weight:600;color:var(--ink)}
+.spec-row dd{font-size:13.5px;color:var(--ink-2);line-height:1.65}
 
-/* Frames: full-bleed clean on mobile, phone bezel on desktop */
-.phone{width:100%;max-width:100%;margin:0 auto;border-radius:12px;border:1px solid var(--line-strong);background:#fff;overflow:hidden;box-shadow:var(--shadow-sm)}
-.phone-notch{display:none}
-.phone iframe{display:block;width:100%;height:70vh;min-height:460px;max-height:580px;border:0;background:#fff}
-.phone.compact iframe{height:460px;min-height:420px}
-.desktop-frame{width:100%;border-radius:12px;border:1px solid var(--line-strong);background:#fff;overflow:hidden;box-shadow:var(--shadow-sm)}
-.desktop-bar{height:28px;background:#f1f5f9;border-bottom:1px solid var(--line);padding:0 10px;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-2);font-weight:600;overflow:hidden}
-.desktop-bar i{width:7px;height:7px;border-radius:50%;display:inline-block;flex:none}
-.desktop-bar .r{background:#ef4444}.desktop-bar .y{background:#f59e0b}.desktop-bar .g{background:#22c55e}
-.desktop-bar span{margin-left:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.desktop-frame iframe{display:block;width:100%;height:68vh;min-height:440px;max-height:540px;border:0;background:#fff}
-.desktop-frame.dark .desktop-bar{background:#111827;border-bottom-color:rgba(255,255,255,0.08);color:#cbd5e1}
-.desktop-frame.dark iframe{background:#0b0f19;height:66vh;min-height:420px;max-height:520px}
+/* ========== Interactive Exhibition Tray ========== */
+.exhibit{
+  background:var(--paper-deep);
+  border:1px solid var(--rule);
+  border-radius:10px;
+  padding:12px;
+}
+.exhibit-bar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  padding:2px 2px 12px;border-bottom:1px solid var(--rule);margin-bottom:12px;
+}
+.exhibit-label{font-size:12.5px;color:var(--ink-2);font-weight:500}
+.exhibit-tabs{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none}
+.exhibit-tabs::-webkit-scrollbar{display:none}
+.etab{
+  padding:4px 0 8px;font-size:13px;font-weight:500;color:var(--ink-3);
+  white-space:nowrap;position:relative;transition:color .16s var(--ease);
+}
+.etab:hover{color:var(--ink)}
+.etab.active{color:var(--ink)}
+.etab.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--accent)}
 
-/* Minimal highlights */
-.hl-list{display:grid;gap:8px;list-style:none}
-.hl{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:10px 12px;display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--ink-2)}
-.hl i{width:20px;height:20px;border-radius:6px;flex:none;background:var(--accent);color:#fff;font-style:normal;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
-.hl b{color:var(--ink);display:block;font-size:13px}
-.hl-row{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+.stage-frame{
+  background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
+  box-shadow:0 8px 28px rgba(20,20,19,0.06);
+}
+.stage-frame.mobile-view{max-width:100%;margin:0 auto}
+.stage-frame iframe{
+  display:block;width:100%;height:70vh;min-height:480px;max-height:620px;border:0;background:#fff;
+}
+.stage-frame.short iframe{height:480px;min-height:440px}
+.exhibit-foot{
+  margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:8px;font-size:12px;color:var(--ink-3);padding:0 2px;
+}
+.exhibit-link{
+  color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:4px;
+}
+.exhibit-link:hover{text-decoration:underline}
 
-/* Proof & Shots */
-.proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.proof-card,.shot-card{background:var(--surface);border:1px solid var(--line);border-radius:13px;overflow:hidden;cursor:zoom-in;transition:transform .18s var(--ease)}
-.proof-card:hover,.shot-card:hover{transform:translateY(-2px)}
-.proof-img{aspect-ratio:3/4;overflow:hidden;background:#eef0f4}
-.proof-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.proof-cap,.shot-cap{padding:8px 10px;font-size:12px;color:var(--ink-2);border-top:1px solid var(--line)}
-.proof-cap b,.shot-cap b{color:var(--ink);display:block;font-size:12.5px}
+/* ========== Proof Plates Gallery ========== */
+.plates{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
+.plate{
+  background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;
+  cursor:zoom-in;transition:border-color .18s var(--ease),transform .18s var(--ease);
+}
+.plate:hover{border-color:var(--rule-strong);transform:translateY(-2px)}
+.plate-img{aspect-ratio:3/4;overflow:hidden;background:var(--paper-deep)}
+.plate-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.plate-img.wide{aspect-ratio:16/10;background:#fff;display:flex;align-items:center;justify-content:center}
+.plate-img.wide img{object-fit:contain}
+.plate-cap{padding:10px 12px;border-top:1px solid var(--rule)}
+.plate-cap b{display:block;font-size:13px;font-weight:600;color:var(--ink)}
+.plate-cap span{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
+.plates-overseas{display:grid;grid-template-columns:1fr;gap:12px}
 
-/* Grids */
-.g3,.g2{display:grid;grid-template-columns:1fr;gap:10px}
-.mini-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow-sm)}
-.mini-card h3{font-size:15.5px;font-weight:700;margin-bottom:6px}
-.mini-card p{font-size:13.5px;color:var(--ink-2)}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.tags span{font-size:11.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:6px}
-.fit-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;border-top:3px solid var(--accent)}
-.fit-card.alt{border-top-color:#0f766e}
-.fit-card h3{font-size:16px;font-weight:800;margin-bottom:8px}
-.fit-card ul{list-style:none;display:grid;gap:6px;font-size:13.5px;color:var(--ink-2)}
-.fit-card li{padding-left:16px;position:relative}
-.fit-card li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
-.fit-card.alt li::before{color:#0f766e}
-.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.pill{font-size:12.5px;padding:4px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line)}
-.pill b{color:var(--accent);margin-left:3px}
-.pill.honor{background:#fffbeb;border-color:rgba(180,83,9,0.2);color:#92400e;font-weight:600}
+/* ========== Profile & Education Ledger ========== */
+.profile{padding:44px 0 48px}
+.profile-head{font-size:22px;font-weight:600;letter-spacing:-0.015em;margin-bottom:24px}
+.profile-grid{display:grid;grid-template-columns:1fr;gap:32px}
+.col-title{
+  font-size:12.5px;font-weight:600;color:var(--ink-3);letter-spacing:0.04em;
+  padding-bottom:10px;border-bottom:1px solid var(--rule);margin-bottom:14px;
+}
+.fit-block{padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--rule)}
+.fit-block:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.fit-block h3{font-size:15.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.fit-block p{font-size:14px;color:var(--ink-2);line-height:1.7}
+.edu-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px;margin-bottom:6px}
+.edu-row strong{font-size:15.5px;font-weight:600}
+.edu-row span{font-size:13px;color:var(--ink-3)}
+.edu-gpa{font-size:13.5px;color:var(--accent);font-weight:500;margin-bottom:14px}
+.edu-dl{border-top:1px solid var(--rule)}
+.edu-dl div{padding:10px 0;border-bottom:1px solid var(--rule);display:grid;gap:3px}
+.edu-dl dt{font-size:12px;color:var(--ink-3)}
+.edu-dl dd{font-size:13.5px;color:var(--ink-2);line-height:1.65}
 
-footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text-align:center;color:var(--ink-3);font-size:12.5px}
-#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111827;color:#fff;padding:8px 16px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:80}
-#toast.on{opacity:.96}
-#lb{position:fixed;inset:0;z-index:90;background:rgba(15,23,42,0.86);display:none;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}
+/* ========== Footer, Toast & Lightbox ========== */
+footer{
+  border-top:1px solid var(--rule);padding:26px 0 40px;
+  font-size:13px;color:var(--ink-3);
+}
+.foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+footer strong{color:var(--ink);font-weight:600}
+
+#toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(6px);
+  background:var(--ink);color:#fff;padding:9px 18px;border-radius:6px;
+  font-size:13px;opacity:0;pointer-events:none;transition:all .18s var(--ease);z-index:80;
+}
+#toast.on{opacity:.96;transform:translateX(-50%) translateY(0)}
+#lb{
+  position:fixed;inset:0;z-index:90;background:rgba(20,20,19,0.88);
+  display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out;
+}
 #lb.on{display:flex}
-#lb img{max-width:96vw;max-height:90vh;border-radius:10px}
+#lb img{max-width:96vw;max-height:90vh;border-radius:6px;box-shadow:0 24px 64px rgba(0,0,0,0.45)}
 
 @media(min-width:768px){
   body{padding-top:58px}
-  .wrap,.topbar-in{padding:0 24px}
-  section,article.case{scroll-margin-top:68px}
-  .topbar-in{flex-direction:row;align-items:center;justify-content:space-between;height:58px;padding:0 24px}
+  .wrap{padding:0 28px}
+  section,article.work{scroll-margin-top:68px}
+  .topbar-in{
+    flex-direction:row;align-items:center;justify-content:space-between;
+    height:58px;padding:0 28px;
+  }
   .topbar-row{display:contents}
-  .nav-links{padding:0;order:0}
-  .nav-cta{order:1;padding:6px 14px;font-size:12.5px}
-  .quick-grid{grid-template-columns:repeat(4,1fr)}
-  .hero{padding:22px 0 14px}
-  .hero-card{padding:28px 32px;border-radius:22px}
-  .hero h1{font-size:34px}
-  .hero-actions{display:flex;flex-wrap:wrap}
-  .kpi-grid{grid-template-columns:repeat(4,1fr);gap:10px}
-  .kpi .val{font-size:26px}
-  .case{padding:24px 26px;border-radius:20px}
-  .case h3{font-size:18px}
-  .tri{grid-template-columns:repeat(3,1fr)}
-  .stage{padding:18px;border-radius:16px}
-  .stage-tabs{width:auto}
-  .stage-tab{flex:none;padding:5px 11px;font-size:12px}
-  .stage-split{grid-template-columns:400px 1fr;gap:20px}
-  .phone{max-width:400px;border-radius:28px;border:7px solid #18181b;box-shadow:var(--shadow-lg)}
-  .phone-notch{height:16px;background:#18181b;display:flex;align-items:center;justify-content:center}
-  .phone-notch span{width:56px;height:4px;border-radius:99px;background:#3f3f46}
-  .phone iframe{height:620px;max-height:none}
-  .phone.compact iframe{height:480px}
-  .desktop-frame iframe{height:560px;max-height:none}
-  .desktop-frame.dark iframe{height:520px;max-height:none}
-  .hl-row{grid-template-columns:repeat(3,1fr)}
-  .proof-grid{grid-template-columns:repeat(4,1fr);gap:10px}
-  .g3{grid-template-columns:repeat(3,1fr)}
-  .g2{grid-template-columns:repeat(2,1fr)}
+  .nav-links{gap:22px;padding:0;order:0}
+  .nav-links a{padding:18px 0}
+  .nav-cta{order:1}
+
+  .hero{padding:52px 0 44px}
+  .hero-title{font-size:44px}
+  .hero-title span{font-size:20px}
+  .hero-role{font-size:19px}
+  .ledger{grid-template-columns:repeat(4,1fr)}
+  .ledger-item{padding:22px 20px;border-bottom:0;border-left:1px solid var(--rule)}
+  .ledger-item:first-child{padding-left:0;border-left:0}
+  .ledger-item:nth-child(2n){padding-left:20px;padding-right:20px}
+  .ledger-val{font-size:30px}
+
+  .toc-row{grid-template-columns:36px 1fr auto 20px;gap:16px}
+  .toc-stat{display:block}
+
+  article.work{padding:64px 0 68px}
+  .work-head h2{font-size:30px}
+  .metrics{grid-template-columns:repeat(4,1fr);padding:20px 0}
+  .metrics.cols-5{grid-template-columns:repeat(5,1fr)}
+  .m-cell b{font-size:24px}
+  .analysis{grid-template-columns:5fr 7fr;gap:40px}
+  .spec-row{grid-template-columns:130px 1fr;gap:14px}
+
+  .exhibit{padding:20px}
+  .stage-frame.mobile-view{max-width:410px}
+  .stage-frame iframe{height:640px;max-height:none}
+  .stage-frame.desktop-view iframe{height:580px}
+  .stage-frame.short iframe{height:520px}
+
+  .plates{grid-template-columns:repeat(4,1fr);gap:16px}
+  .plates-overseas{grid-template-columns:repeat(2,1fr);gap:16px}
+  .profile-grid{grid-template-columns:1fr 1fr;gap:48px}
 }
 </style>
 </head>
 <body>
 
-<nav class="topbar" aria-label="页面索引">
+<nav class="topbar" aria-label="主导航">
   <div class="topbar-in">
     <div class="topbar-row">
-      <a class="brand" href="#top"><span class="brand-dot"></span>赖怡婷 · 作品集</a>
-      <a class="nav-cta" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历</a>
+      <a class="brand" href="#top"><strong>赖怡婷</strong><span>Yiting Lai</span></a>
+      <a class="nav-cta" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">下载简历 PDF</a>
     </div>
     <div class="nav-links" id="navLinks">
-      <a href="#p1" class="active">01 核对系统</a>
-      <a href="#p2">02 易班客户端</a>
-      <a href="#p3">03 活动代预约</a>
-      <a href="#p4">04 电商/跨境</a>
-      <a href="#fit">定岗自评</a>
-      <a href="#edu">教育背景</a>
+      <a href="#p1" class="active">01 取餐核对</a>
+      <a href="#p2">02 活动代预约</a>
+      <a href="#p3">03 易班自动化</a>
+      <a href="#p4">04 电商与跨境</a>
+      <a href="#profile">履历与方向</a>
     </div>
   </div>
 </nav>
 
 <main class="wrap" id="top">
 
-  <!-- 首屏名片 -->
+  <!-- 首屏封面 -->
   <section class="hero">
-    <div class="hero-card">
-      <div class="status-pill"><i></i>2027 届大专 · 可提前全周实习 · 广州</div>
-      <h1>赖怡婷<span>Yiting Lai</span></h1>
-      <div class="hero-role">国际商务 × AI 业务落地与商业交付</div>
-      <div class="hero-sub">懂业务痛点 · 用 AI 快速做可上线工具 · 跑通真实商业闭环与低纠纷履约</div>
-      <div class="hero-actions">
-        <a class="btn pri" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">
-          <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>下载 PDF 简历
+    <div class="hero-meta num">
+      <span>广东轻工职业技术大学 · 国际商务</span>
+      <span>2027 届大专 · 可提前全周实习</span>
+      <span>广东广州</span>
+    </div>
+
+    <h1 class="hero-title">赖怡婷<span>Yiting Lai</span></h1>
+    <div class="hero-role">国际商务 × AI 业务落地与商业交付</div>
+    <p class="hero-lead">从一线现场和真实商业痛点出发，用 AI 快速构建并部署可稳定运转的业务系统——涵盖广交会多端实时对账、高并发自助下单与调度引擎、零服务器商业化桌面软件，以及海内外真实履约变现。</p>
+
+    <div class="hero-actions">
+      <a class="btn pri" href="./assets/resume.pdf" download="赖怡婷-个人简历.pdf">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+        下载 PDF 简历
+      </a>
+      <button class="btn quiet num" data-copy="13794875992">13794875992 · 复制手机</button>
+      <button class="btn quiet" data-copy="x60skim@gmail.com">x60skim@gmail.com · 复制邮箱</button>
+    </div>
+
+    <div class="ledger num">
+      <div class="ledger-item">
+        <div class="ledger-val accent">70,042</div>
+        <div class="ledger-lbl">广交会核对餐品份数</div>
+        <div class="ledger-sub">33 天 95 场次 · 全程零错漏</div>
+      </div>
+      <div class="ledger-item">
+        <div class="ledger-val">861</div>
+        <div class="ledger-lbl">自研系统处理订单</div>
+        <div class="ledger-sub">1,225 场活动 · 216 次名额置换</div>
+      </div>
+      <div class="ledger-item">
+        <div class="ledger-val">285+</div>
+        <div class="ledger-lbl">双线真实商业交付</div>
+        <div class="ledger-sub">AI 工具 80+ 单 · 电商 205 单</div>
+      </div>
+      <div class="ledger-item">
+        <div class="ledger-val">0.35%</div>
+        <div class="ledger-lbl">综合客诉纠纷率</div>
+        <div class="ledger-sub">AI 工具 0 纠纷 · 纯利 ¥2,000+</div>
+      </div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-head">作品索引 · 点击直达可交互演示</div>
+      <div class="toc-list">
+        <a class="toc-row" href="#p1">
+          <span class="toc-idx mono">01</span>
+          <span class="toc-name">广交会移动端实时对账核对系统 · 取餐核对台</span>
+          <span class="toc-stat num">70,042 份餐品 · 零错漏</span>
+          <span class="toc-arrow">→</span>
         </a>
-        <button class="btn" data-copy="13794875992">复制手机号</button>
-        <button class="btn" data-copy="x60skim@gmail.com">复制邮箱</button>
-      </div>
-      <div class="contact-line num">
-        <span>13794875992</span><span>x60skim@gmail.com</span><span>广东轻工职业技术大学 · 国际商务 · GPA 3.81/5.0</span>
-      </div>
-
-      <div class="kpi-grid num">
-        <div class="kpi"><div class="val accent">285+ 单</div><div class="lbl">双线真实交付</div></div>
-        <div class="kpi"><div class="val">0.35%</div><div class="lbl">综合纠纷率</div></div>
-        <div class="kpi"><div class="val">¥2,000+</div><div class="lbl">AI 工具商业纯利</div></div>
-        <div class="kpi"><div class="val">零错漏</div><div class="lbl">广交会“优秀实习生”</div></div>
-      </div>
-
-      <div class="quick-idx">
-        <div class="quick-idx-lbl">作品快速直达</div>
-        <div class="quick-grid">
-          <a class="qitem" href="#p1"><span><b>01</b>广交会核对台</span><em>↓</em></a>
-          <a class="qitem" href="#p2"><span><b>02</b>易班客户端</span><em>↓</em></a>
-          <a class="qitem" href="#p3"><span><b>03</b>活动代预约</span><em>↓</em></a>
-          <a class="qitem" href="#p4"><span><b>04</b>电商与跨境</span><em>↓</em></a>
-        </div>
+        <a class="toc-row" href="#p2">
+          <span class="toc-idx mono">02</span>
+          <span class="toc-name">智慧校园 3.0 活动代预约系统 · 前端网站 + 后端执行引擎</span>
+          <span class="toc-stat num">1,225 场活动 · 861 笔订单</span>
+          <span class="toc-arrow">→</span>
+        </a>
+        <a class="toc-row" href="#p3">
+          <span class="toc-idx mono">03</span>
+          <span class="toc-name">易班自动化工作台与零服务器商业化发卡体系</span>
+          <span class="toc-stat num">飞书 HWID 鉴权 · 0 纠纷变现</span>
+          <span class="toc-arrow">→</span>
+        </a>
+        <a class="toc-row" href="#p4">
+          <span class="toc-idx mono">04</span>
+          <span class="toc-name">独立电商全链路履约与 G2G 跨境交易 MVP</span>
+          <span class="toc-stat num">205 单 ¥6,132.24 · 海外首单</span>
+          <span class="toc-arrow">→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 实战案例 -->
-  <section id="projects">
-    <div class="sec-head">
-      <h2>实战作品</h2>
-      <p>以下均为真实上线项目还原，可直接体验核心功能</p>
-    </div>
+  <!-- 四大实战项目深度解析 -->
+  <div class="works">
 
-    <!-- 项目 1 -->
-    <article class="case" id="p1">
-      <div class="case-top">
-        <div>
-          <h3>01｜广交会移动端实时对账核对系统</h3>
-          <div class="case-meta">2026.10 – 2026.11 · 广东广交会新大地会展服务有限公司 · 运营核对实习生</div>
+    <!-- 01 广交会取餐核对台 -->
+    <article class="work" id="p1">
+      <header class="work-head">
+        <div class="work-kicker">
+          <span class="work-no mono">01</span>
+          <span class="num">2026.10 — 2026.11</span>
+          <span>广东广交会新大地会展服务有限公司 · 运营核对实习生</span>
+          <span>广交会优秀实习生</span>
         </div>
-        <div class="chips"><span class="chip ok">零错漏</span><span class="chip">优秀实习生</span></div>
+        <h2>广交会移动端实时对账核对系统 · 取餐核对台</h2>
+        <p class="work-summary">针对展会 20+ 部门多品牌餐券手工抄录易错漏、现场余量不透明的痛点，独立构建并上线运行了手机端实时核对系统，覆盖 33 天完整展期，保障高压现场账目零错漏。</p>
+      </header>
+
+      <div class="metrics cols-5 num">
+        <div class="m-cell"><b>33 天</b><span>完整展期运行</span></div>
+        <div class="m-cell"><b>95 场次</b><span>A区 / B座 午晚餐</span></div>
+        <div class="m-cell"><b>70,042 份</b><span>精准核对餐品总数</span></div>
+        <div class="m-cell"><b>1,284 笔</b><span>现场取餐登记记录</span></div>
+        <div class="m-cell"><b>55 笔</b><span>日结补餐券闭环</span></div>
       </div>
-      <div class="tri">
-        <div class="tri-box"><b>痛点</b>20+ 部门餐券回收清点全靠人工抄录，高压现场易错漏。</div>
-        <div class="tri-box"><b>动作</b>用 AI 开发移动端核对网页：自动读表、实时扣减、超量标红、日结补券。</div>
-        <div class="tri-box res"><b>结果</b>上线投入广交会真实场次，全程账目零错漏，获评“优秀实习生”。</div>
-      </div>
-      <div class="stage">
-        <div class="stage-bar">
-          <div class="stage-title"><i></i>真实上线页</div>
-          <a class="btn sm" href="./src/reconcile.html" target="_blank" rel="noopener">全屏体验 ↗</a>
+
+      <div class="analysis">
+        <div class="prose-block">
+          <h3>业务现场与解决思路</h3>
+          <p>展会配餐现场节奏极快，每个餐次需核对 20 多个部门在 5 大餐饮品牌与白饭上的报餐、实取、换餐、加餐与供应商实际到餐差额。传统纸质抄录加共享表格事后汇总，导致“谁超报、谁漏拿、备用还剩几份”无法在发餐瞬间发现。我用 Node.js + 原生移动端网页搭建了「取餐核对台」，现场用手机点选登记、多端秒级同步，彻底把事后查账变成事中防呆。</p>
         </div>
-        <div class="stage-split">
-          <div class="phone"><div class="phone-notch"><span></span></div><iframe src="./src/reconcile.html?v=5" title="取餐核对台"></iframe></div>
-          <ul class="hl-list">
-            <li class="hl"><i>1</i><div><b>实时余量看板</b>5 大品牌大数字余量 + 实际到餐多/少核对</div></li>
-            <li class="hl"><i>2</i><div><b>异常秒级筛选</b>点「未取完 / 需补餐券 / 超量」定位异常部门</div></li>
-            <li class="hl"><i>3</i><div><b>防呆登记 + 拦截</b>点部门记录取餐，超报自动拦截标红</div></li>
-            <li class="hl"><i>4</i><div><b>日结补券 + 导出</b>右上「⋯」一键结算少取部门，支持导出 Excel</div></li>
-          </ul>
+        <dl class="spec-list">
+          <div class="spec-row">
+            <dt>多端实时同步与容灾</dt>
+            <dd>自建 Node.js 服务 + SSE 实时推送 + FRP HTTPS 穿透，多台手机同步核对；现场断网时自动降级 `localStorage` 本地读写，绝不中断发餐。</dd>
+          </div>
+          <div class="spec-row">
+            <dt>云端表格交叉稽核</dt>
+            <dd>通过金山文档 AirScript 自动读取每日报餐表与核对表，自动识别单元格标红字体做格式与数字一致性校验，共完成 31 次异常确认。</dd>
+          </div>
+          <div class="spec-row">
+            <dt>防呆校验与离线归档</dt>
+            <dd>登记时强制校验人数等于餐份、超报即时拦截标红；日结一键将少取部门转入待补餐券清单，并内置零依赖纯前端 OOXML 生成器，断网亦可导出标准 `.xlsx`。</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-bar">
+          <div class="exhibit-label">真实上线页面 · 已内联 10.16–10.24 真实场次数据，可切换日期、点进部门登记取餐或测试日结补券</div>
+          <a class="exhibit-link" href="./src/reconcile.html?v=6" target="_blank" rel="noopener">全屏体验 ↗</a>
+        </div>
+        <div class="stage-frame mobile-view">
+          <iframe src="./src/reconcile.html?v=6" title="广交会取餐核对台真实线上页"></iframe>
+        </div>
+        <div class="exhibit-foot">
+          <span>默认展示 2026-10-16 B座午餐 · 含 20 个部门、到餐备用份数与待补餐券</span>
+          <span>修改仅保存在本地浏览器，点页内顶部按钮可一键重置</span>
         </div>
       </div>
     </article>
 
-    <!-- 项目 2 -->
-    <article class="case" id="p2">
-      <div class="case-top">
-        <div>
-          <h3>02｜易班自动化脚本与飞书发卡系统</h3>
-          <div class="case-meta">2025.06 – 至今 · 独立开发与商业交付</div>
+    <!-- 02 智慧校园 3.0 活动代预约系统 -->
+    <article class="work" id="p2">
+      <header class="work-head">
+        <div class="work-kicker">
+          <span class="work-no mono">02</span>
+          <span class="num">2025.06 — 至今</span>
+          <span>独立研发与商业化运营 · 前端自助下单网站 + 后端执行引擎</span>
         </div>
-        <div class="chips"><span class="chip ok">桌面客户端</span><span class="chip">飞书 HWID 鉴权</span></div>
-      </div>
-      <div class="tri">
-        <div class="tri-box"><b>痛点</b>易班发帖/评论/点赞高频重复，且需防盗版授权与零门槛交付。</div>
-        <div class="tri-box"><b>动作</b>开发桌面客户端 + 飞书多维表格 HWID 鉴权 + 批量发卡网页，打包一键安装。</div>
-        <div class="tri-box res"><b>结果</b>独立定价、发卡与售后迭代，跑通商业闭环。</div>
-      </div>
-      <div class="stage">
-        <div class="stage-bar">
-          <div class="stage-title"><i></i>真实客户端 &amp; 发卡页</div>
-          <div class="stage-tabs">
-            <button class="stage-tab active" data-group="p2" data-tab="p2-client">易班桌面客户端</button>
-            <button class="stage-tab" data-group="p2" data-tab="p2-card">飞书发卡网页</button>
-          </div>
-        </div>
-        <div id="p2-client" class="stage-split">
-          <div class="desktop-frame">
-            <div class="desktop-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>易班自动化工作台 v3.2</span></div>
-            <iframe src="./src/yiban-client.html?v=5" title="易班桌面客户端"></iframe>
-          </div>
-          <ul class="hl-list">
-            <li class="hl"><i>1</i><div><b>自动抓取权限版块</b>内置 5 范围 / 36 版块联动 + 防屏蔽提示</div></li>
-            <li class="hl"><i>2</i><div><b>可视化上限与词库</b>可点顶部「自定义词库」与上限配置</div></li>
-            <li class="hl"><i>3</i><div><b>飞书 HWID 零成本鉴权</b>点顶部「已授权」可体验硬件码联网校验</div></li>
-            <li class="hl"><i>4</i><div><b>一键发帖 / 评论点赞</b>点击蓝色按钮查看实时计数与执行日志</div></li>
-          </ul>
-        </div>
-        <div id="p2-card" class="stage-split" style="display:none">
-          <div class="phone compact"><div class="phone-notch"><span></span></div><iframe src="./src/yiban-card.html" title="易班发卡页"></iframe></div>
-          <ul class="hl-list">
-            <li class="hl"><i>1</i><div><b>校验位批量发卡</b>支持日/周/月/季/年/永久卡，生成防伪 `YB-` 卡密</div></li>
-            <li class="hl"><i>2</i><div><b>按列一键复制</b>直接整列粘贴进飞书多维表格即时生效</div></li>
-          </ul>
-        </div>
-      </div>
-    </article>
+        <h2>智慧校园 3.0 校园活动代预约系统</h2>
+        <p class="work-summary">把原本靠微信和小红书人工登记、极易漏单的校园活动预约需求，重构为「移动端自助下单网站 + 多账号高并发执行引擎 + 自动化账单结算后台」的完整前后端系统。</p>
+      </header>
 
-    <!-- 项目 3 -->
-    <article class="case" id="p3">
-      <div class="case-top">
-        <div>
-          <h3>03｜智慧校园 3.0 校园活动代预约系统</h3>
-          <div class="case-meta">2025.06 – 至今 · 前端自助下单网站 + 后端多账号自动化执行与管理后台</div>
-        </div>
-        <div class="chips"><span class="chip ok">前后端双端协同</span><span class="chip">批量生图结算</span></div>
-      </div>
-      <div class="tri">
-        <div class="tri-box"><b>痛点</b>热门活动秒光，私聊手工登记学号与对账结算极易漏单错单。</div>
-        <div class="tri-box"><b>动作</b>前端做移动端自助下单/查单网页；后端做多账号抢报、名额置换、看板与自动结算。</div>
-        <div class="tri-box res"><b>结果</b>升级为自助下单 + 看板履约，与易班工具共计 80+ 单 0 纠纷、纯利 ¥2,000+。</div>
+      <div class="metrics cols-5 num">
+        <div class="m-cell"><b>1,225 场</b><span>自动同步上架活动</span></div>
+        <div class="m-cell"><b>861 笔</b><span>系统真实处理订单</span></div>
+        <div class="m-cell"><b>38 个</b><span>已验客户账号池</span></div>
+        <div class="m-cell"><b>216 次</b><span>副号占位名额置换</span></div>
+        <div class="m-cell"><b>37 人 / 35 次</b><span>签约占位协议与免费掉落</span></div>
       </div>
 
-      <!-- 前端网站端 -->
-      <div class="stage">
-        <div class="stage-bar">
-          <div class="stage-title"><span class="sub-badge web">前端网站端</span>客户自助下单网页</div>
-          <a class="btn sm" href="./src/zhxy-order.html" target="_blank" rel="noopener">全屏体验 ↗</a>
+      <div class="analysis">
+        <div class="prose-block">
+          <h3>商业机制与工程演进</h3>
+          <p>项目最大的壁垒不只是把流程自动化，而是同时解决了效率、信任与履约上限三个问题：前端用 34 个 Express REST 接口支撑自助选课下单、首次短信验号与进度查询，并把首屏 4 次请求合并为 `/api/bootstrap` 节省内网穿透流量；后端从浏览器模拟演进到纯 Python 协议直连，更设计了「占位账号征用协议」—— 37 位客户自愿出借空闲名额参与占位，系统完成 216 次名额置换并反向掉落 35 次免费热门活动，形成双边名额调度池与高粘性复购。</p>
         </div>
-        <div class="stage-split">
-          <div class="phone"><div class="phone-notch"><span></span></div><iframe src="./src/zhxy-order.html?v=5" title="前端自助下单网页"></iframe></div>
-          <ul class="hl-list">
-            <li class="hl"><i>1</i><div><b>自动同步 + 多维筛选</b>搜索 / 线上线下 / 未浏览过滤</div></li>
-            <li class="hl"><i>2</i><div><b>批量勾选自助下单</b>支持首单短信验号，杜绝错密无效单</div></li>
-            <li class="hl"><i>3</i><div><b>自助查单与工单</b>底部切换「我的订单」随时看进度或取消</div></li>
-          </ul>
-        </div>
+        <dl class="spec-list">
+          <div class="spec-row">
+            <dt>纯 HTTP 协议直连</dt>
+            <dd>排查还原请求体 SM4 / AES 加解密与签名逻辑，开抢前自动执行 `preflight` 校验，并配合 `snipe_analyzer` 分析毫秒级抢单日志做节奏调优。</dd>
+          </div>
+          <div class="spec-row">
+            <dt>自动抓取与信息补全</dt>
+            <dd>后台定时抓取校园新活动并自动补全海报、介绍与综测加分细则，客户端按未浏览、线上线下与重复活动自动分层展示。</dd>
+          </div>
+          <div class="spec-row">
+            <dt>履约复核与自动生图</dt>
+            <dd>抢报后支持批量复核真伪，一键生成带客户明细的「待结账单快照图片」发给客户结算，配合内置工单与公告系统实现低纠纷运营。</dd>
+          </div>
+        </dl>
       </div>
 
-      <!-- 后端程序端 -->
-      <div class="stage sub-stage">
-        <div class="stage-bar">
-          <div class="stage-title"><span class="sub-badge">后端程序端</span>智慧校园 3.0 助手</div>
-          <div class="stage-tabs">
-            <button class="stage-tab active" data-group="p3b" data-tab="p3b-console">桌面主控制台</button>
-            <button class="stage-tab" data-group="p3b" data-tab="p3b-admin">真实后台截图</button>
+      <div class="exhibit" id="p2-exhibit">
+        <div class="exhibit-bar">
+          <div class="exhibit-tabs" role="tablist">
+            <button class="etab active" data-group="p2" data-tab="p2-web">前端自助下单网站</button>
+            <button class="etab" data-group="p2" data-tab="p2-console">后端桌面主控制台</button>
+            <button class="etab" data-group="p2" data-tab="p2-admin">真实订单后台截图</button>
+          </div>
+          <a class="exhibit-link" id="p2-open" href="./src/zhxy-order.html?v=6" target="_blank" rel="noopener">新窗口打开 ↗</a>
+        </div>
+
+        <div id="p2-web">
+          <div class="stage-frame mobile-view">
+            <iframe src="./src/zhxy-order.html?v=6" title="智慧校园 3.0 客户端自助下单网站"></iframe>
+          </div>
+          <div class="exhibit-foot">
+            <span>还原真实线上客户前端 · 已内置 18 场真实校园活动，可搜索、筛选、勾选提交演示订单与查看「我的订单」</span>
           </div>
         </div>
-        <div id="p3b-console">
-          <div class="desktop-frame">
-            <div class="desktop-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>智慧校园 3.0 助手 · 点击「订单管理后台 / 运营 / 综测 / 设置」均可交互</span></div>
-            <iframe src="./src/zhxy-console.html?v=5" title="桌面主控制台"></iframe>
+
+        <div id="p2-console" style="display:none">
+          <div class="stage-frame desktop-view">
+            <iframe src="./src/zhxy-console.html?v=6" title="智慧校园 3.0 后端桌面主控制台"></iframe>
           </div>
-          <div class="hl-row">
-            <div class="hl"><i>1</i><div><b>HTTP 直连 + 名额置换</b>双模式切换，副号占位毫秒级置换给客户</div></div>
-            <div class="hl"><i>2</i><div><b>交互式订单管理后台</b>点控制台顶部「订单管理后台」可体验复核、收款与生成账单快照</div></div>
-            <div class="hl"><i>3</i><div><b>账号池与工单闭环</b>「运营 ▾」内可管理账号池、发公告、处理工单与重启服务</div></div>
+          <div class="exhibit-foot">
+            <span>所有按钮均可交互 · 点击顶部「订单管理后台」可体验复核、确认收款与生成待结账单快照；点击「运营」可体验账号池、名额置换与工单</span>
           </div>
         </div>
-        <div id="p3b-admin" style="display:none">
-          <div class="shot-card" data-zoom="./assets/order-admin.png">
-            <img src="./assets/order-admin.png" alt="订单实时管理后台真实截图" loading="lazy">
-            <div class="shot-cap"><b>真实上线截图：订单实时管理后台</b>点击可放大查看</div>
+
+        <div id="p2-admin" style="display:none">
+          <div class="plate" data-zoom="./assets/order-admin.png" style="border-radius:8px">
+            <img src="./assets/order-admin.png" alt="智慧校园 3.0 订单实时管理后台真实截图" loading="lazy">
+            <div class="plate-cap">
+              <b>真实线上截图 · 网页下单订单实时管理后台</b>
+              <span>按客户与日期筛选、一键复核全部订单、批量生成待结账单快照与批量结算 · 点击可放大</span>
+            </div>
           </div>
         </div>
       </div>
     </article>
 
-    <!-- 项目 4 -->
-    <article class="case" id="p4">
-      <div class="case-top">
-        <div>
-          <h3>04｜独立电商全链路履约与 G2G 跨境交易 MVP</h3>
-          <div class="case-meta">2024.06 – 2025.12 · C2C 老号 205 单 + 海外平台 G2G 首单跑通</div>
+    <!-- 03 易班自动化工作台 -->
+    <article class="work" id="p3">
+      <header class="work-head">
+        <div class="work-kicker">
+          <span class="work-no mono">03</span>
+          <span class="num">2025.06 — 至今</span>
+          <span>独立研发、打包交付与售后 · 商业化桌面客户端</span>
         </div>
-        <div class="chips"><span class="chip ok">205 单 · 95% 好评</span><span class="chip">流水 ¥6,132.24</span><span class="chip">首单 7,680 KRW</span></div>
-      </div>
-      <div class="tri">
-        <div class="tri-box"><b>痛点</b>C2C 选品定价与物流异常易引发客诉；出海需跑通入驻、英文上架与跨境收款。</div>
-        <div class="tri-box"><b>动作</b>独立操盘选品促单与售后安抚；完成 G2G 入驻、全英文上架与 Payoneer 收款配置。</div>
-        <div class="tri-box res"><b>结果</b>老号 205 单；G2G 首单英文交付。</div>
+        <h2>易班自动化工作台与零服务器商业化发卡体系</h2>
+        <p class="work-summary">面向非技术背景学生用户，把高频重复的易班发帖、评论与点赞流程封装成双击即用的 Windows 安装包，并用飞书多维表格零服务器成本跑通卡密授权与版本更新闭环。</p>
+      </header>
+
+      <div class="metrics num">
+        <div class="m-cell"><b>80+ 单</b><span>AI 工具线独立交付</span></div>
+        <div class="m-cell"><b>0 纠纷</b><span>全程零客诉记录</span></div>
+        <div class="m-cell"><b>¥2,000+</b><span>AI 工具线商业纯利</span></div>
+        <div class="m-cell"><b>¥0 / 月</b><span>飞书鉴权服务器成本</span></div>
       </div>
 
-      <div class="proof-grid">
-        <div class="proof-card" data-zoom="./assets/proof-credit.jpg">
-          <div class="proof-img"><img src="./assets/proof-credit.jpg" alt="双号卖家信用" loading="lazy"></div>
-          <div class="proof-cap"><b>双号卖家信用</b>老号 95% 好评 · 新号 100% 好评 0 纠纷</div>
+      <div class="analysis">
+        <div class="prose-block">
+          <h3>把脚本做成可售卖的产品</h3>
+          <p>能跑通代码只是起点，面向真实付费客户交付时，最大的成本其实是环境报错、盗版扩散与远程售后。我针对非技术客户补齐了完整商品化链路：客户端启动自动抓取账号权限版块并给出防屏蔽指引，支持自定义上限与词库；打包阶段走全自动四步流水线生成一键安装程序，把客户上手和售后答疑成本压到最低。</p>
         </div>
-        <div class="proof-card" data-zoom="./assets/proof-profit-1.jpg">
-          <div class="proof-img"><img src="./assets/proof-profit-1.jpg" alt="新号收益 1286元" loading="lazy"></div>
-          <div class="proof-cap"><b>AI 工具新号收益</b>已赚 ¥1,286.00 · 卖出 89 单</div>
-        </div>
-        <div class="proof-card" data-zoom="./assets/proof-profit-2.jpg">
-          <div class="proof-img"><img src="./assets/proof-profit-2.jpg" alt="老号流水 6132.24元" loading="lazy"></div>
-          <div class="proof-cap"><b>电商老号流水</b>已赚 ¥6,132.24 · 鱼小铺 L3</div>
-        </div>
-        <div class="proof-card" data-zoom="./assets/proof-deals.jpg">
-          <div class="proof-img"><img src="./assets/proof-deals.jpg" alt="高频真实成交记录" loading="lazy"></div>
-          <div class="proof-cap"><b>高频成交记录</b>月卡/季卡/永久卡连续成交</div>
-        </div>
-      </div>
-
-      <div class="stage sub-stage">
-        <div class="stage-bar">
-          <div class="stage-title"><span class="sub-badge web">海外平台证明</span>G2G 订单 + 官方 PAYMENT ADVICE</div>
-          <a class="btn pri sm" href="./assets/g2g-payment-advice.pdf" target="_blank" rel="noopener">查看官方 PDF ↗</a>
-        </div>
-        <div class="g2">
-          <div class="shot-card" data-zoom="./assets/g2g-order.jpg">
-            <img src="./assets/g2g-order.jpg" alt="G2G 订单截图" loading="lazy" style="max-height:280px;object-fit:contain;background:#f8fafc">
-            <div class="shot-cap"><b>G2G 已售出订单</b>6.00 USD · 已发货</div>
+        <dl class="spec-list">
+          <div class="spec-row">
+            <dt>飞书零成本 SaaS 鉴权</dt>
+            <dd>用飞书多维表格 API 作为云端数据库，客户端读取硬件码 HWID 联网核验卡密，首次激活自动计算到期日，封禁、补偿时长与新版本弹窗提醒全部在表格内实时生效。</dd>
           </div>
-          <div class="shot-card" data-zoom="./assets/g2g-advice.jpg">
-            <img src="./assets/g2g-advice.jpg" alt="G2G 官方结算单 PDF" loading="lazy" style="max-height:280px;object-fit:contain;background:#fff">
-            <div class="shot-cap"><b>官方结算单</b>净入账 5.40 USD</div>
+          <div class="spec-row">
+            <dt>四步商业打包流水线</dt>
+            <dd>自写 `build_installer.py` 自动完成 JS 加密、PyArmor 源码混淆防破解、PyInstaller 封装与 Inno Setup 生成 `Setup.exe`，同步适配 Edge 与 Chrome 双版本。</dd>
+          </div>
+          <div class="spec-row">
+            <dt>校验位发卡工具</dt>
+            <dd>独立开发移动端「易班发卡」网页，支持日/周/月/季/半年/年/永久卡批量生成带校验位的 `YB-` 激活码，按列一键复制粘贴进飞书表即可开卖。</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="exhibit" id="p3-exhibit">
+        <div class="exhibit-bar">
+          <div class="exhibit-tabs" role="tablist">
+            <button class="etab active" data-group="p3" data-tab="p3-client">桌面客户端工作台</button>
+            <button class="etab" data-group="p3" data-tab="p3-card">配套飞书发卡网页</button>
+          </div>
+          <a class="exhibit-link" id="p3-open" href="./src/yiban-client.html?v=6" target="_blank" rel="noopener">新窗口打开 ↗</a>
+        </div>
+
+        <div id="p3-client">
+          <div class="stage-frame desktop-view">
+            <iframe src="./src/yiban-client.html?v=6" title="易班自动化工作台客户端"></iframe>
+          </div>
+          <div class="exhibit-foot">
+            <span>按真实 `YibanAppUI` 还原 · 可点击顶部体验「飞书 HWID 授权」与「自定义词库」，点击下方按钮模拟版块读取、自动发帖与评论点赞</span>
+          </div>
+        </div>
+
+        <div id="p3-card" style="display:none">
+          <div class="stage-frame mobile-view short">
+            <iframe src="./src/yiban-card.html?v=6" title="易班发卡网页"></iframe>
+          </div>
+          <div class="exhibit-foot">
+            <span>真实上线发卡页 · 选择卡型与数量即可批量生成带校验位激活码，一键按列复制同步飞书多维表格</span>
           </div>
         </div>
       </div>
     </article>
-  </section>
 
-  <!-- 适合岗位自评 -->
-  <section id="fit">
-    <div class="sec-head"><h2>适合岗位自评</h2></div>
-    <div class="g2">
-      <div class="fit-card">
-        <h3>方向 A｜客户交付 / 技术支持 / AI 业务提效</h3>
-        <ul>
-          <li>懂一线业务痛点，能做客户与技术团队之间的桥梁</li>
-          <li>能用 AI 速搭轻量工具与排错，快速上手企业 SOP</li>
-          <li>80+ 单软件交付 0 纠纷，广交会高压现场零错漏</li>
-        </ul>
-      </div>
-      <div class="fit-card alt">
-        <h3>方向 B｜跨境电商运营 / 外贸跟单与数字化提效</h3>
-        <ul>
-          <li>205 单 C2C 选品、定价、询盘促单与异常安抚实战</li>
-          <li>跑通 G2G 全英文上架、Payoneer 收款与首单交付</li>
-          <li>数字贸易运营 99 分 / 商务英语 98 分，能把跟单表格工具化</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    <!-- 04 独立电商与 G2G 跨境交易 MVP -->
+    <article class="work" id="p4">
+      <header class="work-head">
+        <div class="work-kicker">
+          <span class="work-no mono">04</span>
+          <span class="num">2024.06 — 2025.12</span>
+          <span>独立操盘 · 国内 C2C 履约 + 海外平台 G2G</span>
+        </div>
+        <h2>独立电商全链路履约与 G2G 跨境交易 MVP</h2>
+        <p class="work-summary">独立负责选品、定价、询盘促单、供应链发货协调与物流异常安抚；同时跑通海外平台 G2G 入驻、全英文商品上架、Payoneer 收款配置与首笔海外订单交付。</p>
+      </header>
 
-  <!-- 教育与荣誉 -->
-  <section id="edu">
-    <div class="sec-head"><h2>教育背景与荣誉</h2></div>
-    <div class="mini-card">
-      <div class="case-top" style="margin-bottom:8px">
-        <div><h3 style="margin:0">广东轻工职业技术大学 · 国际商务</h3></div>
-        <span class="chip ok num">均分 88.24 · GPA 3.81/5.0</span>
+      <div class="metrics num">
+        <div class="m-cell"><b>205 单</b><span>C2C 电商老号交付</span></div>
+        <div class="m-cell"><b>¥6,132.24</b><span>电商老号累计流水</span></div>
+        <div class="m-cell"><b>95% / 100%</b><span>老号与新号好评率</span></div>
+        <div class="m-cell"><b>5.40 USD</b><span>G2G 首单净入账 · 7,680 KRW</span></div>
       </div>
-      <div class="pills num">
-        <span class="pill">数字贸易平台运营 <b>99</b></span>
-        <span class="pill">商务英语 <b>98</b></span>
-        <span class="pill">电子商务 <b>96</b></span>
-        <span class="pill">海外新媒体营销 <b>95</b></span>
-        <span class="pill">国际贸易实务 <b>90</b></span>
-        <span class="pill">网页设计与制作</span>
-        <span class="pill">商务数据分析</span>
-        <span class="pill">人工智能概论</span>
+
+      <div class="plates">
+        <figure class="plate" data-zoom="./assets/proof-credit.jpg">
+          <div class="plate-img"><img src="./assets/proof-credit.jpg" alt="双号卖家信用" loading="lazy"></div>
+          <figcaption class="plate-cap"><b>双号卖家信用</b><span>老号 205 单 95% 好评 · 新号 100% 好评 0 纠纷</span></figcaption>
+        </figure>
+        <figure class="plate" data-zoom="./assets/proof-profit-1.jpg">
+          <div class="plate-img"><img src="./assets/proof-profit-1.jpg" alt="AI工具新号流水" loading="lazy"></div>
+          <figcaption class="plate-cap"><b>AI 工具新号收益</b><span>累计收益 ¥1,286.00 · 卖出 89 单</span></figcaption>
+        </figure>
+        <figure class="plate" data-zoom="./assets/proof-profit-2.jpg">
+          <div class="plate-img"><img src="./assets/proof-profit-2.jpg" alt="电商老号流水" loading="lazy"></div>
+          <figcaption class="plate-cap"><b>C2C 电商老号流水</b><span>累计流水 ¥6,132.24 · 鱼小铺 L3</span></figcaption>
+        </figure>
+        <figure class="plate" data-zoom="./assets/proof-deals.jpg">
+          <div class="plate-img"><img src="./assets/proof-deals.jpg" alt="高频真实成交记录" loading="lazy"></div>
+          <figcaption class="plate-cap"><b>高频真实成交记录</b><span>月卡 ¥12 / 季卡 ¥35 / 永久卡 ¥79.20 连续成交</span></figcaption>
+        </figure>
       </div>
-      <div class="pills">
-        <span class="pill honor">广交会“优秀实习生”</span>
-        <span class="pill honor">校级二等奖学金</span>
-        <span class="pill honor">“讲好湾区故事”翻译大赛全国一等奖</span>
-        <span class="pill">CET-4</span>
-        <span class="pill">计算机二级 WPS</span>
+
+      <div class="exhibit">
+        <div class="exhibit-bar">
+          <div class="exhibit-label">海外平台履约凭证 · G2G 订单记录与官方 PAYMENT ADVICE 结算单</div>
+          <a class="exhibit-link" href="./assets/g2g-payment-advice.pdf" target="_blank" rel="noopener">打开原版官方 PDF ↗</a>
+        </div>
+        <div class="plates-overseas">
+          <figure class="plate" data-zoom="./assets/g2g-order.jpg">
+            <div class="plate-img wide"><img src="./assets/g2g-order.jpg" alt="G2G 海外已售出订单" loading="lazy"></div>
+            <figcaption class="plate-cap"><b>G2G 平台已发货订单</b><span>订单号 1751075435260X6OY · 6.00 USD</span></figcaption>
+          </figure>
+          <figure class="plate" data-zoom="./assets/g2g-advice.jpg">
+            <div class="plate-img wide"><img src="./assets/g2g-advice.jpg" alt="G2G 官方结算单" loading="lazy"></div>
+            <figcaption class="plate-cap"><b>官方结算单 G-1751358268000BDGJ.pdf</b><span>收款人赖怡婷 · 扣佣后净入账 5.40 USD</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- 履历与适配方向 -->
+  <section class="profile" id="profile">
+    <h2 class="profile-head">履历、能力与适配方向</h2>
+    <div class="profile-grid">
+      <div>
+        <div class="col-title">可快速上手的工作方向</div>
+        <div class="fit-block">
+          <h3>方向 A · 客户交付 / 技术支持 / AI 业务提效</h3>
+          <p>能听懂一线业务语言，也能看懂 HTTP、JSON、数据库与接口报错；既能用 AI 快速把业务痛点变成可用工具，也经历过 80+ 单付费软件售后与广交会高压现场零错漏交付的考验。</p>
+        </div>
+        <div class="fit-block">
+          <h3>方向 B · 跨境电商运营 / 外贸跟单与数字化提效</h3>
+          <p>有国际商务科班基础、205 单完整 C2C 选品履约与 G2G 全英文上架收款实操；擅长把重复的报价、跟单与对账表格改造成自动化工具，配合 CET-4 与 AI 高效处理英文文档与商务沟通。</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-title">教育背景与专业资质</div>
+        <div class="edu-row">
+          <strong>广东轻工职业技术大学 · 国际商务</strong>
+          <span class="num">2024.09 — 2027.06</span>
+        </div>
+        <div class="edu-gpa num">历年均分 88.24 · GPA 3.81 / 5.0 · 大三下可全周实习</div>
+        <dl class="edu-dl">
+          <div>
+            <dt>高分核心课</dt>
+            <dd class="num">数字贸易平台运营 99 · 商务英语 98 · 电子商务 96 · 海外新媒体营销 95 · 国际贸易实务 90</dd>
+          </div>
+          <div>
+            <dt>数字化基础课</dt>
+            <dd>网页设计与制作 · 计算机应用基础 · 商务数据分析基础 · 人工智能概论 · 跨文化商务沟通</dd>
+          </div>
+          <div>
+            <dt>荣誉与证书</dt>
+            <dd>广交会优秀实习生 · 校级二等奖学金 · “讲好湾区故事”翻译大赛全国一等奖 · 英语四级 CET-4 · 全国计算机二级 WPS Office</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
@@ -537,40 +742,75 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
 </main>
 
 <footer>
-  <div class="wrap">赖怡婷 Yiting Lai ｜ 13794875992 ｜ x60skim@gmail.com</div>
+  <div class="wrap foot-in">
+    <div><strong>赖怡婷 Yiting Lai</strong> · 国际商务 × AI 业务落地与商业交付</div>
+    <div class="num">13794875992 · x60skim@gmail.com</div>
+  </div>
 </footer>
 
 <div id="toast"></div>
-<div id="lb"><img id="lb-img" src="" alt=""></div>
+<div id="lb" role="dialog" aria-label="图片放大预览"><img id="lb-img" src="" alt=""></div>
 
 <script>
 (function(){
   const toastEl = document.getElementById('toast');
-  let tTimer = null;
-  function showToast(m){ toastEl.textContent=m; toastEl.classList.add('on'); clearTimeout(tTimer); tTimer=setTimeout(()=>toastEl.classList.remove('on'),1600); }
-  function copyText(t){
-    if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
-    return new Promise((ok,no)=>{ const a=document.createElement('textarea'); a.value=t; a.style.cssText='position:fixed;opacity:0'; document.body.appendChild(a); a.select(); try{document.execCommand('copy')?ok():no()}catch(e){no()} document.body.removeChild(a); });
+  let toastTimer = null;
+  function showToast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>toastEl.classList.remove('on'), 1700);
   }
-  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
-    const v=b.getAttribute('data-copy'); copyText(v).then(()=>showToast('已复制：'+v),()=>showToast('请手动复制：'+v));
-  }));
-  document.querySelectorAll('.stage-tab[data-group]').forEach(btn=>btn.addEventListener('click',()=>{
-    const g=btn.getAttribute('data-group'), id=btn.getAttribute('data-tab');
-    document.querySelectorAll(`.stage-tab[data-group="${g}"]`).forEach(b=>{
-      const tid=b.getAttribute('data-tab'); b.classList.toggle('active', tid===id);
-      const p=document.getElementById(tid); if(p) p.style.display=tid===id?'':'none';
+  function copyText(text){
+    if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise((ok, no)=>{
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy') ? ok() : no(); }catch(e){ no(); }
+      document.body.removeChild(ta);
     });
+  }
+  document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click', ()=>{
+    const v = btn.getAttribute('data-copy');
+    copyText(v).then(()=>showToast('已复制 ' + v), ()=>showToast('请手动复制 ' + v));
   }));
-  const lb=document.getElementById('lb'), lbImg=document.getElementById('lb-img');
-  document.querySelectorAll('[data-zoom]').forEach(el=>el.addEventListener('click',()=>{ lbImg.src=el.getAttribute('data-zoom'); lb.classList.add('on'); }));
-  lb.addEventListener('click',()=>{ lb.classList.remove('on'); lbImg.src=''; });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') lb.classList.remove('on'); });
 
-  // Scroll spy + reliable anchor navigation (never hijacks window scroll)
+  // Exhibit tabs + dynamic external link sync
+  const openLinks = {
+    'p2-web': './src/zhxy-order.html?v=6',
+    'p2-console': './src/zhxy-console.html?v=6',
+    'p2-admin': './assets/order-admin.png',
+    'p3-client': './src/yiban-client.html?v=6',
+    'p3-card': './src/yiban-card.html?v=6'
+  };
+  document.querySelectorAll('.etab[data-group]').forEach(btn=>btn.addEventListener('click', ()=>{
+    const g = btn.getAttribute('data-group');
+    const id = btn.getAttribute('data-tab');
+    document.querySelectorAll(`.etab[data-group="${g}"]`).forEach(b=>{
+      const tid = b.getAttribute('data-tab');
+      b.classList.toggle('active', tid === id);
+      const panel = document.getElementById(tid);
+      if(panel) panel.style.display = tid === id ? '' : 'none';
+    });
+    const link = document.getElementById(g + '-open');
+    if(link && openLinks[id]) link.href = openLinks[id];
+  }));
+
+  // Lightbox
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
+  document.querySelectorAll('[data-zoom]').forEach(el=>el.addEventListener('click', ()=>{
+    lbImg.src = el.getAttribute('data-zoom');
+    lb.classList.add('on');
+  }));
+  lb.addEventListener('click', ()=>{ lb.classList.remove('on'); lbImg.src = ''; });
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') lb.classList.remove('on'); });
+
+  // Fixed Topbar Scroll Spy + Smooth Anchor Jump
   const navBar = document.getElementById('navLinks');
   const navLinks = [...document.querySelectorAll('#navLinks a')];
-  const targets = navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const sections = navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
   function setActive(id){
     navLinks.forEach(a=>{
       const on = a.getAttribute('href') === '#' + id;
@@ -587,7 +827,7 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
       const el = document.getElementById(id);
       if(!el) return;
       e.preventDefault();
-      const barH = (document.querySelector('.topbar')?.offsetHeight || 60) + 10;
+      const barH = (document.querySelector('.topbar')?.offsetHeight || 60) + 12;
       const top = id === 'top' ? 0 : Math.max(0, el.getBoundingClientRect().top + window.scrollY - barH);
       window.scrollTo({ top, behavior: 'smooth' });
       if(id !== 'top') setActive(id);
@@ -596,8 +836,8 @@ footer{margin-top:28px;padding:22px 0 36px;border-top:1px solid var(--line);text
   if('IntersectionObserver' in window){
     const io = new IntersectionObserver(entries=>{
       entries.forEach(en=>{ if(en.isIntersecting) setActive(en.target.id); });
-    }, { rootMargin:'-25% 0px -60% 0px', threshold:0 });
-    targets.forEach(t=>io.observe(t));
+    }, { rootMargin:'-22% 0px -65% 0px', threshold:0 });
+    sections.forEach(s=>io.observe(s));
   }
 })();
 </script>
