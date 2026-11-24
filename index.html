@@ -126,12 +126,13 @@ section,article.work{scroll-margin-top:calc(var(--nav-h) + var(--s-4))}
 .nav-cta:hover{background:var(--accent-hover)}
 .nav-cta:active{transform:scale(0.97)}
 .nav-links{
-  display:flex;gap:var(--s-5);overflow-x:auto;scrollbar-width:none;
+  display:flex;justify-content:space-between;gap:var(--s-2);
+  overflow-x:auto;scrollbar-width:none;
   padding-bottom:var(--s-2);
 }
 .nav-links::-webkit-scrollbar{display:none}
 .nav-links a{
-  font-size:13.5px;font-weight:500;color:var(--ink-2);
+  font-size:13px;font-weight:500;color:var(--ink-2);
   white-space:nowrap;padding:var(--s-1) 0 var(--s-2);position:relative;
   transition:color 160ms var(--ease);
 }
@@ -142,8 +143,8 @@ section,article.work{scroll-margin-top:calc(var(--nav-h) + var(--s-4))}
 }
 
 /* Hero + Apple Keynote Bento Overview */
-.hero{padding:var(--s-6) 0 var(--s-12)}
-.hero-top{display:grid;gap:var(--s-4);margin-bottom:var(--s-8)}
+.hero{padding:var(--s-5) 0 var(--s-10)}
+.hero-top{display:grid;gap:var(--s-3);margin-bottom:var(--s-6)}
 .hero-meta{
   display:flex;flex-wrap:wrap;gap:var(--s-1) var(--s-4);
   font-size:13.5px;color:var(--ink-2);
@@ -178,12 +179,16 @@ section,article.work{scroll-margin-top:calc(var(--nav-h) + var(--s-4))}
   color:var(--ink-2);
   line-height:1.65;
 }
-.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s-3);margin-top:var(--s-2)}
+.hero-actions{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-2);
+  margin-top:var(--s-2);
+}
+.hero-actions .btn.pri{grid-column:1 / -1}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);
-  min-height:44px;padding:0 var(--s-5);
+  min-height:44px;padding:0 var(--s-4);
   border-radius:var(--r-pill);
-  font-size:14px;font-weight:600;white-space:nowrap;
+  font-size:13.5px;font-weight:600;white-space:nowrap;
   transition:transform 110ms var(--ease),background-color 180ms var(--ease),border-color 180ms var(--ease);
 }
 .btn:active{transform:scale(0.97)}
@@ -265,8 +270,8 @@ section,article.work{scroll-margin-top:calc(var(--nav-h) + var(--s-4))}
 .band-tint{background:var(--paper-2)}
 .band-obsidian{background:var(--obsidian);color:var(--obsidian-ink)}
 
-article.work{padding:var(--s-16) 0}
-.work-head{display:grid;gap:var(--s-3);margin-bottom:var(--s-8);max-width:66ch}
+article.work{padding:var(--s-10) 0}
+.work-head{display:grid;gap:var(--s-3);margin-bottom:var(--s-6);max-width:66ch}
 .work-meta{
   display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-4);
   font-size:13.5px;color:var(--ink-3);
@@ -293,7 +298,7 @@ article.work{padding:var(--s-16) 0}
   gap:var(--s-8);
   align-items:center;
 }
-.split-copy{display:grid;gap:var(--s-6)}
+.split-copy{display:grid;gap:var(--s-6);min-width:0;width:100%;max-width:100%}
 
 /* Figures Strip */
 .metrics{
@@ -321,7 +326,7 @@ article.work{padding:var(--s-16) 0}
 .band-obsidian .pt b{color:var(--obsidian-ink)}
 
 /* Action Bar Above Showcase */
-.stage-col{display:grid;gap:var(--s-3)}
+.stage-col{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-3);min-width:0;width:100%;max-width:100%}
 .stage-bar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-3);
 }
@@ -353,7 +358,11 @@ article.work{padding:var(--s-16) 0}
   box-shadow:var(--stage-shadow);
   overflow:hidden;
   display:grid;
+  grid-template-columns:minmax(0,1fr);
   gap:0;
+  min-width:0;
+  width:100%;
+  max-width:100%;
 }
 .band-obsidian .sb{background:var(--obsidian-2);color:var(--obsidian-ink)}
 .sb.mobile-view{max-width:440px;width:100%;margin-inline:auto}
@@ -361,8 +370,8 @@ article.work{padding:var(--s-16) 0}
 .sb.desktop-view{max-width:100%;width:100%}
 
 .sb-tabs{
-  display:flex;gap:var(--s-2);
-  padding:var(--s-3) var(--s-4) var(--s-2);
+  display:flex;gap:var(--s-1);
+  padding:var(--s-2) var(--s-3);
   overflow-x:auto;scrollbar-width:none;
   border-bottom:1px solid var(--rule);
 }
@@ -370,9 +379,9 @@ article.work{padding:var(--s-16) 0}
 .sb-tabs::-webkit-scrollbar{display:none}
 .sb-tab{
   position:relative;flex:none;
-  padding:var(--s-2) var(--s-3) var(--s-3);
+  padding:var(--s-2) var(--s-2) var(--s-3);
   border-radius:var(--r-sm);
-  font-size:13px;font-weight:600;
+  font-size:12.5px;font-weight:600;
   color:var(--ink-3);
   white-space:nowrap;
   overflow:hidden;
@@ -460,20 +469,21 @@ article.work{padding:var(--s-16) 0}
   pointer-events:none;
 }
 
-/* Apple Segmented Control (Section 02) */
+/* Apple Segmented Control (Section 02: 2x2 grid on mobile, sliding pill on desktop) */
 .seg-wrap{
   position:relative;
-  display:inline-flex;align-items:center;
-  background:var(--paper);
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--s-1);
+  width:100%;
+  background:var(--paper-2);
   padding:var(--s-1);
-  border-radius:var(--r-pill);
+  border-radius:var(--r-md);
   border:1px solid var(--rule);
   max-width:100%;
-  overflow-x:auto;
-  scrollbar-width:none;
 }
-.seg-wrap::-webkit-scrollbar{display:none}
 .seg-thumb{
+  display:none;
   position:absolute;top:var(--s-1);bottom:var(--s-1);left:0;
   border-radius:var(--r-pill);
   background:var(--surface);
@@ -484,21 +494,23 @@ article.work{padding:var(--s-16) 0}
 }
 .etab{
   position:relative;z-index:2;
-  padding:var(--s-2) var(--s-4);
-  font-size:13.5px;font-weight:600;color:var(--ink-2);
-  border-radius:var(--r-pill);
+  padding:var(--s-2) var(--s-2);
+  font-size:13px;font-weight:600;color:var(--ink-2);
+  border-radius:var(--r-sm);
   white-space:nowrap;
-  transition:color 180ms var(--ease),transform 100ms var(--ease);
+  text-align:center;
+  transition:color 180ms var(--ease),background-color 180ms var(--ease),transform 100ms var(--ease);
 }
 .etab:active{transform:scale(0.97)}
-.etab.active{color:var(--ink)}
+.etab.active{color:var(--ink);background:var(--surface);box-shadow:var(--pill-shadow)}
 
 /* Section 02 Showcase Shell */
-.deck-shell{display:grid;gap:var(--s-5)}
+.deck-shell{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);min-width:0;width:100%}
 .deck-head-row{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-4);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-3);min-width:0;
 }
-.deck-stage{min-height:320px}
+.deck-stage{min-height:320px;min-width:0;width:100%}
+.deck-stage > div{min-width:0;width:100%}
 
 /* Proof Gallery (Section 04) */
 .plates{
@@ -659,6 +671,8 @@ footer{
   .nav-cta{order:1}
 
   .hero{padding:var(--s-10) 0 var(--s-16)}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+  .hero-actions .btn.pri{grid-column:auto}
   .hero-meta span + span{padding-left:var(--s-4);border-left:1px solid var(--rule-strong)}
   .bento{
     grid-template-columns:repeat(12,minmax(0,1fr));
@@ -669,6 +683,16 @@ footer{
   .btile-preview{grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr)}
 
   article.work{padding:var(--s-24) 0}
+  .work-head{margin-bottom:var(--s-8)}
+  .sb-tabs{gap:var(--s-2);padding:var(--s-3) var(--s-4) var(--s-2)}
+  .sb-tab{padding:var(--s-2) var(--s-3) var(--s-3);font-size:13px}
+  .seg-wrap{
+    display:inline-flex;align-items:center;gap:0;width:auto;
+    background:var(--paper);border-radius:var(--r-pill);
+  }
+  .seg-thumb{display:block}
+  .etab{padding:var(--s-2) var(--s-4);font-size:13.5px;border-radius:var(--r-pill)}
+  .etab.active{background:transparent;box-shadow:none}
   .split-stage{
     grid-template-columns:minmax(0,1fr) minmax(0,450px);
     gap:var(--s-12);
@@ -676,6 +700,7 @@ footer{
   .split-stage.rev{
     grid-template-columns:minmax(0,520px) minmax(0,1fr);
   }
+  .split-stage.rev .stage-col{order:-1}
   .metrics.cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}
   .metrics.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
   .points.cols-3{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-6)}
@@ -708,10 +733,10 @@ footer{
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#p1" class="active">01 取餐核对</a>
-      <a href="#p2">02 活动代预约</a>
-      <a href="#p3">03 易班软件</a>
-      <a href="#p4">04 电商与口碑</a>
-      <a href="#profile">履历与证书</a>
+      <a href="#p2">02 代预约</a>
+      <a href="#p3">03 易班</a>
+      <a href="#p4">04 实绩</a>
+      <a href="#profile">履历</a>
     </div>
   </div>
 </nav>
@@ -735,8 +760,8 @@ footer{
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
             下载简历 PDF
           </a>
-          <button class="btn quiet num" type="button" data-copy="13794875992">复制手机 13794875992</button>
-          <button class="btn quiet" type="button" data-copy="x60skim@gmail.com">复制邮箱 x60skim@gmail.com</button>
+          <button class="btn quiet" type="button" data-copy="13794875992">复制手机号</button>
+          <button class="btn quiet" type="button" data-copy="x60skim@gmail.com">复制邮箱</button>
         </div>
       </div>
 
@@ -753,7 +778,7 @@ footer{
               <p class="btile-desc">10 部手机现场实时协作，把每天 50 分钟的纸笔核对压缩至 5 分钟，33 天 95 场零错漏。</p>
             </div>
             <div class="btile-thumb">
-              <img src="./assets/shots/r1.jpg?v=1" alt="广交会手机端取餐核对工具界面预览" fetchpriority="high">
+              <img src="./assets/shots/r1.jpg?v=2" alt="广交会手机端取餐核对工具界面预览" fetchpriority="high">
             </div>
           </div>
           <div class="btile-facts num">
@@ -846,8 +871,8 @@ footer{
           <div class="stage-bar">
             <span class="stage-label">广交会取餐核对台</span>
             <div class="stage-actions">
-              <button class="video-link" type="button" data-video="./assets/demo-reconcile.mp4?v=6" data-poster="./assets/demo-reconcile.jpg?v=6">完整录屏</button>
-              <a class="preview-link" href="./src/reconcile.html?v=14" target="_blank" rel="noopener">
+              <button class="video-link" type="button" data-video="./assets/demo-reconcile.mp4?v=7" data-poster="./assets/demo-reconcile.jpg?v=7">完整录屏</button>
+              <a class="preview-link" href="./src/reconcile.html?v=16&tour=1" target="_blank" rel="noopener">
                 项目预览 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
               </a>
             </div>
@@ -889,8 +914,8 @@ footer{
             <button class="etab" type="button" role="tab" aria-selected="false" data-group="p2" data-tab="p2-admin">真实后台截图</button>
           </div>
           <div class="stage-actions">
-            <button class="video-link" id="p2-vid" type="button" data-video="./assets/demo-zhxy-web.mp4?v=6" data-poster="./assets/demo-zhxy-web.jpg?v=6">完整录屏</button>
-            <a class="preview-link" id="p2-open" href="./src/zhxy-order.html?v=14" target="_blank" rel="noopener">
+            <button class="video-link" id="p2-vid" type="button" data-video="./assets/demo-zhxy-web.mp4?v=7" data-poster="./assets/demo-zhxy-web.jpg?v=7">完整录屏</button>
+            <a class="preview-link" id="p2-open" href="./src/zhxy-order.html?v=16&tour=1" target="_blank" rel="noopener">
               <span id="p2-open-txt">项目预览</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
           </div>
@@ -926,23 +951,10 @@ footer{
     </div>
   </article>
 
-  <!-- 03 易班自动化桌面软件：黑曜石深色展厅反置分栏 + 4 步实景特写故事板 -->
+  <!-- 03 易班自动化桌面软件：黑曜石深色展厅，移动端文案优先、桌面端视觉反置 -->
   <article class="work band-obsidian" id="p3">
     <div class="wrap">
       <div class="split-stage rev">
-        <div class="stage-col">
-          <div class="stage-bar">
-            <span class="stage-label">易班自动化桌面软件</span>
-            <div class="stage-actions">
-              <button class="video-link" type="button" data-video="./assets/demo-yiban.mp4?v=6" data-poster="./assets/demo-yiban.jpg?v=6">完整录屏</button>
-              <a class="preview-link" href="./src/yiban-client.html?v=14" target="_blank" rel="noopener">
-                项目预览 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-              </a>
-            </div>
-          </div>
-          <div class="sb compact-view" data-sb="yiban" aria-label="易班自动化桌面软件功能特写轮播"></div>
-        </div>
-
         <div class="split-copy">
           <header class="work-head" style="margin-bottom:0">
             <div class="work-meta num">
@@ -966,6 +978,19 @@ footer{
             <div class="pt"><b>零成本飞书授权</b>直接用飞书表格管理一机一码授权与云端新版提醒</div>
             <div class="pt"><b>当天响应迭代</b>源码加密打包，根据付费客户反馈当天修改升级</div>
           </div>
+        </div>
+
+        <div class="stage-col">
+          <div class="stage-bar">
+            <span class="stage-label">易班自动化桌面软件</span>
+            <div class="stage-actions">
+              <button class="video-link" type="button" data-video="./assets/demo-yiban.mp4?v=6" data-poster="./assets/demo-yiban.jpg?v=6">完整录屏</button>
+              <a class="preview-link" href="./src/yiban-client.html?v=16&tour=1" target="_blank" rel="noopener">
+                项目预览 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="sb compact-view" data-sb="yiban" aria-label="易班自动化桌面软件功能特写轮播"></div>
         </div>
       </div>
     </div>
@@ -1000,12 +1025,12 @@ footer{
           <div class="plate-img"><img src="./assets/review-list.jpg" alt="100% 真实客户好评" loading="lazy"></div>
           <div class="plate-cap"><b>100% 真实客户好评</b><span>工具交付全程零纠纷零差评</span></div>
         </button>
-        <button class="plate" type="button" data-zoom="./assets/proof-profit-1.jpg" data-alt="单店销售数据 205 单 ¥6,132.24">
-          <div class="plate-img"><img src="./assets/proof-profit-1.jpg" alt="单店销售数据 205 单" loading="lazy"></div>
+        <button class="plate" type="button" data-zoom="./assets/proof-profit-2.jpg" data-alt="单店销售数据 205 单 ¥6,132.24">
+          <div class="plate-img"><img src="./assets/proof-profit-2.jpg" alt="单店销售数据 205 单" loading="lazy"></div>
           <div class="plate-cap"><b>单店成交 205 单</b><span class="num">成交额 ¥6,132.24，纠纷率 0.5%</span></div>
         </button>
-        <button class="plate" type="button" data-zoom="./assets/proof-profit-2.jpg" data-alt="工具交付 89 单 ¥1,286.00">
-          <div class="plate-img"><img src="./assets/proof-profit-2.jpg" alt="工具交付 89 单" loading="lazy"></div>
+        <button class="plate" type="button" data-zoom="./assets/proof-profit-1.jpg" data-alt="工具交付 89 单 ¥1,286.00">
+          <div class="plate-img"><img src="./assets/proof-profit-1.jpg" alt="工具交付 89 单" loading="lazy"></div>
           <div class="plate-cap"><b>工具交付 89 单</b><span class="num">成交额 ¥1,286.00，0% 纠纷率</span></div>
         </button>
         <button class="plate" type="button" data-zoom="./assets/proof-credit.jpg" data-alt="闲鱼信用极好与低纠纷记录">
@@ -1173,30 +1198,31 @@ footer{
   /* Apple Highlights Storyboards (Zero video blocking, instant WeChat playback, swipe + click) */
   const STORYBOARDS = {
     'reconcile': [
-      { tab: '余量看板', t: '5 大品牌实时余量与备餐看板', s: '10 部手机实时同步，各品牌报餐、已取与备用餐自动联动', img: './assets/shots/r1.jpg?v=1' },
-      { tab: '需补餐券', t: '需补餐券挂账部门筛选与核销', s: '按部门汇总会议**处、外联**处少取明细，核对后直接点击确认已补', img: './assets/shots/r2.jpg?v=1' },
-      { tab: '发餐防呆', t: '部门抽屉核对、加餐与换餐防呆', s: '点选录入自动核验份数，高峰期超领漏领当场标红拦截', img: './assets/shots/r3.jpg?v=1' },
-      { tab: '取餐流水', t: '全量取餐操作流水随时回溯', s: '按时间与部门记录每笔发餐、换餐与补券操作，对账有据可查', img: './assets/shots/r4.jpg?v=1' },
-      { tab: '日终转券', t: '收工一键盘点未取部门并导出 Excel', s: '自动汇总所有少取部门批量转券，断网本地留存，核对由 50 分钟缩至 5 分钟', img: './assets/shots/r5.jpg?v=1' }
+      { tab: '余量看板', t: '5 大品牌实时余量与备餐看板', s: '10 部手机实时同步，各品牌报餐、已取与备用餐自动联动', img: './assets/shots/r1.jpg?v=2' },
+      { tab: '需补餐券', t: '需补餐券挂账部门筛选与核销', s: '按部门汇总会议**处、外联**处少取明细，核对后直接点击确认已补', img: './assets/shots/r2.jpg?v=2' },
+      { tab: '发餐防呆', t: '部门抽屉核对、加餐与换餐防呆', s: '点选录入自动核验份数，高峰期超领漏领当场标红拦截', img: './assets/shots/r3.jpg?v=2' },
+      { tab: '取餐流水', t: '问题餐券留证、换餐加餐与撤销全记录', s: '按状态筛选问题餐券与换加餐，涂改餐券现场拍照留证、误录随时撤销回溯', img: './assets/shots/r4.jpg?v=2' },
+      { tab: '日终转券', t: '收工一键盘点未取部门并导出 Excel', s: '自动汇总所有少取部门批量转券，断网本地留存，核对由 50 分钟缩至 5 分钟', img: './assets/shots/r5.jpg?v=2' },
+      { tab: '全能工具', t: '到餐录入、批量导表与 WPS 结算复制', s: '支持实到录入、粘贴导入报餐表、一键复制 WPS 结算数据与误导区域转移', img: './assets/shots/r6.jpg?v=2' }
     ],
     'zhxy-web': [
-      { tab: '活动筛选', t: '1,225 场校园活动自动同步上架', s: '后台持续抓取新活动并补全综测加分项，按空闲名额与线上线下精准筛选', img: './assets/shots/w1.jpg?v=1' },
-      { tab: '批量下单', t: '多场勾选合并预约与首次短信验号', s: '一次勾选多场活动提交，首次下单自动校验学号密码杜绝无效单', img: './assets/shots/w2.jpg?v=1' },
-      { tab: '自助查单', t: '客户透明查单与状态实时同步', s: '按学号查询已抢到、排队中与待结算进度，大幅减少微信咨询', img: './assets/shots/w3.jpg?v=1' },
-      { tab: '互助占位', t: '37 位客户签约互助占位换免费掉落', s: '出借空闲名额换取热门活动免费名额，累计置换 216 次、掉落 35 次', img: './assets/shots/w4.jpg?v=1' }
+      { tab: '活动筛选', t: '1,225 场校园活动自动同步上架', s: '后台持续抓取新活动并补全综测加分项，按空闲名额与线上线下精准筛选', img: './assets/shots/w1.jpg?v=2' },
+      { tab: '批量下单', t: '多场勾选合并预约与首次短信验号', s: '一次勾选多场活动提交，首次下单自动校验学号密码杜绝无效单', img: './assets/shots/w2.jpg?v=2' },
+      { tab: '自助查单', t: '客户透明查单与状态实时同步', s: '按学号查询已抢到、排队中与待结算进度，大幅减少微信咨询', img: './assets/shots/w3.jpg?v=2' },
+      { tab: '互助占位', t: '37 位客户签约互助占位换免费掉落', s: '出借空闲名额换取热门活动免费名额，累计置换 216 次、掉落 35 次', img: './assets/shots/w4.jpg?v=2' }
     ],
     'zhxy-console': [
-      { tab: '并发监控', t: '主控制台与多任务实时日志监控', s: '左侧监控守护进程、延迟与开抢倒计时，右侧展开实时名额置换与抢票日志', img: './assets/shots/c1.jpg?v=1' },
-      { tab: '订单后台', t: '861 笔系统订单集中履约后台', s: '同步网页自助订单，支持一键复核真伪、批量生图与批量结算', img: './assets/shots/c2.jpg?v=1' },
-      { tab: '待结生图', t: '待结算客户一键筛选准备自动生图', s: '自动滤出已抢到未付款订单，批量生成对账账单图发客户收款', img: './assets/shots/c3.jpg?v=1' },
-      { tab: '名额置换', t: '216 次副号让位与客户接盘调度', s: '统一维护占位账号池，自动化执行让位与接盘，提升热门活动成功率', img: './assets/shots/c4.jpg?v=1' },
-      { tab: '客户工单', t: '前台工单同步桌面端集中回复', s: '客户网页提交的反馈与撤单请求实时同步，处理完成后自动提醒客户', img: './assets/shots/c5.jpg?v=1' }
+      { tab: '并发监控', t: '主控制台与多任务实时日志监控', s: '左侧监控守护进程、延迟与开抢倒计时，右侧展开实时名额置换与抢票日志', img: './assets/shots/c1.jpg?v=2' },
+      { tab: '订单后台', t: '861 笔系统订单集中履约后台', s: '同步网页自助订单，支持一键复核真伪、批量生图与批量结算', img: './assets/shots/c2.jpg?v=2' },
+      { tab: '待结生图', t: '待结算客户一键筛选准备自动生图', s: '自动滤出已抢到未付款订单，批量生成对账账单图发客户收款', img: './assets/shots/c3.jpg?v=2' },
+      { tab: '名额置换', t: '216 次副号让位与客户接盘调度', s: '统一维护占位账号池，自动化执行让位与接盘，提升热门活动成功率', img: './assets/shots/c4.jpg?v=2' },
+      { tab: '客户工单', t: '前台工单同步桌面端集中回复', s: '客户网页提交的反馈与撤单请求实时同步，处理完成后自动提醒客户', img: './assets/shots/c5.jpg?v=2' }
     ],
     'yiban': [
-      { tab: '飞书授权', t: '飞书表格零成本一机一码授权', s: '不租云服务器，直接联网校验硬件码与卡密有效期，服务器成本 ¥0/月', img: './assets/shots/y1.jpg?v=1' },
-      { tab: '读取版块', t: '自动同步 5 个范围 / 36 个可发版块', s: '自动读取账号权限版块列表，内置防屏蔽发帖规则指引', img: './assets/shots/y2.jpg?v=1' },
-      { tab: '自定义词库', t: '本地可视化配置发帖与评论话术', s: '随机组合多条语料，保存后自动同步注入浏览器执行脚本', img: './assets/shots/y3.jpg?v=1' },
-      { tab: '实机执行', t: '自动发帖评论与实时网薪日志', s: '按上限随机间隔防风控执行，线上实售 89 单保持 100% 好评 0 纠纷', img: './assets/shots/y4.jpg?v=1' }
+      { tab: '飞书授权', t: '飞书表格零成本一机一码授权', s: '不租云服务器，直接联网校验硬件码与卡密有效期，服务器成本 ¥0/月', img: './assets/shots/y1.jpg?v=2' },
+      { tab: '读取版块', t: '自动同步 5 个范围 / 36 个可发版块', s: '自动读取账号权限版块列表，内置防屏蔽发帖规则指引', img: './assets/shots/y2.jpg?v=2' },
+      { tab: '自定义词库', t: '本地可视化配置发帖与评论话术', s: '随机组合多条语料，保存后自动同步注入浏览器执行脚本', img: './assets/shots/y3.jpg?v=2' },
+      { tab: '实机执行', t: '自动发帖评论与实时网薪日志', s: '按上限随机间隔防风控执行，线上实售 89 单保持 100% 好评 0 纠纷', img: './assets/shots/y4.jpg?v=2' }
     ]
   };
 
@@ -1389,7 +1415,7 @@ footer{
   const segWrap = document.getElementById('p2Seg');
   const segThumb = document.getElementById('p2Thumb');
   function syncSegThumb(activeBtn){
-    if(!segWrap || !segThumb || !activeBtn) return;
+    if(!segWrap || !segThumb || !activeBtn || window.innerWidth < 860) return;
     segThumb.style.width = activeBtn.offsetWidth + 'px';
     segThumb.style.transform = 'translate3d(' + activeBtn.offsetLeft + 'px,0,0)';
   }
@@ -1403,8 +1429,8 @@ footer{
   }
 
   const p2Meta = {
-    'p2-web': { href: './src/zhxy-order.html?v=14', label: '项目预览', vid: './assets/demo-zhxy-web.mp4?v=6', poster: './assets/demo-zhxy-web.jpg?v=6', sb: 'zhxy-web' },
-    'p2-console': { href: './src/zhxy-console.html?v=14', label: '项目预览', vid: './assets/demo-zhxy-console.mp4?v=6', poster: './assets/demo-zhxy-console.jpg?v=6', sb: 'zhxy-console' },
+    'p2-web': { href: './src/zhxy-order.html?v=16&tour=1', label: '项目预览', vid: './assets/demo-zhxy-web.mp4?v=7', poster: './assets/demo-zhxy-web.jpg?v=7', sb: 'zhxy-web' },
+    'p2-console': { href: './src/zhxy-console.html?v=16&tour=1', label: '项目预览', vid: './assets/demo-zhxy-console.mp4?v=6', poster: './assets/demo-zhxy-console.jpg?v=6', sb: 'zhxy-console' },
     'p2-bill': { href: './assets/bill-sample.jpg', label: '查看原图', vid: '', poster: '', sb: '' },
     'p2-admin': { href: './assets/order-admin-blur.jpg', label: '查看原图', vid: '', poster: '', sb: '' }
   };
