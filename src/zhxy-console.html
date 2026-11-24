@@ -9181,10 +9181,10 @@ window.App = App;
   { t: '筛选「只看待结算」快速核对收款', s: '自动滤出已抢到但未付款的客户，一键生成待结账单图', sel: '#admin-settle-btn', wait: 2300 },
   { pre: ()=>{ if(window.App) App.closeAdminPortal(); }, t: '展开右侧「任务清单」跟进全流程', s: '每场活动的进群、打卡、加分确认进度一目了然', sel: 'button[onclick="App.toggleTaskDrawer()"]', wait: 2300 },
   { pre: ()=>{ const c=document.querySelector('.drawer-close'); if(c) c.click(); }, t: '「已验账号管理」38 个有效账号池', s: '统一维护已通过短信验号的客户与副号状态', sel: 'button[onclick="App.toggleOpsMenu(event)"]', fn: ()=>{ if(window.App) App.openVerifiedUsersModal(); }, wait: 2400 },
-  { pre: ()=>{ document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); }, t: '「名额置换 / 占位管理」调度中心', s: '累计完成 216 次副号让位与客户接盘，显著提升成功率', sel: 'button[onclick="App.toggleOpsMenu(event)"]', fn: ()=>{ if(window.App) App.openSlotManagerModal(); }, wait: 2600 },
-  { pre: ()=>{ document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); }, t: '「客户工单」后台集中答疑结单', s: '客户网页提交的问题实时同步到桌面端处理', sel: 'button[onclick="App.toggleOpsMenu(event)"]', fn: ()=>{ if(window.App) App.openTicketsModal(); }, wait: 2400 },
-  { pre: ()=>{ document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); }, t: '「系统设置」多账号与并发参数配置', s: '统一管理并发线程、HTTP直连与主题字号', sel: 'button[onclick="App.openSettings()"]', wait: 2100 },
-  { pre: ()=>{ if(window.App) App.closeSettings(); document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); }, t: '系统控制台', s: '支持多账号并行调度与批量复核', sel: '#mode-scan', wait: 900 }
+  { pre: ()=>{ document.querySelectorAll('.modal.open, .modal-overlay.open, [id$="-modal"].open').forEach(m=>m.classList.remove('open')); }, t: '「名额置换 / 占位管理」调度中心', s: '累计完成 216 次副号让位与客户接盘，显著提升成功率', sel: 'button[onclick="App.toggleOpsMenu(event)"]', fn: ()=>{ if(window.App) App.openSlotManagerModal(); }, wait: 2600 },
+  { pre: ()=>{ document.querySelectorAll('.modal.open, .modal-overlay.open, [id$="-modal"].open').forEach(m=>m.classList.remove('open')); }, t: '「客户工单」后台集中答疑结单', s: '客户网页提交的问题实时同步到桌面端处理', sel: 'button[onclick="App.toggleOpsMenu(event)"]', fn: ()=>{ if(window.App) App.openTicketsModal(); }, wait: 2400 },
+  { pre: ()=>{ document.querySelectorAll('.modal.open, .modal-overlay.open, [id$="-modal"].open').forEach(m=>m.classList.remove('open')); }, t: '「系统设置」多账号与并发参数配置', s: '统一管理并发线程、HTTP直连与主题字号', sel: 'button[onclick="App.openSettings()"]', wait: 2100 },
+  { pre: ()=>{ if(window.App) App.closeSettings(); document.querySelectorAll('.modal.open, .modal-overlay.open, [id$="-modal"].open').forEach(m=>m.classList.remove('open')); }, t: '系统控制台', s: '支持多账号并行调度与批量复核', sel: '#mode-scan', wait: 900 }
 ];
   const banner = document.getElementById('at-banner');
   const btn = document.getElementById('at-btn');
