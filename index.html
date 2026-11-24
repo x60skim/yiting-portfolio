@@ -1348,7 +1348,7 @@
 
         <div class="bento" aria-label="核心项目与实绩总览">
           <a class="btile obsidian span-7" href="#p1">
-            <div class="btile-top"><span class="btile-no">01</span><span class="btile-go">看 6 步操作演示 <svg class="icon"
+            <div class="btile-top"><span class="btile-no">01</span><span class="btile-go">演示 <svg class="icon"
                   viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M5 12h14m-6-6l6 6-6 6" />
                 </svg></span></div>
@@ -1367,7 +1367,7 @@
             </div>
           </a>
           <a class="btile accent span-5" href="#p2">
-            <div class="btile-top"><span class="btile-no">02</span><span class="btile-go">看前后端 12 步演示 <svg class="icon"
+            <div class="btile-top"><span class="btile-no">02</span><span class="btile-go">演示 <svg class="icon"
                   viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M5 12h14m-6-6l6 6-6 6" />
                 </svg></span></div>
@@ -1382,7 +1382,7 @@
             </div>
           </a>
           <a class="btile span-5" href="#p3">
-            <div class="btile-top"><span class="btile-no">03</span><span class="btile-go">看 5 步操作演示 <svg class="icon"
+            <div class="btile-top"><span class="btile-no">03</span><span class="btile-go">演示 <svg class="icon"
                   viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M5 12h14m-6-6l6 6-6 6" />
                 </svg></span></div>
@@ -1451,7 +1451,7 @@
                 <button class="video-link" type="button" data-video="./assets/demo-reconcile.mp4?v=7"
                   data-poster="./assets/demo-reconcile.jpg?v=7">完整录屏</button>
                 <a class="preview-link" href="./src/reconcile.html?v=17&tour=1" target="_blank" rel="noopener">
-                  真机互动体验 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  项目预览 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M7 17L17 7M9 7h8v8" />
                   </svg>
                 </a>
@@ -1682,7 +1682,7 @@
                 data-poster="./assets/demo-zhxy-web.jpg?v=7">完整录屏</button>
               <a class="preview-link" id="p2-open" href="./src/zhxy-order.html?v=17&tour=1" target="_blank"
                 rel="noopener">
-                <span id="p2-open-txt">真机互动体验</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <span id="p2-open-txt">项目预览</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M7 17L17 7M9 7h8v8" />
                 </svg>
               </a>
@@ -2049,21 +2049,32 @@
                 <button class="video-link" type="button" data-video="./assets/demo-yiban.mp4?v=6"
                   data-poster="./assets/demo-yiban.jpg?v=6">完整录屏</button>
                 <a class="preview-link" href="./src/yiban-client.html?v=17&tour=1" target="_blank" rel="noopener">
-                  真机互动体验 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  项目预览 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M7 17L17 7M9 7h8v8" />
                   </svg>
                 </a>
               </div>
             </div>
-            <div class="ss-narr">
-              <div class="ss-narr-copy">
-                <div class="ss-narr-t">云端多维表格 Open API 一机一码授权 + 网络校时防篡改</div>
-                <div class="ss-narr-d">启动时校验设备硬件码（HWID）、卡密有效期与网络标准时间，防止篡改系统时间绕过</div>
+
+            <div class="ss-shell" id="theater-yiban">
+              <div class="ss-top">
+                <div class="ss-beats" role="tablist">
+                  <button class="ss-beat active" type="button">1 授权核对</button>
+                  <button class="ss-beat" type="button">2 读可发版块</button>
+                  <button class="ss-beat" type="button">3 自定义词库</button>
+                  <button class="ss-beat" type="button">4 自动发帖赞</button>
+                  <button class="ss-beat" type="button">5 加密与更新</button>
+                </div>
+                <div class="ss-ctls">
+                  <button class="ss-step-btn ss-prev" type="button" aria-label="上一步">‹</button>
+                  <button class="ss-step-btn ss-next" type="button" aria-label="下一步">›</button>
+                  <button class="ss-ctl" type="button">暂停</button>
+                </div>
               </div>
               <div class="ss-narr">
                 <div class="ss-narr-copy">
-                  <div class="ss-narr-t">飞书多维表格 Open API 一机一码授权 + 网络校时防篡改</div>
-                  <div class="ss-narr-d">启动时校验设备硬件码（HWID）、卡密有效期与网络标准时间（防止篡改系统时间绕过），服务器成本 ¥0/月</div>
+                  <div class="ss-narr-t">云端多维表格 Open API 一机一码授权 + 网络校时防篡改</div>
+                  <div class="ss-narr-d">启动时校验设备硬件码（HWID）、卡密有效期与网络标准时间，防止篡改系统时间绕过</div>
                 </div>
                 <div class="ss-narr-s">1 / 5</div>
               </div>
@@ -2285,9 +2296,10 @@
     <div id="lb-inner"></div>
   </div>
 
-  <script src="./assets/vendor/stageshow-theaters.js?v=5"></script>
+  <script src="./assets/vendor/stageshow-theaters.js?v=6"></script>
   <script>
     (function () {
+      const topbar = document.getElementById('topbar');
       const toastEl = document.getElementById('toast');
       let toastTimer = null;
       function showToast(msg) { toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('on'), 1600); }
@@ -2304,26 +2316,6 @@
         const v = btn.getAttribute('data-copy');
         copyText(v).then(() => showToast('已复制 ' + v), () => showToast('请手动复制 ' + v));
       }));
-
-<script src="./assets/vendor/stageshow-theaters.js?v=6"></script>
-<script>
-(function(){
-  const toastEl = document.getElementById('toast');
-  let toastTimer = null;
-  function showToast(msg){ toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(()=>toastEl.classList.remove('on'), 1600); }
-  function copyText(text){
-    if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-    return new Promise((ok, no)=>{
-      const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
-      document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy') ? ok() : no(); }catch(e){ no(); }
-      document.body.removeChild(ta);
-    });
-  }
-  document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click', ()=>{
-    const v = btn.getAttribute('data-copy');
-    copyText(v).then(()=>showToast('已复制 ' + v), ()=>showToast('请手动复制 ' + v));
-  }));
 
       /* Lightbox for zoomed proof plates and on-demand full HD videos */
       const lb = document.getElementById('lb'), lbInner = document.getElementById('lb-inner'), lbClose = document.getElementById('lb-close');
