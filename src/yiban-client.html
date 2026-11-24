@@ -352,14 +352,14 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
 #at-cursor.on{opacity:1;transform:translate(-3px,-2px) scale(1)}
 #at-cursor.press{transform:translate(-3px,-2px) scale(0.82)}
 </style>
-<div id="at-banner" class="show idle">
+<div id="at-banner" class="idle">
   <div class="at-row">
     <span class="at-badge" id="at-step">DEMO</span>
     <div class="at-copy" id="at-copy">
-      <div class="at-title" id="at-title">滑入自动演示全部亮点</div>
-      <div class="at-sub" id="at-sub">点击页面任意处可随时手动操作</div>
+      <div class="at-title" id="at-title"></div>
+      <div class="at-sub" id="at-sub"></div>
     </div>
-    <button id="at-btn" type="button">▶ 播放演示</button>
+    <button id="at-btn" type="button">▶ 演示</button>
   </div>
   <div class="at-prog"><div class="at-prog-fill" id="at-fill"></div></div>
 </div>
@@ -375,7 +375,7 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   { t: '打开「自定义词库」随机组合话术', s: '配置个性化发帖与评论内容，自动同步至浏览器', sel: '#btnLexicon', wait: 2500 },
   { t: '点击「检查云端更新」实时核对版本', s: '新版发布自动弹窗提醒客户并一键复制提取码', sel: '#btnSaveLex', fn: (el)=>{ el.click(); setTimeout(()=>{ document.getElementById('btnUpdate').click(); }, 320); }, wait: 2500 },
   { t: '启动「自动发帖」实时滚动进度日志', s: '按配置上限自动发帖并累计网薪与经验值', sel: '#btnPost', wait: 3100 },
-  { t: '启动「自动评论 / 点赞」防风控执行', s: '随机间隔执行，演示完毕后可自由点击体验', sel: '#btnComment', wait: 2900 }
+  { t: '启动「自动评论 / 点赞」防风控执行', s: '随机间隔防风控自动执行', sel: '#btnComment', wait: 2900 }
 ];
   const banner = document.getElementById('at-banner');
   const btn = document.getElementById('at-btn');
@@ -411,13 +411,13 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   }
 
   function updateBanner(stepNum, title, sub, waitMs){
-    banner.classList.remove('idle');
+    banner.classList.remove('idle'); stepEl.style.display = '';
     banner.classList.add('show');
     stepEl.textContent = String(stepNum).padStart(2,'0') + ' / ' + String(STEPS.length).padStart(2,'0');
     copyEl.style.animation = 'none';
     void copyEl.offsetWidth;
     copyEl.style.animation = '';
-    titleEl.textContent = title;
+    titleEl.style.display = ''; titleEl.textContent = title;
     subEl.textContent = sub || '';
     fillEl.style.transition = 'none';
     fillEl.style.width = '0%';
@@ -468,7 +468,7 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   function next(){
     if(!playing) return;
     if(idx >= STEPS.length){
-      stop('演示完成 · 现在可直接点击体验', '↻ 重播');
+      stop('', '↻ 重播');
       return;
     }
     const st = STEPS[idx];
@@ -489,14 +489,14 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
     focus.classList.remove('on','press');
     cursor.classList.remove('on','press');
     banner.classList.add('idle');
-    stepEl.textContent = '交互中';
-    if(msg) titleEl.textContent = msg;
+    stepEl.style.display = 'none';
+    titleEl.textContent = msg || ''; titleEl.style.display = msg ? '' : 'none';
     btn.textContent = label || '▶ 重播';
   }
 
-  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可自由点击体验', '▶ 重播') : start(); });
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('', '▶ 重播') : start(); });
   document.addEventListener('pointerdown', (e)=>{
-    if(playing && !e.target.closest('#at-banner')) stop('已切回手动操作 · 自由体验', '↻ 重播');
+    if(playing && !e.target.closest('#at-banner')) stop('', '↻ 重播');
   }, true);
   window.addEventListener('message', (e)=>{
     if(e.data && e.data.type === 'AUTO_TOUR_START' && !hasAutoPlayed && !playing) setTimeout(start, 350);

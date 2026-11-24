@@ -9029,14 +9029,14 @@ window.App = App;
 #at-cursor.on{opacity:1;transform:translate(-3px,-2px) scale(1)}
 #at-cursor.press{transform:translate(-3px,-2px) scale(0.82)}
 </style>
-<div id="at-banner" class="show idle">
+<div id="at-banner" class="idle">
   <div class="at-row">
     <span class="at-badge" id="at-step">DEMO</span>
     <div class="at-copy" id="at-copy">
-      <div class="at-title" id="at-title">滑入自动演示全部亮点</div>
-      <div class="at-sub" id="at-sub">点击页面任意处可随时手动操作</div>
+      <div class="at-title" id="at-title"></div>
+      <div class="at-sub" id="at-sub"></div>
     </div>
-    <button id="at-btn" type="button">▶ 播放演示</button>
+    <button id="at-btn" type="button">▶ 演示</button>
   </div>
   <div class="at-prog"><div class="at-prog-fill" id="at-fill"></div></div>
 </div>
@@ -9055,7 +9055,7 @@ window.App = App;
   { t: '「名额置换 / 占位管理」调度中心', s: '累计完成 216 次副号让位与客户接盘，显著提升成功率', sel: '#verified-users-modal .close-btn', fn: (el)=>{ if(el) el.click(); document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); setTimeout(()=>{ if(window.App) App.openSlotManagerModal(); }, 350); }, wait: 2900 },
   { t: '「客户工单」后台集中答疑结单', s: '客户网页提交的问题实时同步到桌面端处理', sel: '#slot-manager-modal .close-btn', fn: (el)=>{ if(el) el.click(); document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); setTimeout(()=>{ if(window.App) App.openTicketsModal(); }, 350); }, wait: 2700 },
   { t: '「系统设置」多账号与并发参数配置', s: '演示完成，返回主控台可自由点按任意按钮', sel: '#tickets-modal .close-btn', fn: (el)=>{ if(el) el.click(); document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); setTimeout(()=>{ if(window.App) App.openSettings(); }, 350); }, wait: 2500 },
-  { t: '返回主控台 · 现在可自由点击体验', s: '点击任意按钮即可继续操作', sel: '#settings-modal .close-btn', fn: (el)=>{ if(window.App) App.closeSettings(); document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); }, wait: 1200 }
+  { t: '返回主控台', s: '支持多账号并行调度与批量复核', sel: '#settings-modal .close-btn', fn: (el)=>{ if(window.App) App.closeSettings(); document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open')); }, wait: 1200 }
 ];
   const banner = document.getElementById('at-banner');
   const btn = document.getElementById('at-btn');
@@ -9091,13 +9091,13 @@ window.App = App;
   }
 
   function updateBanner(stepNum, title, sub, waitMs){
-    banner.classList.remove('idle');
+    banner.classList.remove('idle'); stepEl.style.display = '';
     banner.classList.add('show');
     stepEl.textContent = String(stepNum).padStart(2,'0') + ' / ' + String(STEPS.length).padStart(2,'0');
     copyEl.style.animation = 'none';
     void copyEl.offsetWidth;
     copyEl.style.animation = '';
-    titleEl.textContent = title;
+    titleEl.style.display = ''; titleEl.textContent = title;
     subEl.textContent = sub || '';
     fillEl.style.transition = 'none';
     fillEl.style.width = '0%';
@@ -9148,7 +9148,7 @@ window.App = App;
   function next(){
     if(!playing) return;
     if(idx >= STEPS.length){
-      stop('演示完成 · 现在可直接点击体验', '↻ 重播');
+      stop('', '↻ 重播');
       return;
     }
     const st = STEPS[idx];
@@ -9169,14 +9169,14 @@ window.App = App;
     focus.classList.remove('on','press');
     cursor.classList.remove('on','press');
     banner.classList.add('idle');
-    stepEl.textContent = '交互中';
-    if(msg) titleEl.textContent = msg;
+    stepEl.style.display = 'none';
+    titleEl.textContent = msg || ''; titleEl.style.display = msg ? '' : 'none';
     btn.textContent = label || '▶ 重播';
   }
 
-  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可自由点击体验', '▶ 重播') : start(); });
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('', '▶ 重播') : start(); });
   document.addEventListener('pointerdown', (e)=>{
-    if(playing && !e.target.closest('#at-banner')) stop('已切回手动操作 · 自由体验', '↻ 重播');
+    if(playing && !e.target.closest('#at-banner')) stop('', '↻ 重播');
   }, true);
   window.addEventListener('message', (e)=>{
     if(e.data && e.data.type === 'AUTO_TOUR_START' && !hasAutoPlayed && !playing) setTimeout(start, 350);

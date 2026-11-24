@@ -3487,14 +3487,14 @@ function buildOrderSnapshotCanvas(orders) {
 #at-cursor.on{opacity:1;transform:translate(-3px,-2px) scale(1)}
 #at-cursor.press{transform:translate(-3px,-2px) scale(0.82)}
 </style>
-<div id="at-banner" class="show idle">
+<div id="at-banner" class="idle">
   <div class="at-row">
     <span class="at-badge" id="at-step">DEMO</span>
     <div class="at-copy" id="at-copy">
-      <div class="at-title" id="at-title">滑入自动演示全部亮点</div>
-      <div class="at-sub" id="at-sub">点击页面任意处可随时手动操作</div>
+      <div class="at-title" id="at-title"></div>
+      <div class="at-sub" id="at-sub"></div>
     </div>
-    <button id="at-btn" type="button">▶ 播放演示</button>
+    <button id="at-btn" type="button">▶ 演示</button>
   </div>
   <div class="at-prog"><div class="at-prog-fill" id="at-fill"></div></div>
 </div>
@@ -3512,7 +3512,7 @@ function buildOrderSnapshotCanvas(orders) {
   { t: '「我的预约」透明查单与自助取消', s: '客户随时查看已抢到 / 排队中状态，大幅减少咨询', sel: '#btnCloseModal', fn: (el)=>{ if(el) el.click(); else if(window.closeModal) closeModal(); if(window.clearSelection) clearSelection(); setTimeout(()=>{ const b=Array.from(document.querySelectorAll('button[data-view="my-orders"]')).find(x=>x.getBoundingClientRect().width>0); if(b) b.click(); else if(window.navView) navView('my-orders'); }, 350); }, wait: 2900 },
   { t: '独创「占位征用协议」互助机制', s: '37 位客户签约出借空闲名额，换取热门活动免费掉落', sel: '#btn-show-consent', fn: (el)=>{ if(el) el.click(); else if(window.openConsentModal) openConsentModal(true); }, wait: 2900 },
   { t: '自助「售后工单」与回复记录', s: '带图提交反馈与历史回复一目了然', sel: '#consentCloseBtn', fn: (el)=>{ if(el) el.click(); else if(window.closeConsentModal) closeConsentModal(); setTimeout(()=>{ const b=Array.from(document.querySelectorAll('button[data-view="tickets"]')).find(x=>x.getBoundingClientRect().width>0); if(b) b.click(); else if(window.navView) navView('tickets'); }, 320); }, wait: 2800 },
-  { t: '返回活动大厅 · 现在可自由点按体验', s: '全部功能均支持手动操作', sel: 'button[data-view="activities"]', fn: (el)=>{ if(el) el.click(); else if(window.navView) navView('activities'); }, wait: 1200 }
+  { t: '返回活动大厅', s: '支持搜索、筛选与批量预约', sel: 'button[data-view="activities"]', fn: (el)=>{ if(el) el.click(); else if(window.navView) navView('activities'); }, wait: 1200 }
 ];
   const banner = document.getElementById('at-banner');
   const btn = document.getElementById('at-btn');
@@ -3548,13 +3548,13 @@ function buildOrderSnapshotCanvas(orders) {
   }
 
   function updateBanner(stepNum, title, sub, waitMs){
-    banner.classList.remove('idle');
+    banner.classList.remove('idle'); stepEl.style.display = '';
     banner.classList.add('show');
     stepEl.textContent = String(stepNum).padStart(2,'0') + ' / ' + String(STEPS.length).padStart(2,'0');
     copyEl.style.animation = 'none';
     void copyEl.offsetWidth;
     copyEl.style.animation = '';
-    titleEl.textContent = title;
+    titleEl.style.display = ''; titleEl.textContent = title;
     subEl.textContent = sub || '';
     fillEl.style.transition = 'none';
     fillEl.style.width = '0%';
@@ -3605,7 +3605,7 @@ function buildOrderSnapshotCanvas(orders) {
   function next(){
     if(!playing) return;
     if(idx >= STEPS.length){
-      stop('演示完成 · 现在可直接点击体验', '↻ 重播');
+      stop('', '↻ 重播');
       return;
     }
     const st = STEPS[idx];
@@ -3626,14 +3626,14 @@ function buildOrderSnapshotCanvas(orders) {
     focus.classList.remove('on','press');
     cursor.classList.remove('on','press');
     banner.classList.add('idle');
-    stepEl.textContent = '交互中';
-    if(msg) titleEl.textContent = msg;
+    stepEl.style.display = 'none';
+    titleEl.textContent = msg || ''; titleEl.style.display = msg ? '' : 'none';
     btn.textContent = label || '▶ 重播';
   }
 
-  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('已暂停 · 可自由点击体验', '▶ 重播') : start(); });
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); playing ? stop('', '▶ 重播') : start(); });
   document.addEventListener('pointerdown', (e)=>{
-    if(playing && !e.target.closest('#at-banner')) stop('已切回手动操作 · 自由体验', '↻ 重播');
+    if(playing && !e.target.closest('#at-banner')) stop('', '↻ 重播');
   }, true);
   window.addEventListener('message', (e)=>{
     if(e.data && e.data.type === 'AUTO_TOUR_START' && !hasAutoPlayed && !playing) setTimeout(start, 350);
