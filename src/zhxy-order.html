@@ -3469,7 +3469,7 @@ function buildOrderSnapshotCanvas(orders) {
   transition:transform .22s cubic-bezier(.22,1,.36,1),width .22s cubic-bezier(.22,1,.36,1),height .22s cubic-bezier(.22,1,.36,1),opacity .16s ease;
   will-change:transform,opacity;
 }
-#at-focus.on{opacity:1}
+#at-focus{display:none!important}#at-focus.on{opacity:0}
 #at-focus.press{background:rgba(24,52,78,0.18);box-shadow:0 0 0 2px #18344E}
 #at-focus i{position:absolute;width:10px;height:10px;border:2.2px solid #18344E}
 #at-focus .tl{top:-2px;left:-2px;border-right:0;border-bottom:0;border-radius:4px 0 0 0}
