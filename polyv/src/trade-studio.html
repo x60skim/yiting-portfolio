@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>外贸视频脚本与多语种询盘工作台</title>
+  <style>
+    :root {
+      --bg: #F4F6FA;
+      --card: #FFFFFF;
+      --muted: #F8FAFC;
+      --ink: #0F172A;
+      --ink-2: #334155;
+      --ink-3: #64748B;
+      --pri: #0057FF;
+      --pri-h: #0043C7;
+      --pri-soft: #E8F0FF;
+      --ok: #059669;
+      --ok-soft: #ECFDF5;
+      --warn: #B45309;
+      --warn-soft: #FEF3C7;
+      --line: #E2E8F0;
+      --r: 14px;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      padding-bottom: 40px;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, textarea, select { font: inherit; color: inherit; }
+    button { cursor: pointer; border: 0; background: none; }
+    .top {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 16px;
+    }
+    .top-in {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .brand { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .brand b { font-size: 15.5px; font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; }
+    .badge {
+      padding: 3px 9px; border-radius: 999px;
+      background: var(--pri-soft); color: var(--pri);
+      font-size: 11.5px; font-weight: 700; white-space: nowrap;
+    }
+    .wrap { max-width: 1080px; margin: 16px auto 0; padding: 0 14px; display: grid; gap: 14px; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    @media (min-width: 860px) {
+      .grid { grid-template-columns: 380px minmax(0, 1fr); align-items: start; }
+    }
+    .panel {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 16px; display: grid; gap: 12px;
+      box-shadow: 0 8px 24px -14px rgba(15,23,42,0.08);
+    }
+    .panel-hd { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .panel-hd h2 { font-size: 14.5px; font-weight: 750; }
+    .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      padding: 6px 11px; border-radius: 999px; font-size: 12px; font-weight: 650;
+      background: var(--muted); border: 1px solid var(--line); color: var(--ink-2);
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+    .chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+    label.fl { display: grid; gap: 5px; font-size: 12px; font-weight: 650; color: var(--ink-2); }
+    input, textarea, select {
+      width: 100%; border: 1px solid var(--line); border-radius: 10px;
+      padding: 9px 11px; font-size: 13px; background: var(--muted);
+    }
+    textarea { min-height: 88px; resize: vertical; line-height: 1.5; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid var(--pri); background: #fff; }
+    .row-2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    @media (min-width: 520px) {
+      .row-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .btn-pri {
+      height: 42px; border-radius: 10px; background: var(--pri); color: #fff;
+      font-size: 13.5px; font-weight: 700; width: 100%;
+      transition: transform 100ms ease, background-color 150ms ease;
+    }
+    .btn-pri:hover { background: var(--pri-h); }
+    .btn-pri:active { transform: scale(0.98); }
+    .tabs {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;
+      background: var(--muted); padding: 4px; border-radius: 11px; border: 1px solid var(--line);
+    }
+    .tab {
+      padding: 8px 6px; border-radius: 8px; font-size: 12.5px; font-weight: 700;
+      color: var(--ink-3); text-align: center;
+    }
+    .tab.on { background: #fff; color: var(--ink); box-shadow: 0 2px 6px rgba(15,23,42,0.06); }
+    .pane { display: none; gap: 12px; }
+    .pane.on { display: grid; }
+    .lang-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .sub-pills { display: inline-flex; gap: 6px; }
+    .sub-pill {
+      padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;
+      background: var(--muted); border: 1px solid var(--line); color: var(--ink-2);
+    }
+    .sub-pill.on { background: var(--pri-soft); color: var(--pri); border-color: #BFDBFE; }
+    .act-btn {
+      padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700;
+      background: var(--ink); color: #fff;
+    }
+    .shot-list { display: grid; gap: 9px; }
+    .shot {
+      border: 1px solid var(--line); border-radius: 11px; padding: 11px 13px;
+      background: var(--muted); display: grid; gap: 5px;
+    }
+    .shot-top { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; font-weight: 700; color: var(--pri); }
+    .shot-top span.dur { font-family: var(--mono); color: var(--ink-3); }
+    .shot p.main { font-size: 13.5px; color: var(--ink); font-weight: 550; }
+    .shot p.sub { font-size: 12px; color: var(--ink-3); }
+    .term-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .term-table th, .term-table td {
+      text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line);
+    }
+    .term-table th { font-size: 11.5px; color: var(--ink-3); background: var(--muted); }
+    .term-code { font-family: var(--mono); font-weight: 700; color: var(--pri); }
+    .msg-box {
+      border: 1px solid var(--line); border-radius: 11px; padding: 12px 14px;
+      background: var(--muted); font-size: 13px; white-space: pre-wrap; line-height: 1.6;
+    }
+    .kpi-strip {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;
+    }
+    .kpi {
+      background: var(--muted); border: 1px solid var(--line); border-radius: 10px;
+      padding: 9px 10px; text-align: center;
+    }
+    .kpi b { display: block; font-size: 15px; font-weight: 800; color: var(--ink); font-family: var(--mono); }
+    .kpi span { font-size: 11px; color: var(--ink-3); }
+    #toast {
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+      background: var(--ink); color: #fff; padding: 8px 16px; border-radius: 999px;
+      font-size: 12.5px; font-weight: 650; opacity: 0; pointer-events: none;
+      transition: opacity 180ms ease;
+    }
+    #toast.on { opacity: 0.96; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-in">
+      <div class="brand">
+        <b>外贸视频与多语种询盘台</b>
+        <span class="badge">B2B 出海工具</span>
+      </div>
+      <button class="act-btn" type="button" id="btnExportCsv">导出跟进标准表 CSV</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <section class="panel" aria-label="产品参数录入">
+        <div class="panel-hd">
+          <h2>1. 选择样本或填入产品参数</h2>
+          <span style="font-size:11.5px;color:var(--ok);font-weight:700">实时拆解</span>
+        </div>
+        <div class="presets" id="presetBar">
+          <button class="chip on" type="button" data-p="power">便携储能电源</button>
+          <button class="chip" type="button" data-p="coffee">商用意式咖啡机</button>
+          <button class="chip" type="button" data-p="laser">光纤激光打标机</button>
+        </div>
+
+        <label class="fl">产品名称
+          <input id="inName" type="text" value="1200W 磷酸铁锂便携储能电源">
+        </label>
+        <div class="row-2">
+          <label class="fl">起订量与交期
+            <input id="inMoq" type="text" value="MOQ 50 台 · 15 天交货">
+          </label>
+          <label class="fl">FOB 参考区间
+            <input id="inPrice" type="text" value="USD 198 - 225 FOB Shenzhen">
+          </label>
+        </div>
+        <label class="fl">认证与核心卖点
+          <textarea id="inPoints">车规级 LiFePO4 电芯循环 3500 次；50 分钟快充至 80%；支持太阳能 MPPT 输入与 UPS 10ms 切换；具备 CE、FCC、UL2743 与 UN38.3 认证，支持贴牌定制。</textarea>
+        </label>
+        <label class="fl">买家询盘原文
+          <input id="inBuyer" type="text" value="Hi, can you send unit price for 100 pcs to Monterrey and confirm UL certificate?">
+        </label>
+        <button class="btn-pri" type="button" id="btnGen">生成多语种口播稿与跟进方案</button>
+      </section>
+
+      <section class="panel" aria-label="生成结果工作区">
+        <div class="kpi-strip">
+          <div class="kpi"><b id="kDur">38s</b><span>口播总时长</span></div>
+          <div class="kpi"><b id="kWords">86 词</b><span>适配配音语速</span></div>
+          <div class="kpi"><b id="kTerms">5 项</b><span>已锁定专业术语</span></div>
+        </div>
+
+        <div class="tabs" role="tablist">
+          <button class="tab on" type="button" data-t="script">双语口播</button>
+          <button class="tab" type="button" data-t="terms">术语核准</button>
+          <button class="tab" type="button" data-t="reply">询盘秒回</button>
+        </div>
+
+        <div class="pane on" id="pane-script">
+          <div class="lang-bar">
+            <div class="sub-pills">
+              <button class="sub-pill on" type="button" data-vlang="en">English 英文口播</button>
+              <button class="sub-pill" type="button" data-vlang="es">Español 西语口播</button>
+            </div>
+            <button class="act-btn" type="button" id="btnCopyScript">复制全部口播词</button>
+          </div>
+          <div class="shot-list" id="shotList"></div>
+        </div>
+
+        <div class="pane" id="pane-terms">
+          <div class="lang-bar">
+            <span style="font-size:12px;color:var(--ink-3)">配音与字幕生成前锁定行业专有词，避免直译出错</span>
+            <button class="act-btn" type="button" id="btnCopyTerms">复制术语表</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="term-table">
+              <thead>
+                <tr><th>中文原词</th><th>English 标准词</th><th>Español 西语词</th><th>校验说明</th></tr>
+              </thead>
+              <tbody id="termBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pane" id="pane-reply">
+          <div class="lang-bar">
+            <div class="sub-pills">
+              <button class="sub-pill on" type="button" data-rmsg="wa">WhatsApp 秒回模板</button>
+              <button class="sub-pill" type="button" data-rmsg="mail">正式报价跟进邮件</button>
+            </div>
+            <button class="act-btn" type="button" id="btnCopyReply">复制跟进消息</button>
+          </div>
+          <div class="msg-box" id="replyBox"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast">已复制</div>
+
+  <script>
+    const PRESETS = {
+      power: {
+        name: '1200W 磷酸铁锂便携储能电源',
+        moq: 'MOQ 50 台 · 15 天交货',
+        price: 'USD 198 - 225 FOB Shenzhen',
+        points: '车规级 LiFePO4 电芯循环 3500 次；50 分钟快充至 80%；支持太阳能 MPPT 输入与 UPS 10ms 切换；具备 CE、FCC、UL2743 与 UN38.3 认证，支持贴牌定制。',
+        buyer: 'Hi, can you send unit price for 100 pcs to Monterrey and confirm UL certificate?',
+        shots: {
+          en: [
+            { tag: '镜头 01 · 痛点开场', dur: '00:00 - 00:08', main: 'Looking for a reliable 1200W portable power station ready for retail and industrial backup?', sub: '实拍机身接口特写与户外带载画面' },
+            { tag: '镜头 02 · 核心参数', dur: '00:08 - 00:20', main: 'Built with automotive-grade LiFePO4 cells rated for 3,500 cycles, it recharges to 80% in just 50 minutes and switches in 10ms as a seamless UPS.', sub: '展示快充功率表读数与电芯循环实测页' },
+            { tag: '镜头 03 · 认证与交期', dur: '00:20 - 00:31', main: 'Fully certified with UL2743, FCC, CE, and UN38.3 for smooth customs clearance. OEM branding starts at 50 units with a 15-day lead time.', sub: '平铺证书编号与工厂老化测试产线' },
+            { tag: '镜头 04 · 询盘引导', dur: '00:31 - 00:38', main: 'Click the inquiry button below to get our FOB Shenzhen tiered price sheet and sample test report today.', sub: '指向页面底部 WhatsApp 与报价单入口' }
+          ],
+          es: [
+            { tag: '镜头 01 · 开场吸引', dur: '00:00 - 00:08', main: '¿Busca una estación de energía portátil de 1200W confiable para distribución y respaldo industrial?', sub: '实拍机身接口特写与带载画面' },
+            { tag: '镜头 02 · 电芯与快充', dur: '00:08 - 00:21', main: 'Equipada con celdas LiFePO4 de grado automotriz de 3,500 ciclos, carga al 80% en 50 minutos con respaldo UPS en 10 milisegundos.', sub: '展示快充功率实测与电芯寿命数据' },
+            { tag: '镜头 03 · 认证与起订', dur: '00:21 - 00:32', main: 'Cuenta con certificaciones UL2743, FCC, CE y UN38.3. Pedido mínimo de 50 unidades para marca OEM y entrega en 15 días.', sub: '展示全套清关认证与产线画面' },
+            { tag: '镜头 04 · 行动引导', dur: '00:32 - 00:39', main: 'Envíenos un mensaje ahora para recibir la lista de precios FOB Shenzhen y la ficha técnica completa.', sub: '引导点击询盘按钮获取阶梯报价' }
+          ]
+        },
+        terms: [
+          ['磷酸铁锂电芯', 'LiFePO4 Battery Cell', 'Celda LiFePO4', '严禁拆译成普通锂电'],
+          ['不间断电源切换', '10ms UPS Switchover', 'Conmutación UPS 10ms', '保留毫秒数值提升可信度'],
+          ['危险品运输鉴定', 'UN38.3 Test Summary', 'Certificación UN38.3', '电池海空运清关必审项'],
+          ['深圳离岸价', 'FOB Shenzhen', 'FOB Shenzhen', '国际贸易术语保持大写'],
+          ['贴牌与定制开发', 'OEM & ODM Service', 'Servicio OEM y ODM', '外贸批发买家高频词']
+        ]
+      },
+      coffee: {
+        name: '双锅炉商用半自动意式咖啡机',
+        moq: 'MOQ 10 台 · 12 天交货',
+        price: 'USD 680 - 760 FOB Guangzhou',
+        points: '独立双不锈钢锅炉 PID 精准控温；意大利进口旋转泵 9 Bar 恒压萃取；防烫蒸汽棒连续出杯不掉压；通过 CE、CB、NSF 食品接触认证。',
+        buyer: 'Hello, do you have 110V 60Hz version for cafes and spare parts kit?',
+        shots: {
+          en: [
+            { tag: '镜头 01 · 出杯场景', dur: '00:00 - 00:08', main: 'Running a busy cafe that needs rock-steady espresso extraction during morning rush hours?', sub: '展示双头浓缩油脂拉丝画面' },
+            { tag: '镜头 02 · 双锅炉控温', dur: '00:08 - 00:20', main: 'Our dual stainless-steel boiler system with PID temperature control and Italian rotary pump holds a stable 9-bar pressure cup after cup.', sub: '特写压力表稳定在 9 Bar 与奶泡打发' },
+            { tag: '镜头 03 · 电压与认证', dur: '00:20 - 00:30', main: 'Available in both 220V and 110V 60Hz configurations, backed by CE, CB, and food-grade NSF compliance. MOQ is just 10 units.', sub: '展示铭牌电压规格与认证标识' },
+            { tag: '镜头 04 · 询盘转化', dur: '00:30 - 00:37', main: 'Message us directly for distributor pricing, spare parts list, and a live extraction test video.', sub: '引导索取经销商价目表与备件包清单' }
+          ],
+          es: [
+            { tag: '镜头 01 · 高峰出杯', dur: '00:00 - 00:08', main: '¿Necesita una máquina de espresso comercial estable durante las horas pico de su cafetería?', sub: '展示连续萃取浓缩咖啡特写' },
+            { tag: '镜头 02 · 恒压控温', dur: '00:08 - 00:20', main: 'Con doble caldera de acero inoxidable, control PID y bomba rotativa italiana a 9 bares constantes en cada taza.', sub: '展示 PID 温控屏与蒸汽打奶泡' },
+            { tag: '镜头 03 · 美规电压', dur: '00:20 - 00:31', main: 'Disponible en versión 110V 60Hz y 220V con certificaciones CE, CB y NSF. Pedido mínimo desde 10 unidades.', sub: '特写 110V 60Hz 规格契合美洲市场' },
+            { tag: '镜头 04 · 索取报价', dur: '00:31 - 00:38', main: 'Contáctenos hoy para recibir precios de distribuidor y el kit de repuestos incluido.', sub: '引导点击获取报价与易损件清单' }
+          ]
+        },
+        terms: [
+          ['双锅炉温控', 'Dual Boiler PID Control', 'Doble Caldera con PID', '商用机核心溢价卖点'],
+          ['意大利旋转泵', 'Italian Rotary Pump', 'Bomba Rotativa Italiana', '区分家用震动泵'],
+          ['食品接触认证', 'NSF Food-Grade Certified', 'Certificación NSF', '北美及拉美餐饮准入关键'],
+          ['美规电压频率', '110V / 60Hz Version', 'Versión 110V / 60Hz', '美洲电网必核参数'],
+          ['广州离岸价', 'FOB Guangzhou', 'FOB Guangzhou', '珠三角货代常用港口']
+        ]
+      },
+      laser: {
+        name: '30W 便携式光纤激光打标机',
+        moq: 'MOQ 5 台 · 7 天现货速发',
+        price: 'USD 920 - 1,080 FOB Shenzhen',
+        points: '锐科激光器 10 万小时寿命；高速振镜 7000mm/s 精细雕刻金属与硬质塑料；风冷免耗材；配英文/西语版 EzCad 软件与远程调试指导。',
+        buyer: 'Can this engrave deep serial numbers on stainless steel automotive parts?',
+        shots: {
+          en: [
+            { tag: '镜头 01 · 3 秒打标实拍', dur: '00:00 - 00:07', main: 'Watch how cleanly this 30W fiber laser engraves permanent serial numbers and QR codes on stainless steel in 3 seconds.', sub: '实拍不锈钢铭牌高速打标全过程' },
+            { tag: '镜头 02 · 核心光源', dur: '00:07 - 00:19', main: 'Powered by a 100,000-hour laser source and 7,000mm/s galvo scanner, it runs air-cooled with zero consumables.', sub: '展示振镜镜头与深度雕刻微距细节' },
+            { tag: '镜头 03 · 多语种软件', dur: '00:19 - 00:29', main: 'Ships in 7 days with multilingual EzCad software in English and Spanish, plus 1-on-1 remote setup training.', sub: '展示多语言操作界面与木箱包装' },
+            { tag: '镜头 04 · 免费打样', dur: '00:29 - 00:36', main: 'Send us your part drawing or logo now—we will film a free sample marking video for you within 24 hours.', sub: '用 24 小时免费打样视频降低决策门槛' }
+          ],
+          es: [
+            { tag: '镜头 01 · 实拍效果', dur: '00:00 - 00:07', main: 'Vea cómo este láser de fibra de 30W graba códigos QR y números de serie en acero inoxidable en 3 segundos.', sub: '实拍金属零件永久打标特写' },
+            { tag: '镜头 02 · 免耗材寿命', dur: '00:07 - 00:19', main: 'Con fuente láser de 100,000 horas y cabezal galvo de 7,000mm/s, enfriado por aire y sin consumibles.', sub: '展示高速振镜与清晰边缘' },
+            { tag: '镜头 03 · 西语界面支持', dur: '00:19 - 00:29', main: 'Envío en 7 días con software EzCad en español e inglés, además de capacitación remota paso a paso.', sub: '消除海外工厂操作工语言顾虑' },
+            { tag: '镜头 04 · 免费试打样', dur: '00:29 - 00:36', main: 'Envíenos su logotipo hoy y grabaremos un video de muestra gratuito sobre su material en 24 horas.', sub: '引导买家发图纸换取实测视频' }
+          ]
+        },
+        terms: [
+          ['光纤激光器', 'Fiber Laser Source', 'Fuente Láser de Fibra', '区分 CO2 激光器'],
+          ['高速振镜扫描', 'High-Speed Galvo Scanner', 'Escáner Galvo de Alta Velocidad', '决定打标速度与精度'],
+          ['风冷免耗材', 'Air-Cooled Zero Consumables', 'Enfriado por Aire sin Consumibles', '海外售后维护痛点低'],
+          ['免费打样实拍', 'Free Sample Marking Video', 'Video de Muestra Gratuito', 'B2B 机械设备最高转化钩子'],
+          ['木箱熏蒸包装', 'Export Plywood Case', 'Caja de Madera de Exportación', '海运免熏蒸出口标准']
+        ]
+      }
+    };
+
+    let curKey = 'power';
+    let curTab = 'script';
+    let curVLang = 'en';
+    let curRMsg = 'wa';
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('on');
+      clearTimeout(window.__tt);
+      window.__tt = setTimeout(() => el.classList.remove('on'), 1500);
+    }
+
+    function copyStr(s, label) {
+      navigator.clipboard.writeText(s).then(() => showToast(label || '已复制'));
+    }
+
+    function buildReply(mode) {
+      const name = document.getElementById('inName').value.trim();
+      const moq = document.getElementById('inMoq').value.trim();
+      const price = document.getElementById('inPrice').value.trim();
+      const buyer = document.getElementById('inBuyer').value.trim();
+      if (mode === 'wa') {
+        return `Hi! Thanks for your inquiry regarding "${buyer.slice(0, 58)}".\n\n1. Product: ${name}\n2. Tiered Quote: ${price}\n3. Lead Time & MOQ: ${moq}\n4. Compliance: Full test reports & certificates ready in PDF.\n\nWould you like me to share a 35-second real factory test video and our formal PI sheet right here on WhatsApp?`;
+      }
+      return `Subject: Quotation & Certification Pack - ${name}\n\nDear Purchasing Manager,\n\nThank you for reaching out:\n> "${buyer}"\n\nPlease find our factory-direct key terms below:\n- Model: ${name}\n- Price Range: ${price}\n- MOQ & Production Lead Time: ${moq}\n- Documentation: Complete certification PDF pack and inspection video attached.\n\nCould you confirm your destination port and target plug/voltage standard so I can calculate exact door-to-door shipping cost for you today?\n\nBest regards,\nYiting Lai | Export Specialist`;
+    }
+
+    function renderAll() {
+      const d = PRESETS[curKey];
+      const shots = d.shots[curVLang];
+      const shotWrap = document.getElementById('shotList');
+      shotWrap.innerHTML = shots.map(s => `
+        <div class="shot">
+          <div class="shot-top"><span>${s.tag}</span><span class="dur">${s.dur}</span></div>
+          <p class="main">${s.main}</p>
+          <p class="sub">画面调度：${s.sub}</p>
+        </div>
+      `).join('');
+
+      const words = shots.map(s => s.main).join(' ').split(/\s+/).length;
+      document.getElementById('kWords').textContent = words + ' 词';
+      document.getElementById('kTerms').textContent = d.terms.length + ' 项';
+
+      document.getElementById('termBody').innerHTML = d.terms.map(r => `
+        <tr>
+          <td><b>${r[0]}</b></td>
+          <td class="term-code">${r[1]}</td>
+          <td>${r[2]}</td>
+          <td style="color:var(--ink-3)">${r[3]}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('replyBox').textContent = buildReply(curRMsg);
+    }
+
+    document.querySelectorAll('#presetBar .chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        curKey = btn.dataset.p;
+        document.querySelectorAll('#presetBar .chip').forEach(b => b.classList.toggle('on', b === btn));
+        const d = PRESETS[curKey];
+        document.getElementById('inName').value = d.name;
+        document.getElementById('inMoq').value = d.moq;
+        document.getElementById('inPrice').value = d.price;
+        document.getElementById('inPoints').value = d.points;
+        document.getElementById('inBuyer').value = d.buyer;
+        renderAll();
+      });
+    });
+
+    document.getElementById('btnGen').addEventListener('click', () => {
+      renderAll();
+      showToast('已更新多语种口播稿与报价回复');
+    });
+
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        curTab = btn.dataset.t;
+        document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b === btn));
+        document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + curTab));
+      });
+    });
+
+    document.querySelectorAll('[data-vlang]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        curVLang = btn.dataset.vlang;
+        document.querySelectorAll('[data-vlang]').forEach(b => b.classList.toggle('on', b === btn));
+        renderAll();
+      });
+    });
+
+    document.querySelectorAll('[data-rmsg]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        curRMsg = btn.dataset.rmsg;
+        document.querySelectorAll('[data-rmsg]').forEach(b => b.classList.toggle('on', b === btn));
+        renderAll();
+      });
+    });
+
+    document.getElementById('btnCopyScript').addEventListener('click', () => {
+      const txt = PRESETS[curKey].shots[curVLang].map(s => `[${s.dur}] ${s.main}`).join('\n');
+      copyStr(txt, '已复制全部口播词');
+    });
+    document.getElementById('btnCopyTerms').addEventListener('click', () => {
+      const txt = PRESETS[curKey].terms.map(r => `${r[0]}\t${r[1]}\t${r[2]}`).join('\n');
+      copyStr(txt, '已复制专业术语表');
+    });
+    document.getElementById('btnCopyReply').addEventListener('click', () => {
+      copyStr(document.getElementById('replyBox').textContent, '已复制跟进消息');
+    });
+    document.getElementById('btnExportCsv').addEventListener('click', () => {
+      const rows = [
+        ['产品名称', '起订与交期', '价格区间', '买家询盘', 'WhatsApp回复初稿'],
+        [
+          document.getElementById('inName').value,
+          document.getElementById('inMoq').value,
+          document.getElementById('inPrice').value,
+          document.getElementById('inBuyer').value,
+          buildReply('wa').replace(/\n+/g, ' ')
+        ]
+      ];
+      const csv = '\uFEFF' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      a.download = '外贸视频与询盘跟进表.csv';
+      a.click();
+      showToast('已导出 CSV 标准表');
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
+

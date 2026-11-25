@@ -1,0 +1,234 @@
+/* Portfolio Driver.js Spotlight Tour — Mobile-First Apple Editorial Theme */
+:root{
+  --pt-ink:#15181F;
+  --pt-ink-2:#484E5A;
+  --pt-surface:#FCFBF8;
+  --pt-accent:#1B3B60;
+  --pt-accent-hover:#142D4A;
+  --pt-accent-ink:#F7F6F2;
+  --pt-rule:rgba(21,24,31,0.12);
+}
+
+/* Floating launcher pill (bottom-right, safe-area aware) */
+#pt-fab{
+  position:fixed;
+  right:14px;
+  bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index:9998;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:9px 15px;
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:999px;
+  background:rgba(27,59,96,0.94);
+  color:var(--pt-accent-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+  box-shadow:0 10px 26px -6px rgba(21,24,31,0.42), 0 0 0 1px rgba(27,59,96,0.18);
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform 140ms cubic-bezier(0.22,1,0.36,1), background-color 160ms ease, opacity 180ms ease;
+}
+#pt-fab:hover{background:var(--pt-accent-hover);transform:translateY(-1px)}
+#pt-fab:active{transform:scale(0.96)}
+#pt-fab.pt-hidden{opacity:0;pointer-events:none;transform:translateY(8px)}
+#pt-fab .pt-spark{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:16px;height:16px;border-radius:999px;
+  background:rgba(255,255,255,0.18);
+  font-size:10px;line-height:1;
+}
+#pt-fab .pt-cnt{
+  font-size:11px;font-weight:500;opacity:0.82;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Raise launcher slightly on apps with fixed bottom tabbars */
+body.pt-has-bottombar #pt-fab{
+  bottom:calc(68px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Embedded showcase mode: hide scrollbars subtly & refine popover footprint */
+body.pt-embed #pt-fab{
+  padding:7px 13px;
+  font-size:12px;
+  right:10px;
+  bottom:12px;
+}
+body.pt-embed.pt-has-bottombar #pt-fab{
+  bottom:62px;
+}
+
+/* Ensure Driver.js overlay & popover sit above all app drawers/modals (strictly above driver.css 10^9 scale) */
+.driver-overlay{z-index:1000000000 !important}
+.driver-active-element{z-index:1000000002 !important}
+.driver-popover.pt-popover{
+  z-index:1000000010 !important;
+  background:var(--pt-surface);
+  color:var(--pt-ink);
+  border:1px solid var(--pt-rule);
+  border-radius:16px;
+  padding:16px 16px 14px;
+  max-width:min(344px, calc(100vw - 24px));
+  min-width:min(264px, calc(100vw - 28px));
+  box-shadow:0 22px 48px -12px rgba(15,23,42,0.42);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;
+  overflow:hidden;
+}
+body.pt-embed .driver-popover.pt-popover{
+  padding:12px 13px 11px;
+  border-radius:14px;
+  max-width:min(316px, calc(100vw - 20px));
+  min-width:min(238px, calc(100vw - 24px));
+  box-shadow:0 16px 36px -10px rgba(15,23,42,0.38);
+}
+.driver-popover.pt-popover .driver-popover-title{
+  font-size:15.5px;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:-0.015em;
+  color:var(--pt-ink);
+  padding-right:24px;
+  margin-bottom:6px;
+}
+body.pt-embed .driver-popover.pt-popover .driver-popover-title{
+  font-size:14px;
+  margin-bottom:4px;
+}
+.driver-popover.pt-popover .driver-popover-description{
+  font-size:13.5px;
+  line-height:1.58;
+  color:var(--pt-ink-2);
+  margin:0;
+}
+body.pt-embed .driver-popover.pt-popover .driver-popover-description{
+  font-size:12.5px;
+  line-height:1.48;
+}
+.driver-popover.pt-popover .driver-popover-close-btn{
+  top:10px;
+  right:10px;
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  color:var(--pt-ink-2);
+  font-size:18px;
+  line-height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background-color 140ms ease, color 140ms ease;
+}
+body.pt-embed .driver-popover.pt-popover .driver-popover-close-btn{
+  top:8px;
+  right:8px;
+  width:24px;
+  height:24px;
+  font-size:16px;
+}
+.driver-popover.pt-popover .driver-popover-close-btn:hover{
+  background:rgba(21,24,31,0.07);
+  color:var(--pt-ink);
+}
+.driver-popover.pt-popover .driver-popover-footer{
+  margin-top:14px;
+  padding-top:11px;
+  border-top:1px solid var(--pt-rule);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+body.pt-embed .driver-popover.pt-popover .driver-popover-footer{
+  margin-top:10px;
+  padding-top:8px;
+}
+.driver-popover.pt-popover .driver-popover-progress-text{
+  font-size:12px;
+  font-weight:600;
+  color:var(--pt-accent);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.driver-popover.pt-popover .driver-popover-navigation-btns{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.driver-popover.pt-popover .driver-popover-prev-btn,
+.driver-popover.pt-popover .driver-popover-next-btn{
+  border-radius:999px;
+  padding:7px 13px;
+  font-size:12.5px;
+  font-weight:600;
+  text-shadow:none;
+  line-height:1.2;
+  white-space:nowrap;
+  transition:transform 110ms ease, background-color 140ms ease;
+}
+body.pt-embed .driver-popover.pt-popover .driver-popover-prev-btn,
+body.pt-embed .driver-popover.pt-popover .driver-popover-next-btn{
+  padding:5px 10px;
+  font-size:11.5px;
+}
+.driver-popover.pt-popover .driver-popover-prev-btn{
+  background:transparent;
+  color:var(--pt-ink-2);
+  border:1px solid rgba(21,24,31,0.18);
+}
+.driver-popover.pt-popover .driver-popover-prev-btn:hover{
+  background:rgba(21,24,31,0.06);
+  color:var(--pt-ink);
+}
+.driver-popover.pt-popover .driver-popover-next-btn{
+  background:var(--pt-accent);
+  color:var(--pt-accent-ink);
+  border:1px solid var(--pt-accent);
+}
+.driver-popover.pt-popover .driver-popover-next-btn:hover{
+  background:var(--pt-accent-hover);
+}
+.driver-popover.pt-popover .driver-popover-prev-btn:active,
+.driver-popover.pt-popover .driver-popover-next-btn:active{
+  transform:scale(0.96);
+}
+
+/* Auto-play hairline progress at bottom edge of embedded popover */
+.pt-auto-track{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:3px;
+  background:rgba(27,59,96,0.10);
+  overflow:hidden;
+}
+.pt-auto-bar{
+  width:100%;
+  height:100%;
+  background:var(--pt-accent);
+  transform-origin:left center;
+  transform:scaleX(0);
+}
+.pt-auto-bar.run{
+  animation:ptAutoFill var(--pt-dur, 4000ms) linear forwards;
+}
+.pt-auto-bar.paused{
+  animation-play-state:paused;
+}
+@keyframes ptAutoFill{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+
+.driver-popover.pt-popover .driver-popover-arrow{
+  border-color:var(--pt-surface);
+}
+.driver-popover.pt-popover .driver-popover-arrow-side-left{border-left-color:var(--pt-surface);border-top-color:transparent;border-bottom-color:transparent;border-right-color:transparent}
+.driver-popover.pt-popover .driver-popover-arrow-side-right{border-right-color:var(--pt-surface);border-top-color:transparent;border-bottom-color:transparent;border-left-color:transparent}
+.driver-popover.pt-popover .driver-popover-arrow-side-top{border-top-color:var(--pt-surface);border-left-color:transparent;border-right-color:transparent;border-bottom-color:transparent}
+.driver-popover.pt-popover .driver-popover-arrow-side-bottom{border-bottom-color:var(--pt-surface);border-left-color:transparent;border-right-color:transparent;border-top-color:transparent}

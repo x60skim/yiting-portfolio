@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>易班发卡</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e4e7ed;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--primary-color);
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            font-size: 13px;
+            color: #909399;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            background: #fff;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-success {
+            background-color: #2Ecc71;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: block;
+            width: 100%;
+            border: none;
+            font-weight: bold;
+            color: white;
+        }
+
+        .result-area {
+            margin-top: 25px;
+            display: none;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>💰 易班发卡</h1>
+        </div>
+
+        <div class="form-group">
+            <label>选择卡片种类：</label>
+            <select id="cardType" class="form-control">
+                <option value="日卡">日卡 (1天)</option>
+                <option value="周卡">周卡 (7天)</option>
+                <option value="月卡" selected>月卡 (31天)</option>
+                <option value="季卡">季卡 (93天)</option>
+                <option value="半年卡">半年卡 (183天)</option>
+                <option value="年卡">年卡 (366天)</option>
+                <option value="永久卡">永久卡 (100年)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>生成数量：</label>
+            <input type="number" id="genCount" class="form-control" value="1" min="1" max="100" inputmode="numeric">
+        </div>
+
+        <button class="btn" onclick="generate()">⚡ 立即生成数据</button>
+
+        <div class="result-area" id="resultArea">
+            <p style="color:#2563eb; font-size:14px; font-weight:bold; margin-bottom:15px; margin-top:0;">💡
+                到期时间将在用户激活时自动计算，无需手动填写。如需补偿时间可在云端表格中直接修改「到期时间」字段。</p>
+
+            <div style="margin-bottom:15px;">
+                <button class="btn-success" onclick="copyResult('resKey', '激活码')">📋 1. 复制本列【激活码】</button>
+                <textarea id="resKey" readonly
+                    style="width:100%; height:80px; padding:8px; border:1px solid #e4e7ed; border-radius:8px; background:#f8f9fa; resize:none;"></textarea>
+            </div>
+
+            <div style="margin-bottom:15px;">
+                <button class="btn-success" onclick="copyResult('resType', '卡片类型')">📋 2. 复制本列【卡片类型】</button>
+                <textarea id="resType" readonly
+                    style="width:100%; height:80px; padding:8px; border:1px solid #e4e7ed; border-radius:8px; background:#f8f9fa; resize:none;"></textarea>
+            </div>
+
+            <div style="margin-bottom:15px; display:none;">
+                <button class="btn-success" onclick="copyResult('resMac', '机器码')">📋 复制本列【机器码】</button>
+                <textarea id="resMac" readonly
+                    style="width:100%; height:80px; padding:8px; border:1px solid #e4e7ed; border-radius:8px; background:#f8f9fa; resize:none;"></textarea>
+            </div>
+
+
+
+            <div style="margin-bottom:15px;">
+                <button class="btn-success" onclick="copyResult('resStatus', '封禁状态')">📋 3. 复制本列【封禁状态】</button>
+                <textarea id="resStatus" readonly
+                    style="width:100%; height:80px; padding:8px; border:1px solid #e4e7ed; border-radius:8px; background:#f8f9fa; resize:none;"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const SAFE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+
+        function generateRandomKey() {
+            let parts = [];
+            let charSum = 0;
+            for (let i = 0; i < 3; i++) {
+                let seg = '';
+                for (let j = 0; j < 5; j++) {
+                    let idx = Math.floor(Math.random() * SAFE_CHARS.length);
+                    seg += SAFE_CHARS[idx];
+                    charSum += idx;
+                }
+                parts.push(seg);
+            }
+            let seg4_body = '';
+            for (let j = 0; j < 4; j++) {
+                let idx = Math.floor(Math.random() * SAFE_CHARS.length);
+                seg4_body += SAFE_CHARS[idx];
+                charSum += idx;
+            }
+            let checkChar = SAFE_CHARS[charSum % SAFE_CHARS.length];
+            parts.push(seg4_body + checkChar);
+            return "YB-" + parts.join("-");
+        }
+
+
+
+        function generate() {
+            const cardType = document.getElementById("cardType").value;
+            const count = parseInt(document.getElementById("genCount").value) || 1;
+
+            if (count < 1 || count > 1000) {
+                alert("数量不太对劲！限制 1~1000 之间");
+                return;
+            }
+
+            let outType = [], outKey = [], outMac = [], outStatus = [];
+            for (let i = 0; i < count; i++) {
+                outType.push(cardType);
+                outKey.push(generateRandomKey());
+                outMac.push("");
+                outStatus.push("否");
+            }
+
+            document.getElementById("resType").value = outType.join("\n");
+            document.getElementById("resKey").value = outKey.join("\n");
+            document.getElementById("resMac").value = outMac.join("\n");
+            document.getElementById("resStatus").value = outStatus.join("\n");
+
+            document.getElementById("resultArea").style.display = "block";
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById("toast");
+            t.innerText = msg;
+            t.classList.add("show");
+            setTimeout(() => t.classList.remove("show"), 2000);
+        }
+
+        function copyResult(elementId, colName) {
+            const txt = document.getElementById(elementId);
+            txt.select();
+            txt.setSelectionRange(0, 99999);
+
+            try {
+                navigator.clipboard.writeText(txt.value).then(() => {
+                    showToast(`✅ 已复制【${colName}】`);
+                }).catch(err => {
+                    document.execCommand('copy');
+                    showToast(`✅ 已复制【${colName}】`);
+                });
+            } catch (e) {
+                document.execCommand('copy');
+                showToast(`✅ 已复制【${colName}】`);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

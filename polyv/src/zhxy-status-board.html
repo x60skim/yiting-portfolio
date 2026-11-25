@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script>
+(function(){
+  let up = 14820, topmost = false, webOnline = true;
+  function makeData(){
+    up += 2;
+    const now = new Date();
+    const ts = now.toTimeString().slice(0,8);
+    return {
+      uptime_sec: up,
+      ts: ts,
+      browsers: 3,
+      open_tickets: 1,
+      web_online: webOnline,
+      topmost: topmost,
+      slot_swap_enabled: true,
+      filler_total: 6,
+      verified_count: 28,
+      sub_count: 14,
+      tasks: { running: 4, web_order: 12, manual: 3, verify: 2, slot: 4 },
+      orders: { pending: 5, running: 4, swap_pending: 2, unpaid: 7, paid: 68, failed: 0 }
+    };
+  }
+  window.pywebview = {
+    api: {
+      get_status_dashboard: function(){ return Promise.resolve(makeData()); },
+      focus_main_window: function(){ return Promise.resolve({status:'ok'}); },
+      dock_status_board_top_right: function(){ return Promise.resolve({status:'ok'}); },
+      set_status_board_topmost: function(v){ topmost = !!v; return Promise.resolve({status:'ok', topmost: topmost}); },
+      restart_web_backend: function(){ webOnline = false; setTimeout(function(){ webOnline = true; }, 1200); return Promise.resolve({status:'ok', message:'端口 3527 网站服务已重启'}); }
+    }
+  };
+  window.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ window.dispatchEvent(new Event('pywebviewready')); }, 40);
+  });
+})();
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧校园3.0 · 桌面状态看板</title>
+    <style>
+        :root {
+            --bg-body: #0b0f19;
+            --bg-card: #131b2e;
+            --bg-subtle: #1a243b;
+            --bg-track: #1e293b;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #38bdf8;
+            --accent-bg: rgba(56, 189, 248, 0.12);
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        html, body {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar,
+        *::-webkit-scrollbar,
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        ::-webkit-scrollbar-thumb,
+        *::-webkit-scrollbar-thumb,
+        ::-webkit-scrollbar-track,
+        *::-webkit-scrollbar-track,
+        ::-webkit-scrollbar-button,
+        *::-webkit-scrollbar-button,
+        ::-webkit-scrollbar-corner,
+        *::-webkit-scrollbar-corner {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "Segoe UI", -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            padding: 16px;
+            font-size: 13px;
+            line-height: 1.5;
+            user-select: none;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        /* 顶部导航与快捷操作栏 */
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background-color: var(--success);
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+            flex-shrink: 0;
+        }
+
+        .live-dot.offline {
+            background-color: var(--danger);
+            box-shadow: none;
+        }
+
+        .app-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.3px;
+        }
+
+        .uptime-badge {
+            font-size: 11px;
+            color: var(--text-muted);
+            background: var(--bg-subtle);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-variant-numeric: tabular-nums;
+            border: 1px solid var(--border);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: var(--border-strong);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-accent {
+            border-color: rgba(56, 189, 248, 0.4);
+            color: var(--accent);
+            background: var(--accent-bg);
+        }
+
+        .btn-accent:hover {
+            border-color: var(--accent);
+            color: #fff;
+            background: rgba(56, 189, 248, 0.25);
+        }
+
+        .btn-topmost.active {
+            border-color: rgba(34, 197, 94, 0.4);
+            color: var(--success);
+            background: rgba(34, 197, 94, 0.12);
+        }
+
+        /* 四格关键统计指标 */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 580px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .kpi-value {
+            font-size: 26px;
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .kpi-card.has-alert .kpi-value {
+            color: var(--accent);
+        }
+
+        /* 核心模块区域 */
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 620px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .card-full {
+            grid-column: 1 / -1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* 订单流转分段条 */
+        .progress-bar {
+            display: flex;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            background: var(--bg-track);
+            gap: 2px;
+            margin-bottom: 12px;
+        }
+
+        .progress-bar > span {
+            display: block;
+            height: 100%;
+            min-width: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .c-pending { background: #64748b; }
+        .c-running { background: #0284c7; }
+        .c-swap { background: #8b5cf6; }
+        .c-unpaid { background: #38bdf8; }
+        .c-paid { background: #22c55e; }
+        .c-failed { background: #ef4444; }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px 14px;
+        }
+
+        @media (max-width: 480px) {
+            .legend-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 4px;
+        }
+
+        .legend-name {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+        }
+
+        .color-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .legend-num {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* 状态与构成列表项 */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            font-size: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-badge.online {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-badge.offline {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* 任务排名小细条 */
+        .rank-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 36px;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 12px;
+        }
+
+        .rank-track {
+            height: 4px;
+            border-radius: 2px;
+            background: var(--bg-track);
+            overflow: hidden;
+        }
+
+        .rank-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .rank-num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* 底部状态提示条 */
+        .footer-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            font-variant-numeric: tabular-nums;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部状态与功能按钮 -->
+    <header class="header-bar">
+        <div class="header-left">
+            <span class="live-dot" id="live-indicator"></span>
+            <span class="app-title">智慧校园3.0 桌面状态看板</span>
+            <span class="uptime-badge" id="uptime-display">运行 --</span>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-accent" id="btn-dock-topright" onclick="dockTopRight()" title="重新停靠并锁定在桌面右上角">锁定右上角</button>
+            <button class="btn" onclick="restartWebBackend()" title="重启客户网站后端 web_server/server.js（端口 3527）">重启后端</button>
+            <button class="btn" onclick="focusMainApp()" title="将主程序窗口唤起至桌面最前">聚焦主程序</button>
+            <button class="btn" onclick="fetchData()" title="立即手动拉取最新状态">刷新</button>
+        </div>
+    </header>
+
+    <!-- 顶部4格主要指标 -->
+    <section class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-label">运行中任务</div>
+            <div class="kpi-value" id="kpi-running-tasks">0</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">浏览器实例</div>
+            <div class="kpi-value" id="kpi-browsers">0</div>
+        </div>
+        <div class="kpi-card" id="kpi-unpaid-card">
+            <div class="kpi-label">待结算订单</div>
+            <div class="kpi-value" id="kpi-unpaid-orders">0</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-label">待处理工单</div>
+            <div class="kpi-value" id="kpi-open-tickets">0</div>
+        </div>
+    </section>
+
+    <!-- 核心板块网格 -->
+    <main class="section-grid">
+        <!-- 订单流转 -->
+        <section class="card card-full">
+            <div class="card-header">
+                <span class="card-title">订单流转实时状态</span>
+                <span class="card-meta" id="orders-total-meta">共 0 笔（未隐藏）</span>
+            </div>
+            <div class="progress-bar" id="order-progress-bar">
+                <span class="c-pending" style="width: 100%;"></span>
+            </div>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <span class="legend-name"><span class="color-dot c-pending"></span>排队中</span>
+                    <span class="legend-num" id="ord-pending">0</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-name"><span class="color-dot c-running"></span>执行中</span>
+                    <span class="legend-num" id="ord-running">0</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-name"><span class="color-dot c-swap"></span>置换中</span>
+                    <span class="legend-num" id="ord-swap">0</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-name"><span class="color-dot c-unpaid"></span>已抢到待结</span>
+                    <span class="legend-num" id="ord-unpaid">0</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-name"><span class="color-dot c-paid"></span>已结算</span>
+                    <span class="legend-num" id="ord-paid">0</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-name"><span class="color-dot c-failed"></span>抢单失败</span>
+                    <span class="legend-num" id="ord-failed">0</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服务状态 -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">系统核心服务</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">网站服务 (端口 3527)</span>
+                <span style="display:flex; align-items:center; gap:8px;">
+                    <span id="srv-web-status" class="status-badge online">在线</span>
+                    <button class="btn" style="padding:2px 9px; font-size:11px;" onclick="restartWebBackend()"
+                        title="重启客户网站后端 web_server/server.js">重启后端</button>
+                </span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">主程序窗口置顶</span>
+                <span class="info-value" id="srv-topmost">开</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">名额自动置换引擎</span>
+                <span class="info-value" id="srv-slot-swap">开启</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">名额占位订单</span>
+                <span class="info-value" id="srv-filler-total">0 笔</span>
+            </div>
+        </section>
+
+        <!-- 账号资源池 -->
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">可用账号资源池</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">已验账号 (免密验证)</span>
+                <span class="info-value" id="acct-verified-count">0 个</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">手动配置副账号</span>
+                <span class="info-value" id="acct-sub-count">0 个</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">可用于抢活动账号</span>
+                <span class="info-value" id="acct-total-available">0 个</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">账号等同策略</span>
+                <span class="info-value" style="color:var(--accent);">已验账号等同副账号</span>
+            </div>
+        </section>
+
+        <!-- 任务明细构成 -->
+        <section class="card card-full">
+            <div class="card-header">
+                <span class="card-title">任务明细构成</span>
+            </div>
+            <div class="rank-row">
+                <span class="info-label">网站订单</span>
+                <div class="rank-track"><div class="rank-fill" id="task-web-bar" style="width:0%;"></div></div>
+                <span class="rank-num" id="task-web-val">0</span>
+            </div>
+            <div class="rank-row">
+                <span class="info-label">手动抢活动</span>
+                <div class="rank-track"><div class="rank-fill" id="task-manual-bar" style="width:0%;"></div></div>
+                <span class="rank-num" id="task-manual-val">0</span>
+            </div>
+            <div class="rank-row">
+                <span class="info-label">客户验证</span>
+                <div class="rank-track"><div class="rank-fill" id="task-verify-bar" style="width:0%;"></div></div>
+                <span class="rank-num" id="task-verify-val">0</span>
+            </div>
+            <div class="rank-row">
+                <span class="info-label">名额置换</span>
+                <div class="rank-track"><div class="rank-fill" id="task-slot-bar" style="width:0%;"></div></div>
+                <span class="rank-num" id="task-slot-val">0</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部状态行 -->
+    <footer class="footer-bar">
+        <span id="sync-status">最近同步: --</span>
+        <span>每 2 秒实时刷新 · 桌面挂载看板 (非置顶)</span>
+    </footer>
+
+    <script>
+        let isSbTopmost = false;
+        let timer = null;
+
+        function formatUptime(sec) {
+            sec = Math.max(0, parseInt(sec) || 0);
+            const h = Math.floor(sec / 3600);
+            const m = Math.floor((sec % 3600) / 60);
+            const s = sec % 60;
+            if (h > 0) return `${h}小时 ${m}分 ${s}秒`;
+            if (m > 0) return `${m}分 ${s}秒`;
+            return `${s}秒`;
+        }
+
+        function focusMainApp() {
+            if (window.pywebview && window.pywebview.api && window.pywebview.api.focus_main_window) {
+                window.pywebview.api.focus_main_window();
+            }
+        }
+
+        function dockTopRight() {
+            if (window.pywebview && window.pywebview.api && window.pywebview.api.dock_status_board_top_right) {
+                window.pywebview.api.dock_status_board_top_right().then(res => {
+                    const btn = document.getElementById('btn-dock-topright');
+                    if (btn) {
+                        const oldText = btn.textContent;
+                        btn.textContent = '已停靠右上角';
+                        setTimeout(() => { btn.textContent = oldText; }, 1600);
+                    }
+                }).catch(() => {});
+            }
+        }
+
+        function restartWebBackend() {
+            if (!(window.pywebview && window.pywebview.api && window.pywebview.api.restart_web_backend)) {
+                alert('接口还没就绪，请稍后再试');
+                return;
+            }
+            if (!confirm('确定重启客户网站后端（端口 3527）吗？\n重启期间网站会中断约 2~5 秒，刷新页面即可恢复。')) return;
+            const fb = document.getElementById('sync-status');
+            if (fb) fb.textContent = '正在重启网站后端…';
+            window.pywebview.api.restart_web_backend().then(res => {
+                const ok = res && res.status === 'ok';
+                if (fb) fb.textContent = ok ? ('网站后端已重启 · ' + (res.message || ''))
+                                            : ('重启失败 · ' + ((res && res.message) || '未知错误'));
+                setTimeout(fetchData, 1500);
+            }).catch(err => {
+                if (fb) fb.textContent = '重启失败 · ' + err;
+                alert('重启失败: ' + err);
+            });
+        }
+
+        function updateUI(d) {
+            if (!d) return;
+            document.getElementById('live-indicator').className = 'live-dot';
+            document.getElementById('uptime-display').textContent = '运行 ' + formatUptime(d.uptime_sec);
+            document.getElementById('sync-status').textContent = '最近同步: ' + (d.ts || '--');
+
+            const t = d.tasks || {};
+            const o = d.orders || {};
+
+            // 四格指标
+            document.getElementById('kpi-running-tasks').textContent = t.running || 0;
+            document.getElementById('kpi-browsers').textContent = d.browsers || 0;
+            const unpaid = o.unpaid || 0;
+            document.getElementById('kpi-unpaid-orders').textContent = unpaid;
+            const unpaidCard = document.getElementById('kpi-unpaid-card');
+            if (unpaidCard) unpaidCard.classList.toggle('has-alert', unpaid > 0);
+            document.getElementById('kpi-open-tickets').textContent = d.open_tickets || 0;
+
+            // 订单明细
+            document.getElementById('ord-pending').textContent = o.pending || 0;
+            document.getElementById('ord-running').textContent = o.running || 0;
+            document.getElementById('ord-swap').textContent = o.swap_pending || 0;
+            document.getElementById('ord-unpaid').textContent = unpaid;
+            document.getElementById('ord-paid').textContent = o.paid || 0;
+            document.getElementById('ord-failed').textContent = o.failed || 0;
+
+            const segs = [
+                { k: 'pending', v: o.pending || 0, c: 'c-pending' },
+                { k: 'running', v: o.running || 0, c: 'c-running' },
+                { k: 'swap', v: o.swap_pending || 0, c: 'c-swap' },
+                { k: 'unpaid', v: unpaid, c: 'c-unpaid' },
+                { k: 'paid', v: o.paid || 0, c: 'c-paid' },
+                { k: 'failed', v: o.failed || 0, c: 'c-failed' }
+            ];
+            const ordTotal = segs.reduce((sum, s) => sum + s.v, 0);
+            document.getElementById('orders-total-meta').textContent = `共 ${ordTotal} 笔（未隐藏）`;
+
+            const barContainer = document.getElementById('order-progress-bar');
+            if (barContainer) {
+                if (ordTotal > 0) {
+                    barContainer.innerHTML = segs.filter(s => s.v > 0).map(s => {
+                        const pct = (s.v / ordTotal * 100).toFixed(2);
+                        return `<span class="${s.c}" style="width:${pct}%"></span>`;
+                    }).join('');
+                } else {
+                    barContainer.innerHTML = '<span class="c-pending" style="width:100%;"></span>';
+                }
+            }
+
+            // 服务状态
+            const webBadge = document.getElementById('srv-web-status');
+            if (webBadge) {
+                if (d.web_online) {
+                    webBadge.className = 'status-badge online';
+                    webBadge.textContent = '在线';
+                } else {
+                    webBadge.className = 'status-badge offline';
+                    webBadge.textContent = '离线';
+                }
+            }
+            document.getElementById('srv-topmost').textContent = d.topmost ? '开' : '关';
+            document.getElementById('srv-slot-swap').textContent = d.slot_swap_enabled ? '开启' : '关闭';
+            document.getElementById('srv-filler-total').textContent = (d.filler_total || 0) + ' 笔';
+
+            // 账号池
+            const vCount = d.verified_count || 0;
+            const sCount = d.sub_count || 0;
+            document.getElementById('acct-verified-count').textContent = vCount + ' 个';
+            document.getElementById('acct-sub-count').textContent = sCount + ' 个';
+            document.getElementById('acct-total-available').textContent = (vCount + sCount) + ' 个';
+
+            // 任务构成
+            const tWeb = t.web_order || 0;
+            const tManual = t.manual || 0;
+            const tVerify = t.verify || 0;
+            const tSlot = t.slot || 0;
+            const tMax = Math.max(1, tWeb, tManual, tVerify, tSlot);
+
+            document.getElementById('task-web-val').textContent = tWeb;
+            document.getElementById('task-manual-val').textContent = tManual;
+            document.getElementById('task-verify-val').textContent = tVerify;
+            document.getElementById('task-slot-val').textContent = tSlot;
+
+            document.getElementById('task-web-bar').style.width = ((tWeb / tMax) * 100).toFixed(0) + '%';
+            document.getElementById('task-manual-bar').style.width = ((tManual / tMax) * 100).toFixed(0) + '%';
+            document.getElementById('task-verify-bar').style.width = ((tVerify / tMax) * 100).toFixed(0) + '%';
+            document.getElementById('task-slot-bar').style.width = ((tSlot / tMax) * 100).toFixed(0) + '%';
+        }
+
+        function fetchData() {
+            if (window.pywebview && window.pywebview.api && window.pywebview.api.get_status_dashboard) {
+                window.pywebview.api.get_status_dashboard().then(res => {
+                    updateUI(res);
+                }).catch(err => {
+                    document.getElementById('live-indicator').className = 'live-dot offline';
+                    document.getElementById('sync-status').textContent = '连接中断，重连中...';
+                });
+            }
+        }
+
+        window.addEventListener('pywebviewready', () => {
+            fetchData();
+            if (timer) clearInterval(timer);
+            timer = setInterval(fetchData, 2000);
+        });
+
+        // 快捷键支持
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+                e.preventDefault();
+                fetchData();
+            }
+        });
+    </script>
+</body>
+</html>
+
