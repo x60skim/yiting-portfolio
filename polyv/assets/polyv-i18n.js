@@ -9,7 +9,7 @@
       navCta: '下载简历',
 
       heroMeta1: '广东轻工职业技术大学 国际商务',
-      heroMeta2: '2027 届 · 可提前全周实习',
+      heroMeta2: '2027 届 · 大三下可全周实习',
       heroMeta3: '广东广州',
       heroTitle: '赖怡婷 Yiting Lai',
       heroRole: 'AI 业务工具开发 × 国际商务与出海运营',
@@ -108,7 +108,7 @@
       pdfS: '包含订单编号与海外平台结算明细',
       pdfBtn: '打开收款单 PDF',
 
-      footLead: '可提前全周实习，广州番禺大学城就近到岗。',
+      footLead: '2027 年 3 月起可全周实习，广州番禺大学城就近到岗。',
       footMetaL: '赖怡婷 Yiting Lai · 广东轻工职业技术大学 国际商务'
     },
     en: {
@@ -120,7 +120,7 @@
       navCta: 'Resume',
 
       heroMeta1: 'Guangdong Polytechnic University · Int’l Business',
-      heroMeta2: 'Class of 2027 · Full-Time Intern Ready',
+      heroMeta2: 'Class of 2027 · Full-Time Intern from Mar 2027',
       heroMeta3: 'Guangzhou',
       heroTitle: 'Yiting Lai',
       heroRole: 'AI Business Tooling × International Business & Global Ops',
@@ -219,7 +219,7 @@
       pdfS: 'Order ID and cross-border settlement details',
       pdfBtn: 'Open Receipt PDF',
 
-      footLead: 'Available full-time near Guangzhou Panyu University Town.',
+      footLead: 'Available full-time from March 2027 near Guangzhou Panyu University Town.',
       footMetaL: 'Yiting Lai · Guangdong Polytechnic University · International Business'
     }
   };
