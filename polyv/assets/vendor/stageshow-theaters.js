@@ -683,41 +683,84 @@
     ]
   });
 
-  /* 04 外贸视频脚本与多语种询盘工作台 */
+  /* 04 外贸 AI 询盘分诊与双语内容工作台 */
   createTheater({
     rootId: 'theater-trade',
     cursorId: 'cur-t5',
     beats: [
       {
-        tab: { zh: '1 参数拆解', en: '1 Spec Parse' },
-        title: '中文产品参数拆成标准外贸字段',
-        desc: '提取电芯寿命、快充耗时、起订量、交期与出口认证，省去人工反复改写。',
-        titleEn: 'Structured B2B Spec Extraction',
-        descEn: 'Extracts cycle life, fast charge, MOQ, lead time, and export certifications into clean B2B fields.',
+        tab: { zh: '1 询盘拆卡', en: '1 Live Triage' },
+        title: '粘贴任意英文或西语询盘，实时拆出客户需求卡片',
+        desc: '自动提取采购数量、目的港、认证与电压规格并列出缺失字段，业务员接手无需翻长聊天记录。',
+        titleEn: 'Live Buyer Chat Triage & Missing-Field Checklist',
+        descEn: 'Extracts quantity, port, certifications, and voltage from any pasted chat while flagging missing fields.',
         duration: 3500,
         run(a, id) {
           a.showPane('t5-p0');
           const btn = a.root.querySelector('#t5-gen-btn');
           const st = a.root.querySelector('#t5-parse-st');
-          btn.textContent = '生成口播稿'; btn.classList.remove('ok');
-          st.textContent = '待拆解：1200W 磷酸铁锂便携储能电源 · MOQ 50 台';
+          btn.textContent = '解析询盘'; btn.classList.remove('ok');
+          st.textContent = '待解析：Monterrey 150 台 1200W 储能 · 问 FOB 价格与 30 天账期';
           a.parkCursor();
           a.later(380, () => a.moveTo('[data-t="t5-gen"]', 0.65, 0.55), id);
           a.later(980, () => a.tap(id, () => {
             btn.classList.add('ok');
-            st.textContent = '已生成 38s 双语 4 段分镜、5 项术语与报价回复';
+            st.textContent = '已拆卡：拉美西语 · 150 台 · Monterrey · UL2743 · 待追问交期与电压';
           }), id);
         }
       },
       {
-        tab: { zh: '2 双语分镜', en: '2 EN/ES Script' },
-        title: '切换英文与西语 4 段分镜口播稿',
-        desc: '按场景开场、实测参数、清关认证与询盘引导排好秒数，控制单句词数适配配音节奏。',
-        titleEn: 'English & Spanish 4-Scene Voiceover Scripts',
-        descEn: 'Structures opening hook, test proof, certifications, and CTA with natural spoken pacing.',
+        tab: { zh: '2 红线拦截', en: '2 Red-Line Guard' },
+        title: '价格与账期红线拦截，只生成安全追问草稿',
+        desc: '检测到询问底价、账期或独家代理立即红灯转人工，避免 AI 越权承诺价格引发业务风险。',
+        titleEn: 'Commercial Red-Line Guard Against Unauthorized Quotes',
+        descEn: 'Flags price, credit, or exclusivity requests for human handoff and drafts safe follow-up questions only.',
         duration: 3800,
         run(a, id) {
           a.showPane('t5-p1');
+          const btn = a.root.querySelector('#t5-wa-btn');
+          const st = a.root.querySelector('#t5-wa-st');
+          btn.textContent = '复制安全回复'; btn.classList.remove('ok');
+          if (st) st.textContent = '命中 2 项红线';
+          a.later(400, () => a.moveTo('[data-t="t5-wa"]', 0.65, 0.55), id);
+          a.later(980, () => a.tap(id, () => {
+            btn.classList.add('ok');
+            if (st) st.textContent = '安全草稿已复制';
+          }), id);
+        }
+      },
+      {
+        tab: { zh: '3 知识体检', en: '3 KB Audit' },
+        title: '工厂产品知识库 30 天过期预警与核验',
+        desc: '核查报价带、MOQ、交期与认证的更新日期，超期自动标黄提醒，防止过期文档污染 AI 回复。',
+        titleEn: '30-Day Product Knowledge Staleness Audit',
+        descEn: 'Flags factory price bands, MOQ, and certification docs older than 30 days before stale data reaches buyers.',
+        duration: 3500,
+        run(a, id) {
+          a.showPane('t5-p2');
+          const btn = a.root.querySelector('#t5-term-btn');
+          const st = a.root.querySelector('#t5-kb-st');
+          const dt = a.root.querySelector('#t5-kb-dt');
+          btn.textContent = '标记已核验更新'; btn.classList.remove('ok');
+          if (st) { st.textContent = '已过期 69 天'; st.className = 's-pill amber'; }
+          if (dt) { dt.textContent = '2026-09-18'; dt.style.color = '#B45309'; }
+          a.later(400, () => a.moveTo('[data-t="t5-term"]', 0.65, 0.55), id);
+          a.later(980, () => a.tap(id, () => {
+            btn.classList.add('ok');
+            if (st) { st.textContent = '版本有效'; st.className = 's-pill green'; }
+            if (dt) { dt.textContent = '2026-11-26'; dt.style.color = '#059669'; }
+          }), id);
+        }
+      },
+      {
+        tab: { zh: '4 拉美西语', en: '4 LatAm Spanish' },
+        title: '按录入参数动态生成英西分镜稿并导出 CRM CSV',
+        desc: '切换英文与拉美工业西语口播稿，校对 ustedes 与外贸专有词，同步导出标准 CRM 询盘表。',
+        titleEn: 'Dynamic EN & LatAm Spanish Scripts + CRM CSV',
+        descEn: 'Generates timed English and Latin American Spanish voiceover shots from live specs and exports CRM-ready CSV.',
+        duration: 3800,
+        run(a, id) {
+          a.showPane('t5-p3');
           const enB = a.root.querySelector('#t5-en-btn');
           const esB = a.root.querySelector('#t5-es-btn');
           const txt = a.root.querySelector('#t5-shot-txt');
@@ -726,47 +769,7 @@
           a.later(420, () => a.moveTo('[data-t="t5-es"]', 0.6, 0.55), id);
           a.later(1020, () => a.tap(id, () => {
             enB.className = 's-pill muted'; esB.className = 's-pill blue';
-            txt.textContent = 'Equipada con celdas LiFePO4 de grado automotriz de 3,500 ciclos, carga al 80% en 50 minutos.';
-          }), id);
-        }
-      },
-      {
-        tab: { zh: '3 术语锁定', en: '3 Term Lock' },
-        title: '配音和字幕前锁定外贸专有术语',
-        desc: '固定电芯体系、危险品运输鉴定和贸易术语标准译法，减少机器直译出错。',
-        titleEn: 'Pre-Dubbing Trade Glossary Lock',
-        descEn: 'Locks LiFePO4, UN38.3, and FOB translations across English and Spanish before dubbing.',
-        duration: 3500,
-        run(a, id) {
-          a.showPane('t5-p2');
-          const btn = a.root.querySelector('#t5-term-btn');
-          const st = a.root.querySelector('#t5-term-st');
-          btn.textContent = '复制术语表'; btn.classList.remove('ok');
-          if (st) st.textContent = '共锁定 5 项外贸与技术术语';
-          a.later(400, () => a.moveTo('[data-t="t5-term"]', 0.65, 0.55), id);
-          a.later(980, () => a.tap(id, () => {
-            btn.classList.add('ok');
-            if (st) st.textContent = '5 项术语对照表已复制到剪贴板';
-          }), id);
-        }
-      },
-      {
-        tab: { zh: '4 报价回复', en: '4 Quote Reply' },
-        title: '生成 WhatsApp 报价回复并导出 CSV 台账',
-        desc: '带入起订量、FOB 价格带、认证文件说明和交期，复制即可发送，同时导出 CSV 跟进表。',
-        titleEn: 'WhatsApp Quote Draft & CSV Export',
-        descEn: 'Fills MOQ, FOB range, compliance notes, and lead time ready for WhatsApp or CSV export.',
-        duration: 3600,
-        run(a, id) {
-          a.showPane('t5-p3');
-          const btn = a.root.querySelector('#t5-wa-btn');
-          const st = a.root.querySelector('#t5-wa-st');
-          btn.textContent = '复制报价回复'; btn.classList.remove('ok');
-          if (st) st.textContent = '含实测视频钩子';
-          a.later(400, () => a.moveTo('[data-t="t5-wa"]', 0.65, 0.55), id);
-          a.later(980, () => a.tap(id, () => {
-            btn.classList.add('ok');
-            if (st) st.textContent = '已复制到剪贴板';
+            txt.textContent = '¿Buscan una estación de energía portátil 1200W con celdas LiFePO4 y certificación UL2743 para México?';
           }), id);
         }
       }

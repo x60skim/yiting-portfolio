@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>外贸视频脚本与多语种询盘工作台</title>
+  <title>外贸 AI 询盘分诊与双语内容工作台</title>
   <style>
     :root {
       --bg: #F4F6FA;
@@ -17,58 +17,60 @@
       --pri-soft: #E8F0FF;
       --ok: #059669;
       --ok-soft: #ECFDF5;
+      --ok-line: #A7F3D0;
       --warn: #B45309;
       --warn-soft: #FEF3C7;
+      --warn-line: #FDE68A;
+      --err: #DC2626;
+      --err-soft: #FEF2F2;
+      --err-line: #FECACA;
       --line: #E2E8F0;
       --r: 14px;
       --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
       --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: clip; width: 100%; }
     body {
       font-family: var(--font);
       background: var(--bg);
       color: var(--ink);
       line-height: 1.55;
-      padding-bottom: 40px;
+      padding-bottom: 44px;
       -webkit-font-smoothing: antialiased;
     }
     button, input, textarea, select { font: inherit; color: inherit; }
     button { cursor: pointer; border: 0; background: none; }
     .top {
       position: sticky; top: 0; z-index: 20;
-      background: rgba(255,255,255,0.9); backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
       padding: 12px 16px;
     }
     .top-in {
-      max-width: 1080px; margin: 0 auto;
+      max-width: 1120px; margin: 0 auto;
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
     }
     .brand { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .brand b { font-size: 15.5px; font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; }
-    .badge {
-      padding: 3px 9px; border-radius: 999px;
-      background: var(--pri-soft); color: var(--pri);
-      font-size: 11.5px; font-weight: 700; white-space: nowrap;
-    }
-    .wrap { max-width: 1080px; margin: 16px auto 0; padding: 0 14px; display: grid; gap: 14px; }
+    .brand b { font-size: 15.5px; font-weight: 800; letter-spacing: -0.02em; }
+    .wrap { max-width: 1120px; margin: 16px auto 0; padding: 0 14px; display: grid; gap: 14px; }
     .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
-    @media (min-width: 860px) {
-      .grid { grid-template-columns: 380px minmax(0, 1fr); align-items: start; }
+    @media (min-width: 900px) {
+      .grid { grid-template-columns: 390px minmax(0, 1fr); align-items: start; }
     }
     .panel {
       background: var(--card); border: 1px solid var(--line);
       border-radius: var(--r); padding: 16px; display: grid; gap: 12px;
       box-shadow: 0 8px 24px -14px rgba(15,23,42,0.08);
+      min-width: 0;
     }
-    .panel-hd { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .panel-hd { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
     .panel-hd h2 { font-size: 14.5px; font-weight: 750; }
     .presets { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip {
       padding: 6px 11px; border-radius: 999px; font-size: 12px; font-weight: 650;
       background: var(--muted); border: 1px solid var(--line); color: var(--ink-2);
-      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+      transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
     }
     .chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
     label.fl { display: grid; gap: 5px; font-size: 12px; font-weight: 650; color: var(--ink-2); }
@@ -76,7 +78,7 @@
       width: 100%; border: 1px solid var(--line); border-radius: 10px;
       padding: 9px 11px; font-size: 13px; background: var(--muted);
     }
-    textarea { min-height: 88px; resize: vertical; line-height: 1.5; }
+    textarea { min-height: 92px; resize: vertical; line-height: 1.5; }
     input:focus, textarea:focus, select:focus { outline: 2px solid var(--pri); background: #fff; }
     .row-2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
     @media (min-width: 520px) {
@@ -89,6 +91,12 @@
     }
     .btn-pri:hover { background: var(--pri-h); }
     .btn-pri:active { transform: scale(0.98); }
+    .act-btn {
+      padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700;
+      background: var(--ink); color: #fff; white-space: nowrap;
+    }
+    .act-btn.pri { background: var(--pri); }
+    .act-btn:active { transform: scale(0.98); }
     .tabs {
       display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;
       background: var(--muted); padding: 4px; border-radius: 11px; border: 1px solid var(--line);
@@ -98,52 +106,79 @@
       color: var(--ink-3); text-align: center;
     }
     .tab.on { background: #fff; color: var(--ink); box-shadow: 0 2px 6px rgba(15,23,42,0.06); }
-    .pane { display: none; gap: 12px; }
+    .pane { display: none; gap: 12px; min-width: 0; }
     .pane.on { display: grid; }
+    .banner {
+      border-radius: 11px; padding: 11px 13px; border: 1px solid var(--line);
+      display: grid; gap: 4px; font-size: 12.5px;
+    }
+    .banner.err { background: var(--err-soft); border-color: var(--err-line); color: #991B1B; }
+    .banner.warn { background: var(--warn-soft); border-color: var(--warn-line); color: #92400E; }
+    .banner.ok { background: var(--ok-soft); border-color: var(--ok-line); color: #065F46; }
+    .banner b { font-size: 13px; }
+    .card-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+    }
+    @media (min-width: 640px) {
+      .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .kv {
+      background: var(--muted); border: 1px solid var(--line); border-radius: 10px;
+      padding: 9px 11px; display: grid; gap: 3px; min-width: 0;
+    }
+    .kv span { font-size: 11px; color: var(--ink-3); }
+    .kv b { font-size: 13px; color: var(--ink); word-break: break-word; }
+    .kv.miss { background: var(--warn-soft); border-color: var(--warn-line); }
+    .kv.miss b { color: var(--warn); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill {
+      display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px;
+      font-size: 11.5px; font-weight: 700;
+    }
+    .pill.err { background: var(--err-soft); color: var(--err); border: 1px solid var(--err-line); }
+    .pill.warn { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn-line); }
+    .pill.ok { background: var(--ok-soft); color: var(--ok); border: 1px solid var(--ok-line); }
+    .pill.pri { background: var(--pri-soft); color: var(--pri); }
     .lang-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-    .sub-pills { display: inline-flex; gap: 6px; }
+    .sub-pills { display: inline-flex; gap: 6px; flex-wrap: wrap; }
     .sub-pill {
       padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700;
       background: var(--muted); border: 1px solid var(--line); color: var(--ink-2);
     }
     .sub-pill.on { background: var(--pri-soft); color: var(--pri); border-color: #BFDBFE; }
-    .act-btn {
-      padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700;
-      background: var(--ink); color: #fff;
+    .msg-box {
+      border: 1px solid var(--line); border-radius: 11px; padding: 12px 14px;
+      background: var(--muted); font-size: 13px; white-space: pre-wrap; line-height: 1.62;
+      word-break: break-word;
     }
     .shot-list { display: grid; gap: 9px; }
     .shot {
       border: 1px solid var(--line); border-radius: 11px; padding: 11px 13px;
       background: var(--muted); display: grid; gap: 5px;
     }
-    .shot-top { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; font-weight: 700; color: var(--pri); }
-    .shot-top span.dur { font-family: var(--mono); color: var(--ink-3); }
+    .shot-top { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; font-weight: 700; color: var(--pri); gap: 8px; }
+    .shot-top span.dur { font-family: var(--mono); color: var(--ink-3); white-space: nowrap; }
     .shot p.main { font-size: 13.5px; color: var(--ink); font-weight: 550; }
     .shot p.sub { font-size: 12px; color: var(--ink-3); }
-    .term-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .table-wrap { overflow-x: auto; width: 100%; }
+    .term-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 460px; }
     .term-table th, .term-table td {
       text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line);
     }
     .term-table th { font-size: 11.5px; color: var(--ink-3); background: var(--muted); }
     .term-code { font-family: var(--mono); font-weight: 700; color: var(--pri); }
-    .msg-box {
-      border: 1px solid var(--line); border-radius: 11px; padding: 12px 14px;
-      background: var(--muted); font-size: 13px; white-space: pre-wrap; line-height: 1.6;
+    .kb-list { display: grid; gap: 8px; }
+    .kb-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      background: var(--muted); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px;
+      font-size: 12.5px;
     }
-    .kpi-strip {
-      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;
-    }
-    .kpi {
-      background: var(--muted); border: 1px solid var(--line); border-radius: 10px;
-      padding: 9px 10px; text-align: center;
-    }
-    .kpi b { display: block; font-size: 15px; font-weight: 800; color: var(--ink); font-family: var(--mono); }
-    .kpi span { font-size: 11px; color: var(--ink-3); }
+    .sec-sub { font-size: 12px; font-weight: 700; color: var(--ink-2); }
     #toast {
       position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
       background: var(--ink); color: #fff; padding: 8px 16px; border-radius: 999px;
       font-size: 12.5px; font-weight: 650; opacity: 0; pointer-events: none;
-      transition: opacity 180ms ease;
+      transition: opacity 180ms ease; z-index: 40;
     }
     #toast.on { opacity: 0.96; }
   </style>
@@ -152,232 +187,456 @@
   <header class="top">
     <div class="top-in">
       <div class="brand">
-        <b>外贸视频脚本与多语种询盘工作台</b>
+        <b>外贸 AI 询盘分诊与双语内容工作台</b>
       </div>
-      <button class="act-btn" type="button" id="btnExportCsv">导出 CSV</button>
+      <button class="act-btn pri" type="button" id="btnExportCsv">导出 CRM 表格</button>
     </div>
   </header>
 
   <main class="wrap">
     <div class="grid">
-      <section class="panel" aria-label="产品参数录入">
+      <!-- 左侧输入区 -->
+      <section class="panel" aria-label="询盘与产品知识输入">
         <div class="panel-hd">
-          <h2>产品参数</h2>
+          <h2>真实询盘与产品资料</h2>
         </div>
         <div class="presets" id="presetBar">
-          <button class="chip on" type="button" data-p="power">便携储能电源</button>
-          <button class="chip" type="button" data-p="coffee">商用意式咖啡机</button>
-          <button class="chip" type="button" data-p="laser">光纤激光打标机</button>
+          <button class="chip on" type="button" data-p="mx">墨西哥储能询盘</button>
+          <button class="chip" type="button" data-p="cafe">北美咖啡机代理</button>
+          <button class="chip" type="button" data-p="laser">工业激光打样</button>
+        </div>
+
+        <label class="fl">买家聊天记录或询盘原文
+          <textarea id="inChat" placeholder="粘贴任意英文、西语或中文买家消息，实时提取字段并检查报价红线"></textarea>
+        </label>
+
+        <div class="panel-hd" style="padding-top:4px;border-top:1px solid var(--line)">
+          <h2>工厂知识库参数</h2>
+          <span class="pill ok" id="kbTopBadge">版本有效</span>
         </div>
 
         <label class="fl">产品名称
-          <input id="inName" type="text" value="1200W 磷酸铁锂便携储能电源">
+          <input id="inName" type="text">
         </label>
         <div class="row-2">
-          <label class="fl">起订量与交期
-            <input id="inMoq" type="text" value="MOQ 50 台 · 15 天交货">
+          <label class="fl">起订量 MOQ
+            <input id="inMoq" type="text">
           </label>
-          <label class="fl">FOB 报价区间
-            <input id="inPrice" type="text" value="USD 198 - 225 FOB Shenzhen">
+          <label class="fl">标准交期
+            <input id="inLead" type="text">
+          </label>
+        </div>
+        <div class="row-2">
+          <label class="fl">内部参考价带
+            <input id="inPrice" type="text">
+          </label>
+          <label class="fl">知识库更新日期
+            <input id="inDate" type="date">
           </label>
         </div>
         <label class="fl">认证与核心卖点
-          <textarea id="inPoints">车规级 LiFePO4 电芯循环 3500 次；50 分钟快充至 80%；支持太阳能 MPPT 输入与 UPS 10ms 切换；具备 CE、FCC、UL2743 与 UN38.3 认证，支持贴牌定制。</textarea>
+          <textarea id="inSpecs" style="min-height:74px"></textarea>
         </label>
-        <label class="fl">买家询盘原文
-          <input id="inBuyer" type="text" value="Hi, can you send unit price for 100 pcs to Monterrey and confirm UL certificate?">
-        </label>
-        <button class="btn-pri" type="button" id="btnGen">生成口播稿与报价回复</button>
+
+        <button class="btn-pri" type="button" id="btnRun">解析询盘并刷新内容</button>
       </section>
 
-      <section class="panel" aria-label="生成结果工作区">
-        <div class="kpi-strip">
-          <div class="kpi"><b id="kDur">38s</b><span>口播时长</span></div>
-          <div class="kpi"><b id="kWords">86 词</b><span>口播词数</span></div>
-          <div class="kpi"><b id="kTerms">5 项</b><span>锁定术语</span></div>
-        </div>
-
+      <!-- 右侧工作区 -->
+      <section class="panel" aria-label="分诊结果与双语工作区">
         <div class="tabs" role="tablist">
-          <button class="tab on" type="button" data-t="script">双语口播</button>
-          <button class="tab" type="button" data-t="terms">术语锁定</button>
-          <button class="tab" type="button" data-t="reply">报价回复</button>
+          <button class="tab on" type="button" data-t="triage">询盘分诊与红线</button>
+          <button class="tab" type="button" data-t="kb">知识库体检</button>
+          <button class="tab" type="button" data-t="script">双语分镜与西语校对</button>
         </div>
 
-        <div class="pane on" id="pane-script">
+        <!-- Tab 1: 询盘分诊与越权红线 -->
+        <div class="pane on" id="pane-triage">
+          <div class="banner err" id="redlineBanner">
+            <b id="redlineTitle">命中商业红线 · 需转人工报价</b>
+            <div id="redlineDesc"></div>
+          </div>
+          <div class="tag-row" id="redlineTags"></div>
+
+          <div class="sec-sub">结构化客户需求卡片</div>
+          <div class="card-grid" id="demandGrid"></div>
+
+          <div class="sec-sub">待追问缺失字段</div>
+          <div class="tag-row" id="missingTags"></div>
+
+          <div class="lang-bar" style="padding-top:4px;border-top:1px solid var(--line)">
+            <div class="sub-pills">
+              <button class="sub-pill on" type="button" data-rmode="wa">WhatsApp 安全草稿</button>
+              <button class="sub-pill" type="button" data-rmode="mail">正式跟进邮件</button>
+            </div>
+            <button class="act-btn" type="button" id="btnCopyReply">复制安全回复</button>
+          </div>
+          <div class="msg-box" id="replyBox"></div>
+        </div>
+
+        <!-- Tab 2: 知识库体检 -->
+        <div class="pane" id="pane-kb">
+          <div class="banner warn" id="kbBanner">
+            <b id="kbBannerTitle">知识库状态检查</b>
+            <div id="kbBannerDesc"></div>
+          </div>
+          <div class="kb-list" id="kbList"></div>
+          <div class="lang-bar">
+            <span style="font-size:12px;color:var(--ink-3)" id="kbHint">核对最新报价、MOQ 与认证后更新版本号</span>
+            <button class="act-btn pri" type="button" id="btnRefreshKb">标记已核验更新</button>
+          </div>
+        </div>
+
+        <!-- Tab 3: 双语分镜与拉美西语校对 -->
+        <div class="pane" id="pane-script">
           <div class="lang-bar">
             <div class="sub-pills">
-              <button class="sub-pill on" type="button" data-vlang="en">English 英文</button>
-              <button class="sub-pill" type="button" data-vlang="es">Español 西语</button>
+              <button class="sub-pill on" type="button" data-vlang="en">English 英文口播</button>
+              <button class="sub-pill" type="button" data-vlang="es">拉美工业西语 Español LatAm</button>
             </div>
-            <button class="act-btn" type="button" id="btnCopyScript">复制口播词</button>
+            <button class="act-btn" type="button" id="btnCopyScript">复制口播稿</button>
           </div>
           <div class="shot-list" id="shotList"></div>
-        </div>
 
-        <div class="pane" id="pane-terms">
-          <div class="lang-bar">
-            <span style="font-size:12px;color:var(--ink-3)">配音与字幕前固定行业专有词译法</span>
+          <div class="lang-bar" style="padding-top:6px;border-top:1px solid var(--line)">
+            <span class="sec-sub">专业术语与拉美西语校对表</span>
             <button class="act-btn" type="button" id="btnCopyTerms">复制术语表</button>
           </div>
-          <div style="overflow-x:auto">
+          <div class="table-wrap">
             <table class="term-table">
               <thead>
-                <tr><th>中文原词</th><th>English 标准词</th><th>Español 西语词</th><th>校验说明</th></tr>
+                <tr><th>识别词条</th><th>English 标准词</th><th>拉美工业西语</th><th>校对规则</th></tr>
               </thead>
               <tbody id="termBody"></tbody>
             </table>
           </div>
         </div>
-
-        <div class="pane" id="pane-reply">
-          <div class="lang-bar">
-            <div class="sub-pills">
-              <button class="sub-pill on" type="button" data-rmsg="wa">WhatsApp 回复</button>
-              <button class="sub-pill" type="button" data-rmsg="mail">正式报价邮件</button>
-            </div>
-            <button class="act-btn" type="button" id="btnCopyReply">复制回复</button>
-          </div>
-          <div class="msg-box" id="replyBox"></div>
-        </div>
       </section>
     </div>
   </main>
 
-  <div id="toast">已复制</div>
+  <div id="toast" role="status" aria-live="polite"></div>
 
   <script>
     const PRESETS = {
-      power: {
+      mx: {
+        chat: 'Hola, somos distribuidores en Monterrey, México. Necesitamos 150 unidades de estación de energía portátil 1200W con certificación UL2743 y UN38.3. ¿Cuál es su mejor precio FOB y aceptan pago a 30 días de crédito?',
         name: '1200W 磷酸铁锂便携储能电源',
-        moq: 'MOQ 50 台 · 15 天交货',
+        moq: '50 台',
+        lead: '15 天',
         price: 'USD 198 - 225 FOB Shenzhen',
-        points: '车规级 LiFePO4 电芯循环 3500 次；50 分钟快充至 80%；支持太阳能 MPPT 输入与 UPS 10ms 切换；具备 CE、FCC、UL2743 与 UN38.3 认证，支持贴牌定制。',
-        buyer: 'Hi, can you send unit price for 100 pcs to Monterrey and confirm UL certificate?',
-        shots: {
-          en: [
-            { tag: '镜头 01 · 场景开场', dur: '00:00 - 00:08', main: 'Looking for a reliable 1200W portable power station ready for retail and industrial backup?', sub: '实拍机身接口特写与户外带载画面' },
-            { tag: '镜头 02 · 核心参数', dur: '00:08 - 00:20', main: 'Built with automotive-grade LiFePO4 cells rated for 3,500 cycles, it recharges to 80% in just 50 minutes and switches in 10ms as a seamless UPS.', sub: '展示快充功率表读数与电芯循环实测页' },
-            { tag: '镜头 03 · 认证与交期', dur: '00:20 - 00:31', main: 'Fully certified with UL2743, FCC, CE, and UN38.3 for smooth customs clearance. OEM branding starts at 50 units with a 15-day lead time.', sub: '平铺证书编号与工厂老化测试产线' },
-            { tag: '镜头 04 · 询盘引导', dur: '00:31 - 00:38', main: 'Click the inquiry button below to get our FOB Shenzhen tiered price sheet and sample test report today.', sub: '指向页面底部 WhatsApp 与报价单入口' }
-          ],
-          es: [
-            { tag: '镜头 01 · 开场吸引', dur: '00:00 - 00:08', main: '¿Busca una estación de energía portátil de 1200W confiable para distribución y respaldo industrial?', sub: '实拍机身接口特写与带载画面' },
-            { tag: '镜头 02 · 电芯与快充', dur: '00:08 - 00:21', main: 'Equipada con celdas LiFePO4 de grado automotriz de 3,500 ciclos, carga al 80% en 50 minutos con respaldo UPS en 10 milisegundos.', sub: '展示快充功率实测与电芯寿命数据' },
-            { tag: '镜头 03 · 认证与起订', dur: '00:21 - 00:32', main: 'Cuenta con certificaciones UL2743, FCC, CE y UN38.3. Pedido mínimo de 50 unidades para marca OEM y entrega en 15 días.', sub: '展示全套清关认证与产线画面' },
-            { tag: '镜头 04 · 行动引导', dur: '00:32 - 00:39', main: 'Envíenos un mensaje ahora para recibir la lista de precios FOB Shenzhen y la ficha técnica completa.', sub: '引导点击询盘按钮获取阶梯报价' }
-          ]
-        },
-        terms: [
-          ['磷酸铁锂电芯', 'LiFePO4 Battery Cell', 'Celda LiFePO4', '严禁拆译成普通锂电'],
-          ['不间断电源切换', '10ms UPS Switchover', 'Conmutación UPS 10ms', '保留毫秒数值提升可信度'],
-          ['危险品运输鉴定', 'UN38.3 Test Summary', 'Certificación UN38.3', '电池海空运清关必审项'],
-          ['深圳离岸价', 'FOB Shenzhen', 'FOB Shenzhen', '国际贸易术语保持大写'],
-          ['贴牌与定制开发', 'OEM & ODM Service', 'Servicio OEM y ODM', '外贸批发买家高频词']
-        ]
+        date: '2026-09-18',
+        specs: '车规级 LiFePO4 电芯 3500 次循环，50 分钟快充至 80%，支持太阳能 MPPT 输入与 10ms UPS 切换，通过 UL2743、FCC、CE、UN38.3 认证，支持 OEM 贴牌。'
       },
-      coffee: {
+      cafe: {
+        chat: 'Hi, we run a coffee equipment wholesale business in Los Angeles. Do you have 110V 60Hz commercial espresso machines with NSF certificate? We want to discuss 20 units and exclusive distributor rights for California.',
         name: '双锅炉商用半自动意式咖啡机',
-        moq: 'MOQ 10 台 · 12 天交货',
+        moq: '10 台',
+        lead: '12 天',
         price: 'USD 680 - 760 FOB Guangzhou',
-        points: '独立双不锈钢锅炉 PID 精准控温；意大利进口旋转泵 9 Bar 恒压萃取；防烫蒸汽棒连续出杯不掉压；通过 CE、CB、NSF 食品接触认证。',
-        buyer: 'Hello, do you have 110V 60Hz version for cafes and spare parts kit?',
-        shots: {
-          en: [
-            { tag: '镜头 01 · 出杯场景', dur: '00:00 - 00:08', main: 'Running a busy cafe that needs rock-steady espresso extraction during morning rush hours?', sub: '展示双头浓缩油脂拉丝画面' },
-            { tag: '镜头 02 · 双锅炉控温', dur: '00:08 - 00:20', main: 'Our dual stainless-steel boiler system with PID temperature control and Italian rotary pump holds a stable 9-bar pressure cup after cup.', sub: '特写压力表稳定在 9 Bar 与奶泡打发' },
-            { tag: '镜头 03 · 电压与认证', dur: '00:20 - 00:30', main: 'Available in both 220V and 110V 60Hz configurations, backed by CE, CB, and food-grade NSF compliance. MOQ is just 10 units.', sub: '展示铭牌电压规格与认证标识' },
-            { tag: '镜头 04 · 询盘转化', dur: '00:30 - 00:37', main: 'Message us directly for distributor pricing, spare parts list, and a live extraction test video.', sub: '引导索取经销商价目表与备件包清单' }
-          ],
-          es: [
-            { tag: '镜头 01 · 高峰出杯', dur: '00:00 - 00:08', main: '¿Necesita una máquina de espresso comercial estable durante las horas pico de su cafetería?', sub: '展示连续萃取浓缩咖啡特写' },
-            { tag: '镜头 02 · 恒压控温', dur: '00:08 - 00:20', main: 'Con doble caldera de acero inoxidable, control PID y bomba rotativa italiana a 9 bares constantes en cada taza.', sub: '展示 PID 温控屏与蒸汽打奶泡' },
-            { tag: '镜头 03 · 美规电压', dur: '00:20 - 00:31', main: 'Disponible en versión 110V 60Hz y 220V con certificaciones CE, CB y NSF. Pedido mínimo desde 10 unidades.', sub: '特写 110V 60Hz 规格契合美洲市场' },
-            { tag: '镜头 04 · 索取报价', dur: '00:31 - 00:38', main: 'Contáctenos hoy para recibir precios de distribuidor y el kit de repuestos incluido.', sub: '引导点击获取报价与易损件清单' }
-          ]
-        },
-        terms: [
-          ['双锅炉温控', 'Dual Boiler PID Control', 'Doble Caldera con PID', '商用机核心溢价卖点'],
-          ['意大利旋转泵', 'Italian Rotary Pump', 'Bomba Rotativa Italiana', '区分家用震动泵'],
-          ['食品接触认证', 'NSF Food-Grade Certified', 'Certificación NSF', '北美及拉美餐饮准入关键'],
-          ['美规电压频率', '110V / 60Hz Version', 'Versión 110V / 60Hz', '美洲电网必核参数'],
-          ['广州离岸价', 'FOB Guangzhou', 'FOB Guangzhou', '珠三角货代常用港口']
-        ]
+        date: '2026-11-20',
+        specs: '双不锈钢锅炉 PID 精准控温，意大利旋转泵 9 Bar 恒压萃取，支持 110V 60Hz 与 220V 版本，通过 CE、CB、NSF 食品接触认证，附易损件包。'
       },
       laser: {
+        chat: 'Hello, can your 30W fiber laser mark deep serial numbers and QR codes on stainless steel auto parts? Could you send a real marking test video first?',
         name: '30W 便携式光纤激光打标机',
-        moq: 'MOQ 5 台 · 7 天现货速发',
+        moq: '5 台',
+        lead: '7 天',
         price: 'USD 920 - 1,080 FOB Shenzhen',
-        points: '锐科激光器 10 万小时寿命；高速振镜 7000mm/s 精细雕刻金属与硬质塑料；风冷免耗材；配英文/西语版 EzCad 软件与远程调试指导。',
-        buyer: 'Can this engrave deep serial numbers on stainless steel automotive parts?',
-        shots: {
-          en: [
-            { tag: '镜头 01 · 3 秒打标实拍', dur: '00:00 - 00:07', main: 'Watch how cleanly this 30W fiber laser engraves permanent serial numbers and QR codes on stainless steel in 3 seconds.', sub: '实拍不锈钢铭牌高速打标全过程' },
-            { tag: '镜头 02 · 核心光源', dur: '00:07 - 00:19', main: 'Powered by a 100,000-hour laser source and 7,000mm/s galvo scanner, it runs air-cooled with zero consumables.', sub: '展示振镜镜头与深度雕刻微距细节' },
-            { tag: '镜头 03 · 多语种软件', dur: '00:19 - 00:29', main: 'Ships in 7 days with multilingual EzCad software in English and Spanish, plus 1-on-1 remote setup training.', sub: '展示多语言操作界面与木箱包装' },
-            { tag: '镜头 04 · 免费打样', dur: '00:29 - 00:36', main: 'Send us your part drawing or logo now—we will film a free sample marking video for you within 24 hours.', sub: '用 24 小时免费打样视频降低决策门槛' }
-          ],
-          es: [
-            { tag: '镜头 01 · 实拍效果', dur: '00:00 - 00:07', main: 'Vea cómo este láser de fibra de 30W graba códigos QR y números de serie en acero inoxidable en 3 segundos.', sub: '实拍金属零件永久打标特写' },
-            { tag: '镜头 02 · 免耗材寿命', dur: '00:07 - 00:19', main: 'Con fuente láser de 100,000 horas y cabezal galvo de 7,000mm/s, enfriado por aire y sin consumibles.', sub: '展示高速振镜与清晰边缘' },
-            { tag: '镜头 03 · 西语界面支持', dur: '00:19 - 00:29', main: 'Envío en 7 días con software EzCad en español e inglés, además de capacitación remota paso a paso.', sub: '消除海外工厂操作工语言顾虑' },
-            { tag: '镜头 04 · 免费试打样', dur: '00:29 - 00:36', main: 'Envíenos su logotipo hoy y grabaremos un video de muestra gratuito sobre su material en 24 horas.', sub: '引导买家发图纸换取实测视频' }
-          ]
-        },
-        terms: [
-          ['光纤激光器', 'Fiber Laser Source', 'Fuente Láser de Fibra', '区分 CO2 激光器'],
-          ['高速振镜扫描', 'High-Speed Galvo Scanner', 'Escáner Galvo de Alta Velocidad', '决定打标速度与精度'],
-          ['风冷免耗材', 'Air-Cooled Zero Consumables', 'Enfriado por Aire sin Consumibles', '海外售后维护成本低'],
-          ['免费打样实拍', 'Free Sample Marking Video', 'Video de Muestra Gratuito', 'B2B 机械设备最高转化钩子'],
-          ['木箱熏蒸包装', 'Export Plywood Case', 'Caja de Madera de Exportación', '海运免熏蒸出口标准']
-        ]
+        date: '2026-11-22',
+        specs: '10 万小时光纤激光器，7000mm/s 高速振镜，风冷免耗材，配英文与拉美西语版 EzCad 软件，支持免费打样实拍视频与远程调试。'
       }
     };
 
-    let curKey = 'power';
-    let curTab = 'script';
+    const GLOSSARY_DB = [
+      { re: /LiFePO4|磷酸铁锂/i, zh: '磷酸铁锂电芯', en: 'LiFePO4 Battery Cell', es: 'Celda LiFePO4', note: '保留化学式，不直译为普通锂电' },
+      { re: /UN38\.3/i, zh: '危包运输鉴定', en: 'UN38.3 Test Summary', es: 'Certificación UN38.3', note: '电池海空运清关核验原件编号' },
+      { re: /UL2743|\bUL\b/i, zh: 'UL 安全认证', en: 'UL2743 Listed', es: 'Certificación UL2743', note: '北美与墨西哥分销准入核心项' },
+      { re: /MPPT/i, zh: '太阳能快充控制', en: 'Solar MPPT Input', es: 'Entrada solar MPPT', note: '行业通用缩写保持大写' },
+      { re: /\bUPS\b/i, zh: '不间断电源切换', en: '10ms UPS Switchover', es: 'Respaldo UPS en 10 ms', note: '保留毫秒数值提升工程可信度' },
+      { re: /\bFOB\b/i, zh: '离岸价条款', en: 'FOB Shenzhen / Guangzhou', es: 'Precio FOB puerto de origen', note: '国际贸易术语保持全大写' },
+      { re: /\bOEM\b|贴牌/i, zh: '贴牌定制', en: 'OEM Private Label', es: 'Marca propia OEM', note: '批发买家常用标准表达' },
+      { re: /\bPID\b/i, zh: '精准温控系统', en: 'PID Temperature Control', es: 'Control de temperatura PID', note: '商用设备核心溢价词' },
+      { re: /\bNSF\b/i, zh: '食品接触认证', en: 'NSF Food-Grade Certified', es: 'Certificación sanitaria NSF', note: '北美及拉美餐饮准入关键' },
+      { re: /110V|60Hz/i, zh: '美规电压频率', en: '110V / 60Hz Configuration', es: 'Versión 110V / 60Hz', note: '美洲电网必核参数' },
+      { re: /9\s*Bar/i, zh: '恒压萃取压力', en: '9-Bar Constant Extraction', es: 'Extracción constante a 9 bares', note: '拉美西语常用 bares' },
+      { re: /光纤|fiber\s*laser|30W/i, zh: '光纤激光器', en: '30W Fiber Laser Source', es: 'Láser de fibra de 30W', note: '明确区分 CO2 激光机型' },
+      { re: /振镜|galvo/i, zh: '高速振镜扫描', en: 'High-Speed Galvo Scanner', es: 'Escáner galvo de alta velocidad', note: '决定工业打标效率与边缘精度' },
+      { re: /EzCad/i, zh: '控制软件', en: 'Multilingual EzCad Software', es: 'Software EzCad en español', note: '强调西语界面降低工厂培训门槛' },
+      { re: /\bCE\b|\bFCC\b/i, zh: '出口合规认证', en: 'CE & FCC Compliance', es: 'Certificaciones CE y FCC', note: '认证编号与测试报告须同步归档' }
+    ];
+
+    const LATAM_RULES = [
+      { zh: '第二人称礼貌称谓', en: 'You / Your team', es: 'Ustedes / Su empresa', note: '墨西哥及拉美不用西班牙本土 vosotros' },
+      { zh: '报价与询盘用词', en: 'Tiered Quotation', es: 'Cotización escalonada', note: '拉美采购常用 cotización 而非 presupuesto' },
+      { zh: '起订量表达', en: 'Minimum Order Quantity', es: 'Pedido mínimo MOQ', note: '直说 pedido mínimo 清晰无歧义' }
+    ];
+
+    let curPreset = 'mx';
+    let curTab = 'triage';
+    let curRMode = 'wa';
     let curVLang = 'en';
-    let curRMsg = 'wa';
+    let lastState = null;
 
     function showToast(msg) {
       const el = document.getElementById('toast');
       el.textContent = msg;
       el.classList.add('on');
       clearTimeout(window.__tt);
-      window.__tt = setTimeout(() => el.classList.remove('on'), 1500);
+      window.__tt = setTimeout(() => el.classList.remove('on'), 1600);
     }
 
-    function copyStr(s, label) {
-      navigator.clipboard.writeText(s).then(() => showToast(label || '已复制'));
-    }
-
-    function buildReply(mode) {
-      const name = document.getElementById('inName').value.trim();
-      const moq = document.getElementById('inMoq').value.trim();
-      const price = document.getElementById('inPrice').value.trim();
-      const buyer = document.getElementById('inBuyer').value.trim();
-      if (mode === 'wa') {
-        return `Hi! Thanks for your inquiry regarding "${buyer.slice(0, 58)}".\n\n1. Product: ${name}\n2. Tiered Quote: ${price}\n3. Lead Time & MOQ: ${moq}\n4. Compliance: Full test reports & certificates ready in PDF.\n\nWould you like me to share a 35-second real factory test video and our formal PI sheet right here on WhatsApp?`;
+    function copyStr(str, msg) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(str).then(() => showToast(msg));
+        return;
       }
-      return `Subject: Quotation & Certification Pack - ${name}\n\nDear Purchasing Manager,\n\nThank you for reaching out:\n> "${buyer}"\n\nPlease find our factory-direct key terms below:\n- Model: ${name}\n- Price Range: ${price}\n- MOQ & Production Lead Time: ${moq}\n- Documentation: Complete certification PDF pack and inspection video attached.\n\nCould you confirm your destination port and target plug/voltage standard so I can calculate exact door-to-door shipping cost for you today?\n\nBest regards,\nYiting Lai | Export Specialist`;
+      const ta = document.createElement('textarea');
+      ta.value = str; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showToast(msg); } catch (e) { showToast('复制失败，请手动选中'); }
+      document.body.removeChild(ta);
     }
 
-    function renderAll() {
-      const d = PRESETS[curKey];
-      const shots = d.shots[curVLang];
-      const shotWrap = document.getElementById('shotList');
-      shotWrap.innerHTML = shots.map(s => `
-        <div class="shot">
-          <div class="shot-top"><span>${s.tag}</span><span class="dur">${s.dur}</span></div>
-          <p class="main">${s.main}</p>
-          <p class="sub">画面调度：${s.sub}</p>
+    function detectLanguage(chat) {
+      if (/[¿¡]|hola|necesitamos|precio|unidades|crédito|cotización|envío|méxico|guadalajara|monterrey|español|ustedes|para/i.test(chat)) {
+        if (/vosotros|presupuesto|ordenador/i.test(chat)) return { code: 'es-es', label: '西班牙西语，建议切换拉美核对' };
+        return { code: 'es-latam', label: '拉美西语 Español LatAm' };
+      }
+      if (/[\u4e00-\u9fa5]{4,}/.test(chat)) return { code: 'zh', label: '中文询盘' };
+      return { code: 'en', label: 'English 英文' };
+    }
+
+    function parseInquiry(chat, prod) {
+      const lang = detectLanguage(chat);
+
+      // Quantity extraction
+      const qtyMatch = chat.match(/(\d[\d,]*)\s*(pcs|pieces|units|sets|unidades|piezas|台|套|件)/i);
+      const qty = qtyMatch ? qtyMatch[1] + ' ' + qtyMatch[2] : '';
+
+      // Destination / port extraction
+      const destMatch = chat.match(/\b(Monterrey|Mexico City|CDMX|Guadalajara|Mexico|México|Los Angeles|California|Miami|Houston|New York|USA|US|Germany|UK|Europe|Brazil|São Paulo|Chile|Colombia|Peru|Dubai|Riyadh|Toronto|Vancouver)\b/i)
+        || chat.match(/(?:to|in|en|para)\s+([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)?)/);
+      const dest = destMatch ? destMatch[1] : '';
+
+      // Certifications mentioned
+      const certHits = [...new Set((chat.match(/\b(UL2743|UL|UN38\.3|CE|FCC|NSF|CB|RoHS|ISO|NOM|IEC\d*)\b/gi) || []).map(x => x.toUpperCase()))];
+
+      // Voltage / technical spec mentioned
+      const voltHits = [...new Set((chat.match(/\b(\d{2,4}V|\d{2}Hz|\d{2,4}W|\d+\s*kWh|110V|220V)\b/gi) || []).map(x => x.toUpperCase()))];
+
+      // Target lead time mentioned
+      const leadMentioned = /(\d+\s*(days|weeks|días|semanas|天|周)|urgent|asap|next month|deadline)/i.test(chat);
+
+      // OEM / branding mentioned
+      const oemMentioned = /\b(OEM|ODM|logo|brand|branding|marca propia|贴牌|定制)\b/i.test(chat);
+
+      // Redline triggers (commercial boundaries AI MUST NOT auto-commit)
+      const redlines = [];
+      if (/\b(price|cost|quote|quotation|discount|best price|fob|cif|ddp|precio|cotización|descuento)\b|报价|底价|多少钱|折扣/i.test(chat)) {
+        redlines.push({ tag: '价格与底价红线', detail: '买家询问报价或底价，禁止 AI 自动承诺最终成交单价。' });
+      }
+      if (/\b(credit|net\s*\d+|payment|o\/a|l\/c|days?\s*credit|crédito|pago\s*a\s*\d+|plazo\s*de\s*pago)\b|账期|赊账|信用证|付款方式/i.test(chat)) {
+        redlines.push({ tag: '账期与付款红线', detail: '涉及账期或信用结算，必须由业务负责人与财务审批。' });
+      }
+      if (/\b(exclusive|exclusivity|sole\s*agent|distributor\s*rights|contract|exclusivo|contrato)\b|独家代理|区域保护|合同条款/i.test(chat)) {
+        redlines.push({ tag: '独家代理与合同红线', detail: '涉及区域独家授权或合同承诺，必须转人工谈判。' });
+      }
+      if (/\b(guarantee\s*delivery|penalty|compensation|garantizar\s*entrega)\b|违约金|保证交期/i.test(chat)) {
+        redlines.push({ tag: '刚性交期违约红线', detail: '涉及交期担保或违约条款，须核实产线排期后人工确认。' });
+      }
+
+      // Missing fields checklist
+      const missing = [];
+      if (!qty) missing.push('采购数量');
+      if (!dest) missing.push('目的国家或港口');
+      if (certHits.length === 0) missing.push('清关认证要求');
+      if (voltHits.length === 0) missing.push('电压与插头规格');
+      if (!leadMentioned) missing.push('目标到货时间');
+      if (!oemMentioned) missing.push('是否需要 OEM 贴牌');
+
+      // Knowledge base staleness check
+      const today = new Date();
+      const updDate = prod.date ? new Date(prod.date + 'T00:00:00') : null;
+      const daysOld = updDate && !isNaN(updDate) ? Math.max(0, Math.floor((today - updDate) / 86400000)) : 999;
+      const kbStale = daysOld > 30;
+      const kbChecks = [
+        { name: '知识库版本时效', ok: !kbStale, val: updDate ? `${prod.date} · 已过 ${daysOld} 天` : '未填写日期', note: kbStale ? '超过 30 天未更新，存在报价或认证过期风险' : '30 天内已核验' },
+        { name: '起订量 MOQ', ok: prod.moq.length > 0, val: prod.moq || '缺失', note: prod.moq ? '已录入' : '缺少起订量会导致接单口径混乱' },
+        { name: '标准交期', ok: prod.lead.length > 0, val: prod.lead || '缺失', note: prod.lead ? '已录入' : '缺少交期无法评估发货排期' },
+        { name: '内部参考价带', ok: prod.price.length > 0, val: prod.price || '缺失', note: prod.price ? '仅限人工复核参考，不自动发出' : '建议补充内部参考价带' },
+        { name: '认证与核心卖点', ok: prod.specs.length >= 15, val: prod.specs.length >= 15 ? '已录入核心参数' : '内容偏少', note: prod.specs.length >= 15 ? '可用于生成双语脚本与核对事实' : '请补充认证与关键性能指标' }
+      ];
+
+      // Build safe reply (NEVER commits exact final unit price or credit terms!)
+      const isEs = lang.code.startsWith('es');
+      const missEnMap = {
+        '采购数量': 'estimated order quantity',
+        '目的国家或港口': 'destination port or city',
+        '清关认证要求': 'required local certifications',
+        '电压与插头规格': 'voltage and plug standard',
+        '目标到货时间': 'target delivery schedule',
+        '是否需要 OEM 贴牌': 'whether OEM logo packaging is needed'
+      };
+      const missEsMap = {
+        '采购数量': 'la cantidad estimada del pedido',
+        '目的国家或港口': 'el puerto o ciudad de destino',
+        '清关认证要求': 'las certificaciones requeridas para importación',
+        '电压与插头规格': 'el voltaje y tipo de enchufe requerido',
+        '目标到货时间': 'la fecha estimada de entrega',
+        '是否需要 OEM 贴牌': 'si requieren personalización OEM con su marca'
+      };
+
+      const askList = missing.slice(0, 3);
+      let waDraft = '';
+      let mailDraft = '';
+
+      if (isEs) {
+        const askText = askList.length
+          ? 'Para que nuestro ejecutivo comercial prepare su cotización formal sin demoras, ¿nos podrían confirmar ' + askList.map(k => missEsMap[k]).join(', ') + '?'
+          : 'Ya registramos sus datos completos de volumen, destino y certificaciones.';
+        const handoff = redlines.length
+          ? 'Su solicitud incluye condiciones comerciales de precio o crédito que nuestro gerente comercial revisará directamente para enviarles una propuesta oficial verificada hoy mismo.'
+          : 'Con gusto les compartimos nuestro video real de prueba en fábrica y la ficha técnica completa en PDF.';
+        waDraft = `Hola, gracias por escribirnos sobre ${prod.name}.\n\nHemos recibido su consulta${qty ? ' por ' + qty : ''}${dest ? ' para ' + dest : ''}. ${handoff}\n\n${askText}\n\n¿Desean que les enviemos primero el video real de funcionamiento y los certificados disponibles por aquí?`;
+        mailDraft = `Asunto: Seguimiento técnico y preparación de cotización - ${prod.name}\n\nEstimado equipo de compras,\n\nGracias por contactarnos respecto a ${prod.name}${qty ? ' · ' + qty : ''}.\n\n1. Especificaciones y cumplimiento: ${prod.specs}\n2. Producción estándar: pedido mínimo ${prod.moq || 'por confirmar'}, tiempo estimado de entrega ${prod.lead || 'por confirmar'}.\n3. Revisión comercial: ${redlines.length ? 'Dado que su consulta incluye términos comerciales específicos de precio, crédito o distribución, nuestro gerente de ventas confirmará los detalles y les enviará la cotización oficial por separado.' : 'Podemos enviar hoy mismo el video de prueba real y la ficha técnica completa.'}\n\n${askText}\n\nSaludos cordiales,\nYiting Lai`;
+      } else {
+        const askText = askList.length
+          ? 'To help our sales manager prepare an accurate offer quickly, could you confirm ' + askList.map(k => missEnMap[k]).join(', ') + '?'
+          : 'We have logged your quantity, destination, and compliance details.';
+        const handoff = redlines.length
+          ? 'Because your request involves commercial pricing, payment terms, or distribution terms, our dedicated sales manager will verify and send the official quotation directly.'
+          : 'We can share a real factory test video and full specification PDF right away.';
+        waDraft = `Hi, thank you for reaching out regarding ${prod.name}.\n\nWe noted your inquiry${qty ? ' for ' + qty : ''}${dest ? ' to ' + dest : ''}. ${handoff}\n\n${askText}\n\nWould you like me to send our real factory load-test video and certificate summary first?`;
+        mailDraft = `Subject: Technical Confirmation & Quotation Follow-Up - ${prod.name}\n\nDear Purchasing Team,\n\nThank you for your inquiry regarding ${prod.name}.\n\n1. Verified Product Details: ${prod.specs}\n2. Standard Production Reference: MOQ ${prod.moq || 'TBC'}, standard lead time ${prod.lead || 'TBC'}.\n3. Commercial Review: ${redlines.length ? 'Since your message covers commercial pricing, credit terms, or regional distribution rights, our sales manager is reviewing internally and will issue the verified quotation separately.' : 'We are ready to share our factory test video and PDF documentation immediately.'}\n\n${askText}\n\nBest regards,\nYiting Lai`;
+      }
+
+      // Dynamic bilingual 4-shot video script built from actual product inputs
+      const combined = `${prod.name} ${prod.moq} ${prod.lead} ${prod.price} ${prod.specs} ${chat}`;
+      const detectedTerms = GLOSSARY_DB.filter(g => g.re.test(combined));
+      const certList = (combined.match(/\b(UL2743|UN38\.3|CE|FCC|NSF|CB|RoHS|ISO\d*|IEC\d*)\b/gi) || []);
+      const uniqueCerts = [...new Set(certList.map(c => c.toUpperCase()))];
+      const certStr = uniqueCerts.length ? uniqueCerts.join(', ') : 'full export test reports';
+      const specSnippet = prod.specs.replace(/[；;]/g, ', ').slice(0, 96);
+
+      const shots = {
+        en: [
+          { tag: '镜头 01 · 场景开场', dur: '00:00 - 00:08', main: `Need a factory-verified ${prod.name} built for stable overseas supply?`, sub: '实拍设备外观、核心接口与带载测试画面' },
+          { tag: '镜头 02 · 实测卖点', dur: '00:08 - 00:20', main: `Key verified specs: ${specSnippet}. Every unit passes full load inspection before shipment.`, sub: '展示仪器实测读数与产线老化检验过程' },
+          { tag: '镜头 03 · 认证与交期', dur: '00:20 - 00:31', main: `Backed by ${certStr}. Standard MOQ starts at ${prod.moq || 'flexible trial order'} with a ${prod.lead || 'fast'} lead time.`, sub: '平铺认证文件编号、包装规格与出货车间' },
+          { tag: '镜头 04 · 询盘引导', dur: '00:31 - 00:38', main: 'Send your destination port and quantity to receive our real test video and verified quotation from our sales team.', sub: '引导买家留下数量与目的港，避免盲目报底价' }
+        ],
+        es: [
+          { tag: '镜头 01 · 场景开场', dur: '00:00 - 00:08', main: `¿Buscan un proveedor confiable de ${prod.name} para distribución o uso industrial en Latinoamérica?`, sub: '采用拉美西语 ustedes，实拍机身与带载画面' },
+          { tag: '镜头 02 · 实测卖点', dur: '00:08 - 00:20', main: `Especificaciones verificadas en fábrica: ${specSnippet}. Cada equipo pasa pruebas completas antes del envío.`, sub: '展示工厂老化测试与关键仪表实测数据' },
+          { tag: '镜头 03 · 认证与交期', dur: '00:20 - 00:31', main: `Cuenta con ${certStr}. Pedido mínimo desde ${prod.moq || 'lote de prueba'} y tiempo estándar de entrega de ${prod.lead || 'entrega ágil'}.`, sub: '展示清关合规文件与出口包装产线' },
+          { tag: '镜头 04 · 询盘引导', dur: '00:31 - 00:38', main: 'Compártannos su cantidad estimada y puerto de destino para enviarles el video real de prueba y su cotización oficial.', sub: '使用拉美高频词 cotización 与 puerto de destino' }
+        ]
+      };
+
+      const terms = [
+        ...detectedTerms.map(t => [t.zh, t.en, t.es, t.note]),
+        ...LATAM_RULES.map(r => [r.zh, r.en, r.es, r.note])
+      ];
+
+      return { lang, qty, dest, certHits, voltHits, redlines, missing, kbStale, daysOld, kbChecks, waDraft, mailDraft, shots, terms };
+    }
+
+    function render() {
+      const chat = document.getElementById('inChat').value.trim();
+      const prod = {
+        name: document.getElementById('inName').value.trim() || '外贸出口设备',
+        moq: document.getElementById('inMoq').value.trim(),
+        lead: document.getElementById('inLead').value.trim(),
+        price: document.getElementById('inPrice').value.trim(),
+        date: document.getElementById('inDate').value.trim(),
+        specs: document.getElementById('inSpecs').value.trim()
+      };
+      const st = parseInquiry(chat, prod);
+      lastState = { chat, prod, st };
+
+      // Top KB badge
+      const topBadge = document.getElementById('kbTopBadge');
+      if (st.kbStale) {
+        topBadge.textContent = `已过期 ${st.daysOld} 天`;
+        topBadge.className = 'pill warn';
+      } else {
+        topBadge.textContent = '版本有效';
+        topBadge.className = 'pill ok';
+      }
+
+      // Tab 1: Redline banner
+      const rb = document.getElementById('redlineBanner');
+      const rt = document.getElementById('redlineTitle');
+      const rd = document.getElementById('redlineDesc');
+      if (st.redlines.length > 0) {
+        rb.className = 'banner err';
+        rt.textContent = `命中 ${st.redlines.length} 项商业红线 · 已拦截自动报价并建议转人工`;
+        rd.textContent = st.redlines.map(r => r.detail).join(' ');
+      } else if (st.kbStale) {
+        rb.className = 'banner warn';
+        rt.textContent = '未命中报价红线 · 但产品知识库超过 30 天未更新';
+        rd.textContent = '请先在知识库体检页核对最新参数，再发送下方安全跟进草稿。';
+      } else {
+        rb.className = 'banner ok';
+        rt.textContent = '未命中报价与账期红线 · 可发送安全追问草稿';
+        rd.textContent = '当前仅涉及产品实测与参数咨询，可先发送实测视频并追问缺失字段。';
+      }
+
+      document.getElementById('redlineTags').innerHTML = st.redlines.length
+        ? st.redlines.map(r => `<span class="pill err">${r.tag}</span>`).join('')
+        : '<span class="pill ok">无价格、账期或独家代理越权风险</span>';
+
+      // Structured demand card
+      const cards = [
+        { k: '识别语种', v: st.lang.label, miss: false },
+        { k: '对应产品', v: prod.name, miss: false },
+        { k: '采购数量', v: st.qty || '未提及', miss: !st.qty },
+        { k: '目的国家或港口', v: st.dest || '未提及', miss: !st.dest },
+        { k: '认证要求', v: st.certHits.length ? st.certHits.join(', ') : '未提及', miss: st.certHits.length === 0 },
+        { k: '电压或功率参数', v: st.voltHits.length ? st.voltHits.join(', ') : '未提及', miss: st.voltHits.length === 0 }
+      ];
+      document.getElementById('demandGrid').innerHTML = cards.map(c =>
+        `<div class="kv ${c.miss ? 'miss' : ''}"><span>${c.k}</span><b>${c.v}</b></div>`
+      ).join('');
+
+      document.getElementById('missingTags').innerHTML = st.missing.length
+        ? st.missing.map(m => `<span class="pill warn">缺少 ${m}</span>`).join('')
+        : '<span class="pill ok">关键建档字段已齐全</span>';
+
+      document.getElementById('replyBox').textContent = curRMode === 'wa' ? st.waDraft : st.mailDraft;
+
+      // Tab 2: KB health
+      const kbBanner = document.getElementById('kbBanner');
+      const kbTitle = document.getElementById('kbBannerTitle');
+      const kbDesc = document.getElementById('kbBannerDesc');
+      const missingKb = st.kbChecks.filter(i => !i.ok);
+      if (missingKb.length > 0) {
+        kbBanner.className = 'banner warn';
+        kbTitle.textContent = `发现 ${missingKb.length} 项资料风险 · 建议复核后再启用 AI 回复`;
+        kbDesc.textContent = '工厂报价、MOQ 与认证频繁变动，过期文档会直接污染 AI 回复并引发人工返工。';
+      } else {
+        kbBanner.className = 'banner ok';
+        kbTitle.textContent = '知识库字段完整且在 30 天有效期内';
+        kbDesc.textContent = '当前参数可直接支撑双语脚本生成与安全追问草稿。';
+      }
+
+      document.getElementById('kbList').innerHTML = st.kbChecks.map(i => `
+        <div class="kb-item">
+          <div><b>${i.name}</b><div style="font-size:11.5px;color:var(--ink-3)">${i.note}</div></div>
+          <span class="pill ${i.ok ? 'ok' : 'warn'}">${i.val}</span>
         </div>
       `).join('');
 
-      const words = shots.map(s => s.main).join(' ').split(/\s+/).length;
-      document.getElementById('kWords').textContent = words + ' 词';
-      document.getElementById('kTerms').textContent = d.terms.length + ' 项';
+      // Tab 3: Dynamic bilingual scripts & glossary
+      document.getElementById('shotList').innerHTML = st.shots[curVLang].map(s => `
+        <div class="shot">
+          <div class="shot-top"><span>${s.tag}</span><span class="dur">${s.dur}</span></div>
+          <p class="main">${s.main}</p>
+          <p class="sub">画面建议：${s.sub}</p>
+        </div>
+      `).join('');
 
-      document.getElementById('termBody').innerHTML = d.terms.map(r => `
+      document.getElementById('termBody').innerHTML = st.terms.map(r => `
         <tr>
           <td><b>${r[0]}</b></td>
           <td class="term-code">${r[1]}</td>
@@ -385,27 +644,33 @@
           <td style="color:var(--ink-3)">${r[3]}</td>
         </tr>
       `).join('');
+    }
 
-      document.getElementById('replyBox').textContent = buildReply(curRMsg);
+    function loadPreset(key) {
+      curPreset = key;
+      const p = PRESETS[key];
+      document.getElementById('inChat').value = p.chat;
+      document.getElementById('inName').value = p.name;
+      document.getElementById('inMoq').value = p.moq;
+      document.getElementById('inLead').value = p.lead;
+      document.getElementById('inPrice').value = p.price;
+      document.getElementById('inDate').value = p.date;
+      document.getElementById('inSpecs').value = p.specs;
+      document.querySelectorAll('#presetBar .chip').forEach(b => b.classList.toggle('on', b.dataset.p === key));
+      render();
     }
 
     document.querySelectorAll('#presetBar .chip').forEach(btn => {
-      btn.addEventListener('click', () => {
-        curKey = btn.dataset.p;
-        document.querySelectorAll('#presetBar .chip').forEach(b => b.classList.toggle('on', b === btn));
-        const d = PRESETS[curKey];
-        document.getElementById('inName').value = d.name;
-        document.getElementById('inMoq').value = d.moq;
-        document.getElementById('inPrice').value = d.price;
-        document.getElementById('inPoints').value = d.points;
-        document.getElementById('inBuyer').value = d.buyer;
-        renderAll();
-      });
+      btn.addEventListener('click', () => loadPreset(btn.dataset.p));
     });
 
-    document.getElementById('btnGen').addEventListener('click', () => {
-      renderAll();
-      showToast('已更新多语种口播稿与报价回复');
+    ['inChat', 'inName', 'inMoq', 'inLead', 'inPrice', 'inDate', 'inSpecs'].forEach(id => {
+      document.getElementById(id).addEventListener('input', render);
+    });
+
+    document.getElementById('btnRun').addEventListener('click', () => {
+      render();
+      showToast('已重新解析询盘并刷新双语内容');
     });
 
     document.querySelectorAll('.tab').forEach(btn => {
@@ -416,54 +681,70 @@
       });
     });
 
+    document.querySelectorAll('[data-rmode]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        curRMode = btn.dataset.rmode;
+        document.querySelectorAll('[data-rmode]').forEach(b => b.classList.toggle('on', b === btn));
+        render();
+      });
+    });
+
     document.querySelectorAll('[data-vlang]').forEach(btn => {
       btn.addEventListener('click', () => {
         curVLang = btn.dataset.vlang;
         document.querySelectorAll('[data-vlang]').forEach(b => b.classList.toggle('on', b === btn));
-        renderAll();
+        render();
       });
     });
 
-    document.querySelectorAll('[data-rmsg]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        curRMsg = btn.dataset.rmsg;
-        document.querySelectorAll('[data-rmsg]').forEach(b => b.classList.toggle('on', b === btn));
-        renderAll();
-      });
+    document.getElementById('btnRefreshKb').addEventListener('click', () => {
+      const d = new Date();
+      const iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      document.getElementById('inDate').value = iso;
+      render();
+      showToast('已更新知识库核验日期为 ' + iso);
+    });
+
+    document.getElementById('btnCopyReply').addEventListener('click', () => {
+      copyStr(document.getElementById('replyBox').textContent, '已复制安全跟进草稿');
     });
 
     document.getElementById('btnCopyScript').addEventListener('click', () => {
-      const txt = PRESETS[curKey].shots[curVLang].map(s => `[${s.dur}] ${s.main}`).join('\n');
-      copyStr(txt, '已复制全部口播词');
+      const txt = lastState.st.shots[curVLang].map(s => `[${s.dur}] ${s.main}`).join('\n');
+      copyStr(txt, '已复制双语口播稿');
     });
+
     document.getElementById('btnCopyTerms').addEventListener('click', () => {
-      const txt = PRESETS[curKey].terms.map(r => `${r[0]}\t${r[1]}\t${r[2]}`).join('\n');
-      copyStr(txt, '已复制专业术语表');
+      const txt = lastState.st.terms.map(r => `${r[0]}\t${r[1]}\t${r[2]}\t${r[3]}`).join('\n');
+      copyStr(txt, '已复制术语校对表');
     });
-    document.getElementById('btnCopyReply').addEventListener('click', () => {
-      copyStr(document.getElementById('replyBox').textContent, '已复制跟进消息');
-    });
+
     document.getElementById('btnExportCsv').addEventListener('click', () => {
+      const { chat, prod, st } = lastState;
       const rows = [
-        ['产品名称', '起订与交期', '价格区间', '买家询盘', 'WhatsApp回复初稿'],
+        ['产品名称', '识别语种', '采购数量', '目的国家或港口', '认证要求', '缺失字段', '命中商业红线', '是否需转人工', '安全回复草稿', '买家原文'],
         [
-          document.getElementById('inName').value,
-          document.getElementById('inMoq').value,
-          document.getElementById('inPrice').value,
-          document.getElementById('inBuyer').value,
-          buildReply('wa').replace(/\n+/g, ' ')
+          prod.name,
+          st.lang.label,
+          st.qty || '待确认',
+          st.dest || '待确认',
+          st.certHits.join(' / ') || '待确认',
+          st.missing.join(' / ') || '无',
+          st.redlines.map(r => r.tag).join(' / ') || '无',
+          st.redlines.length > 0 ? '是' : '否',
+          st.waDraft.replace(/\n+/g, ' '),
+          chat.replace(/\n+/g, ' ')
         ]
       ];
       const csv = '\uFEFF' + rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
       const a = document.createElement('a');
       a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
-      a.download = '外贸视频与询盘跟进表.csv';
+      a.download = '外贸CRM询盘分诊表.csv';
       a.click();
-      showToast('已导出 CSV 标准表');
+      showToast('已导出 CRM 询盘分诊表');
     });
 
-    renderAll();
+    loadPreset('mx');
   </script>
 </body>
 </html>
-

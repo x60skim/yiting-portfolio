@@ -727,9 +727,9 @@
 
           <div class="stage-col">
             <div class="stage-bar">
-              <span class="stage-label" data-i18n="p4Stage">外贸视频与询盘工作台 · 操作演示</span>
+              <span class="stage-label" data-i18n="p4Stage">外贸 AI 询盘分诊与双语内容工作台 · 交互演示</span>
               <div class="stage-actions">
-                <a class="preview-link" href="./src/trade-studio.html" target="_blank" rel="noopener">
+                <a class="preview-link" href="./src/trade-studio.html?v=2" target="_blank" rel="noopener">
                   <span data-i18n="prevBtn">项目预览</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
                 </a>
               </div>
@@ -738,10 +738,10 @@
             <div class="ss-shell" id="theater-trade">
               <div class="ss-top">
                 <div class="ss-beats cols-2" role="tablist">
-                  <button class="ss-beat active" type="button">1 参数拆解</button>
-                  <button class="ss-beat" type="button">2 双语分镜稿</button>
-                  <button class="ss-beat" type="button">3 术语锁定</button>
-                  <button class="ss-beat" type="button">4 询盘秒回</button>
+                  <button class="ss-beat active" type="button">1 询盘拆卡</button>
+                  <button class="ss-beat" type="button">2 红线拦截</button>
+                  <button class="ss-beat" type="button">3 知识体检</button>
+                  <button class="ss-beat" type="button">4 拉美西语</button>
                 </div>
                 <div class="ss-ctls">
                   <button class="ss-step-btn ss-prev" type="button" aria-label="上一步">‹</button>
@@ -751,8 +751,8 @@
               </div>
               <div class="ss-narr">
                 <div class="ss-narr-copy">
-                  <div class="ss-narr-t">中文产品参数拆成标准外贸字段</div>
-                  <div class="ss-narr-d">提取起订量、交期、FOB 价格带与清关认证，消除中式长难句，直接生成视频口播骨架</div>
+                  <div class="ss-narr-t">粘贴任意英文或西语询盘，实时拆出结构化客户卡片</div>
+                  <div class="ss-narr-d">自动提取数量、目的港、认证与电压参数，标出缺失字段，业务员接手无需通读长聊天记录</div>
                 </div>
                 <div class="ss-narr-s">1 / 4</div>
               </div>
@@ -760,58 +760,59 @@
               <div class="ss-stage t5-stage">
                 <div class="t5-win">
                   <div class="t5-tb">
-                    <b>外贸视频脚本与询盘工作台</b>
-                    <span class="s-pill blue">EN / ES 多语种</span>
+                    <b>外贸 AI 询盘分诊工作台</b>
+                    <span class="s-pill blue">EN / 拉美西语</span>
                   </div>
                   <div class="t5-body">
                     <div class="ss-pane active" id="t5-p0" style="gap:8px">
                       <div class="t5-box">
-                        <div style="font-size:12px;font-weight:750">便携储能电源 · 出海参数提取</div>
-                        <div style="font-size:11px;color:#475569;background:#fff;border:1px solid #CBD5E1;border-radius:8px;padding:7px 9px" id="t5-parse-st">待拆解：1200W 磷酸铁锂便携储能电源 · MOQ 50 台</div>
+                        <div style="font-size:12px;font-weight:750">墨西哥储能买家询盘 · 实时提取</div>
+                        <div style="font-size:11px;color:#475569;background:#fff;border:1px solid #CBD5E1;border-radius:8px;padding:7px 9px" id="t5-parse-st">待解析：Monterrey 150 台 1200W 储能 · 问 FOB 价格与 30 天账期</div>
                         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;text-align:center;font-size:11px">
-                          <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>38s</b><br><span style="color:#64748B;font-size:10px">口播时长</span></div>
-                          <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>86 词</b><br><span style="color:#64748B;font-size:10px">标准语速</span></div>
-                          <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>5 项</b><br><span style="color:#64748B;font-size:10px">认证与术语</span></div>
+                          <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>150 台</b><br><span style="color:#64748B;font-size:10px">采购数量</span></div>
+                          <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>Monterrey</b><br><span style="color:#64748B;font-size:10px">目的城市</span></div>
+                          <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>缺 3 项</b><br><span style="color:#B45309;font-size:10px">交期/电压/OEM</span></div>
                         </div>
-                        <div class="t5-btn" id="t5-gen-btn" data-t="t5-gen">生成口播稿</div>
+                        <div class="t5-btn" id="t5-gen-btn" data-t="t5-gen">解析询盘</div>
                       </div>
                     </div>
 
-                    <div class="ss-pane" id="t5-p1" style="gap:8px">
-                      <div style="display:flex;gap:6px;align-items:center">
-                        <span class="s-pill blue" id="t5-en-btn">English 英文口播</span>
-                        <span class="s-pill muted" id="t5-es-btn" data-t="t5-es">Español 西语口播</span>
-                      </div>
-                      <div class="t5-shot">
-                        <b>镜头 02 · 00:08 – 00:20 · 电芯与快充实测</b>
-                        <div id="t5-shot-txt">Built with automotive-grade LiFePO4 cells rated for 3,500 cycles, recharging to 80% in 50 minutes.</div>
-                      </div>
-                      <div class="t5-shot">
-                        <b>镜头 03 · 00:20 – 00:31 · 认证与交期</b>
-                        <div>Certified with UL2743, FCC, CE, and UN38.3. OEM starts at 50 units with 15-day delivery.</div>
+                    <div class="ss-pane" id="t5-p1" style="gap:7px">
+                      <div class="t5-box">
+                        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12px">商业红线拦截 · 禁止越权报价</b><span class="s-pill" style="background:#FEF2F2;color:#DC2626" id="t5-wa-st">命中 2 项红线</span></div>
+                        <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:6px 8px;font-size:11px;color:#991B1B;line-height:1.45">
+                          已拦截：买家询问底价与 30 天账期，系统禁止 AI 擅自报单价，转为业务员核实后回复。
+                        </div>
+                        <div style="background:#fff;border:1px solid #CBD5E1;border-radius:8px;padding:7px 9px;font-size:11px;line-height:1.45;color:#334155">
+                          Hola, recibimos su consulta por 150 unidades para Monterrey. Nuestro gerente comercial enviará la cotización formal verificada hoy. ¿Nos confirman voltaje y plazo de entrega?
+                        </div>
+                        <div class="t5-btn" id="t5-wa-btn" data-t="t5-wa">复制安全回复</div>
                       </div>
                     </div>
 
                     <div class="ss-pane" id="t5-p2" style="gap:7px">
                       <div class="t5-box">
-                        <div style="font-size:12px;font-weight:750">外贸与行业专有术语表</div>
+                        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12px">工厂产品知识库体检</b><span class="s-pill amber" id="t5-kb-st">已过期 69 天</span></div>
                         <div style="display:grid;gap:5px;font-size:11px">
-                          <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>磷酸铁锂电芯</span><b style="color:#0057FF">LiFePO4 · Celda LiFePO4</b></div>
-                          <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>危包运输鉴定</span><b style="color:#0057FF">UN38.3 Test Summary</b></div>
-                          <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>离岸阶梯报价</span><b style="color:#0057FF">FOB Shenzhen Tiered</b></div>
+                          <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>资料更新日期</span><b id="t5-kb-dt" style="color:#B45309">2026-09-18</b></div>
+                          <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>起订量与交期</span><b style="color:#059669">MOQ 50 台 · 15 天</b></div>
+                          <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>出口认证清单</span><b style="color:#059669">UL2743 · UN38.3 · CE</b></div>
                         </div>
-                        <div style="font-size:11px;color:#059669;font-weight:650" id="t5-term-st">共锁定 5 项外贸与技术术语</div>
-                        <div class="t5-btn" id="t5-term-btn" data-t="t5-term">复制术语表</div>
+                        <div class="t5-btn" id="t5-term-btn" data-t="t5-term">标记已核验更新</div>
                       </div>
                     </div>
 
-                    <div class="ss-pane" id="t5-p3" style="gap:7px">
-                      <div class="t5-box">
-                        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12px">WhatsApp 报价回复</b><span class="s-pill green" id="t5-wa-st">含实测视频钩子</span></div>
-                        <div style="background:#fff;border:1px solid #CBD5E1;border-radius:8px;padding:7px 9px;font-size:11px;line-height:1.48;color:#334155">
-                          Hi! Unit price for 100 pcs is USD 205 FOB Shenzhen, 15-day lead time, full UL2743 &amp; UN38.3 PDF ready. Shall I send our 35s load-test video here?
-                        </div>
-                        <div class="t5-btn" id="t5-wa-btn" data-t="t5-wa">复制报价回复</div>
+                    <div class="ss-pane" id="t5-p3" style="gap:8px">
+                      <div style="display:flex;gap:6px;align-items:center">
+                        <span class="s-pill blue" id="t5-en-btn">English 英文口播</span>
+                        <span class="s-pill muted" id="t5-es-btn" data-t="t5-es">拉美工业西语</span>
+                      </div>
+                      <div class="t5-shot">
+                        <b>镜头 02 · 00:08 – 00:20 · 实测参数动态生成</b>
+                        <div id="t5-shot-txt">Built with automotive-grade LiFePO4 cells rated for 3,500 cycles, recharging to 80% in 50 minutes.</div>
+                      </div>
+                      <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0;font-size:11px">
+                        <span>拉美西语校对：用 ustedes 不用 vosotros</span><b style="color:#0057FF">导出 CRM CSV</b>
                       </div>
                     </div>
                   </div>
@@ -927,8 +928,8 @@
     <div id="lb-inner"></div>
   </div>
 
-  <script src="./assets/vendor/stageshow-theaters.js?v=9"></script>
-  <script src="./assets/polyv-i18n.js?v=5"></script>
+  <script src="./assets/vendor/stageshow-theaters.js?v=10"></script>
+  <script src="./assets/polyv-i18n.js?v=6"></script>
   <script>
     (function () {
       const topbar = document.getElementById('topbar');
