@@ -17,7 +17,7 @@
     activity_id: a.id,
     activity_name: a.name,
     account_username: '2024****01',
-    nickname: '演示同学',
+    nickname: '陈同学',
     status: i === 0 ? 'success' : 'pending',
     payment_status: i === 0 ? 'paid' : 'unpaid',
     created_at: '2026-11-18 14:20:00',
@@ -50,7 +50,7 @@
     if (url.startsWith('/api/my-orders/') && method === 'DELETE') {
       const id = Number(url.split('/').pop().split('?')[0]);
       saveOrders(getOrders().filter(o => Number(o.id) !== id));
-      return jsonRes({ status: 'ok', message: '已取消演示订单' });
+      return jsonRes({ status: 'ok', message: '预约已取消' });
     }
     if (url.startsWith('/api/my-orders')) return jsonRes(getOrders());
     if (url.startsWith('/api/cancel-by-activity')) {
@@ -71,23 +71,23 @@
         activity_id: a.id,
         activity_name: a.name,
         account_username: body.account_username || '2024****01',
-        nickname: body.nickname || '演示同学',
+        nickname: body.nickname || '陈同学',
         status: 'pending',
         payment_status: 'unpaid',
         created_at: new Date().toISOString().slice(0,16).replace('T',' '),
         kind: 'normal'
       }));
       saveOrders(added.concat(list));
-      return jsonRes({ status: 'ok', message: '演示下单成功！已加入「我的订单」' });
+      return jsonRes({ status: 'ok', message: '预约已提交，可在我的预约查看' });
     }
     if (url.startsWith('/api/announcement-history')) return jsonRes([]);
     if (url.startsWith('/api/announcement')) return jsonRes({ content: '' });
     if (url.startsWith('/api/user-notices')) return jsonRes({ notices: [], consent: { decided: true, agreed: true, used_count: 2, reward_count: 1 } });
     if (url.startsWith('/api/my-tickets')) return jsonRes([
-      { id: 201, username: '2024****01', nickname: '演示同学', content: '老师请问下周五摄影打卡活动会同步上架吗？', status: 'resolved', admin_reply: '已经同步上架啦，在活动列表搜“摄影”就能直接勾选预约~', created_at: '2026-11-18 19:20', resolved_at: '2026-11-18 19:32' },
-      { id: 202, username: '2024****01', nickname: '演示同学', content: '刚刚预约了知识竞赛，麻烦确认下是否验号成功', status: 'pending', admin_reply: '', created_at: '2026-11-21 10:05' }
+      { id: 201, username: '2024****01', nickname: '陈同学', content: '老师请问下周五摄影打卡活动会同步上架吗？', status: 'resolved', admin_reply: '已经同步上架啦，在活动列表搜“摄影”就能直接勾选预约~', created_at: '2026-11-18 19:20', resolved_at: '2026-11-18 19:32' },
+      { id: 202, username: '2024****01', nickname: '陈同学', content: '刚刚预约了知识竞赛，麻烦确认下是否验号成功', status: 'pending', admin_reply: '', created_at: '2026-11-21 10:05' }
     ]);
-    if (url.startsWith('/api/tickets') && method === 'POST') return jsonRes({ status: 'ok', message: '演示工单已提交' });
+    if (url.startsWith('/api/tickets') && method === 'POST') return jsonRes({ status: 'ok', message: '留言已提交' });
     if (url.startsWith('/api/image-config')) return jsonRes({ maxWidth: 1200, quality: 0.8 });
     return jsonRes({ status: 'ok' });
   };
@@ -98,7 +98,7 @@
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
-    <title>智慧校园 3.0 - 活动代抢预约</title>
+    <title>智慧校园 3.0 活动代预约</title>
     
     <!-- 界面重构遵循 unslop (Damir Sokolovsky, CC BY 4.0) 的流程：间距、色彩、图标、文案、字体、布局、细节、动效 -->
     <style>
@@ -2383,7 +2383,7 @@
                     </div>
                     <span class="sep"></span>
                     <div class="bar-group batch-group">
-                        <button class="btn btn-secondary btn-sm" onclick="selectAllFilteredOrders()" title="一键全选或反选当前显示的所有订单">全选当前</button>
+                        <button class="btn btn-secondary btn-sm" onclick="selectAllFilteredOrders()" title="全选或反选当前显示的订单">全选当前</button>
                         <button class="btn btn-primary btn-sm" onclick="openOrderSnapshotModal()" style="background:#6366f1; border-color:#6366f1; font-weight:600;" title="对选中订单生成结算快照卡片（可下载或复制图片）">生成订单快照</button>
                         <button class="btn btn-secondary btn-sm" onclick="selectAllPendingCustomers()" title="勾选全部待结算（已抢到未结算）订单，跨客户">全选待结算客户</button>
                         <button class="btn btn-secondary btn-sm" onclick="batchSnapshotCustomers()" style="border-color:#6366f1; color:#6366f1; font-weight:600;" title="按客户逐个生成待结账单快照并保存到网站">批量生图</button>

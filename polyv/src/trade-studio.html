@@ -152,10 +152,9 @@
   <header class="top">
     <div class="top-in">
       <div class="brand">
-        <b>外贸视频与多语种询盘台</b>
-        <span class="badge">B2B 出海工具</span>
+        <b>外贸视频脚本与多语种询盘工作台</b>
       </div>
-      <button class="act-btn" type="button" id="btnExportCsv">导出跟进标准表 CSV</button>
+      <button class="act-btn" type="button" id="btnExportCsv">导出 CSV</button>
     </div>
   </header>
 
@@ -163,8 +162,7 @@
     <div class="grid">
       <section class="panel" aria-label="产品参数录入">
         <div class="panel-hd">
-          <h2>1. 选择样本或填入产品参数</h2>
-          <span style="font-size:11.5px;color:var(--ok);font-weight:700">实时拆解</span>
+          <h2>产品参数</h2>
         </div>
         <div class="presets" id="presetBar">
           <button class="chip on" type="button" data-p="power">便携储能电源</button>
@@ -179,7 +177,7 @@
           <label class="fl">起订量与交期
             <input id="inMoq" type="text" value="MOQ 50 台 · 15 天交货">
           </label>
-          <label class="fl">FOB 参考区间
+          <label class="fl">FOB 报价区间
             <input id="inPrice" type="text" value="USD 198 - 225 FOB Shenzhen">
           </label>
         </div>
@@ -189,36 +187,36 @@
         <label class="fl">买家询盘原文
           <input id="inBuyer" type="text" value="Hi, can you send unit price for 100 pcs to Monterrey and confirm UL certificate?">
         </label>
-        <button class="btn-pri" type="button" id="btnGen">生成多语种口播稿与跟进方案</button>
+        <button class="btn-pri" type="button" id="btnGen">生成口播稿与报价回复</button>
       </section>
 
       <section class="panel" aria-label="生成结果工作区">
         <div class="kpi-strip">
-          <div class="kpi"><b id="kDur">38s</b><span>口播总时长</span></div>
-          <div class="kpi"><b id="kWords">86 词</b><span>适配配音语速</span></div>
-          <div class="kpi"><b id="kTerms">5 项</b><span>已锁定专业术语</span></div>
+          <div class="kpi"><b id="kDur">38s</b><span>口播时长</span></div>
+          <div class="kpi"><b id="kWords">86 词</b><span>口播词数</span></div>
+          <div class="kpi"><b id="kTerms">5 项</b><span>锁定术语</span></div>
         </div>
 
         <div class="tabs" role="tablist">
           <button class="tab on" type="button" data-t="script">双语口播</button>
-          <button class="tab" type="button" data-t="terms">术语核准</button>
-          <button class="tab" type="button" data-t="reply">询盘秒回</button>
+          <button class="tab" type="button" data-t="terms">术语锁定</button>
+          <button class="tab" type="button" data-t="reply">报价回复</button>
         </div>
 
         <div class="pane on" id="pane-script">
           <div class="lang-bar">
             <div class="sub-pills">
-              <button class="sub-pill on" type="button" data-vlang="en">English 英文口播</button>
-              <button class="sub-pill" type="button" data-vlang="es">Español 西语口播</button>
+              <button class="sub-pill on" type="button" data-vlang="en">English 英文</button>
+              <button class="sub-pill" type="button" data-vlang="es">Español 西语</button>
             </div>
-            <button class="act-btn" type="button" id="btnCopyScript">复制全部口播词</button>
+            <button class="act-btn" type="button" id="btnCopyScript">复制口播词</button>
           </div>
           <div class="shot-list" id="shotList"></div>
         </div>
 
         <div class="pane" id="pane-terms">
           <div class="lang-bar">
-            <span style="font-size:12px;color:var(--ink-3)">配音与字幕生成前锁定行业专有词，避免直译出错</span>
+            <span style="font-size:12px;color:var(--ink-3)">配音与字幕前固定行业专有词译法</span>
             <button class="act-btn" type="button" id="btnCopyTerms">复制术语表</button>
           </div>
           <div style="overflow-x:auto">
@@ -234,10 +232,10 @@
         <div class="pane" id="pane-reply">
           <div class="lang-bar">
             <div class="sub-pills">
-              <button class="sub-pill on" type="button" data-rmsg="wa">WhatsApp 秒回模板</button>
-              <button class="sub-pill" type="button" data-rmsg="mail">正式报价跟进邮件</button>
+              <button class="sub-pill on" type="button" data-rmsg="wa">WhatsApp 回复</button>
+              <button class="sub-pill" type="button" data-rmsg="mail">正式报价邮件</button>
             </div>
-            <button class="act-btn" type="button" id="btnCopyReply">复制跟进消息</button>
+            <button class="act-btn" type="button" id="btnCopyReply">复制回复</button>
           </div>
           <div class="msg-box" id="replyBox"></div>
         </div>
@@ -257,7 +255,7 @@
         buyer: 'Hi, can you send unit price for 100 pcs to Monterrey and confirm UL certificate?',
         shots: {
           en: [
-            { tag: '镜头 01 · 痛点开场', dur: '00:00 - 00:08', main: 'Looking for a reliable 1200W portable power station ready for retail and industrial backup?', sub: '实拍机身接口特写与户外带载画面' },
+            { tag: '镜头 01 · 场景开场', dur: '00:00 - 00:08', main: 'Looking for a reliable 1200W portable power station ready for retail and industrial backup?', sub: '实拍机身接口特写与户外带载画面' },
             { tag: '镜头 02 · 核心参数', dur: '00:08 - 00:20', main: 'Built with automotive-grade LiFePO4 cells rated for 3,500 cycles, it recharges to 80% in just 50 minutes and switches in 10ms as a seamless UPS.', sub: '展示快充功率表读数与电芯循环实测页' },
             { tag: '镜头 03 · 认证与交期', dur: '00:20 - 00:31', main: 'Fully certified with UL2743, FCC, CE, and UN38.3 for smooth customs clearance. OEM branding starts at 50 units with a 15-day lead time.', sub: '平铺证书编号与工厂老化测试产线' },
             { tag: '镜头 04 · 询盘引导', dur: '00:31 - 00:38', main: 'Click the inquiry button below to get our FOB Shenzhen tiered price sheet and sample test report today.', sub: '指向页面底部 WhatsApp 与报价单入口' }
@@ -328,7 +326,7 @@
         terms: [
           ['光纤激光器', 'Fiber Laser Source', 'Fuente Láser de Fibra', '区分 CO2 激光器'],
           ['高速振镜扫描', 'High-Speed Galvo Scanner', 'Escáner Galvo de Alta Velocidad', '决定打标速度与精度'],
-          ['风冷免耗材', 'Air-Cooled Zero Consumables', 'Enfriado por Aire sin Consumibles', '海外售后维护痛点低'],
+          ['风冷免耗材', 'Air-Cooled Zero Consumables', 'Enfriado por Aire sin Consumibles', '海外售后维护成本低'],
           ['免费打样实拍', 'Free Sample Marking Video', 'Video de Muestra Gratuito', 'B2B 机械设备最高转化钩子'],
           ['木箱熏蒸包装', 'Export Plywood Case', 'Caja de Madera de Exportación', '海运免熏蒸出口标准']
         ]

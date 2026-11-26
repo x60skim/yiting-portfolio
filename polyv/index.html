@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>赖怡婷 Yiting Lai · 作品集</title>
-  <meta name="description" content="赖怡婷个人作品集：广交会多端实时取餐核对台、智慧校园 3.0 活动代预约系统、易班自动化桌面软件、外贸视频脚本与多语种询盘工作台，以及国际商务与海外实单凭证。">
+  <meta name="description" content="赖怡婷个人作品集：广交会多端取餐核对台、智慧校园 3.0 活动代预约系统、易班自动化桌面软件、外贸视频脚本与多语种询盘工作台，以及成绩单与真实成交凭证。">
   <link rel="stylesheet" href="./assets/vendor/stageshow-theaters.css?v=4">
   <link rel="stylesheet" href="./assets/polyv-theme.css?v=3">
 </head>
@@ -137,7 +137,7 @@
               <span class="stage-label" data-i18n="p1Stage">广交会取餐核对台 · 操作演示</span>
               <div class="stage-actions">
                 <button class="video-link" type="button" data-video="./assets/demo-reconcile.mp4?v=7" data-poster="./assets/demo-reconcile.jpg?v=7" data-i18n="vidBtn">完整录屏</button>
-                <a class="preview-link" href="./src/reconcile.html?v=17&tour=1" target="_blank" rel="noopener">
+                <a class="preview-link" href="./src/reconcile.html?v=18&tour=1" target="_blank" rel="noopener">
                   <span data-i18n="prevBtn">项目预览</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
                 </a>
               </div>
@@ -161,8 +161,8 @@
               </div>
               <div class="ss-narr">
                 <div class="ss-narr-copy">
-                  <div class="ss-narr-t">金山表格 AirScript 同步 + Node.js SSE 多端实时广播</div>
-                  <div class="ss-narr-d">自动读取金山文档当日报餐与实到数，服务端通过 SSE 长连接把 6 种餐品余量毫秒同步到现场设备</div>
+                  <div class="ss-narr-t">金山文档自动读表与多端实时同步</div>
+                  <div class="ss-narr-d">读取当日报餐与实到数，通过 Node.js 服务把 6 种餐品余量实时同步到全部现场手机。</div>
                 </div>
                 <div class="ss-narr-s">1 / 6</div>
               </div>
@@ -235,23 +235,23 @@
                         <div class="t1-ev-thumb">原图</div>
                         <div style="min-width:0;flex:1">
                           <div style="font-size:12px;font-weight:750;color:#9A3412">问题餐券拍照留底</div>
-                          <div style="font-size:11px;color:#7C2D12;margin-top:2px" id="t1-log-st">问题餐券已拍照存证，随时点开看原图</div>
+                          <div style="font-size:11px;color:#7C2D12;margin-top:2px" id="t1-log-st">问题餐券已拍照留底，可查看原图</div>
                         </div>
                       </div>
                       <div class="t1-row">
-                        <div><b>外联**处 · 多满分 +2</b><span>现场 4 号机录入 · 录错可一键撤销，余量自动加回</span></div>
-                        <span class="t1-mini-btn warn" id="t1-undo" data-t="t1-undo">撤销这条</span>
+                        <div><b>外联**处 · 多满分 +2</b><span>现场 4 号机录入 · 撤销后余量自动加回</span></div>
+                        <span class="t1-mini-btn warn" id="t1-undo" data-t="t1-undo">撤销记录</span>
                       </div>
                       <div class="t1-row">
-                        <div><b>按部门和状态筛选记录</b><span>支持查正常发餐、加换餐、问题餐券与已撤销记录</span></div>
-                        <span class="s-pill blue">随查随翻</span>
+                        <div><b>按部门和状态筛选记录</b><span>查正常发餐、加换餐、问题餐券与已撤销记录</span></div>
+                        <span class="s-pill blue">按状态筛</span>
                       </div>
                     </div>
 
                     <div class="ss-pane" id="t1-p4" style="gap:8px">
                       <div class="t1-row">
-                        <div><b>完成今日结算</b><span>自动列出所有没取、少取部门转成待补餐券</span></div>
-                        <span class="t1-mini-btn" id="t1-end-btn" data-t="t1-end">收工一键转待补餐券</span>
+                        <div><b>完成今日结算</b><span>列出未取和少取部门并转为待补餐券</span></div>
+                        <span class="t1-mini-btn" id="t1-end-btn" data-t="t1-end">转为待补餐券</span>
                       </div>
                       <div class="t1-row">
                         <div><b>待补餐券核对</b><span id="t1-v-meta">外联**处 · 少取真功夫 2 份、麦当劳 1 份</span></div>
@@ -261,18 +261,18 @@
 
                     <div class="ss-pane" id="t1-p5" style="gap:7px">
                       <div class="t1-tools-grid">
-                        <div class="t1-tool">录入实际到餐<small>算清各品牌真实剩几份</small></div>
-                        <div class="t1-tool">表格格式检查<small>自动找出红字和改餐备注</small></div>
-                        <div class="t1-tool" id="t1-tool-wps" data-t="t1-wps">一键复制 WPS 列<small>直接粘进结算表不串行</small></div>
-                        <div class="t1-tool">导错区一键转移<small>A区 / B座 误录快速迁移</small></div>
+                        <div class="t1-tool">录入实际到餐<small>算清各品牌真实余量</small></div>
+                        <div class="t1-tool">表格格式检查<small>找出红字和改餐备注</small></div>
+                        <div class="t1-tool" id="t1-tool-wps" data-t="t1-wps">复制 WPS 结算列<small>直接粘进结算表不串行</small></div>
+                        <div class="t1-tool">错区数据转移<small>A区与 B座误录快速迁移</small></div>
                       </div>
                       <div style="font-size:11px;color:#B45309;background:#FEF3C7;padding:6px 9px;border-radius:8px;font-weight:650">
-                        展馆断网时数据先存在本机不丢单，连上网自动同步</div>
+                        展馆断网时先存在本机，联网后自动续传</div>
                     </div>
                   </div>
                   <div class="t1-footbar">
                     <div class="t1-fbtn">取餐记录 43</div>
-                    <div class="t1-fbtn pri" id="t1-exp-btn" data-t="t1-exp">导出今日 Excel</div>
+                    <div class="t1-fbtn pri" id="t1-exp-btn" data-t="t1-exp">导出 Excel</div>
                   </div>
                 </div>
                 <div class="ss-cursor arrow" id="cur-t1">
@@ -311,7 +311,7 @@
             </div>
             <div class="stage-actions">
               <button class="video-link" id="p2-vid" type="button" data-video="./assets/demo-zhxy-web.mp4?v=7" data-poster="./assets/demo-zhxy-web.jpg?v=7" data-i18n="vidBtn">完整录屏</button>
-              <a class="preview-link" id="p2-open" href="./src/zhxy-order.html?v=17&tour=1" target="_blank" rel="noopener">
+              <a class="preview-link" id="p2-open" href="./src/zhxy-order.html?v=18&tour=1" target="_blank" rel="noopener">
                 <span data-i18n="prevBtn">项目预览</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
               </a>
             </div>
@@ -338,7 +338,7 @@
                 <div class="ss-narr">
                   <div class="ss-narr-copy">
                     <div class="ss-narr-t">活动自动同步上架，按线上与空闲名额筛选</div>
-                    <div class="ss-narr-d">后台持续同步校园新活动，自动标出加分项和校区要求；按未看、线上与有空位一键筛选</div>
+                    <div class="ss-narr-d">后台持续同步校园新活动，自动标出加分项和校区要求；支持按未浏览、线上与有空位筛选</div>
                   </div>
                   <div class="ss-narr-s">1 / 6</div>
                 </div>
@@ -366,27 +366,27 @@
                           <div class="t2-kv"><span>报名时间</span><b>11/22 10:30 — 11/23 10:30</b></div>
                         </div>
                         <div class="t2-qr-card">
-                          <span id="t2-qr-txt">已整理活动咨询群二维码，点一下就能扫码进群</span>
+                          <span id="t2-qr-txt">活动咨询群二维码已归档，扫码进群</span>
                           <span class="s-pill dark" id="t2-qr-btn" data-t="t2-qr">查看群码</span>
                         </div>
                       </div>
 
                       <div class="ss-pane" id="t2-p2" style="gap:8px">
                         <div class="t2-detail-box">
-                          <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12.5px">已勾选 2 场活动 · 首次下单验证</b><span class="s-pill amber" id="t2-sms-st">待短信验证</span></div>
+                          <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12.5px">已选 2 场活动 · 首次下单验号</b><span class="s-pill amber" id="t2-sms-st">待短信验证</span></div>
                           <div style="font-size:11.5px;color:#475569">学号：2024****01 · 手机尾号 5992 · 验证后下次自动填入</div>
-                          <div style="font-size:11px;color:#64748B">过滤输错密码的无效单，不用微信逐条发学号密码</div>
+                          <div style="font-size:11px;color:#64748B">过滤输错密码的无效单，替代微信逐条抄录</div>
                         </div>
-                        <div class="t2-btn" id="t2-sub-btn" data-t="t2-sub">验证并提交 2 场预约</div>
+                        <div class="t2-btn" id="t2-sub-btn" data-t="t2-sub">验证并提交预约</div>
                       </div>
 
                       <div class="ss-pane" id="t2-p3" style="gap:8px">
                         <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:7px 10px;font-size:12px">
-                          <span>学号：<b>2024****01</b></span><span class="s-pill blue">共 2 笔 · 进度实时看</span>
+                          <span>学号：<b>2024****01</b></span><span class="s-pill blue">共 2 笔 · 进度实时更新</span>
                         </div>
                         <div class="t2-detail-box">
                           <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12.5px">“光影砺志”线下观影</b><span class="s-pill blue" id="t2-order-st">排队中</span></div>
-                          <div style="font-size:11px;color:#64748B">开抢前如果临时不去，自己点一下就能取消预约</div>
+                          <div style="font-size:11px;color:#64748B">开抢前若临时不去，可自助取消预约</div>
                           <div class="t2-btn ghost" id="t2-cancel-btn" data-t="t2-cancel">取消预约</div>
                         </div>
                       </div>
@@ -394,18 +394,18 @@
                       <div class="ss-pane" id="t2-p4" style="gap:8px">
                         <div class="t2-detail-box">
                           <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:13px">空闲账号互助占位协议</b><span class="s-pill amber" id="t2-consent-st">未参与</span></div>
-                          <div style="font-size:11.5px;color:#475569;line-height:1.5">1. 账号空闲时协助占热门名额，报名截止前无人接手会自动取消，不影响本人记录。<br>2. 全程由后台守护线程自动管理退位与释放。</div>
+                          <div style="font-size:11.5px;color:#475569;line-height:1.5">1. 账号空闲时协助占热门名额，截止前无人接手自动取消，不影响本人记录。<br>2. 退位与释放全程由后台自动调度。</div>
                         </div>
-                        <div class="t2-btn" id="t2-agree-btn" data-t="t2-agree">同意参与空闲账号互助</div>
+                        <div class="t2-btn" id="t2-agree-btn" data-t="t2-agree">参与互助占位</div>
                       </div>
 
                       <div class="ss-pane" id="t2-p5" style="gap:8px">
                         <div class="t2-detail-box">
                           <div style="font-size:12.5px;font-weight:750">带图提交问题留言</div>
-                          <div style="font-size:11.5px;color:#475569">自动压缩截图上传，支持反馈取消预约、群码失效或加分疑问</div>
+                          <div style="font-size:11.5px;color:#475569">自动压缩截图上传，反馈取消预约、群码失效或加分疑问</div>
                           <div class="t2-btn" id="t2-tk-btn" data-t="t2-tk">提交带图留言</div>
                         </div>
-                        <div class="t2-notice" id="t2-notice"><b>消息提醒：</b>管理员已回复你的留言 #11 并更新了活动群二维码，点开就能看。</div>
+                        <div class="t2-notice" id="t2-notice"><b>消息提醒：</b>管理员已回复留言 #11 并更新活动群二维码。</div>
                       </div>
                     </div>
                     <div class="t2-tabbar"><span class="on">活动列表</span><span>群码</span><span>我的预约</span><span>留言公告</span></div>
@@ -515,41 +515,41 @@
 
                         <div class="ss-pane" id="t3-p3" style="gap:8px">
                           <div class="t3-bar">
-                            <div class="t3-bar-t">一键生成账单图 &amp; 手机画廊直接发微信</div>
+                            <div class="t3-bar-t">生成账单图与手机画廊收款</div>
                             <div class="t3-acts">
-                              <span class="t3-btn indigo" id="t3-bill" data-t="t3-bill">批量生成账单图</span>
-                              <span class="t3-btn green" id="t3-settle" data-t="t3-settle">批量标记已收款</span>
+                              <span class="t3-btn indigo" id="t3-bill" data-t="t3-bill">生成账单图</span>
+                              <span class="t3-btn green" id="t3-settle" data-t="t3-settle">标记已收款</span>
                             </div>
                           </div>
                           <div class="t3-sat" id="t3-sat">
-                            <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12.5px">待结账单 · 微信 客户B</b><span class="s-pill green" id="t3-sat-tag">手机画廊已可保存</span></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12.5px">待结账单 · 微信 客户B</b><span class="s-pill green" id="t3-sat-tag">待发送</span></div>
                             <div class="t3-sat-row"><span>1. “品读小雪节气”知识答题</span><b>¥6.00</b></div>
                             <div class="t3-sat-row"><span>2. “光影砺志”线下观影活动</span><b>¥6.00</b></div>
-                            <div class="t3-sat-row" style="border-top:1px dashed #CBD5E1;padding-top:4px;color:#0057FF;font-weight:750"><span>手机打开局域网画廊就能存图发客户</span><b>合计 ¥12.00</b></div>
+                            <div class="t3-sat-row" style="border-top:1px dashed #CBD5E1;padding-top:4px;color:#0057FF;font-weight:750"><span>手机打开局域网画廊保存后发客户</span><b>合计 ¥12.00</b></div>
                           </div>
                         </div>
 
                         <div class="ss-pane" id="t3-p4" style="gap:9px">
                           <div class="t3-bar">
                             <div class="t3-bar-t">空闲账号互助换位调度</div>
-                            <span class="t3-btn on" id="t3-swap-btn" data-t="t3-swap">开始自动换位</span>
+                            <span class="t3-btn on" id="t3-swap-btn" data-t="t3-swap">开始换位</span>
                           </div>
                           <div class="t3-swap-flow">
-                            <div class="t3-node" id="t3-n1"><b>① 空闲账号退位</b><span>2024****302 放出名额</span></div>
-                            <div class="t3-node" id="t3-n2"><b>② 客户立刻顶上</b><span>下单客户顺势报上</span></div>
-                            <div class="t3-node" id="t3-n3"><b>③ 自动释放余位</b><span>截止前无人接手自动取消</span></div>
+                            <div class="t3-node" id="t3-n1"><b>1 空闲账号退位</b><span>2024****302 放出名额</span></div>
+                            <div class="t3-node" id="t3-n2"><b>2 客户顶上名额</b><span>下单客户顺势报上</span></div>
+                            <div class="t3-node" id="t3-n3"><b>3 截止自动释放</b><span>无人接手自动取消</span></div>
                           </div>
                         </div>
 
                         <div class="ss-pane" id="t3-p5" style="gap:8px">
                           <div class="t3-bar">
-                            <div class="t3-bar-t">活动排期清单 &amp; 客户留言回复</div><span class="s-pill blue">进群 → 签到 → 拿分</span>
+                            <div class="t3-bar-t">活动排期清单与客户留言回复</div><span class="s-pill blue">进群 · 签到 · 加分</span>
                           </div>
                           <div class="t3-item">
-                            <div><b>留言 #11 · 2026****207 反馈活动群码</b><small>支持群发带图公告，也能单独回复并推给对应客户</small></div>
+                            <div><b>留言 #11 · 2026****207 反馈活动群码</b><small>支持群发带图公告，也能单条回复并推送客户</small></div>
                             <div style="display:flex;gap:6px;align-items:center">
                               <span class="s-pill amber" id="t3-tk-st">待回复</span>
-                              <span class="t3-btn on" id="t3-reply-btn" data-t="t3-reply">回复并通知客户</span>
+                              <span class="t3-btn on" id="t3-reply-btn" data-t="t3-reply">回复客户</span>
                             </div>
                           </div>
                         </div>
@@ -596,7 +596,7 @@
               <span class="stage-label" data-i18n="p3Stage">易班自动化桌面软件 · 操作演示</span>
               <div class="stage-actions">
                 <button class="video-link" type="button" data-video="./assets/demo-yiban.mp4?v=6" data-poster="./assets/demo-yiban.jpg?v=6" data-i18n="vidBtn">完整录屏</button>
-                <a class="preview-link" href="./src/yiban-client.html?v=17&tour=1" target="_blank" rel="noopener">
+                <a class="preview-link" href="./src/yiban-client.html?v=18&tour=1" target="_blank" rel="noopener">
                   <span data-i18n="prevBtn">项目预览</span> <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
                 </a>
               </div>
@@ -620,7 +620,7 @@
               <div class="ss-narr">
                 <div class="ss-narr-copy">
                   <div class="ss-narr-t">云端多维表格 Open API 一机一码授权 + 网络校时防篡改</div>
-                  <div class="ss-narr-d">启动时校验设备硬件码、卡密有效期与网络标准时间，防止篡改本地系统时间绕过授权</div>
+                  <div class="ss-narr-d">启动时核对设备硬件码、卡密有效期和网络标准时间，防止修改系统时间绕过授权。</div>
                 </div>
                 <div class="ss-narr-s">1 / 5</div>
               </div>
@@ -641,23 +641,23 @@
                         <div style="font-size:11px;color:#059669;font-weight:650" id="t4-auth-st">正在核对云端表格里的授权记录与标准时间...</div>
                         <div class="t4-btn green" id="t4-v-btn" data-t="t4-verify">联网核对授权</div>
                       </div>
-                      <div class="t4-tip">配套发卡网页一键生成激活码并写进云端表格，不用花钱租服务器就能远程管理月卡和封禁。</div>
+                      <div class="t4-tip">配套发卡网页生成激活码并写入云端表格，不用租服务器即可远程管理月卡和封禁。</div>
                     </div>
 
                     <div class="ss-pane" id="t4-p1" style="gap:8px">
                       <div class="t4-box">
                         <div style="font-size:12px;font-weight:750">发帖目标自动读取</div>
-                        <div style="background:#fff;border:1px solid #CBD5E1;border-radius:7px;padding:6px 9px;font-size:11.5px;font-weight:650" id="t4-board-val">还没有读取账号版块...</div>
-                        <div class="t4-btn amber" id="t4-read-btn" data-t="t4-read">自动读取可发版块</div>
+                        <div style="background:#fff;border:1px solid #CBD5E1;border-radius:7px;padding:6px 9px;font-size:11.5px;font-weight:650" id="t4-board-val">尚未读取账号版块</div>
+                        <div class="t4-btn amber" id="t4-read-btn" data-t="t4-read">读取版块</div>
                       </div>
-                      <div class="t4-tip"><b>防屏蔽选版块提示：</b>避开管理严格的官方宣传版块，优先选择日常互动活跃的公共版块。</div>
+                      <div class="t4-tip"><b>防屏蔽提示：</b>避开管理严格的官方宣传版块，优先选择日常活跃公共版块。</div>
                     </div>
 
                     <div class="ss-pane" id="t4-p2" style="gap:8px">
                       <div class="t4-box">
-                        <div style="font-size:12px;font-weight:750">自定义发帖 / 评论常用语</div>
+                        <div style="font-size:12px;font-weight:750">自定义发帖与评论常用语</div>
                         <div style="background:#fff;border:1px solid #CBD5E1;border-radius:7px;padding:7px 9px;font-size:11px;line-height:1.5;color:#334155">今日打卡，记录美好校园生活！<br>好好学习天天向上，继续加油~<br>分享今日好心情，祝大家学业顺利！</div>
-                        <div style="font-size:11px;color:#1D4ED8;font-weight:650" id="t4-lex-st">共 4 条常用语，改完不用重启软件就能直接用</div>
+                        <div style="font-size:11px;color:#1D4ED8;font-weight:650" id="t4-lex-st">共 4 条常用语，保存后直接生效</div>
                         <div class="t4-btn indigo" id="t4-lex-btn" data-t="t4-lex">保存词库</div>
                       </div>
                     </div>
@@ -665,7 +665,7 @@
                     <div class="ss-pane" id="t4-p3" style="gap:7px">
                       <div class="t4-run-row">
                         <span class="s-pill blue">上限 20帖 / 30评 / 35赞</span>
-                        <div class="t4-btn blue" id="t4-run-btn" data-t="t4-run">开始自动发帖 / 评论点赞</div>
+                        <div class="t4-btn blue" id="t4-run-btn" data-t="t4-run">开始执行</div>
                       </div>
                       <div class="t4-kpis">
                         <div><b id="t4-k1">0 / 20</b><span>本次已发帖</span></div>
@@ -674,19 +674,19 @@
                       </div>
                       <div class="t4-term">
                         <div class="t4-line on"><span class="ok">[启动]</span> 打开独立浏览器窗口，载入加密执行脚本</div>
-                        <div class="t4-line"><span class="info">[运行]</span> 读取自定义词库，按随机间隔开始发帖评论...</div>
+                        <div class="t4-line"><span class="info">[运行]</span> 读取自定义词库，按随机间隔发帖评论</div>
                         <div class="t4-line"><span class="warn">[进度]</span> 已发帖 +2、评论 +4、点赞 +6</div>
-                        <div class="t4-line"><span class="ok">[完成]</span> 本轮任务已跑完 · 预计获得网薪 +48</div>
+                        <div class="t4-line"><span class="ok">[完成]</span> 本轮任务已完成 · 预计获得网薪 +48</div>
                       </div>
                     </div>
 
                     <div class="ss-pane" id="t4-p4" style="gap:8px">
-                      <div class="t4-btn indigo" id="t4-upd-btn" data-t="t4-upd">检查软件更新</div>
+                      <div class="t4-btn indigo" id="t4-upd-btn" data-t="t4-upd">检查更新</div>
                       <div class="t4-pipe">
-                        <div class="t4-pstep on"><b>① 脚本加密保护</b><span>核心脚本内存解密运行，防止明文外泄</span></div>
-                        <div class="t4-pstep"><b>② 主程序加密</b><span>打包前自动加密源码，保护商业版权</span></div>
-                        <div class="t4-pstep"><b>③ 两个安装包</b><span>自带浏览器完整版 &amp; 轻巧 Edge 版</span></div>
-                        <div class="t4-pstep"><b>④ 云端版本检测</b><span>启动或手动检测云端版本，随时升级新版</span></div>
+                        <div class="t4-pstep on"><b>1 内存解密运行</b><span>核心脚本在内存中解密，防止明文外泄</span></div>
+                        <div class="t4-pstep"><b>2 源码加密打包</b><span>打包前加密主程序，保护软件版权</span></div>
+                        <div class="t4-pstep"><b>3 双版安装包</b><span>内置浏览器完整版与轻巧 Edge 版</span></div>
+                        <div class="t4-pstep"><b>4 云端版本检测</b><span>启动或手动检测新版，及时升级</span></div>
                       </div>
                     </div>
                   </div>
@@ -751,7 +751,7 @@
               </div>
               <div class="ss-narr">
                 <div class="ss-narr-copy">
-                  <div class="ss-narr-t">中文工厂参数一键拆解为 B2B 海外买家关注指标</div>
+                  <div class="ss-narr-t">中文产品参数拆成标准外贸字段</div>
                   <div class="ss-narr-d">提取起订量、交期、FOB 价格带与清关认证，消除中式长难句，直接生成视频口播骨架</div>
                 </div>
                 <div class="ss-narr-s">1 / 4</div>
@@ -773,7 +773,7 @@
                           <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>86 词</b><br><span style="color:#64748B;font-size:10px">标准语速</span></div>
                           <div style="background:#fff;border:1px solid #E2E8F0;border-radius:7px;padding:5px"><b>5 项</b><br><span style="color:#64748B;font-size:10px">认证与术语</span></div>
                         </div>
-                        <div class="t5-btn" id="t5-gen-btn" data-t="t5-gen">生成口播稿与跟进方案</div>
+                        <div class="t5-btn" id="t5-gen-btn" data-t="t5-gen">生成口播稿</div>
                       </div>
                     </div>
 
@@ -794,23 +794,24 @@
 
                     <div class="ss-pane" id="t5-p2" style="gap:7px">
                       <div class="t5-box">
-                        <div style="font-size:12px;font-weight:750">外贸与行业专有术语核准表</div>
+                        <div style="font-size:12px;font-weight:750">外贸与行业专有术语表</div>
                         <div style="display:grid;gap:5px;font-size:11px">
                           <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>磷酸铁锂电芯</span><b style="color:#0057FF">LiFePO4 · Celda LiFePO4</b></div>
                           <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>危包运输鉴定</span><b style="color:#0057FF">UN38.3 Test Summary</b></div>
                           <div style="display:flex;justify-content:space-between;background:#fff;padding:6px 8px;border-radius:7px;border:1px solid #E2E8F0"><span>离岸阶梯报价</span><b style="color:#0057FF">FOB Shenzhen Tiered</b></div>
                         </div>
-                        <div class="t5-btn" id="t5-term-btn" data-t="t5-term">复制 5 项核准术语表</div>
+                        <div style="font-size:11px;color:#059669;font-weight:650" id="t5-term-st">共锁定 5 项外贸与技术术语</div>
+                        <div class="t5-btn" id="t5-term-btn" data-t="t5-term">复制术语表</div>
                       </div>
                     </div>
 
                     <div class="ss-pane" id="t5-p3" style="gap:7px">
                       <div class="t5-box">
-                        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12px">WhatsApp 跨时区询盘秒回</b><span class="s-pill green">含视频钩子</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12px">WhatsApp 报价回复</b><span class="s-pill green" id="t5-wa-st">含实测视频钩子</span></div>
                         <div style="background:#fff;border:1px solid #CBD5E1;border-radius:8px;padding:7px 9px;font-size:11px;line-height:1.48;color:#334155">
                           Hi! Unit price for 100 pcs is USD 205 FOB Shenzhen, 15-day lead time, full UL2743 &amp; UN38.3 PDF ready. Shall I send our 35s load-test video here?
                         </div>
-                        <div class="t5-btn" id="t5-wa-btn" data-t="t5-wa">复制 WhatsApp 报价回复</div>
+                        <div class="t5-btn" id="t5-wa-btn" data-t="t5-wa">复制报价回复</div>
                       </div>
                     </div>
                   </div>
@@ -926,8 +927,8 @@
     <div id="lb-inner"></div>
   </div>
 
-  <script src="./assets/vendor/stageshow-theaters.js?v=8"></script>
-  <script src="./assets/polyv-i18n.js?v=4"></script>
+  <script src="./assets/vendor/stageshow-theaters.js?v=9"></script>
+  <script src="./assets/polyv-i18n.js?v=5"></script>
   <script>
     (function () {
       const topbar = document.getElementById('topbar');
@@ -987,8 +988,8 @@
         window.addEventListener('resize', () => { const c = segWrap.querySelector('.etab.active'); if (c) syncSegThumb(c); });
       }
       const p2Meta = {
-        'p2-web': { href: './src/zhxy-order.html?v=17&tour=1', vid: './assets/demo-zhxy-web.mp4?v=7', poster: './assets/demo-zhxy-web.jpg?v=7', theater: 'theater-zhxy-web' },
-        'p2-console': { href: './src/zhxy-console.html?v=17&tour=1', vid: './assets/demo-zhxy-console.mp4?v=6', poster: './assets/demo-zhxy-console.jpg?v=6', theater: 'theater-zhxy-console' }
+        'p2-web': { href: './src/zhxy-order.html?v=18&tour=1', vid: './assets/demo-zhxy-web.mp4?v=7', poster: './assets/demo-zhxy-web.jpg?v=7', theater: 'theater-zhxy-web' },
+        'p2-console': { href: './src/zhxy-console.html?v=18&tour=1', vid: './assets/demo-zhxy-console.mp4?v=6', poster: './assets/demo-zhxy-console.jpg?v=6', theater: 'theater-zhxy-console' }
       };
       document.querySelectorAll('.etab[data-group]').forEach(btn => btn.addEventListener('click', () => {
         const g = btn.getAttribute('data-group'), id = btn.getAttribute('data-tab');

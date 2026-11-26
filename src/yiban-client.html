@@ -115,44 +115,44 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
     <div class="tb-left"><span class="tb-icon">易</span>易班自动化工作台 v3.2</div>
     <div class="tb-right">
       <button class="mini-btn" id="btnLexicon">自定义词库</button>
-      <button class="auth-badge" id="btnAuth">● 云端 HWID 已授权</button>
+      <button class="auth-badge" id="btnAuth">云端已授权</button>
     </div>
   </div>
   <div class="body">
-    <h1>易班发帖点赞控制台</h1>
+    <h1>易班自动化工作台</h1>
 
     <div class="box">
-      <h2>发帖目标配置</h2>
-      <div class="sub">由于易班版块较多，初次使用请先点击【读取版块】</div>
-      <div class="row"><label for="selRange">发帖范围:</label><select id="selRange"></select></div>
-      <div class="row"><label for="selBoard">发帖版块:</label><select id="selBoard"></select></div>
+      <h2>发帖目标</h2>
+      <div class="sub">初次使用先读取当前账号可发版块</div>
+      <div class="row"><label for="selRange">发帖范围</label><select id="selRange"></select></div>
+      <div class="row"><label for="selBoard">发帖版块</label><select id="selBoard"></select></div>
       <div class="btn-row">
-        <button class="btn btn-amber" id="btnRead">自动读取发布范围与版块</button>
-        <button class="btn btn-green" id="btnSaveCfg">保存当前配置</button>
+        <button class="btn btn-amber" id="btnRead">读取版块</button>
+        <button class="btn btn-green" id="btnSaveCfg">保存配置</button>
       </div>
     </div>
 
     <div class="tips">
-      <b>💡 防封号防屏蔽发帖技巧：</b>
-      <p>1. 绝对不要选择学校里有专门排版美化、管理严格的版块，否则帖子100%会被屏蔽！<br>2. 尽量挑选已经含有大量“灌水帖”的版块发布（建议先在手机易班查看各个板块发帖情况）。</p>
+      <b>选版块提示</b>
+      <p>避开管理严格的官方宣传版块，优先选择日常活跃的公共版块，降低帖子被屏蔽的概率。</p>
     </div>
 
     <div class="limit-box">
-      <h2>任务上限配置</h2>
+      <h2>每日上限</h2>
       <div class="limit-grid">
         <div class="l-item"><span>发帖上限</span><div><input id="limPost" type="number" min="1" value="20"><span>条</span></div></div>
         <div class="l-item"><span>评论上限</span><div><input id="limComment" type="number" min="1" value="30"><span>条</span></div></div>
         <div class="l-item"><span>点赞上限</span><div><input id="limLike" type="number" min="1" value="35"><span>次</span></div></div>
       </div>
       <div class="limit-actions">
-        <button class="btn btn-indigo" id="btnSaveLim">保存上限配置</button>
-        <button class="btn btn-slate" id="btnUpdate">检查云端更新</button>
+        <button class="btn btn-indigo" id="btnSaveLim">保存上限</button>
+        <button class="btn btn-slate" id="btnUpdate">检查更新</button>
       </div>
     </div>
 
     <div class="actions">
-      <button class="btn btn-yiban" id="btnComment">自动评论 / 点赞入口</button>
-      <button class="btn btn-yiban" id="btnPost">按以上配置 -&gt; 自动发帖</button>
+      <button class="btn btn-yiban" id="btnComment">开始评论点赞</button>
+      <button class="btn btn-yiban" id="btnPost">开始自动发帖</button>
     </div>
 
     <div class="stats">
@@ -162,23 +162,23 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
     </div>
 
     <div class="console" id="log">
-      <div><span class="ok">[授权]</span> 云端多维表格 HWID 核验通过 · 卡密：YB-8K2M9-...（月卡有效）</div>
-      <div><span class="info">[配置]</span> 已加载本地版块缓存（5 个发布范围 · 36 个版块）与自定义词库</div>
-      <div><span class="info">[就绪]</span> 点击上方任意按钮可完整体验桌面客户端工作流</div>
+      <div><span class="ok">[授权]</span> 云端多维表格设备码核验通过 · 月卡有效</div>
+      <div><span class="info">[配置]</span> 已加载本地版块缓存与自定义词库</div>
+      <div><span class="info">[就绪]</span> 状态正常，可以开始任务</div>
     </div>
   </div>
 </div>
 
-<!-- 云端 HWID 授权弹窗 -->
+<!-- 云端授权弹窗 -->
 <div class="modal-bg" id="authModal">
   <div class="modal">
-    <h3><span>云端多维表格 · HWID 卡密授权</span></h3>
-    <div style="font-size:12px;color:#475569;margin-bottom:8px">设备硬件码 (HWID)：<code style="background:#F1F5F9;padding:2px 6px;border-radius:4px">WIN-BFEB****06EA</code></div>
-    <input type="text" id="authKey" value="YB-8K2**-*****-*****-T6V2H" placeholder="输入 YB-XXXXX-... 激活码">
-    <div style="font-size:11.5px;color:#059669;margin-bottom:8px">状态：已激活 · 卡片类型：月卡（31天）· 封禁状态：否</div>
+    <h3><span>云端多维表格授权</span></h3>
+    <div style="font-size:12px;color:#475569;margin-bottom:8px">设备硬件码：<code style="background:#F1F5F9;padding:2px 6px;border-radius:4px">WIN-BFEB****06EA</code></div>
+    <input type="text" id="authKey" value="YB-8K2**-*****-*****-T6V2H" placeholder="YB-XXXXX-XXXXX">
+    <div style="font-size:11.5px;color:#059669;margin-bottom:8px">状态：已激活 · 31 天月卡 · 未封禁</div>
     <div class="mfoot">
       <button class="btn btn-ghost" onclick="closeModals()">关闭</button>
-      <button class="btn btn-green" id="btnVerifyKey">重新联网校验</button>
+      <button class="btn btn-green" id="btnVerifyKey">核对授权</button>
     </div>
   </div>
 </div>
@@ -186,8 +186,8 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
 <!-- 自定义词库弹窗 -->
 <div class="modal-bg" id="lexModal">
   <div class="modal">
-    <h3><span>自定义发帖 / 评论词库（本地接口同步）</span></h3>
-    <div style="font-size:11.5px;color:#64748B;margin-bottom:5px">发帖与评论随机语句（每行一条，实时同步至浏览器悬浮窗脚本）：</div>
+    <h3><span>自定义发帖与评论词库</span></h3>
+    <div style="font-size:11.5px;color:#64748B;margin-bottom:5px">每行一条常用语，保存后直接同步到执行脚本：</div>
     <textarea id="lexText">今日打卡，记录美好校园生活！
 好好学习天天向上，继续加油~
 分享今日好心情，祝大家学业顺利！
@@ -240,53 +240,53 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
   document.getElementById('btnAuth').onclick = () => document.getElementById('authModal').classList.add('on');
   document.getElementById('btnLexicon').onclick = () => document.getElementById('lexModal').classList.add('on');
   document.getElementById('btnVerifyKey').onclick = () => {
-    addLog('授权','ok','云端表格 API 校验成功：HWID 匹配，到期时间有效');
-    closeModals(); toast('云端 HWID 授权校验通过');
+    addLog('授权','ok','云端表格校验通过，设备码匹配且月卡有效');
+    closeModals(); toast('授权核对通过');
   };
   document.getElementById('btnSaveLex').onclick = () => {
     const lines = document.getElementById('lexText').value.trim().split('\n').filter(Boolean).length;
-    addLog('词库','ok',`已写入本地配置接口：共 ${lines} 条自定义发帖/评论语句`);
-    closeModals(); toast(`已保存 ${lines} 条自定义词库`);
+    addLog('词库','ok',`已同步 ${lines} 条自定义常用语到执行脚本`);
+    closeModals(); toast(`已保存 ${lines} 条常用语`);
   };
   document.getElementById('btnRead').onclick = function(){
-    if(running) return; running = true; this.disabled=true; this.textContent='正在读取中...';
-    addLog('采集','info','已拉起独立 Edge 浏览器实例，自动读取账号权限版块...');
+    if(running) return; running = true; this.disabled=true;
+    addLog('采集','info','正在独立浏览器中读取当前账号可发版块');
     setTimeout(()=>{
-      addLog('采集','ok','读取完成：已同步 5 个范围 / 36 个版块并写入 yiban_boards_cache.json');
-      this.disabled=false; this.textContent='自动读取发布范围与版块'; running=false; toast('版块读取完成！');
+      addLog('采集','ok','已同步账号全部可发版块并写入本地缓存');
+      this.disabled=false; running=false; toast('版块已同步');
     }, 800);
   };
   document.getElementById('btnSaveCfg').onclick = () => {
-    const msg = `【${selRange.value}】 -> 【${selBoard.value}】`;
-    addLog('配置','ok','已保存默认发帖目标：' + msg); toast('已保存：' + msg);
+    const msg = `${selRange.value} / ${selBoard.value}`;
+    addLog('配置','ok','已保存默认发帖目标：' + msg); toast('已保存发帖目标');
   };
   document.getElementById('btnSaveLim').onclick = () => {
     updateStats();
     addLog('上限','ok',`任务上限已更新：发帖 ${limPost.value} / 评论 ${limComment.value} / 点赞 ${limLike.value}`);
-    toast('上限配置已保存');
+    toast('上限已保存');
   };
   document.getElementById('btnUpdate').onclick = () => {
-    addLog('更新','info','正在请求云端版本表检查最新版本号...');
-    setTimeout(()=>{ addLog('更新','ok','当前已是最新版本 v3.2'); toast('当前已是最新版本 v3.2'); }, 450);
+    addLog('更新','info','正在检查云端版本');
+    setTimeout(()=>{ addLog('更新','ok','当前已是最新版本 v3.2'); toast('已是最新版本 v3.2'); }, 450);
   };
   document.getElementById('btnComment').onclick = () => {
     if(running) return; running = true;
-    addLog('执行','info','启动独立用户目录浏览器，注入「自动评论点赞」加密脚本...');
+    addLog('执行','info','打开独立浏览器窗口，载入评论点赞脚本');
     let step = 0;
     const iv = setInterval(()=>{
       step++; coms += 2; exp += 6; updateStats();
-      addLog('评论','warn',`第 ${step} 轮：已自动评论 +2、点赞 +3（随机间隔防风控）`);
-      if(step >= 3){ clearInterval(iv); running=false; addLog('完成','ok','本轮自动评论点赞任务执行完毕！'); toast('自动评论/点赞演示完成'); }
+      addLog('评论','warn',`第 ${step} 轮：已评论 +2、点赞 +3，按随机间隔运行`);
+      if(step >= 3){ clearInterval(iv); running=false; addLog('完成','ok','本轮评论点赞任务已完成'); toast('评论点赞已完成'); }
     }, 450);
   };
   document.getElementById('btnPost').onclick = () => {
     if(running) return; running = true;
-    addLog('执行','info',`启动自动发帖 -> 目标：【${selRange.value}】/【${selBoard.value}】`);
+    addLog('执行','info',`开始自动发帖，目标：${selRange.value} / ${selBoard.value}`);
     let step = 0;
     const iv = setInterval(()=>{
       step++; posts += 1; exp += 10; updateStats();
-      addLog('发帖','ok',`已发布第 ${posts} 篇帖子（自定义词库随机组合，避开严管版块）`);
-      if(step >= 3){ clearInterval(iv); running=false; addLog('完成','ok','本轮自动发帖执行完毕，网薪经验值已累计！'); toast('自动发帖演示完成'); }
+      addLog('发帖','ok',`已发布第 ${posts} 篇帖子，采用自定义词库随机组合`);
+      if(step >= 3){ clearInterval(iv); running=false; addLog('完成','ok','本轮自动发帖已完成，预计网薪已更新'); toast('自动发帖已完成'); }
     }, 480);
   };
 })();
@@ -296,7 +296,7 @@ h1{text-align:center;font-size:19px;font-weight:800;color:#333;margin-bottom:12p
 <link rel="stylesheet" href="../assets/vendor/driver.css?v=2">
 <link rel="stylesheet" href="../assets/vendor/portfolio-tour.css?v=2">
 <script src="../assets/vendor/driver.js.iife.js?v=2"></script>
-<script src="../assets/vendor/portfolio-tour.js?v=3"></script>
+<script src="../assets/vendor/portfolio-tour.js?v=4"></script>
 <!-- PORTFOLIO_TOUR_END -->
 </body>
 </html>

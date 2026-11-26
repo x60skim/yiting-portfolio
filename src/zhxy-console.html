@@ -17,8 +17,8 @@
     { id: 18, title: '热门活动集中开放提醒', content: '本周五晚 18:00 有一批高分活动开放，请提前勾选预约并完成验号。', category: 'notice', active: 1, created_at: '2026-11-18 14:20:00', media_json: '[]' }
   ];
   const PLACEHOLDERS = [
-    { id: 901, activity_name: '生命健康学院“健康生活”打卡活动(第四期)', account_username: '2024****302', nickname: '占位·副号A', status: 'completed', slot_state: 'ready', created_at: '2026-11-19 09:00' },
-    { id: 902, activity_name: '寻梦环游记观影活动', account_username: '2024****341', nickname: '占位·副号B', status: 'completed', slot_state: 'ready', created_at: '2026-11-19 10:15' }
+    { id: 901, activity_name: '生命健康学院“健康生活”打卡活动(第四期)', account_username: '2024****302', nickname: '空闲账号 A', status: 'completed', slot_state: 'ready', created_at: '2026-11-19 09:00' },
+    { id: 902, activity_name: '寻梦环游记观影活动', account_username: '2024****341', nickname: '空闲账号 B', status: 'completed', slot_state: 'ready', created_at: '2026-11-19 10:15' }
   ];
   let liveSent = false;
   let cfg = {
@@ -36,7 +36,7 @@
     save_config: (c) => { cfg = Object.assign(cfg, c || {}); return { status: 'ok' }; },
     get_app_settings: () => ({ status: 'ok', settings: appSettings }),
     save_app_settings: (s) => { appSettings = Object.assign(appSettings, s || {}); return { status: 'ok' }; },
-    get_account_settings: () => ({ status: 'ok', main_account: { username: '2024****302' }, sub_accounts: [{ username: '2024****341', remark: '副号1' }, { username: '2024****325', remark: '副号2' }] }),
+    get_account_settings: () => ({ status: 'ok', main_account: { username: '2024****302' }, sub_accounts: [{ username: '2024****341', remark: '空闲账号 1' }, { username: '2024****325', remark: '空闲账号 2' }] }),
     get_runtime_status: () => ({ daemons: { task_reminder: true, verify: true, slot_swap: true }, web_online: true, push_configured: true }),
     get_app_topmost: () => ({ topmost: false }),
     set_app_topmost: (v) => ({ topmost: !!v }),
@@ -59,9 +59,9 @@
           logs: ['[14:30:00] 接口直连报名返回 SUCCESS (耗时 46ms)', '[14:31:12] 自动复核确认已报上，可批量生图结算']
         };
         base['slot_demo_3'] = {
-          title: '[名额置换] 生命健康学院“健康生活”打卡活动', status: 'running', status_text: '副号占位 → 置换中',
+          title: '[名额置换] 生命健康学院“健康生活”打卡活动', status: 'running', status_text: '空闲账号换位中',
           account: '占位号1 → 客户B',
-          logs: ['[15:18:10] 副号已锁定空闲名额，正在执行毫秒级让位接盘']
+          logs: ['[15:18:10] 空闲账号已锁定名额，正在执行退位接盘']
         };
       }
       return base;
@@ -98,7 +98,7 @@
       drops: [{ id: 1, username: '2026****434', activity_name: '校园摄影打卡活动', created_at: '2026-11-18 19:00' }],
       activity_board: [], main_grabbed: [], hot_n: 2
     }),
-    admin_manual_slot_swap: () => ({ status: 'ok', message: '演示模式：副号让位与客户接盘已完成' }),
+    admin_manual_slot_swap: () => ({ status: 'ok', message: '空闲账号退位与客户接盘已完成' }),
     admin_get_tickets: () => ({ tickets: TICKETS, pending_count: TICKETS.filter(t => t.status === 'pending').length }),
     admin_get_ticket_count: () => ({ pending_count: TICKETS.filter(t => t.status === 'pending').length }),
     admin_resolve_ticket: (id, reply) => {
@@ -3603,7 +3603,7 @@ html[data-theme="dark"] .admin-menu-sep { background: #334155 !important; }
                                     <h4>主账号活动上架</h4>
                                     <div class="sm-hint">上架后客户可预约；截止前 1 分钟没人预约会自动退报，被预约前可撤回。</div>
                                 </div>
-                                <button class="sm-btn" onclick="App.listMainSlotToSite(0, true)">一键上架全部</button>
+                                <button class="sm-btn" onclick="App.listMainSlotToSite(0, true)">上架全部</button>
                             </div>
                             <div id="slot-main-grabbed-list" style="font-size:13px; color:#475569;">加载中...</div>
                         </div>
@@ -3681,7 +3681,7 @@ html[data-theme="dark"] .admin-menu-sep { background: #334155 !important; }
                 </table>
             </div>
             <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; padding: 12px 18px;">
-                <button class="btn-outline" onclick="App.syncOrderAccounts()" style="padding: 5px 12px; font-size: 12px; border-color:#10b981; color:#10b981;">📥 一键自动记住已下单客户的账号</button>
+                <button class="btn-outline" onclick="App.syncOrderAccounts()" style="padding: 5px 12px; font-size: 12px; border-color:#10b981; color:#10b981;">记住已下单客户账号</button>
                 <button class="btn-outline" onclick="document.getElementById('verified-users-modal').classList.remove('open')">关闭</button>
             </div>
         </div>

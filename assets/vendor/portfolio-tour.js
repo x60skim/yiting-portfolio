@@ -85,7 +85,7 @@
 
   var TOURS = {
     'reconcile': {
-      name: '广交会取餐核对台',
+      name: '广交会多端取餐核对台',
       hasBottomBar: true,
       cleanup: cleanReconcile,
       steps: [
@@ -99,8 +99,8 @@
           },
           selector: '#strip',
           side: 'bottom',
-          title: '5 大品牌实时余量与备餐看板',
-          desc: '10 部手机现场实时协作，自动联动多满分、真功夫、麦当劳、肯德基与清真餐的报餐、已取与备用餐余量，高峰期一眼看清库存。'
+          title: '6 种餐品实时余量看板',
+          desc: '10 部现场手机实时同步多满分、真功夫、麦当劳、肯德基、清真餐和白饭的报餐、已取与备用余量。'
         },
         {
           tab: '跨日历',
@@ -112,7 +112,7 @@
           selector: '#dateBtn',
           side: 'bottom',
           title: '33 天 95 场跨日历与异常标徽',
-          desc: '支持随时切换 A区 / B座 与午 / 晚餐；日期栏自动标出「补」（待补餐券）与红色「!」（问题餐券），跨展期复查零遗漏。'
+          desc: '切换 A区、B座与午晚餐，日历格直接标出待补餐券和问题餐券，方便跨展期复查。'
         },
         {
           tab: '需补餐券',
@@ -126,8 +126,8 @@
           },
           selector: '#chipVoucher',
           side: 'bottom',
-          title: '需补餐券部门一键筛出并核清',
-          desc: '一键滤出所有少取待补的部门，现场补发后直接点选核清，整个展期 55 笔补餐券全部核对清楚、零错漏。'
+          title: '筛选少取部门并核清待补餐券',
+          desc: '筛出所有少取待补的部门，现场补发后核清记录，全展期 55 笔补餐券零错漏。'
         },
         {
           tab: '超领提醒',
@@ -140,8 +140,8 @@
           },
           selector: '#drawer .dpanel, #drawer',
           side: 'top',
-          title: '多领当场标红提醒，加餐换餐自动算平',
-          desc: '点选份数时自动比对报餐数，多领少领当场标红拦住；临时加餐或换别的品牌，两边余量一起算平，不用人工心算。'
+          title: '超领标红拦截与跨品牌换餐',
+          desc: '录入份数时自动比对报餐数，超领当场红框拦住；加餐或换品牌时两边余量自动算平。'
         },
         {
           tab: '取餐记录',
@@ -153,8 +153,8 @@
           },
           selector: '#logTable .lcard, #sheetLog .sbody',
           side: 'bottom',
-          title: '问题餐券拍照留底 + 误录一键撤销',
-          desc: '支持按部门、正常发餐、加换餐和「问题餐券」筛选；现场拦下涂改餐券可直接拍照存底并点看原图，录错一键撤销，余量自动加回来。'
+          title: '问题餐券拍照留底与误录撤销',
+          desc: '按部门或记录类型筛选；拦下的涂改餐券拍照存底，误录可撤销并自动加回余量。'
         },
         {
           tab: '常用工具',
@@ -166,8 +166,8 @@
           },
           selector: '#sheetMore .sbody',
           side: 'top',
-          title: '9 项现场常用工具',
-          desc: '内置实际到餐录入、表格粘贴导入、金山文档自动同步、历史表格格式检查、一键复制 WPS 结算列与导错区一键转移。'
+          title: '现场核对常用工具',
+          desc: '集成实际到餐录入、金山文档自动同步、表格格式检查、WPS 结算列复制与错区数据转移。'
         },
         {
           tab: '日终转券',
@@ -181,19 +181,19 @@
           },
           selector: '#sheetEndDay .sbody, #sheetEndDay',
           side: 'top',
-          title: '收工一键盘点并批量转待补餐券',
-          desc: '点击「完成今日结算」，系统自动列出全部未取、少取部门并批量转为待补餐券，收工核对一步到位。'
+          title: '收工盘点与批量转待补餐券',
+          desc: '结算时自动列出未取和少取部门并批量转为待补餐券。'
         },
         {
-          tab: '离线导出',
+          tab: '断网导表',
           prepare: async function () {
             cleanReconcile();
             await wait(180);
           },
           selector: '#expBtn',
           side: 'top',
-          title: '离线容错本地暂存与标准 Excel 导出',
-          desc: '展馆断网也能在手机本地完整记账不丢单，一键导出标准 Excel 结算表，将每天 50 分钟纸笔对账压缩至 5 分钟。'
+          title: '断网本机暂存与 Excel 导出',
+          desc: '展馆断网时在手机本地继续记账，恢复后自动续传；导出标准 Excel 结算表，每天对账从 50 分钟降到 5 分钟。'
         }
       ]
     },
@@ -215,8 +215,8 @@
           },
           selector: '#chips',
           side: 'bottom',
-          title: '1,225 场校园活动自动同步与精准筛选',
-          desc: '后端持续抓取校园新活动并自动补全综测加分项，支持按「未浏览 / 线上 / 线下 / 空闲名额」一键筛选，替代翻微信群找活动。'
+          title: '1,225 场活动自动上架与筛选',
+          desc: '后台同步校园新活动并整理综测加分项，按未浏览、线上、线下和空闲名额快速筛选。'
         },
         {
           tab: '活动详情',
@@ -229,8 +229,8 @@
           },
           selector: '#actDetailOverlay > div, #actDetailModal > div, #grid .card',
           side: 'top',
-          title: '活动详情、校区限制与综测加分解析',
-          desc: '自动整理报名时间、校区限制、当前名额与综测加分类别，客户一目了然，点击底部即可立即预约报名。'
+          title: '加分细则与校区要求解析',
+          desc: '从长策划书里提取报名时间、对象限制、剩余名额和综测加分类别。'
         },
         {
           tab: '批量下单',
@@ -248,8 +248,8 @@
           },
           selector: '#modalOverlay > div',
           side: 'top',
-          title: '多场批量合并预约与首次短信验号',
-          desc: '一次勾选多场活动合并下单，替代微信逐条抄单；首次提交自动短信校验学号密码，杜绝无效错密单并支持下次自动填充。'
+          title: '批量合并预约与首次短信验号',
+          desc: '一次勾选多场活动提交，首次下单通过短信核验账号密码，过滤错密无效单并记住信息。'
         },
         {
           tab: '自助查单',
@@ -262,8 +262,8 @@
           },
           selector: '#view-my-orders, .orders-wrap, main',
           side: 'top',
-          title: '客户自助透明查单与状态同步',
-          desc: '输入学号随时查看排队中、已抢到与待结算状态，支持开抢前自助撤销或一键联系管理员，大幅减少微信咨询工作量。'
+          title: '自助查单与开抢前取消',
+          desc: '输入学号查看排队中、已报上与待结算状态，开抢前可自助取消预约。'
         },
         {
           tab: '互助占位',
@@ -276,11 +276,11 @@
           },
           selector: '#consentModalOverlay > div',
           side: 'top',
-          title: '互助占位征用协议与免费热门掉落',
-          desc: '37 位客户签约出借空闲名额参与互助占位，换取热门活动免费随机掉落，累计完成 216 次名额置换与 35 次免费掉落。'
+          title: '空闲账号互助占位协议',
+          desc: '签约后账号空闲时协助暂占热门名额，截止前无人接手自动取消，累计完成 216 次换位与 35 次免费赠送。'
         },
         {
-          tab: '售后工单',
+          tab: '带图留言',
           prepare: async function () {
             cleanZhxyOrder();
             await wait(140);
@@ -290,8 +290,8 @@
           },
           selector: '#view-tickets, button[data-view="tickets"]',
           side: 'top',
-          title: '带图留言、群码直达与弹窗提醒',
-          desc: '支持在线传截图提问、直接查看活动微信群码和历史通知，后台回复后客户再打开网页就会自动收到弹窗提醒。'
+          title: '带图留言、群码与回复提醒',
+          desc: '在线上传截图留言、查看活动微信群码和历史通知，后台回复后打开网页自动弹出提醒。'
         }
       ]
     },
@@ -309,8 +309,8 @@
           },
           selector: '.sidebar, #mode-scan',
           side: 'right',
-          title: '双引擎模式与守护进程实时监控',
-          desc: '支持「智能活动助手」与「抢活动高并发接口直连」双模式，左侧持续监控守护线程、网络延迟与开抢倒计时。'
+          title: '双运行模式与后台监控',
+          desc: '支持日常扫活动和接口直连抢报双模式，左侧实时显示后台运行状态、网络延迟和倒计时。'
         },
         {
           tab: '任务日志',
@@ -320,8 +320,8 @@
           },
           selector: '#task-container .card, #task-container',
           side: 'bottom',
-          title: '多任务隔离日志与浏览器一键接管',
-          desc: '每个抢票与名额置换任务独立输出实时日志流，需要人工确认时可直接点击「弹出浏览器」拉起对应登录态页面。'
+          title: '独立任务日志与人工接管',
+          desc: '每个任务单独记录日志，遇到页面验证时可弹出对应登录态浏览器窗口接手处理。'
         },
         {
           tab: '订单后台',
@@ -333,11 +333,11 @@
           },
           selector: '#admin-portal-modal .modal-content, #admin-portal-modal',
           side: 'top',
-          title: '861 笔订单集中管理与收款',
-          desc: '实时同步网站下的自助预约单，支持按「只看待结算」「核对不符」筛选，选中待付款客户一键批量出账单图发微信、批量查真伪和标记收款。'
+          title: '861 笔订单管理与账单收款',
+          desc: '同步网页预约单，支持筛选待结算与核对不符订单，批量核真、生成账单图并标记收款。'
         },
         {
-          tab: '名额置换',
+          tab: '名额换位',
           prepare: async function () {
             cleanZhxyConsole();
             await wait(160);
@@ -347,8 +347,8 @@
           },
           selector: '#slot-manager-modal .modal-content, #slot-manager-modal',
           side: 'top',
-          title: '216 次互助占位与免费掉落调度中心',
-          desc: '统一管理 38 个已验账号池、副号当前占位与名额置换记录，自动调度副号让位与客户接盘，并可一键触发热门免费掉落。'
+          title: '216 次空闲账号换位调度',
+          desc: '统一管理 38 个已验账号池与当前占位记录，自动调度空闲账号退位和客户接盘。'
         },
         {
           tab: '排期清单',
@@ -360,11 +360,11 @@
           },
           selector: '#task-drawer-overlay .drawer-panel, #task-drawer-overlay',
           side: 'left',
-          title: '全流程活动任务排期清单',
-          desc: '按活动场次集中追踪建群、签到打卡与综测加分确认进度，确保每一笔订单从抢票到拿分全程可控。'
+          title: '活动排期跟进清单',
+          desc: '按场次追踪进群、签到和综测加分到账进度。'
         },
         {
-          tab: '客户工单',
+          tab: '客户留言',
           prepare: async function () {
             cleanZhxyConsole();
             await wait(160);
@@ -373,8 +373,8 @@
           },
           selector: '#tickets-modal .modal-content, #tickets-modal',
           side: 'top',
-          title: '客户工单同步桌面端集中处理',
-          desc: '前台网页提交的撤单、售后与群码反馈自动推送到桌面控制台，回复结单后客户前台实时收到通知。'
+          title: '客户留言同步桌面端处理',
+          desc: '前台网页提交的撤单、售后与群码反馈自动推送到控制台，回复后推回客户网页提醒。'
         }
       ]
     },
@@ -394,8 +394,8 @@
           },
           selector: '#authModal .modal',
           side: 'bottom',
-          title: '云端多维表格零成本一机一码授权',
-          desc: '不租云服务器，直接联网读取云端表格校验设备硬件码（HWID）与月卡有效期，实现 ¥0 / 月商业授权与远程风控管理。'
+          title: '云端表格 Open API 一机一码授权',
+          desc: '不租云服务器，联网读取云端表格核对设备硬件码与月卡有效期，实现 ¥0 / 月授权管理。'
         },
         {
           tab: '读取版块',
@@ -407,8 +407,8 @@
           },
           selector: '.box',
           side: 'bottom',
-          title: '自动读取 5 个范围 / 36 个可发版块',
-          desc: '一键拉起独立浏览器抓取当前账号权限版块并写入本地缓存，配合下方实战防封号、防屏蔽选版块指引，新手双击即用。'
+          title: '自动读取当前账号全部可发版块',
+          desc: '在独立浏览器中抓取当前账号有权限的全部版块并写入本地缓存，下方附带防屏蔽选版块提示。'
         },
         {
           tab: '自定义词库',
@@ -420,11 +420,11 @@
           },
           selector: '#lexModal .modal',
           side: 'bottom',
-          title: '本地可视化自定义随机发帖与评论词库',
-          desc: '支持自由编辑多条校园互动语料，保存后通过本地接口实时同步至浏览器悬浮窗脚本，随机组合防重复。'
+          title: '自定义发帖与评论常用语',
+          desc: '自由编辑日常互动语料，保存后通过本地接口同步至执行脚本，不用重启软件。'
         },
         {
-          tab: '防风控上限',
+          tab: '任务上限',
           prepare: async function () {
             cleanYiban();
             await wait(160);
@@ -433,11 +433,11 @@
           },
           selector: '.limit-box',
           side: 'top',
-          title: '防风控任务上限配置与云端更新检查',
-          desc: '灵活控制单次发帖、评论与点赞上限，配合随机间隔避免风控；内置云端更新检测，付费客户提建议当天即可改完发新版。'
+          title: '每日任务上限与云端更新检查',
+          desc: '控制单次发帖、评论与点赞上限并配合随机间隔运行，内置云端版本更新检测。'
         },
         {
-          tab: '实机发帖',
+          tab: '自动执行',
           prepare: async function () {
             cleanYiban();
             await wait(140);
@@ -446,8 +446,8 @@
           },
           selector: '#log',
           side: 'top',
-          title: '实机自动执行与实时网薪收益日志',
-          desc: '提供自动评论点赞与自动发帖双入口，实时统计已发帖、已评论与预计网薪收益；线上实售 89 单保持 100% 好评零纠纷。'
+          title: '自动执行与预计网薪统计',
+          desc: '分设自动评论点赞和自动发帖入口，实时统计执行进度与预计网薪；线上售出 89 单、100% 好评。'
         }
       ]
     }
@@ -577,9 +577,9 @@
         side: step.side || 'bottom',
         align: 'center',
         showProgress: true,
-        progressText: (isAutoMode ? '实机巡演 ' : '亮点 ') + (idx + 1) + ' / ' + cfg.steps.length,
+        progressText: (isAutoMode ? '演示 ' : '导览 ') + (idx + 1) + ' / ' + cfg.steps.length,
         prevBtnText: isEmbed ? '自由操作' : '上一步',
-        nextBtnText: isLast ? (isAutoMode ? '重播 →' : '自由体验') : '下一亮点 →',
+        nextBtnText: isLast ? (isAutoMode ? '重播' : '开始体验') : '下一步',
         showButtons: isEmbed ? ['previous', 'next', 'close'] : (isFirst ? ['next', 'close'] : ['previous', 'next', 'close']),
         onNextClick: function () {
           if (isLast) {

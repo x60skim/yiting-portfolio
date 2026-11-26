@@ -675,7 +675,7 @@ table.p td:last-child{text-align:left;min-width:150px}
 </head>
 <body>
 <div class="app" id="app">
-<div class="demo-bar"><span>在线体验 · 已预载广交会真实场次数据（10.16–10.24）· 修改仅存本机</span><button type="button" id="demoReset">重置演示</button></div>
+<div class="demo-bar"><span>在线体验 已载入广交会 10.16 至 10.24 场次数据 · 修改仅保存在本机</span><button type="button" id="demoReset">重置数据</button></div>
   <header class="top">
     <div class="hrow">
       <h1>取餐核对台</h1>
@@ -813,7 +813,7 @@ table.p td:last-child{text-align:left;min-width:150px}
     <button class="mrow" id="syncKdocsTodayRow" data-open="sync-kdocs-today"><span>同步今日报餐数据<small>从金山文档读取今日报餐表自动导入</small></span></button>
     <button class="mrow" id="checkFormatRow" data-open="check-format"><span>检查核对表<small>检查所有历史及今日核对表填写格式与标红问题</small></span></button>
     <button class="mrow" id="syncKdocsHistoryRow" data-open="sync-kdocs-history"><span>检查导入历史报餐与核对<small>检查所有历史日期，导入缺失报餐与取餐并核对待补餐券</small></span></button>
-    <button class="mrow danger" data-open="clear-zone"><span><b style="color:var(--bad)">删除 / 转移该区数据</b><small>导错区域时一键清空本区或转移到另一区</small></span></button>
+    <button class="mrow danger" data-open="clear-zone"><span><b style="color:var(--bad)">删除 / 转移该区数据</b><small>导错区域时清空本区或转移到另一区</small></span></button>
   </div>
 </div>
 
@@ -940,7 +940,7 @@ table.p td:last-child{text-align:left;min-width:150px}
   <div class="shead"><h2 id="arrivalTitle">餐饮品牌实际到餐录入</h2><button class="btn-icon" data-close aria-label="关闭">×</button></div>
   <div class="sbody" id="arrivalList"></div>
   <div class="sfoot">
-    <button class="btn" id="arrivalFillOrd">一键按报餐填入</button>
+    <button class="btn" id="arrivalFillOrd">按报餐填入</button>
     <button class="btn" id="arrivalClear">清空</button>
     <button class="btn" id="arrivalCancel">取消</button>
     <button class="btn pri" id="arrivalSave">保存到餐数</button>
@@ -988,7 +988,7 @@ table.p td:last-child{text-align:left;min-width:150px}
 
       <div style="display:flex;flex-direction:column;gap:10px">
         <button type="button" class="btn pri" id="btnMoveZone" style="width:100%;height:46px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14.5px">
-          <span>一键转移本场数据到 <b id="czTargetZoneName">A区</b></span>
+          <span>转移本场数据到 <b id="czTargetZoneName">A区</b></span>
         </button>
         <button type="button" class="btn dng" id="btnDeleteZone" style="width:100%;height:46px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14.5px">
           <span>清空删除本场（<span id="czCurrentZoneName">B座</span>）全部数据</span>
@@ -1029,7 +1029,7 @@ table.p td:last-child{text-align:left;min-width:150px}
     <div class="cf-modal-body" id="cfModalBody"></div>
     <div class="cf-modal-foot">
       <button type="button" class="btn" id="cfModalCloseBtn">关闭</button>
-      <button type="button" class="btn pri" id="cfCopyAllBtn">一键复制全部结果</button>
+      <button type="button" class="btn pri" id="cfCopyAllBtn">复制全部结果</button>
     </div>
   </div>
 </div>
@@ -4416,7 +4416,7 @@ table.p td:last-child{text-align:left;min-width:150px}
         '<span class="vbadge pending">需补餐券</span>' +
       '</div>';
     }).join('');
-    msgEl.textContent = '点击下方按钮将这 ' + list.length + ' 个少取部门转入需补餐券状态';
+    msgEl.textContent = '将这 ' + list.length + ' 个少取部门转入需补餐券状态';
     okBtn.disabled = false;
     okBtn.textContent = '确认结算（' + list.length + ' 个部门转为待补券）';
   }
@@ -5365,7 +5365,7 @@ table.p td:last-child{text-align:left;min-width:150px}
       }).join('');
 
       lastCheckFormatText = copyLines.join('\n').trim();
-      var colorNote = !hasColor ? '（提示：若需检查字体标红，请更新金山文档AirScript脚本）' : '';
+      var colorNote = !hasColor ? '提示：如需检查红字标注，先更新金山文档同步脚本' : '';
       subEl.textContent = '已检查 ' + sheetCount + ' 张核对表' + skipNote + ' · 共 ' + issues.length + ' 处问题' + confirmNote + colorNote;
 
       bodyEl.innerHTML = cfBannerHtml(res) + groupsHtml + confirmedHtml +
